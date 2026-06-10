@@ -29,6 +29,7 @@ rg "\\[必填\\]" path/to/index.html
 
 - AIDX is the primary brand.
 - WeBank is an endorsement, usually in the right meta area or footer.
+- Top-left brand mark uses `.aidx-avatar`; do not use the deprecated X-shaped logo.
 - Theme variables come from `references/themes-aidx.md`.
 - No custom hex colors for primary surfaces, brand colors, or status colors unless explicitly justified.
 - No generic neon, cyberpunk, or blue-purple gradient visual language.
@@ -36,7 +37,7 @@ rg "\\[必填\\]" path/to/index.html
 ### 4. Single-File Safety
 
 - No `/Users/...`, `file://`, local brand SVG paths, or private remote assets.
-- Brand geometry is inline SVG or text lockup.
+- Brand avatar is inline text fallback, or a relative `images/avatar.png` file with `data-image-slot`.
 - External fonts are acceptable because content remains readable with system fallbacks.
 - Local evidence images are relative paths under `images/`.
 

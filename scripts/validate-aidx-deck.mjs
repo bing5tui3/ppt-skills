@@ -36,6 +36,10 @@ for (const token of legacyTokens) {
   }
 }
 
+if (/\baidx-x\b/.test(html)) {
+  errors.push('Deck contains deprecated X-shaped logo class: aidx-x. Use .aidx-avatar for the top-left brand mark.');
+}
+
 const allowedLayouts = new Set(
   Array.from({ length: 10 }, (_, i) => `AIDX-${String(i + 1).padStart(2, '0')}`),
 );

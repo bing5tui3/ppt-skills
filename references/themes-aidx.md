@@ -53,9 +53,10 @@ AIDX 是内部专用高层汇报风格。它服务于 AI 科技高层汇报,不�
 
 - AIDX 是主品牌,WeBank 是背书品牌。
 - 封面 AIDX 主露出,WeBank 放右上或页脚背书。
-- 正文页左上保留 AIDX 小标或 `AIDX EXEC BRIEF`。
+- 正文页左上保留 AIDX avatar 小标或 `AIDX EXEC BRIEF`;不要使用 X 形 logo。
 - 右上放密级、日期、页码、汇报对象等元信息。
 - 不要每页放大 logo。正文页标识应是导航层,不是装饰层。
+- avatar 可使用 `.aidx-avatar` 字母头像,或 `images/avatar.png` 这类相对路径图片并标注 `data-image-slot="aidx-brand-avatar"`。
 - 不要引用 `/Users/.../brand/*.svg`。模板和页面必须保持单 HTML 可发送。
 
 ## 排版规则

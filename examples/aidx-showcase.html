@@ -68,10 +68,9 @@
   .brand-lockup strong{font-family:var(--mono);font-size:20px;font-weight:700;color:var(--aidx-text)}
   .slide.light .brand-lockup strong{color:var(--aidx-navy)}
   .brand-lockup span{font-size:14px;color:var(--aidx-muted)}
-  .aidx-x{width:36px;height:36px;display:block}
-  .aidx-x .core{stroke:var(--aidx-cyan);stroke-width:5;stroke-linecap:round}
-  .aidx-x .speed{stroke:var(--aidx-cyan);stroke-linecap:round;opacity:.55}
-  .slide.light .aidx-x .core,.slide.light .aidx-x .speed{stroke:var(--aidx-navy)}
+  .aidx-avatar{width:36px;height:36px;display:grid;place-items:center;flex:0 0 36px;overflow:hidden;border-radius:50%;border:1px solid rgba(93,173,226,.62);background:linear-gradient(135deg,rgba(93,173,226,.28),rgba(58,94,207,.46));box-shadow:inset 0 0 0 1px rgba(255,255,255,.08);font-family:var(--mono);font-size:13px;font-weight:700;line-height:1;color:var(--aidx-text)}
+  .aidx-avatar img{width:100%;height:100%;display:block;object-fit:cover}
+  .slide.light .aidx-avatar{border-color:rgba(6,57,112,.28);background:#e8f1fb;box-shadow:none;color:var(--aidx-navy)}
   .deck-meta{display:flex;align-items:center;gap:16px}
   .deck-meta b{font-weight:600;color:var(--aidx-cyan)}
   .slide.light .deck-meta b{color:var(--aidx-navy)}
@@ -202,13 +201,7 @@
   <div class="stage">
     <div class="chrome">
       <div class="brand-lockup">
-        <svg class="aidx-x" viewBox="0 0 36 36" aria-hidden="true">
-          <line class="core" x1="8" y1="8" x2="28" y2="28"/>
-          <line class="core" x1="28" y1="8" x2="8" y2="28"/>
-          <line class="speed" x1="2" y1="13" x2="9" y2="13" stroke-width="2.5"/>
-          <line class="speed" x1="2" y1="18" x2="7" y2="18" stroke-width="2"/>
-          <line class="speed" x1="2" y1="23" x2="5" y2="23" stroke-width="1.5"/>
-        </svg>
+        <span class="aidx-avatar" aria-hidden="true">AI</span>
         <div><strong>AIDX</strong><br><span>Executive Brief</span></div>
       </div>
       <div class="deck-meta"><span>CONFIDENTIAL</span><span class="meta-rule"></span><b>WeBank</b></div>
@@ -232,7 +225,7 @@
   <div class="stage">
     <div class="chrome">
       <div class="brand-lockup">
-        <svg class="aidx-x" viewBox="0 0 36 36" aria-hidden="true"><line class="core" x1="8" y1="8" x2="28" y2="28"/><line class="core" x1="28" y1="8" x2="8" y2="28"/></svg>
+        <span class="aidx-avatar" aria-hidden="true">AI</span>
         <div><strong>AIDX</strong><br><span>Executive Brief</span></div>
       </div>
       <div class="deck-meta"><span>EXEC SUMMARY</span><span class="meta-rule"></span><b>02 / 10</b></div>
@@ -266,7 +259,7 @@
   <div class="stage">
     <div class="chrome">
       <div class="brand-lockup">
-        <svg class="aidx-x" viewBox="0 0 36 36" aria-hidden="true"><line class="core" x1="8" y1="8" x2="28" y2="28"/><line class="core" x1="28" y1="8" x2="8" y2="28"/></svg>
+        <span class="aidx-avatar" aria-hidden="true">AI</span>
         <div><strong>AIDX</strong><br><span>Decision</span></div>
       </div>
       <div class="deck-meta"><span>DECISION REQUIRED</span><span class="meta-rule"></span><b>03 / 10</b></div>
@@ -303,7 +296,7 @@
   <div class="stage">
     <div class="chrome">
       <div class="brand-lockup">
-        <svg class="aidx-x" viewBox="0 0 36 36" aria-hidden="true"><line class="core" x1="8" y1="8" x2="28" y2="28"/><line class="core" x1="28" y1="8" x2="8" y2="28"/></svg>
+        <span class="aidx-avatar" aria-hidden="true">AI</span>
         <div><strong>AIDX</strong><br><span>KPI</span></div>
       </div>
       <div class="deck-meta"><span>PROGRESS SIGNALS</span><span class="meta-rule"></span><b>04 / 10</b></div>
@@ -333,7 +326,7 @@
   <div class="stage">
     <div class="chrome">
       <div class="brand-lockup">
-        <svg class="aidx-x" viewBox="0 0 36 36" aria-hidden="true"><line class="core" x1="8" y1="8" x2="28" y2="28"/><line class="core" x1="28" y1="8" x2="8" y2="28"/></svg>
+        <span class="aidx-avatar" aria-hidden="true">AI</span>
         <div><strong>AIDX</strong><br><span>Roadmap</span></div>
       </div>
       <div class="deck-meta"><span>Q3 EXECUTION</span><span class="meta-rule"></span><b>05 / 10</b></div>
@@ -356,7 +349,7 @@
   <div class="stage">
     <div class="chrome">
       <div class="brand-lockup">
-        <svg class="aidx-x" viewBox="0 0 36 36" aria-hidden="true"><line class="core" x1="8" y1="8" x2="28" y2="28"/><line class="core" x1="28" y1="8" x2="8" y2="28"/></svg>
+        <span class="aidx-avatar" aria-hidden="true">AI</span>
         <div><strong>AIDX</strong><br><span>Risk</span></div>
       </div>
       <div class="deck-meta"><span>RISK REVIEW</span><span class="meta-rule"></span><b>06 / 10</b></div>
@@ -384,7 +377,7 @@
   <div class="stage">
     <div class="chrome">
       <div class="brand-lockup">
-        <svg class="aidx-x" viewBox="0 0 36 36" aria-hidden="true"><line class="core" x1="8" y1="8" x2="28" y2="28"/><line class="core" x1="28" y1="8" x2="8" y2="28"/></svg>
+        <span class="aidx-avatar" aria-hidden="true">AI</span>
         <div><strong>AIDX</strong><br><span>Architecture</span></div>
       </div>
       <div class="deck-meta"><span>CAPABILITY MAP</span><span class="meta-rule"></span><b>07 / 10</b></div>
@@ -415,7 +408,7 @@
   <div class="stage">
     <div class="chrome">
       <div class="brand-lockup">
-        <svg class="aidx-x" viewBox="0 0 36 36" aria-hidden="true"><line class="core" x1="8" y1="8" x2="28" y2="28"/><line class="core" x1="28" y1="8" x2="8" y2="28"/></svg>
+        <span class="aidx-avatar" aria-hidden="true">AI</span>
         <div><strong>AIDX</strong><br><span>Compare</span></div>
       </div>
       <div class="deck-meta"><span>BEFORE / AFTER</span><span class="meta-rule"></span><b>08 / 10</b></div>
@@ -452,7 +445,7 @@
   <div class="stage">
     <div class="chrome">
       <div class="brand-lockup">
-        <svg class="aidx-x" viewBox="0 0 36 36" aria-hidden="true"><line class="core" x1="8" y1="8" x2="28" y2="28"/><line class="core" x1="28" y1="8" x2="8" y2="28"/></svg>
+        <span class="aidx-avatar" aria-hidden="true">AI</span>
         <div><strong>AIDX</strong><br><span>Evidence</span></div>
       </div>
       <div class="deck-meta"><span>SCREENSHOT</span><span class="meta-rule"></span><b>09 / 10</b></div>
@@ -504,13 +497,7 @@
   <div class="stage">
     <div class="chrome">
       <div class="brand-lockup">
-        <svg class="aidx-x" viewBox="0 0 36 36" aria-hidden="true">
-          <line class="core" x1="8" y1="8" x2="28" y2="28"/>
-          <line class="core" x1="28" y1="8" x2="8" y2="28"/>
-          <line class="speed" x1="2" y1="13" x2="9" y2="13" stroke-width="2.5"/>
-          <line class="speed" x1="2" y1="18" x2="7" y2="18" stroke-width="2"/>
-          <line class="speed" x1="2" y1="23" x2="5" y2="23" stroke-width="1.5"/>
-        </svg>
+        <span class="aidx-avatar" aria-hidden="true">AI</span>
         <div><strong>AIDX</strong><br><span>Executive Brief</span></div>
       </div>
       <div class="deck-meta"><span>DECISION REQUEST</span><span class="meta-rule"></span><b>WeBank</b></div>

@@ -34,7 +34,7 @@ AIDX 是内部高层汇报模板。它采用 **AIDX locked mode**:正文页只�
 - 不允许把所有页面都做成普通卡片页。
 - 7-8 页 deck 至少覆盖:封面、执行摘要、关键决策、KPI、风险或路线图、证据或架构、结尾请求。
 - 图片必须写 `data-image-slot`,例如 `aidx-evidence-16x10`。
-- 品牌标识必须内联,不要引用 `/Users/.../brand/*.svg`。
+- 左上角品牌标识使用 avatar,不要使用 X 形 logo;真实头像图片必须用相对路径并写 `data-image-slot`。
 
 ### D. 中文标题尺度
 
@@ -72,15 +72,17 @@ AIDX 是内部高层汇报模板。它采用 **AIDX locked mode**:正文页只�
 
 ```html
 <div class="brand-lockup">
-  <svg class="aidx-x" viewBox="0 0 36 36" aria-hidden="true">
-    <line class="core" x1="8" y1="8" x2="28" y2="28"/>
-    <line class="core" x1="28" y1="8" x2="8" y2="28"/>
-    <line class="speed" x1="2" y1="13" x2="9" y2="13" stroke-width="2.5"/>
-    <line class="speed" x1="2" y1="18" x2="7" y2="18" stroke-width="2"/>
-    <line class="speed" x1="2" y1="23" x2="5" y2="23" stroke-width="1.5"/>
-  </svg>
+  <span class="aidx-avatar" aria-hidden="true">AI</span>
   <div><strong>AIDX</strong><br><span>Executive Brief</span></div>
 </div>
+```
+
+如果要使用真实头像,保留 `.aidx-avatar` 包裹并替换为图片:
+
+```html
+<span class="aidx-avatar">
+  <img src="images/avatar.png" data-image-slot="aidx-brand-avatar" alt="汇报人头像">
+</span>
 ```
 
 右上角用:
@@ -100,13 +102,7 @@ AIDX 是内部高层汇报模板。它采用 **AIDX locked mode**:正文页只�
   <div class="stage">
     <div class="chrome">
       <div class="brand-lockup">
-        <svg class="aidx-x" viewBox="0 0 36 36" aria-hidden="true">
-          <line class="core" x1="8" y1="8" x2="28" y2="28"/>
-          <line class="core" x1="28" y1="8" x2="8" y2="28"/>
-          <line class="speed" x1="2" y1="13" x2="9" y2="13" stroke-width="2.5"/>
-          <line class="speed" x1="2" y1="18" x2="7" y2="18" stroke-width="2"/>
-          <line class="speed" x1="2" y1="23" x2="5" y2="23" stroke-width="1.5"/>
-        </svg>
+        <span class="aidx-avatar" aria-hidden="true">AI</span>
         <div><strong>AIDX</strong><br><span>Executive Brief</span></div>
       </div>
       <div class="deck-meta"><span>CONFIDENTIAL</span><span class="meta-rule"></span><b>WeBank</b></div>
@@ -134,7 +130,7 @@ AIDX 是内部高层汇报模板。它采用 **AIDX locked mode**:正文页只�
   <div class="stage">
     <div class="chrome">
       <div class="brand-lockup">
-        <svg class="aidx-x" viewBox="0 0 36 36" aria-hidden="true"><line class="core" x1="8" y1="8" x2="28" y2="28"/><line class="core" x1="28" y1="8" x2="8" y2="28"/></svg>
+        <span class="aidx-avatar" aria-hidden="true">AI</span>
         <div><strong>AIDX</strong><br><span>Executive Brief</span></div>
       </div>
       <div class="deck-meta"><span>EXEC SUMMARY</span><span class="meta-rule"></span><b>02 / 08</b></div>
@@ -172,7 +168,7 @@ AIDX 是内部高层汇报模板。它采用 **AIDX locked mode**:正文页只�
   <div class="stage">
     <div class="chrome">
       <div class="brand-lockup">
-        <svg class="aidx-x" viewBox="0 0 36 36" aria-hidden="true"><line class="core" x1="8" y1="8" x2="28" y2="28"/><line class="core" x1="28" y1="8" x2="8" y2="28"/></svg>
+        <span class="aidx-avatar" aria-hidden="true">AI</span>
         <div><strong>AIDX</strong><br><span>Decision</span></div>
       </div>
       <div class="deck-meta"><span>DECISION REQUIRED</span><span class="meta-rule"></span><b>03 / 08</b></div>
@@ -213,7 +209,7 @@ AIDX 是内部高层汇报模板。它采用 **AIDX locked mode**:正文页只�
   <div class="stage">
     <div class="chrome">
       <div class="brand-lockup">
-        <svg class="aidx-x" viewBox="0 0 36 36" aria-hidden="true"><line class="core" x1="8" y1="8" x2="28" y2="28"/><line class="core" x1="28" y1="8" x2="8" y2="28"/></svg>
+        <span class="aidx-avatar" aria-hidden="true">AI</span>
         <div><strong>AIDX</strong><br><span>KPI</span></div>
       </div>
       <div class="deck-meta"><span>PROGRESS SIGNALS</span><span class="meta-rule"></span><b>04 / 08</b></div>
@@ -247,7 +243,7 @@ AIDX 是内部高层汇报模板。它采用 **AIDX locked mode**:正文页只�
   <div class="stage">
     <div class="chrome">
       <div class="brand-lockup">
-        <svg class="aidx-x" viewBox="0 0 36 36" aria-hidden="true"><line class="core" x1="8" y1="8" x2="28" y2="28"/><line class="core" x1="28" y1="8" x2="8" y2="28"/></svg>
+        <span class="aidx-avatar" aria-hidden="true">AI</span>
         <div><strong>AIDX</strong><br><span>Roadmap</span></div>
       </div>
       <div class="deck-meta"><span>Q3 EXECUTION</span><span class="meta-rule"></span><b>05 / 08</b></div>
@@ -274,7 +270,7 @@ AIDX 是内部高层汇报模板。它采用 **AIDX locked mode**:正文页只�
   <div class="stage">
     <div class="chrome">
       <div class="brand-lockup">
-        <svg class="aidx-x" viewBox="0 0 36 36" aria-hidden="true"><line class="core" x1="8" y1="8" x2="28" y2="28"/><line class="core" x1="28" y1="8" x2="8" y2="28"/></svg>
+        <span class="aidx-avatar" aria-hidden="true">AI</span>
         <div><strong>AIDX</strong><br><span>Risk</span></div>
       </div>
       <div class="deck-meta"><span>RISK REVIEW</span><span class="meta-rule"></span><b>06 / 08</b></div>
@@ -306,7 +302,7 @@ AIDX 是内部高层汇报模板。它采用 **AIDX locked mode**:正文页只�
   <div class="stage">
     <div class="chrome">
       <div class="brand-lockup">
-        <svg class="aidx-x" viewBox="0 0 36 36" aria-hidden="true"><line class="core" x1="8" y1="8" x2="28" y2="28"/><line class="core" x1="28" y1="8" x2="8" y2="28"/></svg>
+        <span class="aidx-avatar" aria-hidden="true">AI</span>
         <div><strong>AIDX</strong><br><span>Architecture</span></div>
       </div>
       <div class="deck-meta"><span>CAPABILITY MAP</span><span class="meta-rule"></span><b>07 / 08</b></div>
@@ -341,7 +337,7 @@ AIDX 是内部高层汇报模板。它采用 **AIDX locked mode**:正文页只�
   <div class="stage">
     <div class="chrome">
       <div class="brand-lockup">
-        <svg class="aidx-x" viewBox="0 0 36 36" aria-hidden="true"><line class="core" x1="8" y1="8" x2="28" y2="28"/><line class="core" x1="28" y1="8" x2="8" y2="28"/></svg>
+        <span class="aidx-avatar" aria-hidden="true">AI</span>
         <div><strong>AIDX</strong><br><span>Compare</span></div>
       </div>
       <div class="deck-meta"><span>BEFORE / AFTER</span><span class="meta-rule"></span><b>08 / 08</b></div>
@@ -382,7 +378,7 @@ AIDX 是内部高层汇报模板。它采用 **AIDX locked mode**:正文页只�
   <div class="stage">
     <div class="chrome">
       <div class="brand-lockup">
-        <svg class="aidx-x" viewBox="0 0 36 36" aria-hidden="true"><line class="core" x1="8" y1="8" x2="28" y2="28"/><line class="core" x1="28" y1="8" x2="8" y2="28"/></svg>
+        <span class="aidx-avatar" aria-hidden="true">AI</span>
         <div><strong>AIDX</strong><br><span>Evidence</span></div>
       </div>
       <div class="deck-meta"><span>SCREENSHOT</span><span class="meta-rule"></span><b>09 / 10</b></div>
@@ -418,13 +414,7 @@ AIDX 是内部高层汇报模板。它采用 **AIDX locked mode**:正文页只�
   <div class="stage">
     <div class="chrome">
       <div class="brand-lockup">
-        <svg class="aidx-x" viewBox="0 0 36 36" aria-hidden="true">
-          <line class="core" x1="8" y1="8" x2="28" y2="28"/>
-          <line class="core" x1="28" y1="8" x2="8" y2="28"/>
-          <line class="speed" x1="2" y1="13" x2="9" y2="13" stroke-width="2.5"/>
-          <line class="speed" x1="2" y1="18" x2="7" y2="18" stroke-width="2"/>
-          <line class="speed" x1="2" y1="23" x2="5" y2="23" stroke-width="1.5"/>
-        </svg>
+        <span class="aidx-avatar" aria-hidden="true">AI</span>
         <div><strong>AIDX</strong><br><span>Executive Brief</span></div>
       </div>
       <div class="deck-meta"><span>DECISION REQUEST</span><span class="meta-rule"></span><b>WeBank</b></div>

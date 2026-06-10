@@ -21,16 +21,21 @@ Every slide must include `.stage`; do not put content directly under `.slide`.
 
 ## Brand Lockup
 
-Use the inline AIDX mark plus text lockup:
+Use the avatar mark plus text lockup. Do not use the deprecated X-shaped mark:
 
 ```html
 <div class="brand-lockup">
-  <svg class="aidx-x" viewBox="0 0 36 36" aria-hidden="true">
-    <line class="core" x1="8" y1="8" x2="28" y2="28"/>
-    <line class="core" x1="28" y1="8" x2="8" y2="28"/>
-  </svg>
+  <span class="aidx-avatar" aria-hidden="true">AI</span>
   <div><strong>AIDX</strong><br><span>Executive Brief</span></div>
 </div>
+```
+
+To use a real avatar image, keep the same wrapper and replace the fallback initials:
+
+```html
+<span class="aidx-avatar">
+  <img src="images/avatar.png" data-image-slot="aidx-brand-avatar" alt="汇报人头像">
+</span>
 ```
 
 Use `.deck-meta` for confidentiality, date, page, or WeBank endorsement:
