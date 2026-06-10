@@ -8,6 +8,42 @@
 
 ## 🔴 P0 · 一定不能犯的错
 
+### 0-X. AIDX locked mode:内部高层汇报必须来自登记版式
+
+**现象**:颜色像 AIDX,但页面变成通用蓝黑科技风,没有执行摘要、决策、风险和路线图结构。
+
+**根因**:生成时只套了深色和 AIDX 蓝,没有使用 `references/layouts-aidx.md` 的登记版式。
+
+**做法**:
+- 先读 `references/themes-aidx.md` 和 `references/layouts-aidx.md`
+- 正文页只能使用 `AIDX-01` 到 `AIDX-10`
+- 每个 `<section class="slide">` 必须写 `data-layout="AIDX-xx"`
+- 每页必须包含 `<div class="stage">`
+- 生成后必须运行:
+
+```bash
+node <SKILL_ROOT>/scripts/validate-aidx-deck.mjs path/to/index.html
+```
+
+**校验会拦截**:
+- 未登记版式 / 缺少 `data-layout`
+- 缺少 `.stage`
+- 本机路径 `/Users/...` 或 `file://`
+- 本地图片缺少 `data-image-slot`
+- emoji、过小字号、viewport 字号
+- 7 页以上缺少决策页、风险页或路线图页
+
+### 0-X-2. AIDX 不等于通用赛博科技风
+
+**现象**:页面充满霓虹、HUD、蓝紫渐变、发光边框和 AI 机器人,看起来像宣传海报而不是高层汇报。
+
+**做法**:
+- 默认暗色指挥台,浅色只用于截图保真和附录
+- 中文负责结论、决策、风险和下一步;英文只做短标签
+- AIDX 是主品牌,WeBank 是背书品牌;正文页不要放大 logo
+- 证据优先:KPI、风险 owner、路线图、截图和架构图比装饰更重要
+- 不要引用 `/Users/.../brand/*.svg`;品牌标识必须内联,保持单 HTML 可发送
+
 ### 0-S. Swiss locked mode:正文页必须来自原始 22P
 
 **现象**:颜色、字体看起来像 Swiss,但标题跑到中间、图片不在网格上、页面结构和原始 22P 完全不是一套东西。

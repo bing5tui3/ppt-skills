@@ -11,10 +11,11 @@
 
 An agent skill for Claude Code, Codex, and similar coding-agent environments. It generates **single-file HTML horizontal-swipe decks**, deck visuals, and social cover pages.
 
-It ships with two visual systems:
+It ships with three visual systems:
 
 - **Style A: editorial magazine × electronic ink**. Picture *Monocle* with code stitched in. Best for narrative talks, opinions, salons, and personal voice.
 - **Style B: Swiss International Typographic Style**. Grid-first, one high-saturation anchor color, sharp rectangles, hairline rules, and extreme type contrast. Best for facts, products, analysis, and frameworks.
+- **Style C: AIDX**. Internal AI executive brief style for AIDX / WeBank contexts: dark command-center surfaces, terminal texture, AIDX primary branding, and WeBank endorsement. Best for executive decisions, progress, risks, and roadmaps.
 
 > Distilled by [Guizang](https://x.com/op7418) from offline talks like "One-Person Company: Organizations Folded by AI" and "A New Way of Working." Every pitfall hit during those decks is logged in `checklist.md`.
 > Sponsor and supporter details are listed in [SPONSORS.md](./SPONSORS.md).
@@ -26,6 +27,10 @@ It ships with two visual systems:
 **New Theme · Style B Swiss International**
 
 ![Style B Swiss International preview](https://github.com/user-attachments/assets/8960e78c-69bb-4b7e-aa95-6fad64b70314)
+
+**Internal Theme · Style C AIDX**
+
+For AIDX / WeBank internal executive briefs. See `assets/template-aidx.html`, `references/themes-aidx.md`, and `references/layouts-aidx.md`.
 
 ## 30-second start
 
@@ -69,11 +74,12 @@ Guizang PPT Skill is supported by **360 Security Lobster** as Gold Sponsor and b
 
 ## What you get
 
-- 🖋 **Two visual systems**: editorial storytelling for Style A, factual Swiss structure for Style B
+- 🖋 **Three visual systems**: editorial storytelling for Style A, factual Swiss structure for Style B, executive decision briefs for Style C AIDX
 - 📐 **Horizontal swipe navigation**: ← → arrows / scroll wheel / touch swipe / bottom dots / ESC for index
 - 🧩 **Style A 10 layouts**: cover, divider, big numbers, image/text, image grid, pipeline, comparison, and more
 - 🧱 **Style B 22 locked layouts**: Cover, Statement, KPI Tower, Loop Diagram, Duo Compare, Image Hero, Closing Manifesto, and more
-- 🎨 **Curated theme presets**: 5 electronic-ink themes for Style A, 4 Swiss anchor-color themes for Style B
+- 🧭 **Style C 10 locked AIDX layouts**: cover, executive summary, key decision, KPI strip, roadmap, risk matrix, architecture map, evidence screenshot, and closing request
+- 🎨 **Curated theme presets**: 5 electronic-ink themes for Style A, 4 Swiss anchor-color themes for Style B, and one fixed internal AIDX brand theme for Style C
 - 🖼 **Optional Codex image flow**: generate documentary photos, infographics, flow diagrams, system maps, and UI scenes with GPT-Image 2.0 / GPT-M 2.0, then insert them at template-safe ratios
 - 📰 **Social covers**: generate 21:9 WeChat cover images, 1:1 share cards, 3:4 Xiaohongshu covers, video thumbnails, and related variants
 - 📴 **Low-power static mode**: press `B` to turn WebGL / canvas animation into static visuals
@@ -91,6 +97,7 @@ Guizang PPT Skill is supported by **360 Security Lobster** as Gold Sponsor and b
 |------|------------------|
 | Long article to talk deck | Extract the core argument, then build a 6-10 slide rhythm |
 | Framework / product analysis | Use Style B Swiss with locked layouts and 21:9 hero visuals |
+| AIDX / WeBank internal executive brief | Use Style C AIDX, focusing on conclusions, decisions, risks, roadmaps, and evidence |
 | Personal talk / opinion piece | Use Style A editorial magazine for stronger narrative rhythm |
 | Deck visuals | In Codex, generate photos, infographics, flow diagrams, system maps, or UI scenes |
 | Social covers | Generate 21:9 main covers, 1:1 share cards, 3:4 vertical covers, and video thumbnails from the same idea |
@@ -145,6 +152,8 @@ Once installed, Claude Code auto-detects the skill. Trigger phrases:
 
 - "Make me a magazine-style deck"
 - "Make me a Swiss-style deck"
+- "Make me an AIDX executive brief"
+- "Make me an AI executive technology briefing deck"
 - "Generate a horizontal swipe deck"
 - "Editorial magazine style presentation"
 - "Electronic ink slides for my talk"
@@ -155,9 +164,9 @@ Once installed, Claude Code auto-detects the skill. Trigger phrases:
 
 The skill is a structured workflow; the agent walks you through each step:
 
-1. **Choose style** — Style A editorial magazine, or Style B Swiss International
+1. **Choose style** — Style A editorial magazine, Style B Swiss International, or Style C AIDX
 2. **Clarify intent** — 7-question checklist: style, audience, duration, source material, images/screenshots, theme, hard constraints
-3. **Copy template** — Style A uses `assets/template.html`; Style B uses `assets/template-swiss.html`
+3. **Copy template** — Style A uses `assets/template.html`; Style B uses `assets/template-swiss.html`; Style C uses `assets/template-aidx.html`
 4. **Fill content** — create a rhythm plan, then choose and adapt the matching layout skeletons
 5. **Optional image generation** — in Codex, ask whether to use GPT-Image 2.0 / GPT-M 2.0 images, then insert them at page-appropriate ratios
 6. **Self-check** — match against `references/checklist.md`; P0 issues must all pass; Swiss decks must also pass the layout validator
@@ -182,6 +191,22 @@ Swiss validation:
 
 ```bash
 node scripts/validate-swiss-deck.mjs path/to/index.html
+```
+
+## Style C AIDX
+
+AIDX is an internal executive-brief style, not a generic AI-tech skin.
+
+- **Fixed brand theme**: dark system surfaces, AIDX blues, cyan highlight, WeBank endorsement
+- **10 locked layouts**: Cover, Executive Summary, Key Decision, KPI, Roadmap, Risk Matrix, Architecture Map, Before/After, Evidence Screenshot, Closing Request
+- **Fixed 1600×900 stage**: the template scales the stage proportionally, keeping projected typography and screenshot slots stable
+- **Conclusion first**: Chinese carries judgments, risks, decisions, and next steps; English stays in short system labels
+- **Single HTML delivery**: AIDX / WeBank marks must be inline, never referenced from local brand paths
+
+AIDX validation:
+
+```bash
+node scripts/validate-aidx-deck.mjs path/to/index.html
 ```
 
 ## Codex Image Flow
@@ -244,16 +269,20 @@ guizang-ppt-skill/
 ├── assets/
 │   ├── template.html         ← Style A editorial magazine template
 │   ├── template-swiss.html   ← Style B Swiss template
+│   ├── template-aidx.html    ← Style C AIDX internal executive brief template
 │   └── screenshot-backgrounds/ ← bundled WebP screenshot backgrounds: 5 style-a / 4 style-b
 ├── scripts/
-│   └── validate-swiss-deck.mjs ← Swiss layout validator
+│   ├── validate-swiss-deck.mjs ← Swiss layout validator
+│   └── validate-aidx-deck.mjs  ← AIDX layout validator
 └── references/
     ├── components.md     ← component catalog (type, color, grid, icons, callout, stat, pipeline)
     ├── layouts.md        ← 10 layout skeletons (paste-ready)
     ├── layouts-swiss.md  ← 22 locked Swiss layouts
+    ├── layouts-aidx.md   ← 10 locked AIDX executive brief layouts
     ├── swiss-layout-lock.md ← Swiss fidelity and layout hard rules
     ├── themes.md         ← 5 theme presets (pick, don't customize)
     ├── themes-swiss.md   ← 4 Swiss anchor-color themes
+    ├── themes-aidx.md    ← fixed AIDX internal brand theme
     ├── image-prompts.md  ← GPT-Image 2.0 / GPT-M 2.0 image types, ratios, and base prompts
     ├── screenshot-framing.md ← CleanShot X-style screenshot framing semantics
     └── checklist.md      ← quality checklist (P0 / P1 / P2 / P3 tiers)
@@ -288,6 +317,15 @@ Pick from `references/themes-swiss.md`. **Custom hex values are not allowed** he
 
 If the user asks for a Swiss-style deck without specifying color, default to International Klein Blue.
 
+### Style C AIDX Theme
+
+AIDX does not allow free color selection. Use the fixed internal brand theme in `references/themes-aidx.md`:
+
+- Dark base: `#0F0F11` / `#16161A`
+- AIDX primary: `#3A5ECF` / `#063970`
+- Highlight: `#5DADE2`
+- Light pages only for faithful screenshots, appendices, and dense tables
+
 ## Core design principles
 
 1. **Restraint over flash** — WebGL backgrounds only bleed through on hero pages
@@ -298,6 +336,7 @@ If the user asks for a Swiss-style deck without specifying color, default to Int
 6. **Dynamic effects must be optional** — `B` toggles static mode so animation never becomes a reading burden
 7. **Terms stay consistent** — Skills is Skills; no mix-and-match translations
 8. **Swiss layouts stay locked** — Style B should restore and reuse the original 22-page layout system instead of inventing unrelated pages
+9. **AIDX starts with decisions** — Style C should foreground conclusions, impact, risks, and asks instead of becoming a generic tech visual
 
 ## Visual references
 
@@ -324,7 +363,7 @@ The main output is HTML. You can present it in a browser, screenshot it, or reco
 The skill is designed for stable visual output. Arbitrary colors often break the system, so decks must use curated presets.
 
 **Can I add my own layout?**
-Yes. Style A layouts can be extended in `references/layouts.md`. Style B is stricter: update `template-swiss.html`, `layouts-swiss.md`, `swiss-layout-lock.md`, and the validator together.
+Yes. Style A layouts can be extended in `references/layouts.md`. Style B is stricter: update `template-swiss.html`, `layouts-swiss.md`, `swiss-layout-lock.md`, and the validator together. Style C changes must update `template-aidx.html`, `layouts-aidx.md`, and `validate-aidx-deck.mjs` together.
 
 **Is Codex image generation required?**
 No. Decks work without generated images. The image flow is only used when you need photos, infographics, UI scenes, or covers.
@@ -338,6 +377,7 @@ Bugs, layout issues, new layout requests — Issues and PRs welcome. Prioritize:
 
 - Add new classes to `template.html` first; don't let `layouts.md` reference undefined classes
 - When changing `template-swiss.html`, update `layouts-swiss.md` and `swiss-layout-lock.md` together
+- When changing `template-aidx.html`, update `layouts-aidx.md` and `validate-aidx-deck.mjs` together
 - When adding Swiss rules, update `scripts/validate-swiss-deck.mjs`
 - Log pitfalls into `checklist.md` at the matching P0 / P1 / P2 / P3 tier
 - New theme colors go into `themes.md` with a recommended use case

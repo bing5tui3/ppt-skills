@@ -72,6 +72,18 @@ ratio:16:10, background:paper, padding:standard, inset:balanced, shadow:editoria
 ratio:21:9, background:grid, padding:standard, inset:subtle, shadow:none, corners:square, alignment:center
 ```
 
+### Style C · AIDX
+
+- 背景:`plain` / `grid` / `terminal`
+- 色彩:AIDX 暗底、灰阶、AIDX 蓝、亮蓝;不要蓝紫大渐变
+- 截图:高层证据优先,内容保真;默认使用 `16:10` 放入 AIDX-09
+- 圆角:小圆角可接受,最大 6px;不要做 SaaS 营销投影卡
+- 推荐语义:
+
+```text
+ratio:16:10, background:grid, padding:standard, inset:subtle, shadow:none, corners:small, alignment:center
+```
+
 ## 背景强度规则
 
 截图背景是“托底”,不是主视觉。
@@ -107,6 +119,14 @@ ratio:21:9, background:grid, padding:standard, inset:subtle, shadow:none, corner
 | 柠檬绿 | `assets/screenshot-backgrounds/style-b/lemon-green-dot-shadow.webp` | 点阵 + 阴影场,绿色只做轻微光感 |
 | 安全橙 | `assets/screenshot-backgrounds/style-b/safety-orange-halftone.webp` | 模块化半调点阵 + 暗部阴影,橙色低占比 |
 
+### Style C · AIDX 背景
+
+AIDX 当前不内置单独 WebP 背景资产。处理截图时优先使用程序化背景:
+
+- 深色证据页:`#0F0F11` 底 + 极淡网格 + 低透明 AIDX 蓝/亮蓝细线
+- 浅色保真页:`#f5f7fb` 底 + 极淡蓝灰网格
+- 不要实时生成复杂背景,除非用户明确要求新增品牌截图背景
+
 内置背景都是 1920×1080 级别的 16:9 WebP。程序化合成时,先把背景 cover 到目标画布,再裁成 `21:9` / `16:10` / `4:3` / `1:1` 等截图槽位。背景必须四角安静,因为截图可能居中、左上、右下或被裁成不同尺寸。
 
 ## 截图类型决策
@@ -118,6 +138,7 @@ ratio:21:9, background:grid, padding:standard, inset:subtle, shadow:none, corner
 | 长网页截图 | 截关键区域或拆成 2-3 张同尺寸面板 |
 | 极窄 / 极高截图 | 先尝试 `spacious + side alignment`;仍太小时再重构 |
 | 代码截图 | Style A 用纸感背景;Style B 用浅网格背景;文字必须可读 |
+| AIDX 工作流截图 | 优先 AIDX-09,16:10,保真适配,必要时浅色页展示 |
 | 概念解释用的 UI 情景图 | 可以 GPT-M 2.0 重新设计 |
 
 ## 生成背景图提示词
@@ -134,4 +155,10 @@ ratio:21:9, background:grid, padding:standard, inset:subtle, shadow:none, corner
 
 ```text
 16:9 crop-safe screenshot background for a Swiss International Style PPT system. Pure off-white base, ultra-subtle 16-column grid and sparse dot matrix, one accent color only: [theme color], used at very low opacity as thin lines or tiny dots, no large bright color blocks. Quiet center and quiet corners, no text, no logo, no objects, no border, no focal subject. Suitable for cropping to 21:9, 16:10, 4:3, or 1:1.
+```
+
+### Style C 背景
+
+```text
+16:9 crop-safe screenshot background for an AIDX internal executive briefing deck. Deep near-black base, subtle terminal grid, sparse cyan and AIDX blue signal lines at low opacity, quiet center and quiet corners, no text, no logo, no objects, no border, no focal subject. Suitable for cropping to 16:10, 16:9, 21:9, 4:3, or 1:1.
 ```

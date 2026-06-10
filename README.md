@@ -13,10 +13,11 @@
 
 一个适配 Claude Code / Codex 等 Agent 环境的网页 PPT 技能,用于生成**单文件 HTML 横向翻页 PPT**、PPT 配图和多平台封面。
 
-内置两套视觉系统:
+内置三套视觉系统:
 
 - **Style A: 电子杂志 × 电子墨水**。像 *Monocle* 贴上了代码,适合叙事、观点、分享、个人风格表达。
 - **Style B: 瑞士国际主义**。网格至上、单一高饱和锚点色、直角、发丝线、极致字号对比,适合事实、产品、分析、方法论表达。
+- **Style C: AIDX**。内部 AI 科技高层汇报风格,深色指挥台、终端质感、AIDX 主品牌 + WeBank 背书,适合管理层决策、进展、风险和路线图汇报。
 
 > 由 [歸藏](https://x.com/op7418) 在"一人公司:被 AI 折叠的组织"、"一种新的工作方式"等线下分享中沉淀而成,踩过的每一个坑都写进了 `checklist.md`。
 > 赞助与支持信息见 [SPONSORS.md](./SPONSORS.md)。
@@ -28,6 +29,10 @@
 **新主题 · Style B 瑞士国际主义**
 
 ![Style B 瑞士国际主义效果展示](https://github.com/user-attachments/assets/8960e78c-69bb-4b7e-aa95-6fad64b70314)
+
+**内部主题 · Style C AIDX**
+
+适用于 AIDX / 微众内部高层汇报,详见 `assets/template-aidx.html`、`references/themes-aidx.md`、`references/layouts-aidx.md`。
 
 ## 30 秒开始
 
@@ -71,11 +76,12 @@ Guizang PPT Skill 的持续迭代获得 **360 安全龙虾** 金牌赞助和 [�
 
 ## 效果
 
-- 🖋 **双视觉系统**:电子杂志风负责叙事,瑞士风负责事实表达
+- 🖋 **三视觉系统**:电子杂志风负责叙事,瑞士风负责事实表达,AIDX 负责内部高层决策汇报
 - 📐 **横向左右翻页**:键盘 ← → / 滚轮 / 触屏滑动 / 底部圆点 / ESC 索引
 - 🧩 **Style A 10 种布局**:封面、章节、数据大字报、图文、图片网格、Pipeline、对比等
 - 🧱 **Style B 22 种锁定版式**:Cover、Statement、KPI Tower、Loop Diagram、Duo Compare、Image Hero、Closing Manifesto 等
-- 🎨 **主题色预设**:Style A 5 套电子墨水主题,Style B 4 套瑞士高饱和锚点色
+- 🧭 **Style C 10 种 AIDX 锁定版式**:封面、执行摘要、关键决策、KPI、路线图、风险矩阵、架构图、证据截图、结尾请求等
+- 🎨 **主题色预设**:Style A 5 套电子墨水主题,Style B 4 套瑞士高饱和锚点色,Style C 使用固定 AIDX 品牌主题
 - 🖼 **Codex 可选配图流程**:可用 GPT-Image 2.0 / GPT-M 2.0 生成纪实照片、信息图、流程图、系统关系图、UI 情景图,并按模板比例插入
 - 📰 **多平台封面**:可用同一套视觉规则生成公众号 21:9、公众号分享卡 1:1、小红书 3:4、视频号横版等封面
 - 📴 **低性能静态模式**:按 `B` 可关闭 WebGL / canvas 动画,让动态内容退回静态背景
@@ -93,6 +99,7 @@ Guizang PPT Skill 的持续迭代获得 **360 安全龙虾** 金牌赞助和 [�
 |------|---------|
 | 长文章变演讲 PPT | 先抽核心观点,再按 6-10 页节奏生成 deck |
 | 方法论 / 产品分析 | 用 Style B 瑞士风,优先使用锁定版式和 21:9 主图 |
+| AIDX / 微众内部高层汇报 | 用 Style C AIDX,优先表达结论、决策、风险、路线图和证据 |
 | 个人分享 / 观点表达 | 用 Style A 电子杂志风,保留更强叙事感 |
 | PPT 配图 | 在 Codex 中用 GPT-Image 2.0 / GPT-M 2.0 生成照片、信息图、流程图、UI 情景图 |
 | 多平台封面 | 从同一份内容生成公众号 21:9、1:1 分享卡、小红书 3:4、视频号横版封面 |
@@ -147,6 +154,8 @@ git clone https://github.com/op7418/guizang-ppt-skill.git ~/.claude/skills/guiza
 
 - "帮我做一份杂志风 PPT"
 - "帮我做一份瑞士风 PPT"
+- "帮我做一份 AIDX 风高层汇报 PPT"
+- "帮我做一份 AI 科技高层汇报"
 - "生成一个 horizontal swipe deck"
 - "editorial magazine style presentation"
 - "electronic ink 风格演讲 slides"
@@ -157,9 +166,9 @@ git clone https://github.com/op7418/guizang-ppt-skill.git ~/.claude/skills/guiza
 
 Skill 本身是结构化工作流,Agent 会逐步引导:
 
-1. **选择风格** — Style A 电子杂志风,或 Style B 瑞士国际主义
+1. **选择风格** — Style A 电子杂志风,Style B 瑞士国际主义,或 Style C AIDX
 2. **需求澄清** — 7 问清单:风格、受众、时长、素材、图片/截图需求、主题色、硬约束
-3. **拷贝模板** — Style A 用 `assets/template.html`,Style B 用 `assets/template-swiss.html`
+3. **拷贝模板** — Style A 用 `assets/template.html`,Style B 用 `assets/template-swiss.html`,Style C 用 `assets/template-aidx.html`
 4. **填充内容** — 先做主题节奏表,再从对应 layout 骨架里挑、粘、改文案
 5. **可选配图** — 在 Codex 中询问是否用 GPT-Image 2.0 / GPT-M 2.0 生成配图,再按页面比例插入
 6. **自检** — 对照 `references/checklist.md`,P0 级问题必须全过；瑞士风还要运行版式校验器
@@ -184,6 +193,22 @@ Skill 本身是结构化工作流,Agent 会逐步引导:
 
 ```bash
 node scripts/validate-swiss-deck.mjs path/to/index.html
+```
+
+## Style C AIDX
+
+AIDX 是内部高层汇报风格,不是通用 AI 科技皮肤。
+
+- **固定品牌主题**:深色系统、AIDX 蓝、亮蓝高亮、WeBank 背书
+- **10 个锁定版式**:Cover、Executive Summary、Key Decision、KPI、Roadmap、Risk Matrix、Architecture Map、Before/After、Evidence Screenshot、Closing Request
+- **固定 1600×900 舞台**:模板自动等比缩放,避免投屏时字号和截图槽位漂移
+- **结论优先**:中文讲判断、风险、决策和下一步;英文只做短标签
+- **单 HTML 交付**:AIDX / WeBank 标识必须内联,不能依赖本机品牌路径
+
+AIDX 校验命令:
+
+```bash
+node scripts/validate-aidx-deck.mjs path/to/index.html
 ```
 
 ## Codex 配图能力
@@ -245,16 +270,20 @@ guizang-ppt-skill/
 ├── assets/
 │   ├── template.html         ← Style A 电子杂志风模板
 │   ├── template-swiss.html   ← Style B 瑞士国际主义模板
+│   ├── template-aidx.html    ← Style C AIDX 内部高层汇报模板
 │   └── screenshot-backgrounds/ ← 截图美化内置背景(WebP):style-a 5 套 / style-b 4 套
 ├── scripts/
-│   └── validate-swiss-deck.mjs ← 瑞士风版式校验器
+│   ├── validate-swiss-deck.mjs ← 瑞士风版式校验器
+│   └── validate-aidx-deck.mjs  ← AIDX 版式校验器
 └── references/
     ├── components.md     ← 组件手册(字体、色、网格、图标、callout、stat、pipeline)
     ├── layouts.md        ← 10 种页面布局骨架(可直接粘贴)
     ├── layouts-swiss.md  ← 22 种瑞士风锁定版式
+    ├── layouts-aidx.md   ← 10 种 AIDX 高层汇报锁定版式
     ├── swiss-layout-lock.md ← 瑞士风还原度和版式硬约束
     ├── themes.md         ← 5 套主题色预设(只能选不能自定义)
     ├── themes-swiss.md   ← 4 套瑞士风锚点色
+    ├── themes-aidx.md    ← AIDX 固定品牌主题
     ├── image-prompts.md  ← GPT-Image 2.0 / GPT-M 2.0 配图类型、比例和基础提示词
     ├── screenshot-framing.md ← CleanShot X 式截图适配语义
     └── checklist.md      ← 质量检查清单(P0 / P1 / P2 / P3 分级)
@@ -289,6 +318,15 @@ guizang-ppt-skill/
 
 如果用户说"瑞士风 PPT"但没有指定颜色,默认推荐克莱因蓝 IKB。
 
+### Style C AIDX 主题
+
+AIDX 不提供自由选色。使用 `references/themes-aidx.md` 的固定内部品牌主题:
+
+- 深色底:`#0F0F11` / `#16161A`
+- AIDX 主色:`#3A5ECF` / `#063970`
+- 高亮:`#5DADE2`
+- 浅色页只用于截图保真、附录和密集表格
+
 ## 核心设计原则
 
 1. **克制优于炫技** — WebGL 背景只在 hero 页透出
@@ -299,6 +337,7 @@ guizang-ppt-skill/
 6. **低性能可退场** — 按 `B` 能切换到静态模式,动态效果不能成为阅读负担
 7. **术语统一** — Skills 就是 Skills,不中英混译
 8. **瑞士风必须守版式** — Style B 优先还原原始 22P 版式,不要为了"多样"发明不存在的页面
+9. **AIDX 先讲决策** — Style C 优先表达结论、影响、风险和请求,不要变成通用科技视觉稿
 
 ## 视觉参考
 
@@ -325,7 +364,7 @@ guizang-ppt-skill/
 这个 Skill 的重点是稳定产出。自由选色很容易破坏整体风格,所以只允许从预设主题里选。
 
 **我能加自己的版式吗?**
-可以。Style A 可以在 `references/layouts.md` 里扩展；Style B 更严格,需要同步更新 `template-swiss.html`、`layouts-swiss.md`、`swiss-layout-lock.md` 和校验器。
+可以。Style A 可以在 `references/layouts.md` 里扩展；Style B 更严格,需要同步更新 `template-swiss.html`、`layouts-swiss.md`、`swiss-layout-lock.md` 和校验器。Style C 需要同步更新 `template-aidx.html`、`layouts-aidx.md` 和 `validate-aidx-deck.mjs`。
 
 **Codex 配图是必须的吗?**
 不是。没有配图也能生成 PPT。配图流程只在需要照片、信息图、UI 情景图或封面时使用。
@@ -339,6 +378,7 @@ Bug、排版问题、新布局需求——欢迎开 Issue 或 PR。改动请优�
 
 - 在 `template.html` 里补类,不要让 layouts.md 使用未定义的类
 - 在 `template-swiss.html` 里补类时,同步更新 `layouts-swiss.md` 和 `swiss-layout-lock.md`
+- 在 `template-aidx.html` 里补类时,同步更新 `layouts-aidx.md` 和 `validate-aidx-deck.mjs`
 - 瑞士风新增规则后,同步更新 `scripts/validate-swiss-deck.mjs`
 - 把踩过的坑写到 `checklist.md` 对应的 P0 / P1 / P2 / P3 级别
 - 新主题色进 `themes.md` 并给出适合的场景
