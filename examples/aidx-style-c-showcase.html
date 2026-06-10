@@ -143,14 +143,14 @@
   .risk-card{display:flex;flex-direction:column;gap:16px;justify-content:space-between}
   .risk-card .score{font-family:var(--mono);font-size:44px;font-weight:700}
 
-  .compare{display:grid;grid-template-columns:1fr 1fr;gap:20px;min-height:530px}
+  .compare{display:grid;grid-template-columns:1fr 1fr;gap:20px;min-height:370px}
   .compare .panel{display:flex;flex-direction:column;gap:22px}
   .compare-list{display:flex;flex-direction:column;gap:16px}
   .compare-row{display:grid;grid-template-columns:24px 1fr;gap:12px;font-size:21px;line-height:1.45;color:#c8ccd8}
   .compare-row::before{content:"";width:10px;height:10px;background:var(--aidx-cyan);margin-top:10px;border-radius:2px}
   .slide.light .compare-row{color:#475569}
 
-  .arch-map{display:grid;grid-template-rows:repeat(3,1fr);gap:18px;min-height:520px}
+  .arch-map{display:grid;grid-template-rows:repeat(3,1fr);gap:18px;min-height:460px}
   .arch-layer{display:grid;grid-template-columns:220px 1fr;gap:20px;align-items:stretch}
   .arch-label{display:flex;align-items:center;justify-content:center;border:1px solid rgba(93,173,226,.36);background:rgba(93,173,226,.12);border-radius:6px;font-family:var(--mono);font-size:18px;font-weight:700;color:var(--aidx-cyan)}
   .arch-cells{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
@@ -230,7 +230,35 @@
 
 <section class="slide dark" data-layout="AIDX-02">
   <div class="stage">
-    ...
+    <div class="chrome">
+      <div class="brand-lockup">
+        <svg class="aidx-x" viewBox="0 0 36 36" aria-hidden="true"><line class="core" x1="8" y1="8" x2="28" y2="28"/><line class="core" x1="28" y1="8" x2="8" y2="28"/></svg>
+        <div><strong>AIDX</strong><br><span>Executive Brief</span></div>
+      </div>
+      <div class="deck-meta"><span>EXEC SUMMARY</span><span class="meta-rule"></span><b>02 / 10</b></div>
+    </div>
+    <div class="stage-body">
+      <div class="kicker" data-anim>结论先行</div>
+      <h2 class="h-xl" data-anim>试点已验证价值,但规模化依赖治理闭环</h2>
+      <div class="decision-grid" style="margin-top:44px" data-anim>
+        <div class="panel accent decision-item">
+          <div class="decision-number">01</div>
+          <div class="decision-title">效率收益成立</div>
+          <p class="decision-desc">在 3 个试点域中,需求到合并周期平均下降 21%,重复性评审工作明显减少。</p>
+        </div>
+        <div class="panel decision-item">
+          <div class="decision-number">02</div>
+          <div class="decision-title">质量收益可观测</div>
+          <p class="decision-desc">AI 辅助检查前置到需求和代码阶段,缺陷外溢率下降,关键风险更早暴露。</p>
+        </div>
+        <div class="panel decision-item">
+          <div class="decision-number">03</div>
+          <div class="decision-title">治理仍是瓶颈</div>
+          <p class="decision-desc">模型访问、数据边界和审计口径需要统一,否则规模化后难以稳定复制。</p>
+        </div>
+      </div>
+    </div>
+    <div class="foot"><span>Executive Summary</span><span>AIDX</span></div>
   </div>
 </section>
 

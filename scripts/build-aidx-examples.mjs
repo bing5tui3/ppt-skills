@@ -15,7 +15,8 @@ const byLayout = new Map();
 
 for (const section of sectionMatches) {
   const layout = section.match(/data-layout="([^"]+)"/)?.[1];
-  if (layout && !byLayout.has(layout)) byLayout.set(layout, section);
+  const current = byLayout.get(layout);
+  if (layout && (!current || section.length > current.length)) byLayout.set(layout, section);
 }
 
 let slides = order.map((layout) => {
@@ -122,6 +123,10 @@ slides = slides
   .replace(/<figure class="frame-img r-16x10 fit-contain">[\s\S]*?<\/figure>/, evidenceFigure)
   .replace('Evidence screenshot · replace image path', 'Evidence screenshot mockup · replace with real AIDX workflow capture')
   .replace('[必填] AIDX 工作流截图', 'AIDX 工作流截图样例');
+
+if (/\[必填\]|<div class="stage">\s*\.\.\.\s*<\/div>/.test(slides)) {
+  throw new Error('AIDX example generation left unresolved placeholders or abbreviated stage content.');
+}
 
 const output = readFileSync(templatePath, 'utf8')
   .replace('[必填] 替换为 PPT 标题 · AIDX Executive Brief', 'AIDX Style C Showcase · Executive Brief')
