@@ -1,7 +1,7 @@
-# Guizang PPT Skill · Web Decks / Images / Covers
+# PPT Skills · Web Decks / Images / Covers
 
-![GitHub stars](https://img.shields.io/github/stars/op7418/guizang-ppt-skill?style=flat-square)
-![License](https://img.shields.io/github/license/op7418/guizang-ppt-skill?style=flat-square)
+![GitHub stars](https://img.shields.io/github/stars/bing5tui3/ppt-skills?style=flat-square)
+![License](https://img.shields.io/github/license/bing5tui3/ppt-skills?style=flat-square)
 ![Skill](https://img.shields.io/badge/Skill-Agent-111111?style=flat-square)
 ![HTML Deck](https://img.shields.io/badge/HTML-Deck-0A7CFF?style=flat-square)
 ![Claude Code](https://img.shields.io/badge/Claude%20Code-Supported-6B5B95?style=flat-square)
@@ -35,13 +35,13 @@ For AIDX / WeBank internal executive briefs. See `assets/template-aidx.html`, `r
 ## 30-second start
 
 ```bash
-npx skills add https://github.com/op7418/guizang-ppt-skill --skill guizang-ppt-skill
+npx skills add https://github.com/bing5tui3/ppt-skills --skill guizang-ppt-skill
 ```
 
 Or paste this to an AI agent with shell access:
 
 ```text
-Install guizang-ppt-skill for me. Clone https://github.com/op7418/guizang-ppt-skill into ~/.claude/skills/guizang-ppt-skill, then verify that SKILL.md, assets/, and references/ exist.
+Install guizang-ppt-skill for me. Clone https://github.com/bing5tui3/ppt-skills into ~/.claude/skills/guizang-ppt-skill, then verify that SKILL.md, assets/, and references/ exist.
 ```
 
 If you already installed it, update with:
@@ -126,7 +126,7 @@ Guizang PPT Skill is supported by **360 Security Lobster** as Gold Sponsor and b
 ### Option 1: One-line install (recommended)
 
 ```bash
-npx skills add https://github.com/op7418/guizang-ppt-skill --skill guizang-ppt-skill
+npx skills add https://github.com/bing5tui3/ppt-skills --skill guizang-ppt-skill
 ```
 
 ### Option 2: Paste this to an AI
@@ -134,7 +134,7 @@ npx skills add https://github.com/op7418/guizang-ppt-skill --skill guizang-ppt-s
 > Install the `guizang-ppt-skill` Claude Code skill for me. Steps:
 >
 > 1. Make sure `~/.claude/skills/` exists (create if not)
-> 2. Run `git clone https://github.com/op7418/guizang-ppt-skill.git ~/.claude/skills/guizang-ppt-skill`
+> 2. Run `git clone https://github.com/bing5tui3/ppt-skills.git ~/.claude/skills/guizang-ppt-skill`
 > 3. Verify: `ls ~/.claude/skills/guizang-ppt-skill/` should show `SKILL.md`, `assets/`, `references/`
 > 4. Tell me when done. Later, saying things like "make me a magazine-style deck" will trigger this skill.
 
@@ -143,7 +143,7 @@ Paste the block above into Claude Code / Cursor / any AI agent with shell access
 ### Option 3: Manual CLI
 
 ```bash
-git clone https://github.com/op7418/guizang-ppt-skill.git ~/.claude/skills/guizang-ppt-skill
+git clone https://github.com/bing5tui3/ppt-skills.git ~/.claude/skills/guizang-ppt-skill
 ```
 
 ### How to trigger it
@@ -384,4 +384,4 @@ Bugs, layout issues, new layout requests — Issues and PRs welcome. Prioritize:
 
 ## License
 
-AGPL-3.0 © 2026 [op7418](https://github.com/op7418)
+AGPL-3.0 © 2026 [bing5tui3](https://github.com/bing5tui3/ppt-skills)
