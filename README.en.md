@@ -32,6 +32,8 @@ It ships with three visual systems:
 
 For AIDX / WeBank internal executive briefs. See `assets/template-aidx.html`, `references/themes-aidx.md`, and `references/layouts-aidx.md`.
 
+Example: [Style C AIDX Showcase](./examples/aidx-style-c-showcase.html) - 10 slides covering every registered layout from `AIDX-01` to `AIDX-10`.
+
 ## 30-second start
 
 ```bash
@@ -271,7 +273,10 @@ guizang-ppt-skill/
 │   ├── template-swiss.html   ← Style B Swiss template
 │   ├── template-aidx.html    ← Style C AIDX internal executive brief template
 │   └── screenshot-backgrounds/ ← bundled WebP screenshot backgrounds: 5 style-a / 4 style-b
+├── examples/
+│   └── aidx-style-c-showcase.html ← 10-slide Style C AIDX sample
 ├── scripts/
+│   ├── build-aidx-examples.mjs   ← generate Style C samples
 │   ├── validate-swiss-deck.mjs ← Swiss layout validator
 │   └── validate-aidx-deck.mjs  ← AIDX layout validator
 └── references/

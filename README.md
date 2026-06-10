@@ -34,6 +34,8 @@
 
 适用于 AIDX / 微众内部高层汇报,详见 `assets/template-aidx.html`、`references/themes-aidx.md`、`references/layouts-aidx.md`。
 
+样例: [Style C AIDX Showcase](./examples/aidx-style-c-showcase.html) - 10 页,覆盖 `AIDX-01` 到 `AIDX-10` 全部登记版式。
+
 ## 30 秒开始
 
 ```bash
@@ -272,7 +274,10 @@ guizang-ppt-skill/
 │   ├── template-swiss.html   ← Style B 瑞士国际主义模板
 │   ├── template-aidx.html    ← Style C AIDX 内部高层汇报模板
 │   └── screenshot-backgrounds/ ← 截图美化内置背景(WebP):style-a 5 套 / style-b 4 套
+├── examples/
+│   └── aidx-style-c-showcase.html ← Style C AIDX 10 页样例
 ├── scripts/
+│   ├── build-aidx-examples.mjs   ← 生成 Style C 样例
 │   ├── validate-swiss-deck.mjs ← 瑞士风版式校验器
 │   └── validate-aidx-deck.mjs  ← AIDX 版式校验器
 └── references/
