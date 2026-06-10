@@ -1,19 +1,6 @@
-# aidx-ppt-skill · AIDX Executive HTML Decks
-
-![GitHub stars](https://img.shields.io/github/stars/bing5tui3/ppt-skills?style=flat-square)
-![License](https://img.shields.io/github/license/bing5tui3/ppt-skills?style=flat-square)
-![Skill](https://img.shields.io/badge/Skill-Agent-111111?style=flat-square)
-![HTML Deck](https://img.shields.io/badge/HTML-Deck-0A7CFF?style=flat-square)
-![Claude Code](https://img.shields.io/badge/Claude%20Code-Supported-6B5B95?style=flat-square)
-![Codex](https://img.shields.io/badge/Codex-Supported-222222?style=flat-square)
-[![Supported by ZhenFund Token Grant](https://img.shields.io/static/v1?label=ZhenFund%20Token%20Grant&message=Supported&color=FF4D00&style=flat-square)](https://zhenfund.feishu.cn/share/base/form/shrcn1lAANF659o7EpWnxlR1VOh?sessionid=)
-![360 Security Lobster Gold Sponsor](https://img.shields.io/static/v1?label=360%20Security%20Lobster&message=Gold%20Sponsor&color=1677FF&style=flat-square)
-
 `aidx-ppt-skill` is an agent skill for Claude Code, Codex, and similar coding-agent environments. It generates **AIDX / WeBank internal executive brief** decks as single-file horizontal-swipe HTML, plus deck visuals and social cover pages.
 
 The system is intentionally narrow: dark command-center surfaces, terminal texture, AIDX primary branding, WeBank endorsement, and conclusion-first executive communication. It is built for AI technology briefings, engineering productivity reviews, governance updates, risk escalation, resource requests, and roadmap decisions.
-
-> Distilled by [Guizang](https://x.com/op7418) through repeated offline talks and internal briefing iterations. Sponsor and supporter details are listed in [SPONSORS.md](./SPONSORS.md).
 
 ## Preview
 
@@ -58,14 +45,6 @@ Turn this engineering productivity review into an AIDX management brief.
 Adapt this product screenshot into a 16:10 AIDX-09 evidence visual.
 Create a 21:9 social cover from the core conclusion of this brief.
 ```
-
-## Sponsors and Supporters
-
-<a href="./SPONSORS.md">
-  <img src="https://github.com/user-attachments/assets/5b0c22c8-aff4-4219-900d-6af8604c57a8" alt="360 Security Lobster Gold Sponsor" width="100%">
-</a>
-
-`aidx-ppt-skill` is supported by **360 Security Lobster** as Gold Sponsor and by [ZhenFund Token Grant](https://zhenfund.feishu.cn/share/base/form/shrcn1lAANF659o7EpWnxlR1VOh?sessionid=). See [SPONSORS.md](./SPONSORS.md) for details.
 
 ## What you get
 

@@ -1,21 +1,8 @@
-# aidx-ppt-skill · AIDX 高层汇报网页 PPT
-
-![GitHub stars](https://img.shields.io/github/stars/bing5tui3/ppt-skills?style=flat-square)
-![License](https://img.shields.io/github/license/bing5tui3/ppt-skills?style=flat-square)
-![Skill](https://img.shields.io/badge/Skill-Agent-111111?style=flat-square)
-![HTML Deck](https://img.shields.io/badge/HTML-Deck-0A7CFF?style=flat-square)
-![Claude Code](https://img.shields.io/badge/Claude%20Code-Supported-6B5B95?style=flat-square)
-![Codex](https://img.shields.io/badge/Codex-Supported-222222?style=flat-square)
-[![由真格 Token Grant 资助](https://img.shields.io/static/v1?label=%E7%94%B1%E7%9C%9F%E6%A0%BC%20Token%20Grant&message=%E8%B5%84%E5%8A%A9&color=FF4D00&style=flat-square)](https://zhenfund.feishu.cn/share/base/form/shrcn1lAANF659o7EpWnxlR1VOh?sessionid=)
-![360 安全龙虾金牌赞助](https://img.shields.io/static/v1?label=360%E5%AE%89%E5%85%A8%E9%BE%99%E8%99%BE&message=%E9%87%91%E7%89%8C%E8%B5%9E%E5%8A%A9&color=1677FF&style=flat-square)
-
 > English version: [README.en.md](./README.en.md)
 
 `aidx-ppt-skill` 是一个适配 Claude Code / Codex 等 Agent 环境的网页 PPT skill,用于生成 **AIDX / WeBank 内部高层汇报风格**的单文件 HTML 横向翻页 deck、PPT 配图和多平台封面。
 
 它的核心气质是深色指挥台、终端质感、AIDX 主品牌 + WeBank 背书、结论优先。它不是通用科技模板,而是为 AI 科技高层汇报、工程效能汇报、内部决策会、资源申请、风险升级和路线图同步设计的单一风格系统。
-
-> 由 [歸藏](https://x.com/op7418) 在多次线下分享和内部汇报迭代中沉淀而成。赞助与支持信息见 [SPONSORS.md](./SPONSORS.md)。
 
 ## 效果展示
 
@@ -60,14 +47,6 @@ npx skills add https://github.com/bing5tui3/ppt-skills --skill aidx-ppt-skill
 把这张产品截图适配成 AIDX-09 的 16:10 证据图。
 基于这份汇报的核心结论,生成一张公众号 21:9 封面。
 ```
-
-## 赞助与支持
-
-<a href="./SPONSORS.md">
-  <img src="https://github.com/user-attachments/assets/5b0c22c8-aff4-4219-900d-6af8604c57a8" alt="360 安全龙虾金牌赞助" width="100%">
-</a>
-
-`aidx-ppt-skill` 的持续迭代获得 **360 安全龙虾** 金牌赞助和 [真格 Token Grant](https://zhenfund.feishu.cn/share/base/form/shrcn1lAANF659o7EpWnxlR1VOh?sessionid=) 支持。更多信息见 [SPONSORS.md](./SPONSORS.md)。
 
 ## 你能得到什么
 
