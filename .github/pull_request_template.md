@@ -16,7 +16,7 @@ Please attach screenshots for visual changes.
 
 ## Validation
 
-- [ ] `node scripts/validate-swiss-deck.mjs path/to/index.html`
+- [ ] `node scripts/validate-aidx-deck.mjs path/to/index.html`
 - [ ] Manual browser review
 
 ## Notes

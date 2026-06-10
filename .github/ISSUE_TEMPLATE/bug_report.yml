@@ -29,7 +29,7 @@ body:
       description: Include the prompt, source document, generated deck, or a minimal example.
       placeholder: |
         1. Use this prompt...
-        2. Generate a Swiss style deck...
+        2. Generate an AIDX deck...
         3. Open slide 6...
     validations:
       required: true
@@ -46,10 +46,11 @@ body:
   - type: dropdown
     id: theme
     attributes:
-      label: Theme
+      label: Deck type
       options:
-        - Style A · Editorial magazine
-        - Style B · Swiss international
-        - Both / unsure
+        - AIDX executive brief
+        - AIDX screenshot / evidence page
+        - AIDX cover / social visual
+        - Unsure
     validations:
       required: true

@@ -6,7 +6,7 @@ import { fileURLToPath } from 'node:url';
 const repoRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const templatePath = resolve(repoRoot, 'assets/template-aidx.html');
 const layoutsPath = resolve(repoRoot, 'references/layouts-aidx.md');
-const outputPath = resolve(repoRoot, 'examples/aidx-style-c-showcase.html');
+const outputPath = resolve(repoRoot, 'examples/aidx-showcase.html');
 
 const order = Array.from({ length: 10 }, (_, i) => `AIDX-${String(i + 1).padStart(2, '0')}`);
 const layoutsMd = readFileSync(layoutsPath, 'utf8');
@@ -69,7 +69,7 @@ slides = slides
   .replaceAll('Q3</div><div class="kpi-note">推进周期', 'H2</div><div class="kpi-note">规模化窗口')
   .replaceAll('30<span class="unit">%</span>', '28<span class="unit">%</span>')
   .replaceAll('目标改善', '交付周期目标改善')
-  .replaceAll('汇报人 · 日期', 'Style C AIDX Sample')
+  .replaceAll('汇报人 · 日期', 'AIDX Showcase')
   .replaceAll('68<span class="unit">%</span>', '72<span class="unit">%</span>')
   .replaceAll('-24<span class="unit">%</span>', '-21<span class="unit">%</span>')
   .replaceAll('+18<span class="unit">%</span>', '+31<span class="unit">%</span>')
@@ -129,7 +129,7 @@ if (/\[必填\]|<div class="stage">\s*\.\.\.\s*<\/div>/.test(slides)) {
 }
 
 const output = readFileSync(templatePath, 'utf8')
-  .replace('[必填] 替换为 PPT 标题 · AIDX Executive Brief', 'AIDX Style C Showcase · Executive Brief')
+  .replace('[必填] 替换为 PPT 标题 · AIDX Executive Brief', 'AIDX Showcase · Executive Brief')
   .replace(/<!-- SLIDES_HERE[\s\S]*?-->/, slides);
 
 mkdirSync(dirname(outputPath), { recursive: true });

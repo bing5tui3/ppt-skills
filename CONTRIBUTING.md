@@ -1,55 +1,49 @@
-# Contributing
+# Contributing to aidx-ppt-skill
 
-Thanks for helping improve `guizang-ppt-skill`.
+Thanks for helping improve `aidx-ppt-skill`.
 
-This project is a Skill for AI agents that generate polished HTML slide decks. The most useful contributions are specific, reproducible, and tied to real deck output.
+This repository is now AIDX-only. Keep changes focused on the AIDX / WeBank executive brief system and avoid reintroducing legacy style systems or generic presentation themes.
 
-## Before Opening an Issue
+## Before You Change Templates
 
-Please check whether the problem belongs to one of these buckets:
+Read these files first:
 
-- Layout fidelity: a page drifts away from the registered template.
-- Content overflow: text, images, charts, or footers overlap.
-- Image workflow: generated images do not match the target slot ratio or deck style.
-- Runtime behavior: navigation, ESC overview, low-power mode, map interaction, or animations fail.
-- Documentation: installation, prompt usage, layout selection, or examples are unclear.
+- `SKILL.md`
+- `assets/template-aidx.html`
+- `references/themes-aidx.md`
+- `references/layouts-aidx.md`
+- `references/checklist.md`
+- `scripts/validate-aidx-deck.mjs`
 
-Screenshots are much more useful than descriptions alone. If possible, include:
+## Change Rules
 
-- The prompt or source content used to generate the deck.
-- The generated `index.html`.
-- A screenshot of the broken slide.
-- Browser and OS information.
+- Keep AIDX as the primary brand and WeBank as endorsement.
+- Keep the fixed 1600x900 `.stage` model.
+- Do not add unregistered layout names unless you update `references/layouts-aidx.md` and `scripts/validate-aidx-deck.mjs` together.
+- Do not use local machine paths, external private brand SVGs, emoji status icons, or ad hoc neon colors.
+- If a local image appears in a deck, it must live under `images/` and include `data-image-slot`.
+- If README visuals change, regenerate `assets/readme/aidx-cover.webp` and `assets/readme/aidx-executive-summary.webp`.
 
-## Pull Request Guidelines
+## Validation
 
-Keep PRs focused. A small fix with a screenshot is easier to review than a large rewrite.
-
-For Swiss theme changes:
-
-- Do not invent new default body layouts unless the change is explicitly discussed.
-- Keep the registered layout system intact.
-- Run the Swiss validator:
+Regenerate the showcase:
 
 ```bash
-node scripts/validate-swiss-deck.mjs path/to/index.html
+node scripts/build-aidx-examples.mjs
 ```
 
-For template changes:
+Validate the showcase:
 
-- Verify at least one dense text slide.
-- Verify at least one image slide.
-- Verify navigation, ESC overview, and low-power mode.
+```bash
+node scripts/validate-aidx-deck.mjs examples/aidx-showcase.html
+```
 
-## Good PRs Usually Include
+The validator includes stale legacy-reference checks. Run it before submitting changes.
 
-- A short summary of the problem.
-- The exact files changed.
-- Before / after screenshots when visual behavior changes.
-- Validation or manual QA notes.
+## Pull Request Checklist
 
-## Style Notes
-
-This Skill is opinionated by design. It prefers constrained layout systems over unlimited customization, because constraints make AI-generated decks more reliable.
-
-When in doubt, preserve the existing visual rules and improve the workflow around them.
+- [ ] AIDX showcase still builds.
+- [ ] AIDX validator passes.
+- [ ] README screenshots still match the current showcase.
+- [ ] No stale legacy style references remain.
+- [ ] Documentation and examples match the changed API, classes, and layout rules.

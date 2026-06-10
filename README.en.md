@@ -1,4 +1,4 @@
-# PPT Skills · Web Decks / Images / Covers
+# aidx-ppt-skill · AIDX Executive HTML Decks
 
 ![GitHub stars](https://img.shields.io/github/stars/bing5tui3/ppt-skills?style=flat-square)
 ![License](https://img.shields.io/github/license/bing5tui3/ppt-skills?style=flat-square)
@@ -9,61 +9,54 @@
 [![Supported by ZhenFund Token Grant](https://img.shields.io/static/v1?label=ZhenFund%20Token%20Grant&message=Supported&color=FF4D00&style=flat-square)](https://zhenfund.feishu.cn/share/base/form/shrcn1lAANF659o7EpWnxlR1VOh?sessionid=)
 ![360 Security Lobster Gold Sponsor](https://img.shields.io/static/v1?label=360%20Security%20Lobster&message=Gold%20Sponsor&color=1677FF&style=flat-square)
 
-An agent skill for Claude Code, Codex, and similar coding-agent environments. It generates **single-file HTML horizontal-swipe decks**, deck visuals, and social cover pages.
+`aidx-ppt-skill` is an agent skill for Claude Code, Codex, and similar coding-agent environments. It generates **AIDX / WeBank internal executive brief** decks as single-file horizontal-swipe HTML, plus deck visuals and social cover pages.
 
-It ships with three visual systems:
+The system is intentionally narrow: dark command-center surfaces, terminal texture, AIDX primary branding, WeBank endorsement, and conclusion-first executive communication. It is built for AI technology briefings, engineering productivity reviews, governance updates, risk escalation, resource requests, and roadmap decisions.
 
-- **Style A: editorial magazine × electronic ink**. Picture *Monocle* with code stitched in. Best for narrative talks, opinions, salons, and personal voice.
-- **Style B: Swiss International Typographic Style**. Grid-first, one high-saturation anchor color, sharp rectangles, hairline rules, and extreme type contrast. Best for facts, products, analysis, and frameworks.
-- **Style C: AIDX**. Internal AI executive brief style for AIDX / WeBank contexts: dark command-center surfaces, terminal texture, AIDX primary branding, and WeBank endorsement. Best for executive decisions, progress, risks, and roadmaps.
+> Distilled by [Guizang](https://x.com/op7418) through repeated offline talks and internal briefing iterations. Sponsor and supporter details are listed in [SPONSORS.md](./SPONSORS.md).
 
-> Distilled by [Guizang](https://x.com/op7418) from offline talks like "One-Person Company: Organizations Folded by AI" and "A New Way of Working." Every pitfall hit during those decks is logged in `checklist.md`.
-> Sponsor and supporter details are listed in [SPONSORS.md](./SPONSORS.md).
+## Preview
 
-**Old Theme · Style A Editorial Magazine**
+**AIDX Cover**
 
-![Style A Editorial Magazine preview](https://github.com/user-attachments/assets/5dc316a2-401c-4e37-9123-ea081b6ae470)
+![AIDX cover preview](./assets/readme/aidx-cover.webp)
 
-**New Theme · Style B Swiss International**
+**AIDX Executive Summary**
 
-![Style B Swiss International preview](https://github.com/user-attachments/assets/8960e78c-69bb-4b7e-aa95-6fad64b70314)
+![AIDX executive summary preview](./assets/readme/aidx-executive-summary.webp)
 
-**Internal Theme · Style C AIDX**
-
-For AIDX / WeBank internal executive briefs. See `assets/template-aidx.html`, `references/themes-aidx.md`, and `references/layouts-aidx.md`.
-
-Example: [Style C AIDX Showcase](./examples/aidx-style-c-showcase.html) - 10 slides covering every registered layout from `AIDX-01` to `AIDX-10`.
+Example: [AIDX Showcase](./examples/aidx-showcase.html) - 10 slides covering every registered layout from `AIDX-01` to `AIDX-10`.
 
 ## 30-second start
 
 ```bash
-npx skills add https://github.com/bing5tui3/ppt-skills --skill guizang-ppt-skill
+npx skills add https://github.com/bing5tui3/ppt-skills --skill aidx-ppt-skill
 ```
 
 Or paste this to an AI agent with shell access:
 
 ```text
-Install guizang-ppt-skill for me. Clone https://github.com/bing5tui3/ppt-skills into ~/.claude/skills/guizang-ppt-skill, then verify that SKILL.md, assets/, and references/ exist.
+Install aidx-ppt-skill for me. Clone https://github.com/bing5tui3/ppt-skills into ~/.claude/skills/aidx-ppt-skill, then verify that SKILL.md, assets/, and references/ exist.
 ```
 
 If you already installed it, update with:
 
 ```text
-Update guizang-ppt-skill for me. Go to ~/.claude/skills/guizang-ppt-skill, run git pull, then tell me the latest commit.
+Update aidx-ppt-skill for me. Go to ~/.claude/skills/aidx-ppt-skill, run git pull, then tell me the latest commit.
 ```
 
 Then ask your agent:
 
 ```text
-Create a Swiss-style deck from this article, around 7 slides, with 2-3 generated visuals.
+Create an AIDX executive brief from this material, around 8-10 slides, with an executive summary, risk matrix, roadmap, and closing decision request.
 ```
 
 Other useful prompts:
 
 ```text
-Turn this Markdown file into an editorial magazine-style presentation.
-Create a 21:9 social cover from the core idea of this deck.
-Redesign this product screenshot as a 16:10 slide visual.
+Turn this engineering productivity review into an AIDX management brief.
+Adapt this product screenshot into a 16:10 AIDX-09 evidence visual.
+Create a 21:9 social cover from the core conclusion of this brief.
 ```
 
 ## Sponsors and Supporters
@@ -72,321 +65,147 @@ Redesign this product screenshot as a 16:10 slide visual.
   <img src="https://github.com/user-attachments/assets/5b0c22c8-aff4-4219-900d-6af8604c57a8" alt="360 Security Lobster Gold Sponsor" width="100%">
 </a>
 
-Guizang PPT Skill is supported by **360 Security Lobster** as Gold Sponsor and by [ZhenFund Token Grant](https://zhenfund.feishu.cn/share/base/form/shrcn1lAANF659o7EpWnxlR1VOh?sessionid=). See [SPONSORS.md](./SPONSORS.md) for details.
+`aidx-ppt-skill` is supported by **360 Security Lobster** as Gold Sponsor and by [ZhenFund Token Grant](https://zhenfund.feishu.cn/share/base/form/shrcn1lAANF659o7EpWnxlR1VOh?sessionid=). See [SPONSORS.md](./SPONSORS.md) for details.
 
 ## What you get
 
-- 🖋 **Three visual systems**: editorial storytelling for Style A, factual Swiss structure for Style B, executive decision briefs for Style C AIDX
-- 📐 **Horizontal swipe navigation**: ← → arrows / scroll wheel / touch swipe / bottom dots / ESC for index
-- 🧩 **Style A 10 layouts**: cover, divider, big numbers, image/text, image grid, pipeline, comparison, and more
-- 🧱 **Style B 22 locked layouts**: Cover, Statement, KPI Tower, Loop Diagram, Duo Compare, Image Hero, Closing Manifesto, and more
-- 🧭 **Style C 10 locked AIDX layouts**: cover, executive summary, key decision, KPI strip, roadmap, risk matrix, architecture map, evidence screenshot, and closing request
-- 🎨 **Curated theme presets**: 5 electronic-ink themes for Style A, 4 Swiss anchor-color themes for Style B, and one fixed internal AIDX brand theme for Style C
-- 🖼 **Optional Codex image flow**: generate documentary photos, infographics, flow diagrams, system maps, and UI scenes with GPT-Image 2.0 / GPT-M 2.0, then insert them at template-safe ratios
-- 📰 **Social covers**: generate 21:9 WeChat cover images, 1:1 share cards, 3:4 Xiaohongshu covers, video thumbnails, and related variants
-- 📴 **Low-power static mode**: press `B` to turn WebGL / canvas animation into static visuals
-- 📄 **Single HTML file** — no build, no server, open directly in the browser
+- **One AIDX visual system**: dark command center, terminal texture, bank-grade restraint, conclusion-first structure
+- **Horizontal swipe navigation**: arrow keys, scroll wheel, touch swipe, bottom dots, and ESC overview
+- **10 locked AIDX layouts**: cover, executive summary, key decision, KPI strip, roadmap, risk matrix, architecture map, comparison, evidence screenshot, closing request
+- **Fixed brand theme**: AIDX colors, WeBank endorsement, dark default pages, light evidence pages
+- **Optional Codex image flow**: evidence screenshot adaptation, architecture maps, risk/decision graphics, KPI visuals, and social covers
+- **Social covers**: WeChat 21:9, 1:1 share card, Xiaohongshu 3:4, video thumbnails, and related variants
+- **Low-power static mode**: press `B` to turn canvas animation into static visuals
+- **Single HTML file**: no build step, no server, open directly in a browser
+- **AIDX validator**: checks registered layouts, `.stage`, image slots, local paths, long-deck structure, and stale legacy references
 
-## Fits / Doesn't fit
+## Fits / Doesn't Fit
 
-**✅ Fits**: offline talks, industry keynotes, private salons, AI product launches, demo day, presentations with strong personal voice
+**Fits**: AIDX / WeBank internal executive briefs, AI technology management updates, engineering productivity reports, platform governance, resource requests, risk escalation, roadmap reviews.
 
-**❌ Doesn't fit**: data-heavy tables, training decks (density too low), multi-user collaborative editing (static HTML)
+**Doesn't fit**: dense training decks, multi-user native PowerPoint editing, public marketing pages without AIDX / WeBank context.
 
-## Common use cases
+## Common Use Cases
 
 | Task | Recommended flow |
 |------|------------------|
-| Long article to talk deck | Extract the core argument, then build a 6-10 slide rhythm |
-| Framework / product analysis | Use Style B Swiss with locked layouts and 21:9 hero visuals |
-| AIDX / WeBank internal executive brief | Use Style C AIDX, focusing on conclusions, decisions, risks, roadmaps, and evidence |
-| Personal talk / opinion piece | Use Style A editorial magazine for stronger narrative rhythm |
-| Deck visuals | In Codex, generate photos, infographics, flow diagrams, system maps, or UI scenes |
-| Social covers | Generate 21:9 main covers, 1:1 share cards, 3:4 vertical covers, and video thumbnails from the same idea |
-| Screenshot normalization | Redesign raw screenshots into template-safe ratios before inserting them into slides |
+| Management progress brief | Start with three executive-summary conclusions, then support them with KPI, risk, and roadmap pages |
+| Resource request / scope approval | Use `AIDX-03` key decision and `AIDX-10` closing request |
+| Engineering productivity review | Use `AIDX-04` KPI, `AIDX-06` risk matrix, and `AIDX-07` architecture map |
+| Product or workflow screenshot | Use `AIDX-09` 16:10 evidence screenshot and preserve the real content |
+| Social covers | Generate WeChat, share-card, Xiaohongshu, and video cover variants from the same idea |
+| Screenshot normalization | Follow `references/screenshot-framing.md` for faithful adaptation |
 
-## Why HTML decks
+## Why HTML Decks
 
 - **Agent-native editing**: HTML / CSS is plain text, so agents can read, edit, and validate it directly.
-- **Higher visual density than Markdown**: precise layout, positioning, motion, interactivity, and cover formats.
+- **Higher visual density than Markdown**: precise layout, positioning, motion, interaction, and cover formats.
 - **Lightweight delivery**: one HTML file can be opened, presented, sent, screenshotted, or recorded.
-- **Better quality gates**: the Swiss validator can catch layout drift, unsafe image placement, centered body titles, and SVG text traps.
-- **One visual system across outputs**: decks, generated visuals, covers, and screenshot redesigns can share the same style rules.
+- **Better quality gates**: the AIDX validator catches layout drift, missing image slots, missing `.stage`, local paths, and stale legacy references.
+- **One visual system across outputs**: decks, generated visuals, covers, and screenshot adaptations share the same AIDX rules.
 
-## Platform support
+## Platform Support
 
 | Platform | Status | Notes |
 |----------|--------|-------|
 | Claude Code | Supported | Native Skill workflow for creating and iterating HTML decks |
 | Codex | Supported | Good for deck generation, image generation, and browser-based visual QA |
 | Cursor / other local agents | Works | Requires filesystem access and shell execution |
-| WorkBuddy | In adaptation | Marketplace-ready version is being prepared separately |
 | Plain chatbot | Not recommended | Without filesystem and browser preview, full deck generation is hard to stabilize |
 
 ## Install
 
-### Option 1: One-line install (recommended)
+### Option 1: One-line install
 
 ```bash
-npx skills add https://github.com/bing5tui3/ppt-skills --skill guizang-ppt-skill
+npx skills add https://github.com/bing5tui3/ppt-skills --skill aidx-ppt-skill
 ```
 
 ### Option 2: Paste this to an AI
 
-> Install the `guizang-ppt-skill` Claude Code skill for me. Steps:
+> Install the `aidx-ppt-skill` Claude Code skill for me. Steps:
 >
-> 1. Make sure `~/.claude/skills/` exists (create if not)
-> 2. Run `git clone https://github.com/bing5tui3/ppt-skills.git ~/.claude/skills/guizang-ppt-skill`
-> 3. Verify: `ls ~/.claude/skills/guizang-ppt-skill/` should show `SKILL.md`, `assets/`, `references/`
-> 4. Tell me when done. Later, saying things like "make me a magazine-style deck" will trigger this skill.
+> 1. Make sure `~/.claude/skills/` exists.
+> 2. Run `git clone https://github.com/bing5tui3/ppt-skills.git ~/.claude/skills/aidx-ppt-skill`.
+> 3. Verify: `ls ~/.claude/skills/aidx-ppt-skill/` should show `SKILL.md`, `assets/`, `references/`.
 
-Paste the block above into Claude Code / Cursor / any AI agent with shell access and it handles the install.
-
-### Option 3: Manual CLI
+Manual install:
 
 ```bash
-git clone https://github.com/bing5tui3/ppt-skills.git ~/.claude/skills/guizang-ppt-skill
+mkdir -p ~/.claude/skills
+git clone https://github.com/bing5tui3/ppt-skills.git ~/.claude/skills/aidx-ppt-skill
 ```
-
-### How to trigger it
-
-Once installed, Claude Code auto-detects the skill. Trigger phrases:
-
-- "Make me a magazine-style deck"
-- "Make me a Swiss-style deck"
-- "Make me an AIDX executive brief"
-- "Make me an AI executive technology briefing deck"
-- "Generate a horizontal swipe deck"
-- "Editorial magazine style presentation"
-- "Electronic ink slides for my talk"
-- "Create a 21:9 WeChat cover from this article"
-- "Create a 1:1 share card from this deck"
 
 ## Workflow
 
-The skill is a structured workflow; the agent walks you through each step:
+1. **Clarify the brief**: audience, decision request, slide count, materials, and sensitive information.
+2. **Copy the template**: use `assets/template-aidx.html` as `ppt/index.html`.
+3. **Read the rules**: `themes-aidx.md`, `layouts-aidx.md`, and `checklist.md`.
+4. **Plan the layout rhythm**: include summary, decision, KPI, roadmap, risk, and evidence pages.
+5. **Fill the content**: write conclusions as titles, give KPI context, assign risk owners and mitigations.
+6. **Handle images**: local images go under `images/` and require `data-image-slot`.
+7. **Run validation**: `node scripts/validate-aidx-deck.mjs path/to/index.html`.
+8. **Preview in browser**: check navigation, low-power mode, evidence slots, and text overflow.
 
-1. **Choose style** — Style A editorial magazine, Style B Swiss International, or Style C AIDX
-2. **Clarify intent** — 7-question checklist: style, audience, duration, source material, images/screenshots, theme, hard constraints
-3. **Copy template** — Style A uses `assets/template.html`; Style B uses `assets/template-swiss.html`; Style C uses `assets/template-aidx.html`
-4. **Fill content** — create a rhythm plan, then choose and adapt the matching layout skeletons
-5. **Optional image generation** — in Codex, ask whether to use GPT-Image 2.0 / GPT-M 2.0 images, then insert them at page-appropriate ratios
-6. **Self-check** — match against `references/checklist.md`; P0 issues must all pass; Swiss decks must also pass the layout validator
-7. **Preview** — open the HTML in a browser
-8. **Iterate** — use inline styles to tune font size, height, spacing
+## AIDX Layouts
 
-Full spec in [`SKILL.md`](./SKILL.md).
+| Layout | Use |
+|---|---|
+| `AIDX-01` | Cover / briefing entry |
+| `AIDX-02` | Executive Summary / three conclusions |
+| `AIDX-03` | Key Decision / approval request |
+| `AIDX-04` | KPI Command Strip / progress signals |
+| `AIDX-05` | Roadmap / staged rollout |
+| `AIDX-06` | Risk Matrix / blockers and mitigations |
+| `AIDX-07` | Architecture Map / capability map |
+| `AIDX-08` | Before After / option comparison |
+| `AIDX-09` | Evidence Screenshot / proof and workflow capture |
+| `AIDX-10` | Closing Request / final asks |
 
-## Style B Swiss
-
-The Swiss theme is a strict layout system, not just a CSS skin.
-
-- **22 named layouts**: body slides must use `S01` to `S22`; do not invent new structures
-- **4 anchor colors**: International Klein Blue, lemon yellow, lemon green, safety orange
-- **Grid lock**: 16-column grid, sharp rectangles, 1px hairlines, no shadows, no gradients, no rounded cards
-- **Chinese title scaling**: all-Chinese headlines should be one step smaller to preserve space for content and images
-- **Image/text bottom alignment**: text and image blocks should align at the bottom in left/right image layouts, while staying clear of pagination controls
-- **Image slots**: images must sit in template-defined `data-image-slot` regions, often generated at 21:9 or 16:10
-- **Hard validation**: the validator catches centered body titles, experimental layouts, visible SVG text, and images placed outside slots
-
-Swiss validation:
-
-```bash
-node scripts/validate-swiss-deck.mjs path/to/index.html
-```
-
-## Style C AIDX
-
-AIDX is an internal executive-brief style, not a generic AI-tech skin.
-
-- **Fixed brand theme**: dark system surfaces, AIDX blues, cyan highlight, WeBank endorsement
-- **10 locked layouts**: Cover, Executive Summary, Key Decision, KPI, Roadmap, Risk Matrix, Architecture Map, Before/After, Evidence Screenshot, Closing Request
-- **Fixed 1600×900 stage**: the template scales the stage proportionally, keeping projected typography and screenshot slots stable
-- **Conclusion first**: Chinese carries judgments, risks, decisions, and next steps; English stays in short system labels
-- **Single HTML delivery**: AIDX / WeBank marks must be inline, never referenced from local brand paths
-
-AIDX validation:
-
-```bash
-node scripts/validate-aidx-deck.mjs path/to/index.html
-```
-
-## Codex Image Flow
-
-In Codex, after the first deck draft is ready, the agent can ask whether the user wants generated visuals. Once confirmed, choose an image type or style. Common types include:
-
-- Documentary photos: Fuji / Leica-like real-world scenes that add human texture
-- Infographics / flow diagrams / comparison charts / system maps: for concepts that cannot be explained well with photos
-- Screenshot framing / screenshot redesigns: preserve raw screenshots with bundled background assets and a CleanShot X-style canvas first; use UI scene generation only when the screenshot needs reconstruction
-- Data posters / charts: turn key numbers into insert-ready visual assets
-- Multi-image compositions: useful for ultra-wide slots where three unrelated 16:9 images would break the grid
-
-Generated images must follow four core rules:
-
-- Treat the image as an embedded asset, not a standalone slide: no footer, page bottom, title, page number, corner mark, signature, or decorative border
-- Match the deck language: Chinese decks use Chinese labels inside infographics, English decks use English labels
-- Match the slot ratio before generation: 21:9 for many Swiss hero slots, 16:9 / 16:10 for common main visuals, 16:10 for UI scenes, fixed equal heights for image grids
-- When a raw screenshot must stay faithful, read `references/screenshot-framing.md` first and use bundled `assets/screenshot-backgrounds/` backgrounds plus programmatic scaling, padding, and alignment instead of redrawing the screenshot by default
-
-Image prompts live in [`references/image-prompts.md`](./references/image-prompts.md). Screenshot framing lives in [`references/screenshot-framing.md`](./references/screenshot-framing.md).
-
-## Cover Generation
-
-The skill can also turn an article or deck idea into platform covers:
-
-- **WeChat main cover**: 21:9, headline-first, with one visual anchor
-- **WeChat share card**: 1:1, visually paired with the 21:9 cover
-- **Xiaohongshu cover / carousel**: 3:4, large title, consistent type scale across a batch
-- **Video thumbnail**: 16:9, title + subtitle + one focal visual
-
-The same rule applies: use a few strong keywords, keep the title as the visual center, and do not fill the canvas with body copy.
-
-## Example prompts
-
-Copy any of these prompts into your agent, then attach your article, Markdown file, or image assets:
+## Repository Structure
 
 ```text
-Create an 8-slide Swiss-style deck from this article, with 3 generated visuals matched to the template image slots.
-```
-
-```text
-Turn this product analysis document into an editorial magazine-style deck with a strong narrative rhythm.
-```
-
-```text
-From this deck's core idea, create two covers: a 21:9 main cover and a visually paired 1:1 share card.
-```
-
-```text
-Redesign these product screenshots into consistent 16:10 slide visuals. Preserve key UI information; do not add slide titles or footers inside the images.
-```
-
-## Directory
-
-```
-guizang-ppt-skill/
-├── SKILL.md              ← main skill file: workflow, principles, common mistakes
-├── README.md             ← Chinese README
-├── README.en.md          ← this file
+aidx-ppt-skill/
+├── SKILL.md
+├── README.md
+├── README.en.md
 ├── assets/
-│   ├── template.html         ← Style A editorial magazine template
-│   ├── template-swiss.html   ← Style B Swiss template
-│   ├── template-aidx.html    ← Style C AIDX internal executive brief template
-│   └── screenshot-backgrounds/ ← bundled WebP screenshot backgrounds: 5 style-a / 4 style-b
+│   ├── template-aidx.html
+│   ├── motion.min.js
+│   └── readme/
+│       ├── aidx-cover.webp
+│       └── aidx-executive-summary.webp
 ├── examples/
-│   └── aidx-style-c-showcase.html ← 10-slide Style C AIDX sample
+│   ├── README.md
+│   └── aidx-showcase.html
 ├── scripts/
-│   ├── build-aidx-examples.mjs   ← generate Style C samples
-│   ├── validate-swiss-deck.mjs ← Swiss layout validator
-│   └── validate-aidx-deck.mjs  ← AIDX layout validator
+│   ├── build-aidx-examples.mjs
+│   └── validate-aidx-deck.mjs
 └── references/
-    ├── components.md     ← component catalog (type, color, grid, icons, callout, stat, pipeline)
-    ├── layouts.md        ← 10 layout skeletons (paste-ready)
-    ├── layouts-swiss.md  ← 22 locked Swiss layouts
-    ├── layouts-aidx.md   ← 10 locked AIDX executive brief layouts
-    ├── swiss-layout-lock.md ← Swiss fidelity and layout hard rules
-    ├── themes.md         ← 5 theme presets (pick, don't customize)
-    ├── themes-swiss.md   ← 4 Swiss anchor-color themes
-    ├── themes-aidx.md    ← fixed AIDX internal brand theme
-    ├── image-prompts.md  ← GPT-Image 2.0 / GPT-M 2.0 image types, ratios, and base prompts
-    ├── screenshot-framing.md ← CleanShot X-style screenshot framing semantics
-    └── checklist.md      ← quality checklist (P0 / P1 / P2 / P3 tiers)
+    ├── checklist.md
+    ├── components.md
+    ├── image-prompts.md
+    ├── layouts-aidx.md
+    ├── screenshot-framing.md
+    └── themes-aidx.md
 ```
 
-## Theme presets
+## Development and Validation
 
-Pick from `references/themes.md`. **Custom hex values are not allowed** — protecting the aesthetic matters more than freedom of choice.
+Regenerate the example:
 
-### Style A Editorial Themes
+```bash
+node scripts/build-aidx-examples.mjs
+```
 
-| Preview | Theme | Core colors and best for |
-|---------|-------|--------------------------|
-| <img src="https://github.com/user-attachments/assets/df21dbcb-5fe4-4852-a91a-a9cf00aceeb4" width="260" alt="Ink Classic theme preview"> | 🖋 **Ink Classic** | `#0a0a0b` / `#f1efea`. General default, commercial launches, when in doubt. |
-| <img src="https://github.com/user-attachments/assets/99ce0fd2-72a6-4368-a75a-a8e21657a537" width="260" alt="Indigo Porcelain theme preview"> | 🌊 **Indigo Porcelain** | `#0a1f3d` / `#f1f3f5`. Tech, research, AI, technical keynotes. |
-| <img src="https://github.com/user-attachments/assets/bcc1cc4c-5e8e-4467-ae8d-f5801ae73657" width="260" alt="Forest Ink theme preview"> | 🌿 **Forest Ink** | `#1a2e1f` / `#f5f1e8`. Nature, sustainability, culture, non-fiction. |
-| <img src="https://github.com/user-attachments/assets/dfea080e-e916-417e-93cd-0a3628de84ca" width="260" alt="Kraft Paper theme preview"> | 🍂 **Kraft Paper** | `#2a1e13` / `#eedfc7`. Nostalgic, humanist, literary, indie zines. |
-| <img src="https://github.com/user-attachments/assets/f3705592-9a72-4dbc-9818-df3aea61bc75" width="260" alt="Dune theme preview"> | 🌙 **Dune** | `#1f1a14` / `#f0e6d2`. Art, design, creative, fashion, gallery-like decks. |
+Validate an AIDX deck:
 
-Switching themes only requires replacing the 6 variables at the top of `template.html`'s `:root{}` block — all other CSS flows through `var(--...)`.
+```bash
+node scripts/validate-aidx-deck.mjs examples/aidx-showcase.html
+```
 
-### Style B Swiss Themes
-
-Pick from `references/themes-swiss.md`. **Custom hex values are not allowed** here either.
-
-| Preview | Theme | Anchor color and best for |
-|---------|-------|---------------------------|
-| <img src="https://github.com/user-attachments/assets/c02d02f7-ce6f-4e16-b8a6-778c96851f94" width="260" alt="International Klein Blue Swiss theme preview"> | 🔵 **International Klein Blue** | `#002FA7`. Default, commercial launches, AI products, frameworks. |
-| <img src="https://github.com/user-attachments/assets/c310a8c4-5d28-450e-b49a-6ac5b6ba4785" width="260" alt="Lemon Yellow Swiss theme preview"> | 🟡 **Lemon Yellow** | `#FFD500`. Youth, sports, retail, consumer goods, Y2K retro. |
-| <img src="https://github.com/user-attachments/assets/65f7b3f9-3358-419e-b513-f7f2cc24ec76" width="260" alt="Lemon Green Swiss theme preview"> | 🟢 **Lemon Green** | `#C5E803`. Ecology, sustainability, health, Gen Z brands. |
-| <img src="https://github.com/user-attachments/assets/9c3319c9-a134-4657-9a56-211c23411f7f" width="260" alt="Safety Orange Swiss theme preview"> | 🟠 **Safety Orange** | `#FF6B35`. Alerts, news, industrial topics, sports, energetic themes. |
-
-If the user asks for a Swiss-style deck without specifying color, default to International Klein Blue.
-
-### Style C AIDX Theme
-
-AIDX does not allow free color selection. Use the fixed internal brand theme in `references/themes-aidx.md`:
-
-- Dark base: `#0F0F11` / `#16161A`
-- AIDX primary: `#3A5ECF` / `#063970`
-- Highlight: `#5DADE2`
-- Light pages only for faithful screenshots, appendices, and dense tables
-
-## Core design principles
-
-1. **Restraint over flash** — WebGL backgrounds only bleed through on hero pages
-2. **Structure over decoration** — information hierarchy via type size + typeface + grid whitespace, not shadows or floating cards
-3. **Images are first-class citizens** — align them with the body content area, keep ratios stable, crop only from the bottom, and preserve top/sides
-4. **Generated visuals are assets** — keep only the core photo / chart / UI; do not render slide titles, footers, or corner marks inside the image
-5. **Rhythm lives on hero pages** — hero / non-hero alternation keeps the eye from fatiguing
-6. **Dynamic effects must be optional** — `B` toggles static mode so animation never becomes a reading burden
-7. **Terms stay consistent** — Skills is Skills; no mix-and-match translations
-8. **Swiss layouts stay locked** — Style B should restore and reuse the original 22-page layout system instead of inventing unrelated pages
-9. **AIDX starts with decisions** — Style C should foreground conclusions, impact, risks, and asks instead of becoming a generic tech visual
-
-## Visual references
-
-- [*Monocle*](https://monocle.com) magazine layouts
-- YC Garry Tan — "Thin Harness, Fat Skills"
-- Massimo Vignelli / Helvetica Forever / Swiss International Typographic Style
-- Guizang's offline talk deck series
-
-## Roadmap
-
-- Add more real-world examples and openable HTML deck demos
-- Expand cover formats for more publishing platforms
-- Add more Swiss layout validation rules
-- Improve screenshot redesign and infographic generation workflows
-- Prepare marketplace-specific variants such as WorkBuddy
-- Add more curated theme packs while keeping custom colors restricted
-
-## FAQ
-
-**Can it export to PPTX?**
-The main output is HTML. You can present it in a browser, screenshot it, or record it. PPTX conversion can be done as a separate workflow, but it is not the core path today.
-
-**Why are custom colors not allowed?**
-The skill is designed for stable visual output. Arbitrary colors often break the system, so decks must use curated presets.
-
-**Can I add my own layout?**
-Yes. Style A layouts can be extended in `references/layouts.md`. Style B is stricter: update `template-swiss.html`, `layouts-swiss.md`, `swiss-layout-lock.md`, and the validator together. Style C changes must update `template-aidx.html`, `layouts-aidx.md`, and `validate-aidx-deck.mjs` together.
-
-**Is Codex image generation required?**
-No. Decks work without generated images. The image flow is only used when you need photos, infographics, UI scenes, or covers.
-
-**How do I update the skill?**
-Run the install command again, or run `git pull` inside your local skill directory.
-
-## Contributing
-
-Bugs, layout issues, new layout requests — Issues and PRs welcome. Prioritize:
-
-- Add new classes to `template.html` first; don't let `layouts.md` reference undefined classes
-- When changing `template-swiss.html`, update `layouts-swiss.md` and `swiss-layout-lock.md` together
-- When changing `template-aidx.html`, update `layouts-aidx.md` and `validate-aidx-deck.mjs` together
-- When adding Swiss rules, update `scripts/validate-swiss-deck.mjs`
-- Log pitfalls into `checklist.md` at the matching P0 / P1 / P2 / P3 tier
-- New theme colors go into `themes.md` with a recommended use case
+Stale legacy-reference checks are built into the AIDX validator; run validation before submitting changes.
 
 ## License
 
-AGPL-3.0 © 2026 [bing5tui3](https://github.com/bing5tui3/ppt-skills)
+This project is licensed under [GNU Affero General Public License v3.0](./LICENSE).

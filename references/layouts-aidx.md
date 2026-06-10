@@ -1,6 +1,6 @@
-# Layouts · Style C AIDX
+# Layouts · AIDX
 
-Style C AIDX 是内部高层汇报模板。它采用 **AIDX locked mode**:正文页只能从登记版式 `AIDX-01` 到 `AIDX-10` 中选择,每页必须写 `data-layout="AIDX-xx"`。
+AIDX 是内部高层汇报模板。它采用 **AIDX locked mode**:正文页只能从登记版式 `AIDX-01` 到 `AIDX-10` 中选择,每页必须写 `data-layout="AIDX-xx"`。
 
 ---
 

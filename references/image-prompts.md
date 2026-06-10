@@ -1,227 +1,71 @@
-# GPT-M 2.0 配图提示词
+# AIDX Image Prompts
 
-用于 Codex 环境下为本 skill 生成 PPT 配图。提示词只负责定基调,不要写成长篇说明。先判断图片落位和比例,再选择类型。
+Use these prompts when generating visuals for an AIDX executive brief. AIDX visuals must prove a conclusion, explain a system, clarify a risk, or support a decision. Do not generate decorative "AI atmosphere" images.
 
-## 通用规则
+## Global Rules
 
-- 先判断当前 deck 风格:风格 A = 电子杂志 × 电子墨水;风格 B = 瑞士国际主义 / Swiss Style;风格 C = AIDX
-- 风格 A 基调:电子杂志 × 电子墨水,克制、真实、留白充足,适合横向网页 PPT
-- 风格 B 基调:Swiss International Typographic Style,12/16 列网格、Helvetica/Inter 气质、单一高饱和 accent、直角纯色、发丝线、极大留白
-- 风格 C 基调:AIDX 内部高层汇报,深色指挥台、终端质感、AIDX 蓝/亮蓝、结论与证据优先
-- 信息图、图表、截图再设计中的文字语言必须跟随用户语言:中文 deck 用中文,英文 deck 用英文
-- 不生成卡通、3D、霓虹科技感、SaaS 模板感、过度装饰或假 logo
-- 图片要给标题或正文留出可叠加空间,不要满屏堆细节
-- 同一页或同一组图片必须使用同一比例、同一视觉缩放、同一边距密度
-- 配图是嵌入 PPT 的素材,不是一张独立 slide:不要生成页眉、页脚、页码、标题栏、角标、署名、装饰边框或 slide chrome
-- 生成后保存到 `images/`,命名为 `{页号}-{语义}.{ext}`
+- Visual anchor: AIDX internal executive briefing, dark command center, terminal texture, bank-grade restraint.
+- Colors: AIDX dark surfaces, grayscale, `#3A5ECF`, `#063970`, `#5DADE2`, plus small status colors for risk or progress.
+- Geometry: straight rectangular modules, thin lines, compact labels, no 3D, no cartoon, no neon glow.
+- Language follows the deck language. Chinese deck uses Chinese labels; English deck uses English labels.
+- Do not add fake logos, watermarks, page numbers, browser chrome, slide titles, or decorative frames.
+- Outputs should be clean visual assets, not a full slide with header/footer.
+- Match the target slot before generating: `16:10` for evidence screenshots, `16:9` for architecture/KPI/risk visuals, `21:9` for social cover headers.
 
-## 比例选择
+## Type 1 · Evidence Screenshot Adaptation
 
-| 用途 | 推荐比例 | HTML 落位 |
-|------|---------|-----------|
-| 章节封面 / 全屏主视觉 | 16:9 | `.frame-img.r-16x9` 或 hero 背景参考 |
-| 瑞士风顶部横幅 / Image Hero | 16:9 或 21:9 | P22 顶图 cover / `.frame-img.r-21x9` |
-| 左文右图主图 | 16:10 或 4:3 | `.frame-img.r-16x10` / `.frame-img.r-4x3` |
-| 信息图 / 系统关系图 | 16:9 或 16:10 | 原始截图用 `.fit-contain`;按槽位重生成则用 `.frame-img.r-16x9` / `.frame-img.r-16x10` 铺满 |
-| 截图再设计 / UI 情景图 | 16:10 或 21:9 | 原始截图用 `.fit-contain`;重生成到 S15/S16 时用 `.frame-img.r-21x9` 铺满 |
-| AIDX 证据截图 | 16:10 | AIDX-09 使用 `.frame-img.r-16x10.fit-contain` + `data-image-slot="aidx-evidence-16x10"` |
-| 图文混排小图 | 3:2 或 3:4 | `.frame-img.r-3x2` / `.frame-img.r-3x4` |
-| 图片网格 | 统一横图 | `.frame-img.h-22` / `.frame-img.h-26` |
-| 小型面板组 | 统一横图 | `.frame-img.h-16` / `.frame-img.h-18` |
-
-信息图和截图再设计如果来自不可控原始素材,优先用 `fit-contain`,避免文字被裁切;如果是 GPT-M 2.0 按槽位重新生成,必须生成同槽位比例并铺满容器,不要让小图漂在白框里。纪实照片优先用默认 `cover`,保持画面张力。
-
-## 图片标准化策略
-
-### A. 先选目标槽位
-
-不要先生成图片再硬塞进页面。先决定图片落位:
-
-1. 主视觉:16:9
-2. 左文右图:16:10 或 4:3
-3. 信息图/截图再设计:16:9 或 16:10,并使用 `fit-contain`
-4. 多图网格/面板组:统一高度类,同一组内禁止混用高度
-
-### B. 用户原始图片/截图的处理
-
-原始截图比例通常不可控,不要直接作为最终视觉标准。按下面顺序处理:
-
-1. 如果原图内容需要保真,先读 `screenshot-framing.md`,用 CleanShot X 式程序化适配:目标比例画布 + 风格化背景 + 截图等比缩放 + 语义化 padding/alignment
-2. 如果原图比例接近目标槽位,直接放入统一 `.frame-img` 中,用 `cover` 或 `fit-contain`
-3. 如果一张 UI 图被拉成巨长条,拆成 2-3 张同尺寸局部面板;每个面板使用同一高度类
-4. 如果原图过高、过窄、过长且无法通过适配解决,再用"截图再设计 / UI 情景图"重新生成到目标比例
-5. 如果必须保留原图,用 `fit-contain` 放进统一 frame,接受留白,不要裁掉关键文字
-
-### C. 生成提示词后缀
-
-每个配图提示词最后都补一句规格约束:
+Use for AIDX-09 or any page where the screenshot is evidence. Preserve real content whenever possible.
 
 ```text
-输出必须是[16:9/16:10/4:3/3:2]横向构图,主体居中但保留边距,画面密度中等,与同组图片保持相同视觉缩放和边距。只保留核心图形/画面本身,不要生成页眉、页脚、标题、页码、角标、署名、装饰边框、超长条、竖图或不规则比例。
+Adapt this product/workflow screenshot into a 16:10 evidence visual for an AIDX executive briefing. Preserve the real UI content, key text, metrics, and status indicators. Use a clean light canvas or restrained dark command-center support surface with clear margins. Do not crop important information. Do not add logos, titles, page numbers, browser chrome, or decorative frames. Output only the evidence visual.
 ```
 
-同一页需要多张图时,补一句:
+If sensitive information is present:
 
 ```text
-这是一组图片中的一张,请保持与同组图片相同的画面比例、元素大小、边距、线条粗细和标注密度。
+Adapt this screenshot into a 16:10 AIDX evidence visual. Preserve layout, key workflow states, and metric relationships, but mask names, account identifiers, customer data, tokens, and private URLs. Use AIDX blue/cyan only for subtle emphasis. Output only the evidence visual.
 ```
 
-## 类型 1: 人文纪实照片
+## Type 2 · Architecture Capability Map
 
-用于增加现场感、情绪和真实世界锚点。
+Use for AIDX-07 or technical review pages.
 
 ```text
-生成一张横向纪实摄影配图,主题是:[页面概念]。风格像 Fujifilm / Leica editorial documentary,自然光、低饱和、轻微胶片颗粒、真实工作或生活现场,克制有人文温度。适合电子杂志 × 电子墨水 PPT,留出标题空间。不要商业摆拍、科幻界面、AI 机器人、logo 或水印。输出必须是[16:9/16:10/4:3]横向构图,主体居中但保留边距,画面密度中等。只保留核心照片本身,不要生成页眉、页脚、标题、页码、角标、署名、装饰边框、超长条、竖图或不规则比例。
+Create a 16:9 AIDX architecture capability map showing how [platform layer], [capability layer], and [experience layer] connect. Use a dark command-center visual system with AIDX blue and cyan highlights, straight rectangular modules, thin connector lines, and short Chinese labels. Keep the diagram readable for executives: show boundaries, dependencies, and risk points, not low-level implementation detail. No 3D, no neon, no cartoon, no fake logos, no slide title, no page frame.
 ```
 
-## 类型 2: 杂志风信息图
+## Type 3 · Risk and Decision Graphic
 
-用于解释概念、流程、对比、系统关系。
+Use for AIDX-03, AIDX-06, or decision review material.
 
 ```text
-生成一张横向杂志风信息图,解释:[概念/流程/关系]。电子墨水风格,黑白灰为主,少量低饱和强调色,细线条、网格、编号、短标签、留白充足。图中文字使用[中文/英文],保持简短可读。不要卡通、3D、霓虹科技感或模板感。输出必须是[16:9/16:10]横向构图,主体居中但保留边距,画面密度中等。只保留核心信息图本身,不要生成页眉、页脚、标题、页码、角标、署名、装饰边框、超长条、竖图或不规则比例。
+Create a 16:9 AIDX decision graphic about [decision/risk/tradeoff]. The visual should contain 3-4 straight rectangular information modules, status colors for priority, concise Chinese labels, and a clear hierarchy from recommendation to risk to next action. Use a restrained dark executive briefing style with AIDX blue/cyan highlights. No complex background, no neon, no 3D, no people, no fake logos, no slide title or decorative frame.
 ```
 
-## 类型 3: 流程 / Pipeline 图
+## Type 4 · KPI Data Visual
 
-用于讲清从 A 到 B 到 C 的过程。
+Use as a supplemental image for AIDX-04 or a report cover.
 
 ```text
-生成一张横向流程信息图,展示:[步骤 1] → [步骤 2] → [步骤 3] → [结果]。风格为电子杂志 × 电子墨水,细箭头、分段编号、短注释、克制留白。图中文字使用[中文/英文]。只保留核心流程图本身,不要页眉、页脚、标题、页码、角标、署名或装饰边框。比例:16:9。
+Create a 16:9 AIDX KPI data visual for an executive briefing. Core metrics: [metric A], [metric B], [metric C]. Show large readable numbers, compact trend bars, short Chinese annotations, and subtle status indicators. Use dark panels, fixed grid structure, AIDX blue/cyan highlights, and bank-grade restraint. Do not make it look like a generic SaaS dashboard screenshot. No logos, no page header, no title, no page number, no decorative frame.
 ```
 
-## 类型 4: 对比图
+## Type 5 · Social Cover / Briefing Cover
 
-用于 before / after、新旧模式、两种协作方式对照。
+Use for WeChat 21:9 covers, 1:1 share cards, Xiaohongshu 3:4 covers, video thumbnails, or presentation posters.
 
 ```text
-生成一张横向对比信息图,左侧是[旧模式],右侧是[新模式]。风格像高端独立杂志里的分析图,黑白灰和一个低饱和强调色,细线分栏、短标签、清晰层级。图中文字使用[中文/英文]。只保留核心对比图本身,不要页眉、页脚、标题、页码、角标、署名或装饰边框。比例:16:9。
+Create an AIDX executive briefing cover visual for [topic]. Use a dark command-center background, subtle terminal grid, AIDX blue/cyan signal lines, and one clear focal structure representing [core idea]. Leave clean space for a title overlay. Style should feel like an internal AI technology executive brief for AIDX / WeBank: restrained, precise, high-trust, not cyberpunk. No text, no logos, no watermark, no people, no 3D mascot. Aspect ratio: [21:9 / 1:1 / 3:4 / 16:9].
 ```
 
-## 类型 5: 系统关系图
+## Type 6 · Workflow Proof Diagram
 
-用于多角色、多工具、多模块之间的关系。
+Use when the deck needs to show a process without relying on a real screenshot.
 
 ```text
-生成一张横向系统关系图,展示:[角色/工具/模块]之间如何连接。电子墨水杂志风,节点、细线、箭头、编号和少量短注释,结构清晰,留白充足。图中文字使用[中文/英文]。只保留核心关系图本身,不要页眉、页脚、标题、页码、角标、署名或装饰边框。比例:16:9。
+Create a 16:9 AIDX workflow proof diagram showing [step 1] -> [step 2] -> [step 3] -> [audit/result]. Use four horizontal modules, thin connectors, small status tags, and concise Chinese labels. Dark executive command-center style, AIDX blue/cyan highlights, minimal status colors. The diagram should prove operational readiness, not decorate the page. No logos, no page title, no slide shell.
 ```
 
-## 类型 6: 截图再设计 / UI 情景图
+## Negative Prompt
 
-用于把真实截图、代码、设计稿、工作区处理成统一视觉素材。
-
-```text
-生成一张横向 UI 情景图,把[截图/界面/工作区内容]再设计成适合杂志风 PPT 的视觉。保留真实产品工作流的感觉,使用纸张底色、细线框、网格、少量标注和克制阴影。图中文字使用[中文/英文],短而清晰。不要真实品牌 logo、花哨 dashboard、霓虹渐变或过度拟物。输出必须是16:10横向构图,主体居中但保留边距,画面密度中等。只保留核心 UI 画面本身,不要生成页眉、页脚、标题、页码、角标、署名、装饰边框、超长条、竖图或不规则比例。
-```
-
-## 类型 7: 数据大字报图
-
-用于突出一个关键数字或少量指标。
-
-```text
-生成一张横向数据大字报视觉,核心数字是:[数字],含义是:[含义]。风格为电子墨水杂志版式,超大衬线数字、少量短注释、细线、留白和纸张质感。图中文字使用[中文/英文]。只保留核心数据视觉本身,不要页眉、页脚、标题、页码、角标、署名或装饰边框。比例:16:9。
-```
-
----
-
-## 风格 B:瑞士国际主义配图规则
-
-当 deck 选择 `assets/template-swiss.html` / `layouts-swiss.md` 时,优先使用下面这组提示词。它们和 GPT-M 2.0 配套,目标是生成能直接放进原始登记版式的图片槽位,尤其是 S22 顶部横幅、S15/S16 多图网格。
-
-### Swiss 配图硬规则
-
-- 视觉锚点:International Typographic Style / Swiss modernism / Helvetica / Josef Müller-Brockmann / Massimo Vignelli
-- 构图:严格 12/16 列网格、非对称留白、左对齐、发丝线、直角模块
-- 色彩:只使用黑、白、灰和**一个**主题 accent(默认 IKB 蓝;如果用户选柠檬黄/绿/安全橙,就替换为对应 accent)
-- 禁止:渐变、阴影、圆角、玻璃拟态、霓虹、3D、卡通、SaaS 模板感、伪 logo、装饰边框
-- 图片内部不要生成 PPT 外壳:不要页眉、页脚、页码、标题栏、角标、署名、外框
-- UI / 信息图文字必须短,保持中文/英文语言一致;真实照片尽量不要带文字
-- 先确定版式槽位再生成图片:单张大图用 `s22-hero-21x9`;多图格用 `s15-grid-21x9` 或 `s16-brief-21x9`
-- 21:9 图片必须让核心主体落在中央 70% 安全区,四周留白;不要把人脸、关键节点或 UI 文字贴边
-
-### Swiss 类型 1:纪实照片 / 案例主图
-
-用于 S22 Image Hero,增加真实场景锚点。
-
-```text
-生成一张 21:9 超宽横向纪实摄影配图,主题是:[页面概念]。风格是 Swiss editorial documentary:高对比、低饱和、冷静克制、真实办公/城市/产品使用场景,构图有大量负空间,主体位于中央 70% 安全区,适合放入瑞士国际主义 PPT 的顶部横幅。不要 AI 机器人、科幻界面、商业摆拍、logo、水印或文字。只保留核心照片本身,不要页眉、页脚、标题、页码、角标、署名、装饰边框或 PPT 外壳。
-```
-
-### Swiss 类型 2:信息图 / 系统关系图
-
-用于解释概念、架构、流程、数据与表现分离等抽象内容。
-
-```text
-生成一张横向 Swiss Style 信息图,解释:[概念/流程/系统关系]。使用 Helvetica/Inter 气质的无衬线短标签、12/16 列网格、直角模块、1px 发丝线、黑白灰和一个 [IKB 蓝/柠檬黄/柠檬绿/安全橙] accent。图中文字使用[中文/英文],每个标签不超过 8 个字/词。不要渐变、阴影、圆角、3D、卡通、霓虹或 SaaS 模板感。输出比例为[21:9/16:10],主体居中但保留大留白。只保留核心信息图本身,不要页眉、页脚、标题、页码、角标、署名、装饰边框或 PPT 外壳。
-```
-
-### Swiss 类型 3:截图再设计 / UI 情景图
-
-用于把截图、工作区、代码、dashboard 重绘成统一 Swiss 风视觉。
-
-```text
-生成一张横向 UI 情景图,把[截图/界面/工作区内容]再设计成 Swiss International Typographic Style。画面使用极简 dashboard / workspace 结构,直角面板、发丝线、12 列网格、少量 [IKB 蓝/柠檬黄/柠檬绿/安全橙] accent,无阴影无圆角。图中文字使用[中文/英文],短而清晰,不要真实品牌 logo。输出必须是16:10横向构图,视觉密度中等,适合放进 `.frame-img.r-16x10.fit-contain`。只保留核心 UI 画面本身,不要页眉、页脚、标题、页码、角标、署名、装饰边框或 PPT 外壳。
-```
-
-### Swiss 类型 4:多图网格单张素材
-
-用于 S15/S16 图片格改造,一组 2-6 张图片并列时逐张生成。
-
-```text
-生成一张横向证据图,主题是:[证据 A/B/C]。这是一组 Swiss Style 图片中的一张,请保持直角模块、黑白灰、单一 [IKB 蓝/柠檬黄/柠檬绿/安全橙] accent、相同边距、相同线条粗细、相同视觉缩放。图中文字使用[中文/英文],短标签即可。输出必须是[21:9/16:10]横向构图,适合放入 S15/S16 统一图片格。只保留核心图像本身,不要页眉、页脚、标题、页码、角标、署名、装饰边框或 PPT 外壳。
-```
-
-### Swiss 类型 5:极简图表 / 数据块
-
-用于 S21 或 S15/S16 图片格中的小型数据解释图。
-
-```text
-生成一张横向 Swiss Style 数据图,核心数据是:[数字/对比/排名],含义是:[说明]。使用极大无衬线数字、1px 发丝线、直角色块、黑白灰和一个 [IKB 蓝/柠檬黄/柠檬绿/安全橙] accent,像瑞士海报里的数据版式。图中文字使用[中文/英文],只保留必要标签。不要渐变、阴影、圆角、3D 或装饰边框。比例:[16:9/16:10]。只保留核心数据图本身,不要页眉、页脚、标题、页码、角标、署名或 PPT 外壳。
-```
-
----
-
-## 风格 C:AIDX 配图规则
-
-当 deck 选择 `assets/template-aidx.html` / `layouts-aidx.md` 时,优先使用下面这组提示词。AIDX 图片服务高层汇报,目标是证明结论、展示证据、解释架构,不是制造通用科技氛围。
-
-### AIDX 配图硬规则
-
-- 视觉锚点:AIDX 内部高层汇报、深色工程指挥台、终端状态块、银行级克制
-- 色彩:只使用 AIDX 暗底、灰阶、`#3A5ECF`、`#063970`、`#5DADE2`,少量状态色用于风险/进度
-- 构图:固定 16:10 或 16:9,内容居中,边距清晰,不要生成超长截图条
-- 禁止:伪 logo、真实敏感信息、AI 机器人、科幻人像、霓虹满屏、蓝紫大渐变、3D、卡通、SaaS 营销模板
-- 图片内部不要生成 PPT 外壳:不要页眉、页脚、页码、标题栏、角标、署名、外框
-- 中文 deck 的图内标签用中文;英文只做极短系统标签
-
-### AIDX 类型 1:证据截图适配
-
-优先程序化保真,不要重画截图。只有截图过乱、过窄、过长或需要概念化表达时才重构。
-
-```text
-将这张产品/工作流截图适配为 AIDX 高层汇报中的 16:10 证据图。保留截图真实内容和关键文字,使用干净浅色画布或深色指挥台背景承托,边距清晰,不裁切关键信息。不要新增 logo、页眉、页脚、标题、页码、角标或装饰边框。输出只包含截图证据本身。
-```
-
-### AIDX 类型 2:架构能力图
-
-用于 AIDX-07 架构能力图或技术评审页。
-
-```text
-生成一张横向 AIDX 架构能力图,展示:[平台层/能力层/体验层]如何连接。视觉为深色工程指挥台,使用 AIDX 蓝和亮蓝作为少量高亮,矩形模块、细线连接、短中文标签,整体克制清晰。不要霓虹、3D、卡通、伪 logo、页眉、页脚、标题或装饰边框。比例:16:9。
-```
-
-### AIDX 类型 3:风险与决策图
-
-用于管理层需要理解取舍、风险和行动项的页面。
-
-```text
-生成一张横向 AIDX 决策图,主题是:[决策/风险/取舍]。画面包含 3-4 个直角信息模块、状态色标识、短中文标签和清晰优先级,风格为深色高层汇报指挥台,使用 AIDX 蓝和亮蓝点缀。不要复杂背景、霓虹、3D、人物、伪 logo、页眉、页脚或 PPT 外壳。比例:16:9。
-```
-
-### AIDX 类型 4:KPI 数据图
-
-用于补充 AIDX-04 KPI 页。
-
-```text
-生成一张横向 AIDX KPI 数据图,核心指标是:[指标 A/B/C],用于高层汇报。使用深色面板、固定网格、清晰数字、少量趋势条和中文短注释,AIDX 蓝/亮蓝作为高亮。不要做成 SaaS dashboard 截图,不要生成 logo、页眉、页脚、标题、页码或装饰边框。比例:16:9。
-```
+Avoid: cyberpunk city, robot, humanoid AI, purple-blue glow, hologram, rounded SaaS cards, cartoon, 3D objects, fake brand logos, random code text, decorative bokeh, stock-photo people, unreadable microtext, page headers, page footers, slide numbers, watermarks.

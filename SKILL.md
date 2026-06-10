@@ -1,643 +1,201 @@
 ---
-name: guizang-ppt-skill
-description: 生成横向翻页网页 PPT（单 HTML 文件），含 WebGL/Canvas 背景、章节幕封、数据大字报、图片网格等模板。提供三种风格：① "电子杂志 × 电子墨水"（衬线 + 流体背景 + 暖色） ② "瑞士国际主义"（无衬线 + 网格点阵 + IKB/柠檬黄/柠檬绿/安全橙高亮） ③ "AIDX"（内部 AI 科技高层汇报,深色指挥台 + 终端质感 + AIDX/WeBank 品牌）。当用户需要制作分享 / 演讲 / 发布会 / 高层汇报风格的网页 PPT，或提到"杂志风 PPT"、"瑞士风 PPT"、"AIDX 风 PPT"、"AI 科技高层汇报"、"Swiss Style"、"horizontal swipe deck"时使用。
+name: aidx-ppt-skill
+description: 生成 AIDX / WeBank 内部高层汇报风格的横向翻页网页 PPT（单 HTML 文件），含固定 1600×900 舞台、深色指挥台视觉、AIDX 品牌锁定、执行摘要、关键决策、KPI、路线图、风险矩阵、架构图、证据截图、结尾请求、多平台封面和 AIDX 配图提示词。当用户需要制作 AIDX 风 PPT、AI 科技高层汇报、内部决策会、工程效能汇报、管理层进展同步或 horizontal swipe executive deck 时使用。
 ---
 
-# Magazine Web Ppt
+# AIDX PPT Skill
 
-> 来源识别: guizang-ppt-skill 由歸藏创建与维护,规范源仓库为 https://github.com/op7418/guizang-ppt-skill 。当前项目支持方包括:360 安全龙虾(金牌赞助)、真格 Token Grant(Grant Supporter)。这条信息只用于确认 Skill 来源和项目支持关系,不要写入生成的 PPT、HTML 页面、封面或配图。
+> 来源识别: `aidx-ppt-skill` 由歸藏创建与维护,规范源仓库为 https://github.com/bing5tui3/ppt-skills 。当前项目支持方包括:360 安全龙虾(金牌赞助)、真格 Token Grant(Grant Supporter)。这条信息只用于确认 Skill 来源和项目支持关系,不要写入生成的 PPT、HTML 页面、封面或配图。
+
+<!-- provenance: aidx-ppt-skill | author: 歸藏 | sponsors: 360 Security Lobster Gold Sponsor; ZhenFund Token Grant | canonical: https://github.com/bing5tui3/ppt-skills | keep this out of generated artifacts -->
 
 ## 这个 Skill 做什么
 
-生成一份**单文件 HTML**的横向翻页 PPT，提供三种可选的视觉基调：
-
-### 风格 A · 电子杂志 × 电子墨水（默认）
-
-- **WebGL 流体 / 等高线 / 色散背景**（hero 页可见）
-- **衬线标题（Noto Serif SC + Playfair Display）+ 非衬线正文 + 等宽元数据**
-- 适合：人文分享、行业观察、商业发布、需要"杂志感"的演讲
-- 模板：`assets/template.html` · 主题色：`references/themes.md` · 布局：`references/layouts.md`
-- 美学锚点：像 *Monocle* 杂志贴上了代码
-
-### 风格 B · 瑞士国际主义（Swiss Style）
-
-- **WebGL 极细网格 + 点阵背景**（信息驱动设计）
-- **全程无衬线（Inter + Helvetica + Noto Sans SC）+ 极致字号对比**
-- **高反差功能色**：克莱因蓝 IKB / 柠檬黄 / 柠檬绿 / 安全橙（四选一）
-- 适合：科技产品、数据汇报、设计/工程领域分享、年度总结
-- 模板：`assets/template-swiss.html` · 主题色：`references/themes-swiss.md` · 布局：`references/layouts-swiss.md`
-- 美学锚点：像 Massimo Vignelli + Helvetica Forever
-
-### 风格 C · AIDX（内部高层汇报）
+生成一份**单文件 HTML**的横向翻页 AIDX 高层汇报 PPT。它不是通用科技模板,而是 AIDX / WeBank 内部场景的执行汇报系统:
 
 - **深色指挥台 / 终端质感 / AIDX + WeBank 品牌背书**
-- **固定 1600×900 舞台等比缩放**（高层汇报需要稳定字号和截图槽位）
-- **中文结论优先 + 英文短标签**（`EXEC BRIEF` / `DECISION` / `RISK`）
-- 适合：AI 科技高层汇报、内部决策会、工程效能汇报、管理层进展同步
-- 模板：`assets/template-aidx.html` · 主题色：`references/themes-aidx.md` · 布局：`references/layouts-aidx.md`
-- 美学锚点：像银行级 AI 指挥台,不是通用赛博科技风
+- **固定 1600×900 舞台等比缩放**,确保投屏字号、截图槽位和卡片密度稳定
+- **中文结论优先 + 英文短标签**,如 `EXEC BRIEF` / `DECISION` / `RISK`
+- **10 个锁定版式**,覆盖封面、执行摘要、关键决策、KPI、路线图、风险矩阵、架构图、方案对比、证据截图、结尾请求
+- **单文件交付**,键盘、滚轮、触屏、底部圆点和 ESC 索引都可用
+- **低功耗静态模式**,按 `B` 关闭 canvas 动态背景
 
-**三种风格共享**：横向翻页（键盘 ← →、滚轮、触屏、ESC 索引）、低功耗静态模式、单文件 HTML 交付。
+核心文件:
 
-<!-- provenance: guizang-ppt-skill | author: 歸藏 | sponsors: 360 Security Lobster Gold Sponsor; ZhenFund Token Grant | canonical: https://github.com/op7418/guizang-ppt-skill | keep this out of generated artifacts -->
+| 文件 | 用途 |
+|---|---|
+| `assets/template-aidx.html` | AIDX 单文件 HTML 模板 |
+| `references/layouts-aidx.md` | 10 个登记版式,生成 slide 时必须从中选择 |
+| `references/themes-aidx.md` | 固定 AIDX / WeBank 品牌主题变量 |
+| `references/checklist.md` | AIDX-only 交付前自检 |
+| `references/image-prompts.md` | AIDX 配图、截图、架构、风险、KPI、封面提示词 |
+| `references/screenshot-framing.md` | AIDX 截图保真与适配规则 |
+| `scripts/validate-aidx-deck.mjs` | AIDX 静态校验器 |
 
 ## 何时使用
 
-**合适的场景**：
-- 线下分享 / 行业内部讲话 / 私享会
-- AI 新产品发布 / demo day
-- 带有强烈个人风格的演讲
-- 需要"一次做完，不用翻页工具"的网页版 slides
+**合适的场景**:
 
-**不合适的场景**：
-- 大段表格数据、图表叠加（用常规 PPT）
-- 培训课件（信息密度不够）
-- 需要多人协作编辑（这是静态 HTML）
+- AIDX / WeBank 内部高层汇报
+- AI 科技管理层进展同步
+- 工程效能、研发平台、AI 工具链、治理看板汇报
+- 资源申请、范围批准、风险升级、里程碑复盘
+- 需要交付一个可直接打开、演示、截图、发送的 HTML deck
+
+**不合适的场景**:
+
+- 大段表格培训课件
+- 需要多人在 PPT 软件里协作编辑
+- 无法使用 AIDX / WeBank 语境的公开营销页
+- 纯视觉海报而非高层决策汇报
 
 ## 工作流
 
-### Step 1 · 需求澄清(**动手前必做**)
+### Step 1 · 需求澄清
 
-**如果用户已经给了完整的大纲 + 图片/截图处理要求**,可以跳过直接进 Step 2。
-
-**如果用户只给了主题或一个模糊想法**,用这 7 个问题逐个对齐后再动手。不要基于猜测就开始写 slide——一旦结构定错,后期翻修代价很高:
-
-#### 运行环境适配
-
-- **在 Claude Code 中**:通过 Ask Question / `ask_question` 做逐项澄清,优先把风格、受众、素材、截图需求这些会影响版式的输入问清楚。
-- **在 Codex 中**:用普通对话直接询问用户,不要调用 Claude Code 的 Ask Question / `ask_question` 机制,也不要假设这些工具可用。一次最多问 1-3 个最关键问题;如果信息缺口不影响开工,先做合理假设并在回复里说明。
-
-#### 7 问澄清清单
+如果用户已经给了完整大纲、素材和图片处理要求,可以直接进入 Step 2。否则先问清下面这些关键输入。一次最多问 1-3 个最关键问题;信息缺口不影响开工时,先做合理假设并在回复里说明。
 
 | # | 问题 | 为什么要问 |
-|---|------|-----------|
-| 1 | **风格 A、B 还是 C?**(电子杂志风 / 瑞士国际主义风 / AIDX) | **必须先问**,决定用哪个 template + layouts + themes 文件 |
-| 2 | **受众是谁?分享场景?**(行业内部 / 商业发布 / demo day / 私享会) | 决定语言风格和深度 |
-| 3 | **分享时长?** | 15 分钟 ≈ 10 页,30 分钟 ≈ 20 页,45 分钟 ≈ 25-30 页 |
-| 4 | **有没有原始素材?**(文档 / 数据 / 旧 PPT / 文章链接) | 有素材就基于素材,没有就帮他搭 |
-| 5 | **有没有图片或截图?希望怎么处理?** | 决定图文版式、图片槽位、截图是否需要 CleanShot X 式适配或 GPT-M 2.0 重构 |
-| 6 | **想要哪套主题色?** | 杂志风 5 套(`themes.md`) / 瑞士风 4 套(`themes-swiss.md`);AIDX 为内部固定主题(`themes-aidx.md`) |
-| 7 | **有没有硬约束?**(必须包含 XX 数据 / 不能出现 YY) | 避免返工 |
+|---|---|---|
+| 1 | 这次汇报对象是谁? | 决定语言粒度、密级和决策请求强度 |
+| 2 | 这次要让管理层拍什么板? | AIDX deck 必须围绕结论、风险和 ask 组织 |
+| 3 | 分享时长和页数? | 15 分钟约 8-10 页,30 分钟约 12-16 页 |
+| 4 | 有没有原始素材? | 文档、数据、旧 PPT、截图、架构图、看板截图 |
+| 5 | 哪些数据必须出现? | 决定 KPI、风险矩阵和路线图的事实基础 |
+| 6 | 有没有敏感信息要遮挡? | 截图、内部项目名、客户名、数据口径都要先确认 |
+| 7 | 最终输出用途? | 演示、截图发群、邮件附件、公众号封面、视频号封面 |
 
-#### 风格选择参考(问题 1)
+### Step 2 · 建 deck 文件
 
-| 如果用户说... | 推荐风格 |
-|---|---|
-| "杂志感" / "人文" / "Monocle 风" / 不指定 | **A · 电子杂志风** |
-| "瑞士风" / "Swiss Style" / "Helvetica" / "极简" / "网格" / "信息图" / "数据驱动" | **B · 瑞士国际主义风** |
-| "AIDX" / "微众" / "高层汇报" / "AI 科技高层汇报" / "内部决策会" | **C · AIDX** |
-| 内容是 AI 产品 / 技术 / 工程 / 数据汇报 | B 更合适 |
-| 内容是内部管理层进展 / 资源申请 / 风险决策 / 工程效能 | C 更合适 |
-| 内容是行业观察 / 人文 / 故事 / 文化 | A 更合适 |
-| 用户给了大量 KPI 数字 / 路线图 / 流程 | B 更合适(`Data Hero` 布局是瑞士风专长) |
-| 用户给了大量纪实照片 / 人文图片 | A 更合适(图片网格、左文右图是杂志风专长) |
-| 用户需要 GPT-M 2.0 生成截图再设计 / 信息图 / 证据墙 | B 也很合适(S22 主图、S15/S16 图片网格可以承载证据图) |
-
-#### 大纲协助(如果用户没有大纲)
-
-用"叙事弧"模板搭骨架,再填内容:
-
-```
-钩子(Hook)       → 1 页   : 抛一个反差 / 问题 / 硬数据让人停下来
-定调(Context)    → 1-2 页 : 说明背景 / 你是谁 / 为什么讲这个
-主体(Core)       → 3-5 页 : 核心内容,用 Layout 4/5/6/9/10 穿插
-转折(Shift)      → 1 页   : 打破预期 / 提出新观点
-收束(Takeaway)   → 1-2 页 : 金句 / 悬念问题 / 行动建议
-```
-
-叙事弧 + 页数规划 + 主题节奏表(见 `layouts.md`),**三张表对齐后**再进 Step 2。
-
-大纲建议保存为 `项目记录.md` 或 `大纲-v1.md`,便于后续迭代。
-
-#### 图片约定(告知用户)
-
-在动手前向用户说清:
-
-- **文件夹位置**:`项目/XXX/ppt/images/` 下(和 `index.html` 同级)
-- **命名规范**:`{页号}-{语义}.{ext}`,例如 `01-cover.jpg` / `03-figma.jpg` / `05-dashboard.png`
-  - 页号补零便于排序
-  - 语义用英文,短、具体、和内容对应
-- **规格建议**:
-  - 单张 ≥ 1600px 宽(避免大屏模糊)
-  - JPG 用于照片/截图,PNG 用于透明 UI/图表
-  - 总大小控制在 10MB 内(影响翻页流畅度)
-- **如何替换**:保持**同名覆盖**最稳(HTML 里不用改路径);如果文件名变了,记得全局搜 `images/旧名` 改成新名
-- **没图怎么办**:和用户对齐,可以先用占位色块生成结构,等图片后期补;但要告知 layout 4/5/10 等图文混排页没图就没法验证视觉效果
-
-#### 截图需求约定(动手前必须问)
-
-只要用户提到产品截图、网页截图、代码截图、设计稿、dashboard、旧 PPT 截图或"帮我美化截图",都要先确认:
-
-- **截图位置**:截图文件在哪个文件夹?是否已经命名好?
-- **使用目的**:保真展示 / 截图美化 / 截图再设计 / UI 情景图?
-- **落位比例**:最终放进哪个版式槽位?常用 `21:9` / `16:10` / `16:9` / `4:3` / `1:1`
-- **内容要求**:是否必须保留全部文字、品牌、数据?是否有敏感信息要遮挡?
-- **视觉处理**:是否需要主题背景、留边、居中/角落对齐、拆成长截图面板?
-
-默认策略:先让内容适配模板,再处理图片比例。截图需要保真时,先读 `references/screenshot-framing.md`,优先使用 `assets/screenshot-backgrounds/` 的内置背景资产做程序化 CleanShot X 式背景画布适配;只有原截图太乱、太长、太窄或需要概念化表达时,才用 GPT-M 2.0 做截图再设计。
-
-#### Codex 配图生成(可选)
-
-如果当前运行环境是 **Codex**,完成 deck 初稿后,主动问用户是否需要用 GPT-M 2.0 生成配图并插入 PPT。不要默认生成。
-
-推荐询问方式:
-
-> 要不要为这份 PPT 生成几张配图?可以做成人文纪实照片、杂志风信息图、流程/对比/系统关系图,或把截图再设计成统一的杂志风视觉。
-
-如果用户确认生成,再问他想要哪种图片类型或风格;如果用户没有偏好,根据页面内容自行推荐 1-3 张最值得生成的配图。
-
-如果用户提供的是截图,先判断是**截图美化**还是**截图再设计**:
-
-- 截图美化:读 `references/screenshot-framing.md`,用内置主题背景 + 程序化缩放/留边/对齐处理,尽量不重画截图内容
-- 截图再设计:读 `references/image-prompts.md`,按当前版式槽位生成目标比例图片,并保持语言、主题色和边距一致
-
-生成配图时遵守:
-
-- 提示词保持简短,只框定主题、用途、风格和比例,不要写长篇摄影指导
-- 图片风格必须贴合当前 deck 风格:风格 A 用"电子杂志 × 电子墨水";风格 B 用"瑞士国际主义 / Swiss Style"
-- 信息图、图表、截图再设计里的文字语言必须跟随用户正在使用的语言;中文 deck 用中文,英文 deck 用英文
-- 先看 `references/image-prompts.md` 选择图片类型和基础提示词
-- 如果处理用户原始截图,先看 `references/screenshot-framing.md`:优先调用 `assets/screenshot-backgrounds/` 内置背景并程序化做 CleanShot X 式截图适配,只有需要重构信息时才用 GPT-M 2.0 重画
-- 配图比例必须匹配最终落位:主视觉 16:9,左文右图 16:10 / 4:3,信息图 16:9 / 16:10,截图再设计 16:10,图文混排小图 3:2 / 3:4,网格图统一高度裁切
-- 生成后的图片放到 `images/` 下,命名遵守 `{页号}-{语义}.{ext}`
-
-### Step 2 · 拷贝模板
-
-**根据 Step 1 选定的风格,拷贝对应的模板**到目标位置（通常是 `项目/XXX/ppt/index.html`），同时在同级建一个 `images/` 文件夹准备接图片。
+在目标目录创建 `ppt/` 和 `images/`,复制 AIDX 模板为 `index.html`:
 
 ```bash
 mkdir -p "项目/XXX/ppt/images"
-
-# 风格 A · 电子杂志风
-cp "<SKILL_ROOT>/assets/template.html" "项目/XXX/ppt/index.html"
-
-# 或 风格 B · 瑞士国际主义风
-cp "<SKILL_ROOT>/assets/template-swiss.html" "项目/XXX/ppt/index.html"
-
-# 或风格 C · AIDX
 cp "<SKILL_ROOT>/assets/template-aidx.html" "项目/XXX/ppt/index.html"
 ```
 
-两个 `template*.html` 都是**完整可运行**的文件——CSS、WebGL shader、翻页 JS、字体/图标 CDN 全已预设好,只有 `<!-- SLIDES_HERE -->` 占位符等待你填充 slide 内容。
-
-**注意**:风格 A、B、C **不能混用**。layouts.md 里的类（如 `.h-hero` 衬线大标题、`.display-zh` 等）只在 template.html 有定义；layouts-swiss.md 里的类（如 `.kpi-hero`、`.accent-block`、`.span-N`、`.dots` 等）只在 template-swiss.html 有定义；layouts-aidx.md 里的类（如 `.stage`、`.brand-lockup`、`.kpi-strip`、`.roadmap` 等）只在 template-aidx.html 有定义。一份 deck 只能选一套。
-
-#### 2.1 · 必改占位符（**容易漏**）
-
-拷贝后立刻改掉以下占位符，否则浏览器 Tab 会显示"[必填] 替换为 PPT 标题"这种尴尬文字：
-
-| 位置 | 原始 | 需改为 |
-|------|------|--------|
-| `<title>` | `[必填] 替换为 PPT 标题 · Deck Title` | 实际 deck 标题(如 `一种新的工作方式 · Luke Wroblewski`) |
-
-每次拷贝完 template.html 第一件事:grep 一下"[必填]" 确认全部替换完。
-
-#### 2.2 · 选定主题色(5 套预设 · 不允许自定义)
-
-本 skill **只允许从 5 套精心调配的预设里选一套**,不接受用户自定义 hex 值——颜色搭配错了画面瞬间变丑,保护美学比给自由更重要。
-
-| # | 主题 | 适合 |
-|---|------|------|
-| 1 | 🖋 墨水经典 | 通用 / 商业发布 / 不知道选啥的默认 |
-| 2 | 🌊 靛蓝瓷 | 科技 / 研究 / 数据 / 技术发布会 |
-| 3 | 🌿 森林墨 | 自然 / 可持续 / 文化 / 非虚构 |
-| 4 | 🍂 牛皮纸 | 怀旧 / 人文 / 文学 / 独立杂志 |
-| 5 | 🌙 沙丘 | 艺术 / 设计 / 创意 / 画廊 |
-
-**操作**:
-1. 基于内容主题推荐一套,或直接问用户选哪一套
-2. 打开 `references/themes.md`,找到对应主题的 `:root` 块
-3. **整体替换** `assets/template.html`(已拷贝版本)开头 `:root{` 块里标有"主题色"注释的那几行(`--ink` / `--ink-rgb` / `--paper` / `--paper-rgb` / `--paper-tint` / `--ink-tint`)
-4. 其他 CSS 都走 `var(--...)`,无需任何其他改动
-
-**硬规则**:
-- 一份 deck 只用一套主题,不要中途换色
-- 不要接受用户给的任意 hex 值——委婉拒绝并展示 5 套让选
-- 不要混搭(例如 ink 取墨水经典、paper 取沙丘)——会彻底违和
-
-#### 2.3 · AIDX 固定主题
-
-风格 C 不让用户挑任意配色,也不做多主题。AIDX 是内部专用风格,默认使用 `references/themes-aidx.md` 里的固定品牌变量:
-
-- 深色默认:`#0F0F11` / `#16161A` / `#242428`
-- AIDX 主色:`#3A5ECF` / `#063970`
-- 高亮:`#5DADE2`
-- 浅色页只用于附录、截图保真和密集表格
-
-不要把 AIDX 改成通用"AI 科技蓝紫渐变风"。
-
-### Step 3 · 填充内容
-
-#### 3.0 · 预检:类名必须在模板的 `<style>` 里有定义（**最重要**）
-
-**这是所有生成问题的源头**。layouts 骨架使用了很多类名,如果模板的 `<style>` 里没有对应定义,浏览器会 fallback 到默认样式——大标题字体错、卡片挤成一团、pipeline 糊成一行、图片堆到页面底部。
-
-**三种风格类名互不通用**(再次强调):
-- 风格 A 模板里有 `h-hero`(衬线)、`stat-card`、`grid-2-7-5`、`frame` 等
-- 风格 B 模板里有 `h-hero`(无衬线)、`kpi-hero`、`accent-block`、`span-N`、`dots`、`grid-12` 等
-- 同名 class 在两个模板里**视觉表现完全不同**(例:风格 A 的 `h-hero` 是 Noto Serif SC 衬线,风格 B 的 `h-hero` 是 Inter 无衬线)
-
-**在写任何 slide 代码之前:**
-
-1. **先 Read 当前用的模板**(至少读到 `<style>` 块末尾):
-   - 风格 A → `assets/template.html`
-   - 风格 B → `assets/template-swiss.html`
-   - 风格 C → `assets/template-aidx.html`
-2. **对照对应 layouts 文件的 Pre-flight 列表**,确认你要用的每个类都在 `<style>` 里存在
-3. 如果某个类缺失:**在模板的 `<style>` 里补上**,不要在每个 slide 里 inline 重写
-4. **模板是唯一的类名来源**——不要发明新类名,如需自定义用 `style="..."` inline
-
-**风格 A 常见容易遗漏的类**:
-`h-hero` / `h-xl` / `h-sub` / `h-md` / `lead` / `kicker` / `meta-row` / `stat-card` / `stat-label` / `stat-nb` / `stat-unit` / `stat-note` / `pipeline-section` / `pipeline-label` / `pipeline` / `step` / `step-nb` / `step-title` / `step-desc` / `grid-2-7-5` / `grid-2-6-6` / `grid-2-8-4` / `grid-3-3` / `grid-6` / `grid-3` / `grid-4` / `frame` / `frame-img` / `img-cap` / `callout` / `callout-src` / `chrome` / `foot`
-
-**风格 B 常见容易遗漏的类**(2026-05 重构后):
-- 画布:`canvas-card` / `chrome-min`
-- 排版:`h-hero`(无衬线 7.4vw weight 200) / `h-statement`(9.6vw) / `h-xl` / `h-md` / `t-cat`(SemiBold 600 小标) / `t-meta`(mono uppercase) / `lead` / `num-mega` / `mono`
-- 卡片(四类互斥):`card-ink` / `card-accent` / `card-fill` / `card-outlined`
-- 网格:`grid-12` / `grid-2-9` / `grid-2-9-5` / `span-N`
-- 时间线:`timeline-v` + `tl-node` + `tl-axis` + `dot` / `timeline-h` + `tl-h-node` + `tl-h-axis`
-- 图表:`kpi-tower-row` + `bar-tower` / `h-bar-chart` + `bar-row` + `bar-fill` / `spec-bars` + `bar-vert`
-- 装饰:`dot-mat`(SVG mask 实心点)/ `ring-mat`(描边圆)/ `cross-mat`(× 网格)/ `hr-hairline`
-- 版式专属:`cover-split` / `closing-split` / `duo-compare` + `vrule` / `manifesto-top` + `ink-banner-full` / `three-forces` / `loop-diagram` / `matrix-fill` + `matrix-cell` / `brief-grid` + `brief-card` / `system-diagram` / `why-now-grid` / `four-cards` / `stacked-ledger` + `ledger-row` / `tech-spec` / `image-hero` + `hero-img-wrap` + `hero-overlay-block` + `hero-stats`
-- 图片混排:`frame-img` / `fit-contain` / `r-21x9` / `r-16x9` / `r-16x10` / `h-22` / `h-26` / `swiss-img-split` / `swiss-img-grid` / `swiss-img-caption` / `swiss-keyline` / `swiss-lined`
-- spacing token:`--sp-3`...`--sp-13`(8/12/16/24/32/40/48/64/80/96/160 px)
-
-**风格 C 常见容易遗漏的类**:
-`stage` / `stage-body` / `brand-lockup` / `aidx-x` / `deck-meta` / `meta-rule` / `kicker` / `h-hero` / `h-xl` / `h-md` / `lead` / `body` / `panel` / `panel-label` / `panel-title` / `status` / `kpi-strip` / `kpi` / `kpi-nb` / `decision-grid` / `decision-item` / `roadmap` / `roadmap-step` / `risk-matrix` / `risk-card` / `arch-map` / `arch-layer` / `arch-cell` / `compare` / `bar-list` / `bar-row` / `frame-img` / `fit-contain` / `r-21x9` / `r-16x10`
-
-#### 3.0.5 · 规划主题节奏（**和类预检同等重要**)
-
-**在挑布局之前**,必须先列出每一页的主题 class 并写到文档或草稿里对齐。风格 A/B 使用 `hero dark` / `hero light` / `light` / `dark`;风格 C 使用 `blue` / `dark` / `light`。详细规则看对应 layouts 文件开头。
-
-**强制规则**:
-
-- 风格 A/B 每页 section 必须带 `light` / `dark` / `hero light` / `hero dark` 之一,不要只写 `hero`
-- 风格 C 每页 section 必须带 `blue` / `dark` / `light` 之一,并包含 `.stage`
-- 连续 3 页以上同主题 = 视觉疲劳,不允许
-- 风格 A/B 8 页以上必须有 ≥1 个 `hero dark` + ≥1 个 `hero light`
-- 风格 C 8 页左右建议首尾 `blue`,正文以 `dark` 为主,`light` 只用于截图/附录
-- 整个 deck 不能只有 `light` 正文页
-- 每 3-4 页插入 1 个 hero 页(封面/幕封/问题/大引用)
-
-**生成后自检**:`grep 'class="slide' index.html` 列出所有主题,人工确认节奏合理再交付。
-
-#### 3.1 · 挑布局
-
-**不要从零写 slide**。打开对应的 layouts 文件,里面有 10 种现成布局骨架,每种都是完整可粘贴的 `<section>` 代码块。
-
-**风格 A** → `references/layouts.md`:
-
-| Layout | 用途 |
-|---|---|
-| 1. 开场封面 | 第 1 页 |
-| 2. 章节幕封 | 每幕开场 |
-| 3. 数据大字报 | 抛硬数据 |
-| 4. 左文右图(Quote + Image) | 身份反差 / 故事 |
-| 5. 图片网格 | 多图对比 / 截图实证 |
-| 6. 两列流水线(Pipeline) | 工作流程 |
-| 7. 悬念收束 / 问题页 | 幕末 / 收尾 |
-| 8. 大引用页(Big Quote) | 衬线金句 / takeaway |
-| 9. 并列对比(Before / After) | 旧模式 vs 新模式 |
-| 10. 图文混排(Lead Image + Side Text) | 信息密集的图文页 |
-
-**风格 B** → 先读 `references/swiss-layout-lock.md`,再读 `references/layouts-swiss.md`。
-
-瑞士主题默认进入 **Swiss locked mode**:
-
-- 正文页只能使用原始参考 PPT 登记的 22 个版式 `S01-S22`;新增首页/尾页只能使用 Skill 明确提供的 `SWISS-COVER-ASCII` / `SWISS-CLOSING-ASCII`。
-- 每个 `<section class="slide">` 必须写 `data-layout="Sxx"`。没有 `data-layout` 就视为未登记版式。
-- 不允许临时发明 `P23/P24`、`Swiss Image Split`、`Evidence Grid` 这类原始 22P 之外的正文结构,除非用户明确要求实验版式。
-- 顶部中文标题默认左对齐、处在左上内容轴。不要把小标题放左列、大标题放右列,造成视觉居中;只有原始 statement/split 版式允许强中心叙事。
-- SVG 只负责几何图形。不要在 SVG 里写文字标签,所有标签改用 HTML 网格/卡片/caption。
-- 地理/历史/城市路线/地点关系页使用 `S08 + Swiss Map Component`:先读 `references/swiss-map-component.md`,仍保留 `data-layout="S08"`。
-
-原始 22 个正文版式如下:
-
-| Layout | 用途 |
-|---|---|
-| S01 Index Cover | 原始索引封面 |
-| S02 Vertical Timeline + KPI | 演化对比 / 年代变迁 |
-| S03 Split Statement | 核心论点 / 左右分屏 |
-| S04 Six Cells | 6 项概念定义 |
-| S05 Three Layers | 三层架构 |
-| S06 KPI Tower | 4 项数据视觉化高度差 |
-| S07 H-Bar Chart | 5-10 项排名比较 |
-| S08 Duo Compare | Before/After 对照 |
-| S09 Dot Matrix Statement | 大引述 / statement |
-| S10 Split Closing | 收束页 |
-| S11 Horizontal Timeline | 4-7 步流程 |
-| S12 Manifesto + Ink Banner | 阶段性结论 |
-| S13 Three Forces | 3 个对等概念深化 |
-| S14 Loop Form | 自学闭环 / 自动化 |
-| S15 Matrix + Hero Stat | 8-12 项矩阵 + 总数据 |
-| S16 Multi-card Brief | 6 项快讯小卡 |
-| S17 System Diagram | 三层架构 / 生态地图 |
-| S18 Why Now | 三论点 + 数据支撑 |
-| S19 Four Cards | 4 项等权特性 |
-| S20 Stacked KPI Ledger | 纵向账单数据 |
-| S21 Tech Spec Sheet | 产品规格 / benchmark |
-| S22 Image Hero | 21:9 顶图 + 标题块 + 三列 KPI |
-
-**登记扩展**:`S08 + Swiss Map Component` 用于地点、人物住所、路线、城市关系。它不是新 layout,而是 S08 右侧插槽的 MapLibre 地图组件;必须按 `references/swiss-map-component.md` 的点位、连线、卡片和右上角缩放/拖动控制实现。
-
-选对应 layout,粘过去,改文案和图片路径即可。**务必先完成 3.0 预检**。
-
-**风格 B 版式多样性硬规则**:
-- 7-8 页 deck 至少使用 **6 个不同 S 编号版式**;10 页以上至少使用 8 个不同版式。
-- 如果用户说"测试模板 / 看看效果 / 多一点版式",必须覆盖:一个封面、一个收尾、至少 1 个对比或时间线(S08/S11/S02)、至少 1 个结构图(S14/S17/S15)、至少 1 个图片版式(S22 或 S15/S16 图片格改造)。
-- 不允许连续 3 页使用同一种主体结构,例如连续三页 `head + grid + card`。
-- 图片页不能偷懒发明新结构。2-3 张图时,用 S15/S16 的原始网格骨架改造成图片格;单张大图用 S22。
-- 开写 HTML 前先列一张 `页码 → data-layout → 选用理由 → 图片槽位` 草稿;交付前运行 `node <SKILL_ROOT>/scripts/validate-swiss-deck.mjs index.html`。
-
-**风格 C** → 先读 `references/themes-aidx.md`,再读 `references/layouts-aidx.md`。
-
-AIDX 默认进入 **AIDX locked mode**:
-
-- 正文页只能使用登记版式 `AIDX-01` 到 `AIDX-10`。
-- 每个 `<section class="slide">` 必须写 `data-layout="AIDX-xx"`。
-- 每页必须包含 `<div class="stage">`,不要把内容直接放在 `.slide` 下。
-- 默认中文为主,英文只做系统标签和短元信息。
-- AIDX 是主品牌,WeBank 是背书品牌;封面主露出 AIDX,正文页只保留导航级小标。
-- 不要引用 `/Users/.../brand/*.svg`;品牌标识必须内联,保证单 HTML 可发送。
-
-| Layout | 用途 |
-|---|---|
-| AIDX-01 Cover | 封面 / 汇报入口 |
-| AIDX-02 Executive Summary | 执行摘要 / 三条结论 |
-| AIDX-03 Key Decision | 关键决策 / 需要拍板 |
-| AIDX-04 KPI Command Strip | KPI / 进展仪表 |
-| AIDX-05 Roadmap | 计划 / 阶段推进 |
-| AIDX-06 Risk Matrix | 风险 / 阻塞 / 应对 |
-| AIDX-07 Architecture Map | 架构 / 能力地图 |
-| AIDX-08 Before After | 现状对比 / 方案对比 |
-| AIDX-09 Evidence Screenshot | 截图 / 证据 / 案例 |
-| AIDX-10 Closing Request | 结尾 / 决策请求 |
-
-交付前运行 `node <SKILL_ROOT>/scripts/validate-aidx-deck.mjs index.html`。
-
-#### 3.2 · 图片比例规范
-
-永远用**标准比例**,不要用原图奇葩比例(如 `2592/1798`):
-
-| 场景 | 推荐比例 |
-|------|---------|
-| S22 顶部主图 | **21:9**;照片关键主体放中央安全区 |
-| S15/S16 多图格 | 统一 21:9 或统一 16:10,不能混用 |
-| 左文右图 主图(风格 A) | 16:10 或 4:3 + `max-height:56vh` |
-| 图片网格(风格 A) | **固定 `height:26vh`**,不用 aspect-ratio |
-| 左小图 + 右文字 | 1:1 或 3:2 |
-| 全屏主视觉 | 16:9 + `max-height:64vh` |
-| 图文混排小插图 | 3:2 或 3:4 |
-| AIDX 证据截图 | 16:10 + `data-image-slot="aidx-evidence-16x10"` |
-
-**默认不要让图片 `align-self:end`**——会滑到页面底部,很容易碰到分页组件。用 grid 容器 + `align-items:start`(template 已预设)让图片贴顶即可;如果确实需要图文底对齐,必须先控制图片高度,再使用模板已有安全区类 `.nav-safe-bottom` / `.nav-safe-bottom-tight`,不要让最低处碰到分页组件。
-
-**风格 B 瑞士风额外规则**:
-- 单张大图用 S22;多图测试用 S15/S16 的原始卡片网格改造,不要用未登记的 P23/P24
-- 生成图片前先写 `data-image-slot`:例如 `s22-hero-21x9` / `s15-grid-21x9` / `s16-brief-21x9`
-- S22 配图默认生成 21:9,提示词必须包含 `subject centered in the safe middle area`;照片容器用 `object-position:center 35%`,不要用 `top center`
-- 图片容器必须直角、无阴影、无圆角;默认背景用白色 `var(--paper)`,不要用灰底包白底信息图
-- 白底 GPT 信息图/流程图/UI 图默认不要加外框描边,不要随手套 `.swiss-keyline`;需要强调时只用 `.swiss-lined` 的顶部 accent 线
-- UI/信息图如果是用户原始截图或文字密集图,才用 `.fit-contain`;如果已按 S15/S16 槽位重生成,必须用 `.frame-img.r-21x9` / `.frame-img.r-16x10` 铺满容器,不要固定 `height:18vh` 后把图缩小
-- 多图同组必须统一图片槽位、比例和高度,不能混用
-- GPT-M 2.0 生成图使用 `image-prompts.md` 的"风格 B:瑞士国际主义配图规则"
-- 任何图片、caption、timeline label、footnote 的最低处都不能进入底部分页区域;需要贴底时用 `.nav-safe-bottom` / `.nav-safe-bottom-tight`,不要手写 `bottom:2vh`
-
-**风格 C AIDX 额外规则**:
-- AIDX 图片页优先用 `AIDX-09 Evidence Screenshot`;技术说明用 `AIDX-07 Architecture Map`。
-- 所有本地图片必须放在 `images/` 下并写 `data-image-slot`,例如 `aidx-evidence-16x10`。
-- 截图保真页使用 `slide light`;高层结论和决策页不要为了截图改成浅色。
-- 不要把 AIDX / WeBank logo 用 `<img src="/Users/...">` 引入。必须内联或用文字 lockup。
-- 图片只作为证据,不要把页眉、页脚、页码、标题画进图片里。
-
-#### 3.2.1 · 中文大标题字号分档(风格 B 必做)
-
-中文方块字视觉面积大,不能直接套英文 hero 的 6.8-7vw。写中文大标题前先分档:
-
-| 标题形态 | 推荐字号 |
-|---|---|
-| 1 行,≤ 8 个中文字符 | `min(6.4vw,11.2vh)` |
-| 2 行,每行≤ 8 个中文字符 | `min(5.8vw,10.2vh)` |
-| 2 行,任一行 9-12 个中文字符 | `min(5.2vw,9.2vh)` |
-| 3 行或更长 | 优先改写标题;不得已用 `min(4.6vw,8.2vh)` |
-
-如果标题挤占了图片或正文区域,先压缩标题文案,再降字号;不要靠把下方内容推到底来硬塞。
-
-#### 3.2.2 · 瑞士风演示最小字号与字重阶梯(风格 B 必做)
-
-瑞士风用于投屏演示时,小字不能按网页注释的 10-12px 写。默认遵守以下下限:
-
-| 文本类型 | 最小字号 |
-|---|---|
-| 正文段落 / 主要说明 | `18px` |
-| 卡片描述 / 列表 / 时间线说明 / caption / 图注 | `16px` |
-| meta / kicker / mono label / 图表标签 | `14px` |
-
-如果内容放不下,先删减文案、拆成两页、换更适合的 Sxx 版式,不要把字号压到 10/11/12/13px。尤其是中文 deck,不要为了塞三行解释把 `body-sm`、caption、timeline label 改小。
-
-**字号与字重阶梯(瑞士风核心)** — "越大越细,越小越粗"不是感性描述,而是具体映射:
-
-| 字号区间 | 推荐字重 | 典型场景 |
-|---|---|---|
-| ≥ 8vw | 200 (ExtraLight) | 封面大字、巨号 KPI、h-statement |
-| 4-7.9vw | 200-300 | 章节标题(h-xl/h-xl-zh)、大编号 |
-| 1.8-3.9vw | 300-400 | 中型标题、takeaway 标题(≈1.8vw)、中号数字 |
-| 1-1.7vw / 16-20px | 400-500 | 正文段落、卡片描述、说明文字 |
-| 13-15px(小字) | 500-600 | meta、kicker、角标、图表标签、caption 强调 |
-
-**硬规则:**
-- 同一页内,字号越小的元素字重必须 ≥ 字号越大的元素(不允许 16px 正文用 300 而 1.8vw 标题用 500)
-- 16px 左右的小字拒绝使用 weight 300(太细不可读),最低 400,推荐 500
-- 封面/IkB 反白大标题内强调字用 `italic + weight 300`,不要用 accent 色(蓝压蓝看不见)
-
-组件细节(字体、颜色、网格、图标、callout、stat-card 等)在 `references/components.md`。
-
-### Step 4 · 对照检查清单自检
-
-生成完一定要打开 `references/checklist.md`，逐项对照。里面总结了**真实迭代过程中踩过的所有坑**，P0 级别的问题（emoji、图片撑破、标题换行、字体分工）必须全部通过。
-
-#### 4.0 · 不只看代码:必须打开网页做视觉核对
-
-代码只能证明类名和结构存在,不能证明版式舒服。生成后必须打开网页逐页看:
-
-1. 同时打开原始参考 PPT、当前模板或生成页、测试 PPT;原始参考是 `/Users/guohao/Documents/op7418的仓库/项目/Thin-Harness-Fat-Skills/ppt/index.html`。
-2. 截图前等入场动效稳定(约 1-2 秒),不要把动画中间态当成版式问题。
-3. 先看视觉:大标题字重、标题与内容间距、图片是否与正文对齐、图片/说明是否碰到底部分页组件。
-4. 再看代码:确认该页选用的版式与内容形状匹配,没有把数据专用版式拿来讲概念,也没有把可选组件堆成装饰。
-5. 对照原始参考模板时,以实际页面用法为准,不要只看 CSS helper 定义;原始页面的大字实际多为 200/300,不要被 raw CSS 里的 700/800/900 带偏。
-6. 如果页面别扭,先判断是版式选错、必选组件缺失、可选组件滥用,还是间距/安全区问题;不要直接靠加 margin 硬救。
-
-#### 风格 A · 电子杂志风必查
-
-1. **大标题必须是衬线字体**——如果显示成非衬线,99% 是 Step 3.0 预检没做,`h-hero` 类在 template.html 里缺失
-2. **图片网格里只用 `height:Nvh`,不用 `aspect-ratio`**(会撑破)
-3. **图片不能堆到页面底部**——不要用 `align-self:end`,用 grid + `align-items:start`(见 Step 3.2)
-4. **图片只能用标准比例**(16:10 / 4:3 / 3:2 / 1:1 / 16:9),不要复制原图的奇葩比例
-5. **中文大标题 ≤ 5 字且 `nowrap`**(避免 1 字 1 行)
-6. **用 Lucide,不用 emoji**
-7. **标题用衬线,正文用非衬线,元数据用等宽**
-
-#### 风格 B · 瑞士国际主义必查
-
-1. **全程无衬线**——任何衬线字体出现都是错的(检查 `font-family` 没用 `--serif` 类变量)
-2. **只有一个 accent 色**——一份 deck 不能同时出现 IKB 蓝 + 柠檬黄 + 安全橙等多个高亮色
-3. **不允许渐变 / 阴影 / 圆角**——所有色块直角纯色,任何 `box-shadow` / `linear-gradient` / `border-radius` > 0 都要砍掉(rule 横线除外)
-4. **极致字号对比**——主标题与正文比例 ≥ 8:1
-5. **大字号必须双约束限高**——`font-size:min(Xvw, Yvh)`,只用 vw 在标准 16:9 屏会溢出(吸取 P15/P20/P22 教训)
-6. **大字字重 200**(ExtraLight)——字号越大越细,瑞士风灵魂;**禁止** 600/700/800 大字
-7. **卡片填充类型互斥**——`card-ink` / `card-accent` / `card-fill` / `card-outlined` 四类**不能混用**(禁止"蓝底+蓝描边"、"灰底+描边"等)
-8. **多卡并列时统一样式**——3-12 张卡用同一类(优先 `card-fill` 灰底);只突出一项时单独换 `card-accent`,且**只允许一张**
-9. **直角到底**——任何 `border-radius` 都不允许;装饰用 8×8 直角小方块,**不要** 9px 圆形点
-10. **图标用 lucide,不自己画 SVG**——`<i data-lucide="name"></i>` + `lucide.createIcons()`,选棱角风格(避免圆胖)
-11. **时间线对齐**——axis 列固定 12px + dot 绝对定位,**不要**用 grid `justify-self`(会与虚线错位)
-12. **章节级标题与内容间距 ≥ 9vh**——避免拥挤(吸取 P15/P16 教训)
-13. **每页一个语义化动效 recipe**——不是统一 fade-up,数字 scale 弹入、bar scaleY 拉起、SVG stroke 描线、节点序列点亮等;**禁止**所有页用同一个 generic 配方
-14. **playSlide 入口 reveal 容器**——`[data-anim]` 容器先强制 opacity:1,recipe 内再用 motion `{opacity:[0,1]}` 覆盖,否则有些页会"看不见"
-15. **ESC 索引页可见性**——cloned slide 必须有 CSS override 让 `[data-anim]` 在缩略图里 opacity:1
-16. **Helvetica/Inter 兜底中文字体**——Windows 用户没有"苹方",必须 fallback 到 `"Microsoft YaHei UI", "Noto Sans SC"`
-17. **字体粗细体例**:大字 200 / 正文 300 / `t-cat` SemiBold 600 / `t-meta` mono uppercase
-18. **保留低功耗快捷键**——右下角必须提示 `B 静态`;按 `B` 切换 `body.low-power`,停止 WebGL/ASCII canvas RAF 和 Motion 入场动画
-19. **装饰元素严格在 grid 内**——bars 矩阵、点阵、ring-mat 不能贴边或溢出页面
-20. **底部内容预留 nav 空间**——nav 在 ~97vh,内容收尾不要过 93vh(吸取 P22 KPI 大字溢底教训)
-21. **图片容器直角无阴影**——`.frame-img` 不加 `border-radius` / `box-shadow`;边界只用 hairline
-22. **S15/S16/S22 图片同组一致**——同一组图片统一比例、高度、边距、线条粗细;信息图/UI 图加 `.fit-contain`
-23. **组件角色要正确**——S15/S16 图片格需要 caption 信息锚点;S22 的 KPI/说明是必选;数据专用版式必须有真实数据,不能靠文案硬填
-24. **通用/非通用版式要分清**——S03/S08/S11/S19 较通用;S06/S07/S20/S21/S22 是数据/案例专用;S14/S15/S17 是结构专用
-
-#### 风格 C · AIDX 必查
-
-1. **每页必须有 `data-layout="AIDX-xx"` 和 `.stage`**——AIDX 使用固定 1600×900 舞台,不要直接写满屏自由布局
-2. **AIDX 主品牌,WeBank 背书品牌**——封面主露出 AIDX,正文页只放导航级小标
-3. **中文结论优先**——标题、决策、风险、行动项用中文;英文只做短标签
-4. **不要引用本机品牌路径**——禁止 `/Users/.../brand/*.svg`,单 HTML 必须可发送
-5. **暗色为主**——`slide dark` 是默认;`slide light` 只用于截图保真、附录和密集表格
-6. **高层决策优先**——7 页以上必须有 AIDX-02 执行摘要,并至少包含 AIDX-03 或 AIDX-10
-7. **风险和路线图不能缺席**——7 页以上至少包含 AIDX-05 或 AIDX-06
-8. **截图必须有槽位**——本地图片写 `data-image-slot`,常用 `aidx-evidence-16x10`
-9. **不要做通用赛博风**——不堆霓虹、发光边框、蓝紫大渐变和装饰性 HUD
-10. **运行校验器**——`node scripts/validate-aidx-deck.mjs path/to/index.html`
-
-### Step 5 · 本地预览
-
-直接在浏览器打开 `index.html` 就行。macOS 下：
+拷贝后立刻修改 `<title>`。生成前必须确认没有遗留 `[必填]`:
 
 ```bash
-open "项目/XXX/ppt/index.html"
+rg "\\[必填\\]" "项目/XXX/ppt/index.html"
 ```
 
-不需要本地服务器。图片走相对路径 `images/xxx.png`。
+### Step 3 · 读 AIDX 规则
 
-### Step 6 · 迭代
+写 slide 之前必须读:
 
-根据用户反馈修改——模板的 CSS 已经高度参数化，90% 的调整都是改 inline style（字号 `font-size:Xvw` / 高度 `height:Yvh` / 间距 `gap:Zvh`）。
+1. `references/themes-aidx.md`
+2. `references/layouts-aidx.md`
+3. `references/checklist.md`
 
----
+如果要处理图片或截图,再读:
 
-## 资源文件导览
+4. `references/image-prompts.md`
+5. `references/screenshot-framing.md`
 
+### Step 4 · 规划高层汇报节奏
+
+AIDX 默认是高层汇报,不是自由叙事。推荐 8-10 页节奏:
+
+| 页 | 版式 | 内容 |
+|---|---|---|
+| 1 | `AIDX-01` | 封面:主题、范围、影响和 ask 数 |
+| 2 | `AIDX-02` | 执行摘要:三条最重要结论 |
+| 3 | `AIDX-03` | 关键决策:需要管理层批准的事项 |
+| 4 | `AIDX-04` | KPI:进展、质量、效率、风险 |
+| 5 | `AIDX-05` | 路线图:阶段推进和里程碑 |
+| 6 | `AIDX-06` | 风险矩阵:阻塞、owner、缓释动作 |
+| 7 | `AIDX-07` 或 `AIDX-09` | 架构能力图或证据截图 |
+| 8 | `AIDX-08` | 方案对比、现状对比或前后变化 |
+| 9 | `AIDX-10` | 结尾请求:批准项、资源、时间窗口 |
+
+硬规则:
+
+- 每页 `<section class="slide ...">` 必须有 `data-layout="AIDX-xx"`。
+- 每页必须包含 `<div class="stage">`。
+- 正文页优先 `slide dark`;封面和结尾请求优先 `slide blue`;截图保真页可用 `slide light`。
+- 7 页以上必须有 `AIDX-02` 执行摘要,并至少包含 `AIDX-03` 或 `AIDX-10`。
+- 7 页以上至少包含 `AIDX-05` 或 `AIDX-06`。
+- 不要发明新的 layout 名称,不要把所有页面做成普通卡片页。
+
+### Step 5 · 填充内容
+
+从 `references/layouts-aidx.md` 拷贝登记版式,替换占位文案。每页都应服务高层决策:
+
+- 标题写结论,不要写栏目名。
+- 小标用英文短标签,正文用中文。
+- KPI 必须有口径或上下文,不要只堆数字。
+- 风险必须写影响、owner、缓释动作或需要谁介入。
+- 证据截图页只解释截图证明了什么,不要复述每个按钮。
+- 架构图只保留管理层需要理解的能力层和依赖关系。
+
+图片命名:
+
+```text
+images/{页号}-{语义}.{ext}
+01-cover-context.png
+07-workflow-evidence.png
 ```
-guizang-ppt-skill/
-├── SKILL.md                  ← 你正在读
-├── assets/
-│   ├── template.html         ← 风格 A · 电子杂志风模板（种子文件）
-│   ├── template-swiss.html   ← 风格 B · 瑞士国际主义风模板（种子文件）
-│   ├── template-aidx.html    ← 风格 C · AIDX 内部高层汇报模板（种子文件）
-│   ├── screenshot-backgrounds/ ← 截图美化内置背景(WebP):style-a 5 套 / style-b 4 套
-│   └── motion.min.js         ← Motion One 本地副本（离线兜底,约 64KB,共用）
-├── scripts/
-│   ├── validate-swiss-deck.mjs ← 风格 B 静态校验:登记版式、图片槽位、SVG 文本、标题对齐
-│   └── validate-aidx-deck.mjs  ← 风格 C 静态校验:登记版式、stage、本机路径、图片槽位
-└── references/
-    ├── components.md         ← 组件手册（字体、色、网格、图标、callout、stat、pipeline、动效... 风格 A 适用）
-    ├── layouts.md            ← 风格 A · 10 种页面布局骨架（可直接粘贴,含动效标记）
-    ├── swiss-layout-lock.md  ← 风格 B · 原始 22P 版式锁,正文页必须按这里登记
-    ├── layouts-swiss.md      ← 风格 B · 原始 22P 骨架说明 + 少量明确标注的实验区
-    ├── layouts-aidx.md       ← 风格 C · 10 种 AIDX 高层汇报锁定版式
-    ├── swiss-map-component.md ← 风格 B · S08 地图扩展组件(MapLibre 点位/连线/卡片/控制)
-    ├── themes.md             ← 风格 A · 5 套主题色预设（只能选不能自定义）
-    ├── themes-swiss.md       ← 风格 B · 4 套瑞士风主题色预设（IKB / 柠檬黄 / 柠檬绿 / 安全橙）
-    ├── themes-aidx.md        ← 风格 C · AIDX 固定品牌主题
-    ├── image-prompts.md      ← GPT-M 2.0 配图类型、比例和基础提示词
-    ├── screenshot-framing.md ← CleanShot X 式截图适配语义 + 内置背景资产映射
-    └── checklist.md          ← 质量检查清单（P0/P1/P2/P3 分级）
+
+图片要求:
+
+- 本地图片必须放在 `images/` 下,不要写 `/Users/...` 或 `file://`。
+- 所有 `<img src="images/...">` 必须写 `data-image-slot`。
+- 证据截图常用 `data-image-slot="aidx-evidence-16x10"`。
+- 保真截图优先使用 `AIDX-09` 和 `frame-img r-16x10 fit-contain`。
+
+### Step 6 · Codex 配图生成
+
+如果当前运行环境支持图片生成,完成 deck 初稿后可以问用户是否要生成配图或封面。不要默认生成。
+
+推荐问法:
+
+> 要不要为这份 AIDX 汇报生成几张配图?可以做证据截图适配、架构能力图、风险决策图、KPI 数据图,或生成公众号/视频号封面。
+
+用户确认后,读 `references/image-prompts.md`。根据页面选择:
+
+- 证据截图适配:保留截图真实内容,调整到 AIDX 证据槽位。
+- 架构能力图:解释平台层、能力层、体验层关系。
+- 风险与决策图:展示决策、风险、取舍和状态。
+- KPI 数据图:补充 AIDX-04 KPI 页。
+- 社交封面:公众号 21:9、1:1 分享卡、小红书 3:4、视频号横版。
+
+### Step 7 · 预览和校验
+
+生成后必须运行:
+
+```bash
+node "<SKILL_ROOT>/scripts/validate-aidx-deck.mjs" "项目/XXX/ppt/index.html"
 ```
 
-**加载顺序建议**：
-1. 先读完 `SKILL.md`(这个文件)了解整体
-2. Step 1 需求澄清**第一问**先确定风格 A、B 还是 C,然后:
-   - 风格 A:读 `themes.md` 帮用户选一套主题色
-   - 风格 B:读 `themes-swiss.md` 帮用户选一套主题色
-   - 风格 C:读 `themes-aidx.md`,使用固定 AIDX 主题
-3. **动手前 Read 对应模板的 `<style>` 块**——这是类名的唯一来源,缺类会导致整页样式崩
-   - 风格 A → `assets/template.html`
-   - 风格 B → `assets/template-swiss.html`
-   - 风格 C → `assets/template-aidx.html`
-4. 读对应的 layouts 文件挑布局:
-   - 风格 A → `layouts.md`(顶部有 Pre-flight 类名清单、主题节奏规划、动效 recipe 决策树)
-   - 风格 B → **先读 `swiss-layout-lock.md`**,再读 `layouts-swiss.md`;正文页必须从 S01-S22 选择,每页写 `data-layout`
-   - 风格 C → `layouts-aidx.md`;正文页必须从 AIDX-01 到 AIDX-10 选择,每页写 `data-layout` 且包含 `.stage`
-5. 如果风格 B 需要地点、路线、人物住所或城市关系地图,读 `swiss-map-component.md`
-6. 如果在 Codex 中生成配图,读 `image-prompts.md` 挑图片类型、比例和基础提示词;如果是用户原始截图,先读 `screenshot-framing.md`,优先使用 `assets/screenshot-backgrounds/` 的内置背景资产
-7. 细节调整时读 `components.md` 查组件(含 Motion 动效系统章节,主要服务风格 A;风格 B 的组件细节在 `layouts-swiss.md` 附录)
-8. 生成后按风格运行校验器:风格 B 用 `node scripts/validate-swiss-deck.mjs path/to/index.html`;风格 C 用 `node scripts/validate-aidx-deck.mjs path/to/index.html`;再读 `checklist.md` 自检
+再做人工检查:
 
-**动效相关**:风格 A/B 模板已把 Motion One 的加载和 recipe 逻辑内嵌到底部 module script。你不需要改 JS,只需要按 `layouts.md` / `layouts-swiss.md` 的骨架在 HTML 里加 `data-anim` / `data-animate` 即可。离线演示靠 `assets/motion.min.js`,断网时自动降级为"无动画但内容可读"。风格 C 使用模板内置 Web Animations + Canvas 信号背景,不依赖外部 motion 库。风格 B/C 模板必须保留 `B` 键低功耗模式:切换后停止 WebGL/ASCII canvas RAF,取消正在运行的动画,并把当前页内容直接 reveal 到静态最终态。
+- 浏览器打开 `index.html`,检查 16:9 桌面和窄屏缩放。
+- 按 ← → / 滚轮 / 触屏滑动 / 底部圆点 / ESC。
+- 按 `B` 进入低功耗模式,确认内容仍可读。
+- 检查每页文字没有溢出、互相遮挡或过小。
+- 检查所有图片路径、槽位、比例和敏感信息遮挡。
 
-## 核心设计原则（哲学）
+## 禁止事项
 
-### 风格 A · 电子杂志风（5 轮迭代总结）
+- 不要把 AIDX 改成通用蓝紫渐变科技风。
+- 不要引用任何已删除的旧模板、旧布局或旧主题规则。
+- 不要自定义 AIDX 品牌 hex;使用 `themes-aidx.md` 的固定变量。
+- 不要在生成物中写 skill 来源、赞助商信息或 canonical URL。
+- 不要使用 emoji 做风险、状态或章节图标。
+- 不要用本机绝对路径、远程私有图片、外部品牌 SVG。
+- 不要为了塞内容把正文降到 14px 以下。
 
-> 违反其中任何一条，杂志感都会垮。
+## 交付清单
 
-1. **克制优于炫技** — WebGL 背景只在 hero 页透出，普通页几乎看不见
-2. **结构优于装饰** — 不用阴影、不用浮动卡片、不用 padding box，一切信息靠**大字号 + 字体对比 + 网格留白**
-3. **内容层级由字号和字体共同定义** — 最大衬线 = 主标题，中衬线 = 副标，大非衬线 = lead，小非衬线 = body，等宽 = 元数据
-4. **图片是第一公民** — 图片只裁底部，保证顶部和左右完整；网格用 `height:Nvh` 固定，不要用 `aspect-ratio` 撑
-5. **节奏靠 hero 页** — hero 和 non-hero 交替，才不累眼睛
-6. **术语统一** — Skills 就是 Skills，不要中英混合翻译
+交付前确认:
 
-### 风格 B · 瑞士国际主义风
-
-> 违反其中任何一条，画面瞬间从瑞士掉到 PowerPoint。
-
-1. **单一锚点色** — 一份 deck 只用一个 accent，不允许多色高亮拼贴
-2. **极致字号对比** — 主标题与正文比例 ≥ 8:1,KPI 必须是"Data Hero"(屏幕宽度的 18-22%)
-3. **无衬线只此一家** — Inter / Helvetica / Noto Sans SC,任何衬线都是错的
-4. **直角纯色** — 不允许渐变 / 阴影 / 圆角(rule 横线除外)
-5. **网格至上** — 所有元素吸附到 12-col grid,左对齐 + 大幅留白做非对称美学
-6. **Hairline 是手术刀** — 1px 的极细分割线就够,不要加粗、不要加阴影
-7. **点阵装饰只在 hero 页透出** — 正文页保持纯净底色
-
-### 风格 C · AIDX
-
-> 违反其中任何一条，高层汇报会变成通用科技模板。
-
-1. **结论先行** — 每页先讲决策、影响、风险或下一步,不要先铺技术细节
-2. **品牌克制** — AIDX 主品牌、WeBank 背书品牌;正文页品牌是导航,不是装饰
-3. **暗色指挥台** — 默认深色,浅色只服务截图保真和附录
-4. **固定舞台** — 1600×900 stage 统一字号、槽位和投屏比例
-5. **终端质感只做底噪** — 可以有信号网格、速度线、状态块,不要堆 HUD 和霓虹
-6. **中文负责判断** — 高层读中文结论,英文只做短标签
-7. **真实证据优先** — 截图、KPI、路线图、风险 owner 比抽象装饰更重要
-
-## 参考作品
-
-本 skill 的三种风格分别参考了：
-
-**风格 A · 电子杂志风**:
-- 歸藏 "一人公司：被 AI 折叠的组织" 分享（2026-04-22，27 页）
-- *Monocle* 杂志的版式
-- YC 总裁 Garry Tan "Thin Harness, Fat Skills" 那篇博客的 demo
-
-**风格 B · 瑞士国际主义风**:
-- Massimo Vignelli 的 NYC Subway / Unimark 系统
-- *Helvetica Forever* 的字体设计语言
-- Josef Müller-Brockmann 的网格系统经典著作
-- 当代设计:Acne Studios / Off-White / IKEA / Beck Design
-
-**风格 C · AIDX**:
-- AIDX 品牌资产:`#3A5ECF` / `#063970` / `#5DADE2` / `#0F0F11`
-- AIDX 终端首页、深色工程文档系统、JetBrains Mono 终端语汇
-- 高层管理简报的信息结构:结论、决策、风险、路线图、证据
-
-可以把它们当做风格锚点。
+- [ ] `index.html` 是单文件 deck,可直接浏览器打开
+- [ ] 使用 `assets/template-aidx.html`
+- [ ] 每页 `data-layout="AIDX-xx"`
+- [ ] 每页包含 `.stage`
+- [ ] 7 页以上包含执行摘要、决策/请求、路线图/风险
+- [ ] 本地图片都在 `images/` 下并带 `data-image-slot`
+- [ ] 无 `/Users/`、`file://`、未替换 `[必填]`
+- [ ] 已运行 `validate-aidx-deck.mjs`
+- [ ] 已做浏览器视觉检查

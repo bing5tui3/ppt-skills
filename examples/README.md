@@ -1,14 +1,17 @@
 # Examples
 
-这个目录放可直接打开的 HTML 样例。
-
-| File | Style | 内容 |
+| File | Style | Description |
 |---|---|---|
-| `aidx-style-c-showcase.html` | Style C AIDX | 10 页高层汇报样例,覆盖 `AIDX-01` 到 `AIDX-10` 全部登记版式 |
+| `aidx-showcase.html` | AIDX | 10-page executive brief sample covering every registered layout from `AIDX-01` to `AIDX-10` |
 
-重新生成 Style C 样例:
+Regenerate the AIDX showcase:
 
 ```bash
 node scripts/build-aidx-examples.mjs
-node scripts/validate-aidx-deck.mjs examples/aidx-style-c-showcase.html
+```
+
+Validate it:
+
+```bash
+node scripts/validate-aidx-deck.mjs examples/aidx-showcase.html
 ```

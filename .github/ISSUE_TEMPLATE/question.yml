@@ -14,4 +14,4 @@ body:
     id: context
     attributes:
       label: Context
-      description: What have you tried? Which agent and theme are you using?
+      description: What have you tried? Which agent and AIDX deck type are you using?

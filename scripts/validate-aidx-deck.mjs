@@ -13,6 +13,29 @@ const htmlForSlides = html.replace(/<!--[\s\S]*?-->/g, '');
 const errors = [];
 const warnings = [];
 
+const legacyTokens = [
+  ['St', 'yle A'],
+  ['St', 'yle B'],
+  ['Swi', 'ss'],
+  ['瑞', '士'],
+  ['电子', '杂志'],
+  ['template', '-swiss'],
+  ['template', '.', 'html'],
+  ['layouts', '-swiss'],
+  ['layouts', '.', 'md'],
+  ['themes', '-swiss'],
+  ['themes', '.', 'md'],
+  ['validate', '-swiss'],
+  ['style', '-a'],
+  ['style', '-b'],
+].map((parts) => parts.join(''));
+
+for (const token of legacyTokens) {
+  if (html.includes(token)) {
+    errors.push(`Deck contains legacy visual-system reference: ${token}`);
+  }
+}
+
 const allowedLayouts = new Set(
   Array.from({ length: 10 }, (_, i) => `AIDX-${String(i + 1).padStart(2, '0')}`),
 );
@@ -57,6 +80,9 @@ slides.forEach((slide) => {
     const imgTag = slide.html.slice(match.index, slide.html.indexOf('>', match.index) + 1);
     if (!/\bdata-image-slot="/.test(imgTag)) {
       errors.push(`Slide ${slide.idx}: local image ${imageIndex + 1} missing data-image-slot.`);
+    }
+    if (!/\balt="[^"]+"/.test(imgTag)) {
+      errors.push(`Slide ${slide.idx}: local image ${imageIndex + 1} missing alt text.`);
     }
   });
 
