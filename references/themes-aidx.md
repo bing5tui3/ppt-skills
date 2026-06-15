@@ -1,6 +1,6 @@
-# AIDX Swiss Theme
+# AIDX Theme
 
-AIDX Swiss keeps the original Swiss layout structure and replaces only the brand tone: light executive canvas, AIDX blue/navy, subtle grid lines, and WeBank endorsement.
+AIDX keeps the registered layout structure and replaces only the brand tone: light executive canvas, AIDX blue/navy, subtle grid lines, and WeBank endorsement.
 
 ## Fixed Variables
 
@@ -37,7 +37,7 @@ Use these variables in `assets/template-aidx.html`. Do not introduce ad hoc them
 | `slide dark` | Pale navy-tinted canvas | Compatibility only; not a black page |
 | `slide split` | Two full-height halves | S03 / S10 split statement structures |
 
-The class semantics from Swiss are preserved, but all modes stay in the AIDX light family. Do not restore full black or full saturated-blue pages as the default.
+The layout class semantics are preserved, but all modes stay in the AIDX light family. Do not restore full black or full saturated-blue pages as the default.
 
 ## Brand Rules
 

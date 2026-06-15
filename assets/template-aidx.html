@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>[必填] 替换为 PPT 标题 · AIDX Swiss Brief</title>
+<title>[必填] 替换为 PPT 标题 · AIDX Brief</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;600&family=Noto+Sans+SC:wght@200;300;400;500;700;900&display=swap" rel="stylesheet">
 <style>
   :root{
-    /* ============ AIDX Swiss 固定浅色主题 ============
-       保留 Swiss S01-S22 结构,只替换为 AIDX / WeBank 浅色品牌调性。 */
+    /* ============ AIDX 固定浅色主题 ============
+       保留 S01-S22 结构,只替换为 AIDX / WeBank 浅色品牌调性。 */
     --paper:#ffffff;          /* 主底色: AIDX 白底 */
     --paper-rgb:255,255,255;
     --ink:#063970;            /* AIDX navy */
@@ -429,7 +429,7 @@
   .frame.grid-4,
   .frame.grid-3{display:grid}
 
-  /* 12 列模块化网格 (AIDX Swiss 核心) */
+  /* 12 列模块化网格 (AIDX 核心) */
   .grid-12{
     display:grid;
     grid-template-columns:repeat(12,1fr);
@@ -524,8 +524,8 @@
   .frame-img.h-26{height:26vh}
   .frame-img.h-28{height:28vh}
   .frame-img.h-32{height:32vh}
-  .frame-img.swiss-lined{border-top:2px solid var(--accent)}
-  .frame-img.swiss-keyline{border:0}
+  .frame-img.aidx-lined{border-top:2px solid var(--accent)}
+  .frame-img.aidx-keyline{border:0}
 
   /* S22 Image Hero: 下半屏内容区必须和图片拉开距离,不要贴在图下沿 */
   .image-hero-body{
@@ -545,32 +545,32 @@
   figure.frame-img,figure.tile{margin:0;display:flex;flex-direction:column;min-width:0}
   figure.tile > .frame-img{flex:0 0 auto}
 
-  /* AIDX Swiss 图文混排: 只用直角、发丝线、单一 accent；图像容器不加圆角/阴影 */
-  .swiss-img-split{display:grid;grid-template-columns:5fr 7fr;gap:3vw;align-items:start;flex:1;min-height:0}
-  .swiss-img-split.reverse{grid-template-columns:7fr 5fr}
-  .swiss-img-split.align-bottom{align-items:end}
-  .swiss-img-split.align-bottom .swiss-img-copy{align-self:end}
-  .swiss-img-split.align-image-bottom{align-items:end;padding-bottom:var(--nav-safe-bottom)}
-  .swiss-img-split.align-image-bottom .swiss-img-copy{align-self:end}
-  .swiss-img-split.align-image-bottom figure.tile{align-self:end;position:relative}
-  .swiss-img-split.align-image-bottom figure.tile > .swiss-img-caption{
+  /* AIDX 图文混排: 只用直角、发丝线、单一 accent；图像容器不加圆角/阴影 */
+  .aidx-img-split{display:grid;grid-template-columns:5fr 7fr;gap:3vw;align-items:start;flex:1;min-height:0}
+  .aidx-img-split.reverse{grid-template-columns:7fr 5fr}
+  .aidx-img-split.align-bottom{align-items:end}
+  .aidx-img-split.align-bottom .aidx-img-copy{align-self:end}
+  .aidx-img-split.align-image-bottom{align-items:end;padding-bottom:var(--nav-safe-bottom)}
+  .aidx-img-split.align-image-bottom .aidx-img-copy{align-self:end}
+  .aidx-img-split.align-image-bottom figure.tile{align-self:end;position:relative}
+  .aidx-img-split.align-image-bottom figure.tile > .aidx-img-caption{
     position:absolute;left:0;right:0;top:calc(100% + var(--sp-4));margin-top:0
   }
   .nav-safe-bottom{padding-bottom:var(--nav-safe-bottom)}
   .nav-safe-bottom-tight{padding-bottom:calc(var(--nav-safe-bottom) * .65)}
-  .swiss-img-copy{display:flex;flex-direction:column;gap:var(--sp-6);min-width:0}
-  .swiss-img-copy .rule{margin:0}
-  .swiss-img-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp-5);align-items:start;margin-top:var(--sp-7)}
-  .swiss-img-grid.two{grid-template-columns:repeat(2,1fr)}
-  .swiss-img-grid.tight{margin-top:0}
-  .swiss-img-caption{
+  .aidx-img-copy{display:flex;flex-direction:column;gap:var(--sp-6);min-width:0}
+  .aidx-img-copy .rule{margin:0}
+  .aidx-img-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp-5);align-items:start;margin-top:var(--sp-7)}
+  .aidx-img-grid.two{grid-template-columns:repeat(2,1fr)}
+  .aidx-img-grid.tight{margin-top:0}
+  .aidx-img-caption{
     display:flex;justify-content:space-between;gap:var(--sp-5);
     margin-top:var(--sp-4);
     font-family:var(--mono);font-size:max(14px,.74vw);
     letter-spacing:.16em;text-transform:uppercase;color:var(--text-helper);
     border-top:1px solid var(--border-subtle);padding-top:var(--sp-4)
   }
-  .swiss-img-caption strong{
+  .aidx-img-caption strong{
     font-family:var(--sans),var(--sans-zh);font-size:max(16px,.9vw);
     font-weight:600;letter-spacing:0;text-transform:none;color:var(--text-primary)
   }
@@ -624,7 +624,7 @@
   body.low-power [data-anim]{opacity:1!important;transform:none!important}
 
   /* ============================================================
-     ↓↓↓ Swiss Structure Extensions · Canvas Mode + AIDX brand classes
+     ↓↓↓ AIDX Layout Extensions · Canvas Mode + AIDX brand classes
      验证效果后沉淀回 template-aidx.html
      ============================================================ */
 
@@ -1029,7 +1029,7 @@
   .cross-mat.lg{--d:32px}
 
   /* ========== V3: 几何水平柱状图 ========== */
-  /* 横向柱图: 标签列 + 柱体列 + 数值列 — 严格瑞士网格 */
+  /* 横向柱图: 标签列 + 柱体列 + 数值列 — 严格AIDX网格 */
   .h-bar-chart{
     display:grid;
     grid-template-columns:11em minmax(0,1fr) 8em;
@@ -1216,7 +1216,7 @@
         document.getAnimations().forEach(a=>a.cancel());
       }
       updateHint();
-      dispatchEvent(new CustomEvent('swiss-low-power-change', {detail:{on:window.__lowPowerMode}}));
+      dispatchEvent(new CustomEvent('aidx-low-power-change', {detail:{on:window.__lowPowerMode}}));
       if(window.__playSlide) window.__playSlide(window.__currentSlideIndex || 0);
     };
     document.body.classList.toggle('low-power', window.__lowPowerMode);
@@ -1235,14 +1235,14 @@
      主题色配置参考 references/themes-aidx.md
      ============================================================ -->
 <!-- SLIDES_HERE · 在此处粘贴 <section class="slide ..." data-layout="Sxx"> 页面块。
-     AIDX Swiss locked mode: 保留 S01-S22 结构,每页使用 .canvas-card,页眉使用 .aidx-brand。 -->
+     AIDX locked mode: 保留 S01-S22 结构,每页使用 .canvas-card,页眉使用 .aidx-brand。 -->
 
 </div>
 
 <div id="nav"></div>
 
 <script>
-/* =============== WebGL 网格背景 (AIDX Swiss 专用) ===============
+/* =============== WebGL 网格背景 (AIDX 专用) ===============
    极简移动网格 + 微弱点阵叠加,营造"工业感、精准感"
    - 主网格: 缓慢漂移的细线网格
    - 次级: 鼠标附近的极细点阵微扰
@@ -1387,7 +1387,7 @@ if(document.body.classList.contains('canvas-mode')){
 }else{
   startGrid();
 }
-addEventListener('swiss-low-power-change', e=>{e.detail.on ? stopGrid() : startGrid();});
+addEventListener('aidx-low-power-change', e=>{e.detail.on ? stopGrid() : startGrid();});
 
 // =============== 导航 ===============
 const deck=document.getElementById('deck');
@@ -2318,7 +2318,7 @@ if(motion){
       if(c.__ctx) c.__ctx.clearRect(0,0,c.__w || 0,c.__h || 0);
     });
   }
-  addEventListener('swiss-low-power-change', e=>{e.detail.on ? stop() : start();});
+  addEventListener('aidx-low-power-change', e=>{e.detail.on ? stop() : start();});
   start();
 })();
 </script>

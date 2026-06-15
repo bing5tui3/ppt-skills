@@ -1,4 +1,4 @@
-# AIDX Swiss Components
+# AIDX Components
 
 Reusable components are defined in `assets/template-aidx.html`.
 
@@ -10,7 +10,7 @@ Reusable components are defined in `assets/template-aidx.html`.
 | `.slide.grey` | Light blue-gray support page |
 | `.slide.accent` | Pale AIDX blue emphasis page |
 | `.slide.split` | Split-half layouts S03/S10 |
-| `.canvas-card` | Full-viewport Swiss canvas |
+| `.canvas-card` | Full-viewport AIDX canvas |
 | `.chrome-min.brand-chrome` | AIDX page header |
 | `.aidx-brand` | Inline avatar + AIDX lockup |
 | `.brand-meta` | WeBank/date/page metadata |
@@ -29,7 +29,7 @@ Do not point generated decks to local brand assets.
 
 ## Typography
 
-Use the Swiss type scale already in the template:
+Use the AIDX type scale already in the template:
 
 | Class | Use |
 |---|---|
@@ -40,7 +40,7 @@ Use the Swiss type scale already in the template:
 | `.t-meta`, `.t-cat`, `.meta-row` | Mono metadata |
 | `.kpi-thin`, `.num-mega`, `.kpi-big` | Data typography |
 
-Swiss rule still applies: the larger the text, the lighter the weight.
+AIDX rule still applies: the larger the text, the lighter the weight.
 
 ## Grid and Cards
 

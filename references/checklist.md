@@ -1,13 +1,13 @@
-# AIDX Swiss Delivery Checklist
+# AIDX Delivery Checklist
 
-Use this before calling an AIDX Swiss deck done.
+Use this before calling an AIDX deck done.
 
 ## P0 · Must Pass
 
 ### Template and Structure
 
 - Deck is based on `assets/template-aidx.html`.
-- The template uses Swiss `.slide` + `.canvas-card`, not `.stage`.
+- The template uses AIDX `.slide` + `.canvas-card`, not `.stage`.
 - Every page has `data-layout="Sxx"` from `S01` to `S22`.
 - No `data-layout="AIDX-xx"` remains.
 - No `[必填]` placeholders remain.

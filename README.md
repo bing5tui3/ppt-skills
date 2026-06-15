@@ -2,19 +2,19 @@
 
 `aidx-ppt-skill` 是一个适配 Claude Code / Codex 等 Agent 环境的网页 PPT skill,用于生成 **AIDX / WeBank 内部高层汇报风格**的单文件 HTML 横向翻页 deck、PPT 配图和多平台封面。
 
-当前模板是 **AIDX Swiss**:保留 Swiss `S01-S22` 版式结构,把视觉替换成 AIDX 浅色调、`avatar-terminal` 品牌头像、AIDX + WeBank 页眉页脚和轻量网格。
+当前模板是 **AIDX**:保留 `S01-S22` 登记版式结构,把视觉替换成 AIDX 浅色调、`avatar-terminal` 品牌头像、AIDX + WeBank 页眉页脚和轻量网格。
 
 ## 效果展示
 
-**AIDX Swiss Cover**
+**AIDX Cover**
 
 ![AIDX cover preview](./assets/readme/aidx-cover.png)
 
-**AIDX Swiss Executive Page**
+**AIDX Executive Page**
 
 ![AIDX executive summary preview](./assets/readme/aidx-executive-summary.png)
 
-样例: [AIDX Showcase](./examples/aidx-showcase.html) - 10 页,使用 `S01/S02/S03/S06/S08/S10/S11/S17/S20/S22` 等 Swiss 登记版式。
+样例: [AIDX Showcase](./examples/aidx-showcase.html) - 10 页,使用 `S01/S02/S03/S06/S08/S10/S11/S17/S20/S22` 等登记版式。
 
 ## 30 秒开始
 
@@ -38,13 +38,13 @@ npx skills add https://github.com/bing5tui3/ppt-skills --skill aidx-ppt-skill
 
 ## 你能得到什么
 
-- **AIDX Swiss 单一视觉系统**:白底浅色、轻量网格、AIDX blue/navy、银行级克制
-- **22 个 Swiss 登记版式**:`S01-S22`,覆盖封面、时间线、KPI、对比、系统图、证据图、结尾请求
+- **AIDX 单一视觉系统**:白底浅色、轻量网格、AIDX blue/navy、银行级克制
+- **22 个登记版式**:`S01-S22`,覆盖封面、时间线、KPI、对比、系统图、证据图、结尾请求
 - **AIDX 品牌锁定**:内联 `avatar-terminal.svg`,页眉 AIDX,页脚或 meta 使用 `AIDX · WeBank`
 - **横向左右翻页**:键盘 ← → / 滚轮 / 触屏滑动 / 底部圆点 / ESC 索引
 - **低性能静态模式**:按 `B` 可关闭 canvas 动画
 - **单文件 HTML**:不需要构建、不需要服务器,浏览器直接打开
-- **AIDX Swiss 校验器**:检查 `Sxx`、`.canvas-card`、品牌、图片槽位、本机路径和旧版式残留
+- **AIDX 校验器**:检查 `Sxx`、`.canvas-card`、品牌、图片槽位、本机路径和旧版式残留
 
 ## 适合 / 不适合
 
@@ -74,7 +74,7 @@ npx skills add https://github.com/bing5tui3/ppt-skills --skill aidx-ppt-skill
 7. **运行校验**:`node scripts/validate-aidx-deck.mjs path/to/index.html`。
 8. **浏览器预览**:检查翻页、低功耗模式、证据槽位和文字溢出。
 
-## AIDX Swiss 版式
+## AIDX 版式
 
 | 范围 | 用途 |
 |---|---|
@@ -111,7 +111,7 @@ aidx-ppt-skill/
 node scripts/build-aidx-examples.mjs
 ```
 
-校验任意 AIDX Swiss deck:
+校验任意 AIDX deck:
 
 ```bash
 node scripts/validate-aidx-deck.mjs examples/aidx-showcase.html

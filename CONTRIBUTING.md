@@ -18,8 +18,8 @@ Read these files first:
 ## Change Rules
 
 - Keep AIDX as the primary brand and WeBank as endorsement.
-- Keep the AIDX Swiss `.slide` + `.canvas-card` model.
-- Preserve registered Swiss `S01-S22` layout structures.
+- Keep the AIDX `.slide` + `.canvas-card` model.
+- Preserve registered `S01-S22` layout structures.
 - Do not add unregistered layout names unless you update `references/layouts-aidx.md` and `scripts/validate-aidx-deck.mjs` together.
 - Do not use local machine paths, external private brand SVGs, emoji status icons, or ad hoc neon colors.
 - If a local image appears in a deck, it must live under `images/` and include `data-image-slot`.

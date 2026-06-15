@@ -1,18 +1,18 @@
 `aidx-ppt-skill` is an agent skill for Claude Code, Codex, and similar coding-agent environments. It generates **AIDX / WeBank internal executive brief** decks as single-file horizontal-swipe HTML, plus deck visuals and social cover pages.
 
-The current template is **AIDX Swiss**: it keeps the Swiss `S01-S22` layout structure and replaces the visual layer with AIDX light colors, the `avatar-terminal` brand mark, AIDX + WeBank chrome, and a restrained grid system.
+The current template is **AIDX**: it keeps the registered `S01-S22` layout structure and replaces the visual layer with AIDX light colors, the `avatar-terminal` brand mark, AIDX + WeBank chrome, and a restrained grid system.
 
 ## Preview
 
-**AIDX Swiss Cover**
+**AIDX Cover**
 
 ![AIDX cover preview](./assets/readme/aidx-cover.png)
 
-**AIDX Swiss Executive Page**
+**AIDX Executive Page**
 
 ![AIDX executive summary preview](./assets/readme/aidx-executive-summary.png)
 
-Example: [AIDX Showcase](./examples/aidx-showcase.html) - 10 slides using registered Swiss layouts such as `S01`, `S02`, `S03`, `S06`, `S08`, `S10`, `S11`, `S17`, `S20`, and `S22`.
+Example: [AIDX Showcase](./examples/aidx-showcase.html) - 10 slides using registered layouts such as `S01`, `S02`, `S03`, `S06`, `S08`, `S10`, `S11`, `S17`, `S20`, and `S22`.
 
 ## 30-second start
 
@@ -36,13 +36,13 @@ Create a 21:9 social cover from the core conclusion of this brief.
 
 ## What you get
 
-- **One AIDX Swiss visual system**: white/light surfaces, subtle grid, AIDX blue/navy, bank-grade restraint
-- **22 registered Swiss layouts**: `S01-S22` for covers, timelines, KPI, comparison, system maps, evidence visuals, and closing requests
+- **One AIDX visual system**: white/light surfaces, subtle grid, AIDX blue/navy, bank-grade restraint
+- **22 registered layouts**: `S01-S22` for covers, timelines, KPI, comparison, system maps, evidence visuals, and closing requests
 - **Locked AIDX branding**: inline `avatar-terminal.svg`, AIDX header, `AIDX · WeBank` footer or meta endorsement
 - **Horizontal swipe navigation**: arrow keys, scroll wheel, touch swipe, bottom dots, and ESC overview
 - **Low-power static mode**: press `B` to disable canvas motion
 - **Single HTML delivery**: no build step, no server, open directly in a browser
-- **AIDX Swiss validator**: checks `Sxx`, `.canvas-card`, brand chrome, image slots, local paths, and stale old-layout residue
+- **AIDX validator**: checks `Sxx`, `.canvas-card`, brand chrome, image slots, local paths, and stale old-layout residue
 
 ## Fits / Doesn't Fit
 
@@ -72,7 +72,7 @@ Create a 21:9 social cover from the core conclusion of this brief.
 7. **Run validation**: `node scripts/validate-aidx-deck.mjs path/to/index.html`.
 8. **Preview in browser**: check navigation, low-power mode, evidence slots, and text overflow.
 
-## AIDX Swiss Layouts
+## AIDX Layouts
 
 | Range | Use |
 |---|---|
@@ -109,7 +109,7 @@ Regenerate the example:
 node scripts/build-aidx-examples.mjs
 ```
 
-Validate an AIDX Swiss deck:
+Validate an AIDX deck:
 
 ```bash
 node scripts/validate-aidx-deck.mjs examples/aidx-showcase.html

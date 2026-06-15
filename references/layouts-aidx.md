@@ -1,6 +1,6 @@
-# Layouts · AIDX Swiss
+# Layouts · AIDX
 
-AIDX Swiss uses the original Swiss `S01-S22` layout structure. It does not use the older `AIDX-01..10` stage layouts.
+AIDX uses the registered `S01-S22` layout structure. It does not use the older `AIDX-01..10` stage layouts.
 
 Every slide must be:
 
@@ -15,7 +15,7 @@ Every slide must be:
 ## Locked Mode
 
 - Use only `S01` through `S22` for `data-layout`.
-- Preserve Swiss grid structure, left-top title axis, hairline rules, straight modules, and large/light typography.
+- Preserve the registered grid structure, left-top title axis, hairline rules, straight modules, and large/light typography.
 - Use `.canvas-card`, not `.stage`.
 - Use AIDX brand chrome on every page.
 - Do not invent P23/P24 or freeform evidence walls. Single hero image uses S22; multi-image grids adapt S15/S16.

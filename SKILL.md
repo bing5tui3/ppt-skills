@@ -1,6 +1,6 @@
 ---
 name: aidx-ppt-skill
-description: 生成 AIDX / WeBank 内部高层汇报风格的横向翻页网页 PPT（单 HTML 文件），保留 Swiss S01-S22 版式结构，使用 AIDX 浅色调、avatar-terminal 品牌头像、AIDX + WeBank 页眉页脚、轻量网格、KPI、时间线、对比、系统图、证据图和结尾请求。当用户需要制作 AIDX 风 PPT、AI 科技高层汇报、内部决策会、工程效能汇报、管理层进展同步或 horizontal swipe executive deck 时使用。
+description: 生成 AIDX / WeBank 内部高层汇报风格的横向翻页网页 PPT（单 HTML 文件），保留 S01-S22 登记版式结构，使用 AIDX 浅色调、avatar-terminal 品牌头像、AIDX + WeBank 页眉页脚、轻量网格、KPI、时间线、对比、系统图、证据图和结尾请求。当用户需要制作 AIDX 风 PPT、AI 科技高层汇报、内部决策会、工程效能汇报、管理层进展同步或 horizontal swipe executive deck 时使用。
 ---
 
 # AIDX PPT Skill
@@ -11,9 +11,9 @@ description: 生成 AIDX / WeBank 内部高层汇报风格的横向翻页网页 
 
 ## 这个 Skill 做什么
 
-生成一份**单文件 HTML**的横向翻页 AIDX 高层汇报 PPT。当前模板是 **AIDX Swiss**:
+生成一份**单文件 HTML**的横向翻页 AIDX 高层汇报 PPT。当前模板是 **AIDX**:
 
-- 保留 Swiss 原始 `S01-S22` 版式结构、模块化网格、直角、发丝线和大字号轻字重。
+- 保留 `S01-S22` 登记版式结构、模块化网格、直角、发丝线和大字号轻字重。
 - 替换为 AIDX 浅色调:白底、浅蓝灰、AIDX blue、AIDX navy、少量 cyan。
 - 页眉使用内联 `avatar-terminal.svg` + `AIDX`;页脚/右侧 meta 使用 `AIDX · WeBank` 背书。
 - 每页是 `.slide` + `.canvas-card`,不再使用旧 `.stage` / `AIDX-01..10`。
@@ -23,14 +23,14 @@ description: 生成 AIDX / WeBank 内部高层汇报风格的横向翻页网页 
 
 | 文件 | 用途 |
 |---|---|
-| `assets/template-aidx.html` | AIDX Swiss 单文件 HTML 模板 |
+| `assets/template-aidx.html` | AIDX 单文件 HTML 模板 |
 | `references/layouts-aidx.md` | `S01-S22` 登记版式和品牌 chrome |
-| `references/themes-aidx.md` | AIDX Swiss 固定浅色变量 |
+| `references/themes-aidx.md` | AIDX 固定浅色变量 |
 | `references/checklist.md` | 交付前自检 |
 | `references/components.md` | 模板组件和类名 |
-| `references/image-prompts.md` | AIDX Swiss 配图提示词 |
+| `references/image-prompts.md` | AIDX 配图提示词 |
 | `references/screenshot-framing.md` | 截图和证据图适配规则 |
-| `scripts/validate-aidx-deck.mjs` | AIDX Swiss 静态校验器 |
+| `scripts/validate-aidx-deck.mjs` | AIDX 静态校验器 |
 
 ## 何时使用
 
@@ -91,7 +91,7 @@ rg "\\[必填\\]" "项目/XXX/ppt/index.html"
 4. `references/image-prompts.md`
 5. `references/screenshot-framing.md`
 
-### Step 4 · 规划 AIDX Swiss 节奏
+### Step 4 · 规划 AIDX 节奏
 
 推荐 8-10 页节奏:
 
@@ -172,7 +172,7 @@ node "<SKILL_ROOT>/scripts/validate-aidx-deck.mjs" "项目/XXX/ppt/index.html"
 
 - 不要使用旧 `.stage`、`slide blue` 或 `AIDX-01..10`。
 - 不要引用本机品牌路径;avatar 必须内联在 HTML 中。
-- 不要把 AIDX Swiss 改回通用瑞士四主题或 IKB / 柠檬色自由选色。
+- 不要把 AIDX 改回通用四主题或 IKB / 柠檬色自由选色。
 - 不要把 AIDX 改成通用蓝紫渐变科技风、霓虹、赛博或深色指挥台默认底稿。
 - 不要在生成物中写 skill 来源、赞助商信息或 canonical URL。
 - 不要使用 emoji 做风险、状态或章节图标。

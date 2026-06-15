@@ -34,15 +34,15 @@ const slides = [
   <div class="canvas-card">
     ${brandChrome('01', 'CONFIDENTIAL')}
     <div style="flex:1;display:grid;grid-template-rows:auto 1fr auto;gap:4vh">
-      <div class="t-meta" data-anim="up">AI Developer Experience · Swiss Structure</div>
+      <div class="t-meta" data-anim="up">AI Developer Experience · Registered Layouts</div>
       <div data-anim="up" style="align-self:center;display:grid;grid-template-columns:minmax(0,3fr) minmax(0,2fr);gap:5vw;align-items:end">
         <h1 class="h-hero-zh" style="font-size:min(7.8vw,13vh);line-height:1.02;color:var(--text-primary)">AIDX<br>工程效能<br>高层汇报</h1>
         <div style="display:flex;flex-direction:column;gap:2vh;border-left:1px solid var(--border-subtle);padding-left:3vw">
-          <p class="lead" style="color:var(--text-secondary);max-width:34ch">保留 Swiss S01-S22 结构,替换为 AIDX 浅色品牌、avatar-terminal 与 WeBank 背书。</p>
+          <p class="lead" style="color:var(--text-secondary);max-width:34ch">保留 S01-S22 结构,替换为 AIDX 浅色品牌、avatar-terminal 与 WeBank 背书。</p>
           <div class="meta-row"><span>10 Slides</span><span class="dot"></span><span>S01-S22</span><span class="dot"></span><span>Light System</span></div>
         </div>
       </div>
-      ${footer('AIDX Swiss Showcase')}
+      ${footer('AIDX Showcase')}
     </div>
   </div>
 </section>`,
@@ -232,7 +232,7 @@ const slides = [
 
 const template = readFileSync(templatePath, 'utf8');
 const output = template
-  .replace('[必填] 替换为 PPT 标题 · AIDX Swiss Brief', 'AIDX Swiss Showcase · Executive Brief')
+  .replace('[必填] 替换为 PPT 标题 · AIDX Brief', 'AIDX Showcase · Executive Brief')
   .replace(/<!-- SLIDES_HERE[\s\S]*?-->/, slides);
 
 if (/\[必填\]|data-layout="AIDX-|class="[^"]*\bstage\b/.test(output)) {

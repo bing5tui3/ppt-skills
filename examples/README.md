@@ -2,7 +2,7 @@
 
 | File | Style | Description |
 |---|---|---|
-| `aidx-showcase.html` | AIDX Swiss | 10-page sample using the Swiss `S01-S22` structure with AIDX light branding |
+| `aidx-showcase.html` | AIDX | 10-page sample using the AIDX `S01-S22` structure with AIDX light branding |
 
 Regenerate the showcase:
 

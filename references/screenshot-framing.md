@@ -1,4 +1,4 @@
-# AIDX Swiss Screenshot Framing
+# AIDX Screenshot Framing
 
 Screenshots are evidence. Preserve meaning first; styling only improves readability and fit.
 
