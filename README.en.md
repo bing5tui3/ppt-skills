@@ -12,7 +12,7 @@ The current template is **AIDX**: it keeps the registered `S01-S22` layout struc
 
 ![AIDX executive summary preview](./assets/readme/aidx-executive-summary.png)
 
-Example: [AIDX Showcase](./examples/aidx-showcase.html) - 10 slides using registered layouts such as `S01`, `S02`, `S03`, `S06`, `S08`, `S10`, `S11`, `S17`, `S20`, and `S22`.
+Examples: [AIDX Showcase](./examples/aidx-showcase.html), [Governance Review](./examples/aidx-governance-review.html), and [Product Evidence](./examples/aidx-product-evidence.html), covering executive brief, governance review, and product evidence review scenarios.
 
 ## 30-second start
 
@@ -88,7 +88,10 @@ Create a 21:9 social cover from the core conclusion of this brief.
 aidx-ppt-skill/
 ├── SKILL.md
 ├── assets/template-aidx.html
-├── examples/aidx-showcase.html
+├── examples/
+│   ├── aidx-showcase.html
+│   ├── aidx-governance-review.html
+│   └── aidx-product-evidence.html
 ├── scripts/
 │   ├── build-aidx-examples.mjs
 │   └── validate-aidx-deck.mjs
@@ -103,16 +106,16 @@ aidx-ppt-skill/
 
 ## Development and Validation
 
-Regenerate the example:
+Regenerate all examples:
 
 ```bash
 node scripts/build-aidx-examples.mjs
 ```
 
-Validate an AIDX deck:
+Validate all examples:
 
 ```bash
-node scripts/validate-aidx-deck.mjs examples/aidx-showcase.html
+for f in examples/*.html; do node scripts/validate-aidx-deck.mjs "$f"; done
 ```
 
 ## License

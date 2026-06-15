@@ -14,7 +14,7 @@
 
 ![AIDX executive summary preview](./assets/readme/aidx-executive-summary.png)
 
-样例: [AIDX Showcase](./examples/aidx-showcase.html) - 10 页,使用 `S01/S02/S03/S06/S08/S10/S11/S17/S20/S22` 等登记版式。
+样例: [AIDX Showcase](./examples/aidx-showcase.html)、[Governance Review](./examples/aidx-governance-review.html)、[Product Evidence](./examples/aidx-product-evidence.html) - 覆盖高层汇报、治理周报、产品证据复盘等场景。
 
 ## 30 秒开始
 
@@ -90,7 +90,10 @@ npx skills add https://github.com/bing5tui3/ppt-skills --skill aidx-ppt-skill
 aidx-ppt-skill/
 ├── SKILL.md
 ├── assets/template-aidx.html
-├── examples/aidx-showcase.html
+├── examples/
+│   ├── aidx-showcase.html
+│   ├── aidx-governance-review.html
+│   └── aidx-product-evidence.html
 ├── scripts/
 │   ├── build-aidx-examples.mjs
 │   └── validate-aidx-deck.mjs
@@ -105,16 +108,16 @@ aidx-ppt-skill/
 
 ## 开发与校验
 
-重新生成示例:
+重新生成全部示例:
 
 ```bash
 node scripts/build-aidx-examples.mjs
 ```
 
-校验任意 AIDX deck:
+校验全部示例:
 
 ```bash
-node scripts/validate-aidx-deck.mjs examples/aidx-showcase.html
+for f in examples/*.html; do node scripts/validate-aidx-deck.mjs "$f"; done
 ```
 
 ## License
