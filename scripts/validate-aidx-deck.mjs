@@ -2,9 +2,10 @@
 import { readFileSync } from 'node:fs';
 
 const file = process.argv[2];
+const allowExperimental = process.argv.includes('--allow-experimental');
 
 if (!file) {
-  console.error('Usage: node scripts/validate-aidx-deck.mjs <index.html>');
+  console.error('Usage: node scripts/validate-aidx-deck.mjs <index.html> [--allow-experimental]');
   process.exit(2);
 }
 
@@ -13,70 +14,70 @@ const htmlForSlides = html.replace(/<!--[\s\S]*?-->/g, '');
 const errors = [];
 const warnings = [];
 
-const legacyTokens = [
-  ['St', 'yle A'],
-  ['St', 'yle B'],
-  ['Swi', 'ss'],
-  ['瑞', '士'],
-  ['电子', '杂志'],
-  ['template', '-swiss'],
-  ['template', '.', 'html'],
-  ['layouts', '-swiss'],
-  ['layouts', '.', 'md'],
-  ['themes', '-swiss'],
-  ['themes', '.', 'md'],
-  ['validate', '-swiss'],
-  ['style', '-a'],
-  ['style', '-b'],
-].map((parts) => parts.join(''));
-
-for (const token of legacyTokens) {
-  if (html.includes(token)) {
-    errors.push(`Deck contains legacy visual-system reference: ${token}`);
-  }
-}
-
-if (/\baidx-x\b/.test(html)) {
-  errors.push('Deck contains deprecated X-shaped logo class: aidx-x. Use .aidx-avatar for the top-left brand mark.');
-}
-
-const allowedLayouts = new Set(
-  Array.from({ length: 10 }, (_, i) => `AIDX-${String(i + 1).padStart(2, '0')}`),
-);
-
+const allowedLayouts = new Set(Array.from({ length: 22 }, (_, i) => `S${String(i + 1).padStart(2, '0')}`));
 const slideRe = /<section\b[^>]*class="[^"]*\bslide\b[^"]*"[^>]*>[\s\S]*?<\/section>/g;
-const slides = [...htmlForSlides.matchAll(slideRe)].map((match, idx) => ({
+const slides = [...htmlForSlides.matchAll(slideRe)].map((m, idx) => ({
   idx: idx + 1,
-  html: match[0],
-  tag: match[0].match(/<section\b[^>]*>/)?.[0] ?? '',
+  html: m[0],
+  tag: m[0].match(/<section\b[^>]*>/)?.[0] ?? '',
 }));
 
-if (!slides.length) {
-  errors.push('No <section class="slide"> pages found.');
+if (!slides.length) errors.push('No <section class="slide"> pages found.');
+
+if (/data-layout="AIDX-\d+/i.test(htmlForSlides)) {
+  errors.push('Found old AIDX-xx layout ids. AIDX Swiss uses S01-S22 only.');
 }
 
-const layoutSeq = [];
+if (/\bclass="[^"]*\bstage\b/i.test(htmlForSlides)) {
+  errors.push('Found old .stage canvas. AIDX Swiss uses .canvas-card.');
+}
+
+if (/\/Users\/|file:\/\//.test(htmlForSlides)) {
+  errors.push('Found local absolute path or file:// URL. Generated decks must be portable single HTML files.');
+}
+
+if (/\[必填\]/.test(htmlForSlides)) {
+  errors.push('Found unresolved [必填] placeholder.');
+}
 
 slides.forEach((slide) => {
   const layout = slide.tag.match(/\bdata-layout="([^"]+)"/)?.[1];
-  layoutSeq.push(layout || '');
 
   if (!layout) {
-    errors.push(`Slide ${slide.idx}: missing data-layout. AIDX locked mode requires AIDX-01 to AIDX-10.`);
+    errors.push(`Slide ${slide.idx}: missing data-layout. AIDX Swiss locked mode requires S01-S22.`);
   } else if (!allowedLayouts.has(layout)) {
-    errors.push(`Slide ${slide.idx}: data-layout="${layout}" is not registered in references/layouts-aidx.md.`);
+    errors.push(`Slide ${slide.idx}: data-layout="${layout}" is not registered. Use S01-S22.`);
   }
 
-  if (!/\bclass="[^"]*\bstage\b/.test(slide.html)) {
-    errors.push(`Slide ${slide.idx}: missing <div class="stage">. AIDX slides must use the fixed 1600x900 stage.`);
+  if (!/\bcanvas-card\b/.test(slide.html)) {
+    errors.push(`Slide ${slide.idx}: missing .canvas-card.`);
   }
 
-  if (/\/Users\/|file:\/\//i.test(slide.html)) {
-    errors.push(`Slide ${slide.idx}: contains a local machine path. Inline brand SVG or use relative images/ assets only.`);
+  if (!/\baidx-brand\b/.test(slide.html)) {
+    errors.push(`Slide ${slide.idx}: missing .aidx-brand header with avatar-terminal.`);
   }
 
-  if (/<img\b[^>]*src="[^"]*brand[^"]*\.svg/i.test(slide.html)) {
-    errors.push(`Slide ${slide.idx}: references a brand SVG file. Inline the required logo so the deck remains single-file.`);
+  if (!/(AIDX\s*·\s*WeBank|WeBank)/.test(slide.html)) {
+    warnings.push(`Slide ${slide.idx}: no visible WeBank endorsement detected.`);
+  }
+
+  if (!allowExperimental && /\bdata-layout="P2[34]\b|Swiss Image Split|Swiss Evidence Grid|swiss-img-split|swiss-img-grid/.test(slide.html)) {
+    errors.push(`Slide ${slide.idx}: uses experimental P23/P24 image structure. Use S22 or S15/S16 image-grid adaptations instead.`);
+  }
+
+  const isStatement = layout === 'S03' || layout === 'S09' || layout === 'S10';
+  const topChunk = slide.html.slice(0, 1800);
+
+  if (!isStatement && /text-align\s*:\s*center/i.test(topChunk)) {
+    errors.push(`Slide ${slide.idx}: top title area contains text-align:center. Swiss body titles should stay left aligned.`);
+  }
+
+  if (!isStatement && /align-self\s*:\s*center/i.test(topChunk) && /<h[12]\b/i.test(topChunk)) {
+    errors.push(`Slide ${slide.idx}: top heading appears centrally aligned. Use the original left-top title skeleton.`);
+  }
+
+  if (/<svg\b[\s\S]*?<text\b/i.test(slide.html)) {
+    errors.push(`Slide ${slide.idx}: SVG contains visible <text>. Put labels in HTML; keep SVG for geometry only.`);
   }
 
   const localImages = [...slide.html.matchAll(/<img\b[^>]*src="images\//g)];
@@ -85,72 +86,35 @@ slides.forEach((slide) => {
     if (!/\bdata-image-slot="/.test(imgTag)) {
       errors.push(`Slide ${slide.idx}: local image ${imageIndex + 1} missing data-image-slot.`);
     }
-    if (!/\balt="[^"]+"/.test(imgTag)) {
-      errors.push(`Slide ${slide.idx}: local image ${imageIndex + 1} missing alt text.`);
+  });
+
+  const frameImageRe = /<div\b(?=[^>]*\bclass="([^"]*\bframe-img\b[^"]*)")[^>]*>[\s\S]*?<img\b(?=[^>]*\bdata-image-slot="([^"]+)")[^>]*>/g;
+  const frameImages = [...slide.html.matchAll(frameImageRe)];
+  frameImages.forEach((match) => {
+    const className = match[1];
+    const slot = match[2];
+    const frameTag = match[0].match(/^<div\b[^>]*>/)?.[0] ?? '';
+    if (/^s1[56]-(?:grid|brief)-21x9$/.test(slot)) {
+      if (/\bfit-contain\b/.test(className)) errors.push(`Slide ${slide.idx}: ${slot} uses fit-contain. Regenerated 21:9 grid images should fill the slot.`);
+      if (!/\br-21x9\b/.test(className)) errors.push(`Slide ${slide.idx}: ${slot} must use .frame-img.r-21x9.`);
+      if (/height\s*:\s*\d+(?:\.\d+)?vh/i.test(frameTag)) errors.push(`Slide ${slide.idx}: ${slot} frame has fixed vh height. Use aspect-ratio instead.`);
     }
   });
 
-  if (/[\u{1F300}-\u{1FAFF}]/u.test(slide.html)) {
-    errors.push(`Slide ${slide.idx}: contains emoji. Use text labels, status blocks, or inline AIDX geometry instead.`);
-  }
-
-  if (/#0ff\b|(?:color|background(?:-color)?)\s*:\s*(?:cyan|aqua)\b/i.test(slide.html)) {
-    errors.push(`Slide ${slide.idx}: uses ad hoc neon cyan. Use var(--aidx-cyan) or registered AIDX tokens.`);
-  }
-
-  if (/font-size\s*:\s*(?:[0-9.]+)\s*(?:vw|vh)/i.test(slide.html)) {
-    errors.push(`Slide ${slide.idx}: uses viewport-based font sizing. AIDX slides use fixed stage typography.`);
-  }
-
-  if (/letter-spacing\s*:\s*-[0-9.]+/i.test(slide.html)) {
-    errors.push(`Slide ${slide.idx}: uses negative letter-spacing. Keep AIDX executive pages readable.`);
-  }
-
-  const smallFontMatches = [...slide.html.matchAll(/font-size\s*:\s*([0-9.]+)px/gi)];
-  smallFontMatches.forEach((match) => {
-    const size = Number(match[1]);
-    if (Number.isFinite(size) && size < 14) {
-      errors.push(`Slide ${slide.idx}: inline font-size ${size}px is below the AIDX minimum of 14px.`);
+  if (layout === 'S22') {
+    if (!/data-image-slot="s22-hero-21x9"/.test(slide.html)) {
+      errors.push(`Slide ${slide.idx}: S22 must use data-image-slot="s22-hero-21x9".`);
     }
-  });
-
-  const radiusMatches = [...slide.html.matchAll(/border-radius\s*:\s*([0-9.]+)px/gi)];
-  radiusMatches.forEach((match) => {
-    const radius = Number(match[1]);
-    if (Number.isFinite(radius) && radius > 8) {
-      warnings.push(`Slide ${slide.idx}: inline border-radius ${radius}px exceeds the recommended 8px maximum.`);
+    if (/object-position\s*:\s*top center/i.test(slide.html)) {
+      errors.push(`Slide ${slide.idx}: S22 photo uses object-position:top center. Use center 35% or center center.`);
     }
-  });
-
-  if (/linear-gradient|radial-gradient|box-shadow/i.test(slide.html)) {
-    warnings.push(`Slide ${slide.idx}: contains custom gradient or shadow. Confirm this is necessary for an executive brief.`);
-  }
-
-  if (/<table\b/i.test(slide.html)) {
-    warnings.push(`Slide ${slide.idx}: contains a table. Keep tables sparse or move dense material to appendix.`);
   }
 });
 
-for (let i = 2; i < layoutSeq.length; i += 1) {
-  if (layoutSeq[i] && layoutSeq[i] === layoutSeq[i - 1] && layoutSeq[i] === layoutSeq[i - 2]) {
-    warnings.push(`Slides ${i - 1}-${i + 1}: three consecutive pages use ${layoutSeq[i]}. Vary the AIDX layout rhythm.`);
-  }
-}
-
-if (slides.length >= 5 && !layoutSeq.includes('AIDX-02')) {
-  warnings.push('Deck has 5+ slides but no AIDX-02 executive summary page.');
-}
-
-if (slides.length >= 7 && !layoutSeq.some((layout) => layout === 'AIDX-03' || layout === 'AIDX-10')) {
-  errors.push('Deck has 7+ slides but no decision/request page. Include AIDX-03 or AIDX-10.');
-}
-
-if (slides.length >= 7 && !layoutSeq.some((layout) => layout === 'AIDX-05' || layout === 'AIDX-06')) {
-  errors.push('Deck has 7+ slides but no roadmap or risk page. Include AIDX-05 or AIDX-06.');
-}
-
-if (slides[0] && !/AIDX/.test(slides[0].html)) {
-  warnings.push('Slide 1 does not visibly include AIDX. Cover pages should expose the AIDX brand.');
+if (slides.length >= 8) {
+  const layouts = slides.map((s) => s.tag.match(/\bdata-layout="([^"]+)"/)?.[1]).filter(Boolean);
+  const uniqueLayouts = new Set(layouts);
+  if (uniqueLayouts.size < 6) warnings.push(`Deck has ${uniqueLayouts.size} unique layouts; 8+ slide decks should use at least 6.`);
 }
 
 if (warnings.length) {
@@ -159,9 +123,9 @@ if (warnings.length) {
 }
 
 if (errors.length) {
-  console.error('AIDX deck validation failed:');
+  console.error('AIDX Swiss deck validation failed:');
   for (const error of errors) console.error(`- ${error}`);
   process.exit(1);
 }
 
-console.log(`AIDX deck validation passed: ${slides.length} slide(s).`);
+console.log(`AIDX Swiss deck validation passed: ${slides.length} slide(s).`);

@@ -2,9 +2,9 @@
 
 | File | Style | Description |
 |---|---|---|
-| `aidx-showcase.html` | AIDX | 10-page executive brief sample covering every registered layout from `AIDX-01` to `AIDX-10` |
+| `aidx-showcase.html` | AIDX Swiss | 10-page sample using the Swiss `S01-S22` structure with AIDX light branding |
 
-Regenerate the AIDX showcase:
+Regenerate the showcase:
 
 ```bash
 node scripts/build-aidx-examples.mjs

@@ -1,71 +1,44 @@
-# AIDX Image Prompts
+# AIDX Swiss Image Prompts
 
-Use these prompts when generating visuals for an AIDX executive brief. AIDX visuals must prove a conclusion, explain a system, clarify a risk, or support a decision. Do not generate decorative "AI atmosphere" images.
+Generated visuals must support the slide conclusion. They are embedded assets, not standalone slides.
 
 ## Global Rules
 
-- Visual anchor: AIDX internal executive briefing, dark command center, terminal texture, bank-grade restraint.
-- Colors: AIDX dark surfaces, grayscale, `#3A5ECF`, `#063970`, `#5DADE2`, plus small status colors for risk or progress.
-- Geometry: straight rectangular modules, thin lines, compact labels, no 3D, no cartoon, no neon glow.
-- Language follows the deck language. Chinese deck uses Chinese labels; English deck uses English labels.
-- Do not add fake logos, watermarks, page numbers, browser chrome, slide titles, or decorative frames.
-- Outputs should be clean visual assets, not a full slide with header/footer.
-- Match the target slot before generating: `16:10` for evidence screenshots, `16:9` for architecture/KPI/risk visuals, `21:9` for social cover headers.
+- Visual anchor: AIDX Swiss executive brief, white/light canvas, 12/16-column grid, straight modules, thin hairlines.
+- Colors: white, light blue-gray, AIDX blue `#3A5ECF`, AIDX navy `#063970`, small cyan signal `#5DADE2`.
+- No page header, footer, page number, fake logo, watermark, browser chrome, decorative frame, neon glow, 3D, cartoon, or stock-photo atmosphere.
+- Match the target slot before generation: S22 `21:9`, S15/S16 grid assets `21:9`, faithful screenshots `16:10`.
 
-## Type 1 · Evidence Screenshot Adaptation
-
-Use for AIDX-09 or any page where the screenshot is evidence. Preserve real content whenever possible.
+## S22 Hero Evidence · 21:9
 
 ```text
-Adapt this product/workflow screenshot into a 16:10 evidence visual for an AIDX executive briefing. Preserve the real UI content, key text, metrics, and status indicators. Use a clean light canvas or restrained dark command-center support surface with clear margins. Do not crop important information. Do not add logos, titles, page numbers, browser chrome, or decorative frames. Output only the evidence visual.
+Create a 21:9 ultra-wide AIDX Swiss evidence visual for [topic]. Use a white or cool-light executive canvas, AIDX blue/navy accents, straight grid modules, thin hairlines, and generous negative space. Keep the main subject centered in the safe middle area. Do not include slide title, footer, page number, logo, watermark, browser chrome, or border.
 ```
 
-If sensitive information is present:
+## Screenshot Adaptation · 16:10
 
 ```text
-Adapt this screenshot into a 16:10 AIDX evidence visual. Preserve layout, key workflow states, and metric relationships, but mask names, account identifiers, customer data, tokens, and private URLs. Use AIDX blue/cyan only for subtle emphasis. Output only the evidence visual.
+Adapt this product/workflow screenshot into a 16:10 AIDX Swiss evidence visual. Preserve real UI content, key text, metrics, hierarchy, and status indicators. Use clear margins and a white/cool-light canvas. Mask names, account identifiers, customer data, tokens, and private URLs. Do not add logos, slide title, page chrome, page numbers, or decorative frames.
 ```
 
-## Type 2 · Architecture Capability Map
-
-Use for AIDX-07 or technical review pages.
+## System / Architecture Diagram · 16:9
 
 ```text
-Create a 16:9 AIDX architecture capability map showing how [platform layer], [capability layer], and [experience layer] connect. Use a dark command-center visual system with AIDX blue and cyan highlights, straight rectangular modules, thin connector lines, and short Chinese labels. Keep the diagram readable for executives: show boundaries, dependencies, and risk points, not low-level implementation detail. No 3D, no neon, no cartoon, no fake logos, no slide title, no page frame.
+Create a 16:9 AIDX Swiss system diagram showing [layers/modules] and their dependencies. Use straight rectangular modules, thin connector lines, concise Chinese labels, AIDX blue/navy emphasis, and a white executive briefing canvas. Show capability boundaries and risks, not implementation noise. No SVG-like decorative text, no fake logos, no neon, no 3D.
 ```
 
-## Type 3 · Risk and Decision Graphic
-
-Use for AIDX-03, AIDX-06, or decision review material.
+## KPI / Risk Visual · 16:9
 
 ```text
-Create a 16:9 AIDX decision graphic about [decision/risk/tradeoff]. The visual should contain 3-4 straight rectangular information modules, status colors for priority, concise Chinese labels, and a clear hierarchy from recommendation to risk to next action. Use a restrained dark executive briefing style with AIDX blue/cyan highlights. No complex background, no neon, no 3D, no people, no fake logos, no slide title or decorative frame.
+Create a 16:9 AIDX Swiss data visual for [metrics/risks]. Use large readable numbers, compact bars or ledger rows, thin hairlines, short Chinese labels, white/light-blue surfaces, and AIDX blue/navy hierarchy. The visual should prove a management conclusion. No generic SaaS dashboard, no logos, no page frame.
 ```
 
-## Type 4 · KPI Data Visual
-
-Use as a supplemental image for AIDX-04 or a report cover.
+## Multi-image Grid Asset · 21:9
 
 ```text
-Create a 16:9 AIDX KPI data visual for an executive briefing. Core metrics: [metric A], [metric B], [metric C]. Show large readable numbers, compact trend bars, short Chinese annotations, and subtle status indicators. Use dark panels, fixed grid structure, AIDX blue/cyan highlights, and bank-grade restraint. Do not make it look like a generic SaaS dashboard screenshot. No logos, no page header, no title, no page number, no decorative frame.
-```
-
-## Type 5 · Social Cover / Briefing Cover
-
-Use for WeChat 21:9 covers, 1:1 share cards, Xiaohongshu 3:4 covers, video thumbnails, or presentation posters.
-
-```text
-Create an AIDX executive briefing cover visual for [topic]. Use a dark command-center background, subtle terminal grid, AIDX blue/cyan signal lines, and one clear focal structure representing [core idea]. Leave clean space for a title overlay. Style should feel like an internal AI technology executive brief for AIDX / WeBank: restrained, precise, high-trust, not cyberpunk. No text, no logos, no watermark, no people, no 3D mascot. Aspect ratio: [21:9 / 1:1 / 3:4 / 16:9].
-```
-
-## Type 6 · Workflow Proof Diagram
-
-Use when the deck needs to show a process without relying on a real screenshot.
-
-```text
-Create a 16:9 AIDX workflow proof diagram showing [step 1] -> [step 2] -> [step 3] -> [audit/result]. Use four horizontal modules, thin connectors, small status tags, and concise Chinese labels. Dark executive command-center style, AIDX blue/cyan highlights, minimal status colors. The diagram should prove operational readiness, not decorate the page. No logos, no page title, no slide shell.
+Create one 21:9 AIDX Swiss grid asset about [evidence item]. Keep the same margins, line weight, color use, and visual scale as the other assets in the set. Use straight modules and concise labels only. Output only the asset, with no slide header, footer, logo, page number, or decorative frame.
 ```
 
 ## Negative Prompt
 
-Avoid: cyberpunk city, robot, humanoid AI, purple-blue glow, hologram, rounded SaaS cards, cartoon, 3D objects, fake brand logos, random code text, decorative bokeh, stock-photo people, unreadable microtext, page headers, page footers, slide numbers, watermarks.
+Avoid: cyberpunk city, humanoid AI, robot, purple glow, hologram, gradient wallpaper, rounded SaaS cards, heavy shadows, 3D objects, fake brand logos, unreadable microtext, stock-photo people, page headers, page footers, slide numbers, watermarks.

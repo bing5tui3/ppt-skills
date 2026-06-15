@@ -1,23 +1,22 @@
-# AIDX Screenshot Framing
+# AIDX Swiss Screenshot Framing
 
-AIDX screenshots are evidence. Treat them as proof for a conclusion, decision, risk, or progress signal. Preserve meaning first; styling supports readability and trust.
+Screenshots are evidence. Preserve meaning first; styling only improves readability and fit.
 
-## Default Slots
+## Slots
 
-| Use | Ratio | Recommended layout |
+| Use | Ratio | Layout |
 |---|---|---|
-| Evidence screenshot | 16:10 | `AIDX-09` with `.frame-img.r-16x10.fit-contain` |
-| Product/workflow proof | 16:10 | `AIDX-09` or a `slide light` appendix |
-| Architecture supplement | 16:9 | `AIDX-07` or inline generated visual |
-| KPI supplement | 16:9 | `AIDX-04` support panel |
-| Social cover | 21:9 / 1:1 / 3:4 / 16:9 | Generated from `image-prompts.md` |
+| Main case evidence | 21:9 | S22 with `data-image-slot="s22-hero-21x9"` |
+| Faithful UI evidence | 16:10 | S08/S15/S16 support area with `.frame-img.r-16x10.fit-contain` |
+| Multi-image evidence | 21:9 each | S15 `s15-grid-21x9` or S16 `s16-brief-21x9` |
+| Architecture/KPI supplement | 16:9 | S17/S20/S21 support visual |
 
 ## HTML Requirements
 
 ```html
-<figure class="frame-img r-16x10 fit-contain" data-image-slot="aidx-evidence-16x10">
-  <img src="images/07-workflow-evidence.png" alt="AIDX workflow evidence">
-</figure>
+<div class="frame-img r-21x9" data-image-slot="s22-hero-21x9">
+  <img src="images/08-workflow-proof.png" alt="AIDX workflow proof">
+</div>
 ```
 
 - Local files live under `images/`.
@@ -27,48 +26,25 @@ AIDX screenshots are evidence. Treat them as proof for a conclusion, decision, r
 
 ## Faithful Adaptation
 
-Use faithful adaptation when the screenshot is evidence:
+Use faithful adaptation when the screenshot is proof:
 
 - Preserve important text, numbers, UI hierarchy, status indicators, and error states.
 - Do not invent UI controls or metrics.
 - Do not crop out evidence needed to support the slide conclusion.
-- Mask sensitive names, account identifiers, customer data, tokens, private URLs, and internal secrets.
-- Prefer `slide light` when the original screenshot is light and contains dense text.
+- Mask sensitive names, accounts, tokens, URLs, customer data, and internal secrets.
+- Use `.fit-contain` for dense screenshots.
 
-## Programmatic Framing
+## S22 Placement
 
-When the original screenshot is already usable:
-
-1. Place it on a 16:10 canvas.
-2. Add clear margins around the screenshot.
-3. Use a quiet AIDX support surface:
-   - Light evidence canvas: `#f5f7fb` with subtle `#d8dde8` grid lines.
-   - Dark evidence canvas: `#0F0F11` with subtle `#242428` grid lines and low-opacity AIDX blue/cyan lines.
-4. Keep corners at 6px or less.
-5. Avoid heavy shadows; use thin borders instead.
-
-## Redesign Through Image Generation
-
-Use generated redesign only when:
-
-- The source screenshot is too long, narrow, cluttered, or low-resolution.
-- The content is conceptual and does not need exact UI fidelity.
-- Sensitive information makes direct screenshot use impractical.
-
-Prompt source: `references/image-prompts.md`, Type 1.
-
-## Placement Rules
-
-- Explain what the screenshot proves in nearby text.
-- Do not repeat every visible button or label.
-- Add one callout only if it materially improves comprehension.
-- Keep captions short and factual.
-- Do not place screenshot edges behind nav dots or browser-safe margins.
+- S22 hero visuals should be close to 21:9.
+- For photos, keep the subject in the central safe area and avoid `object-position:top center`.
+- For UI visuals, regenerate or frame to 21:9 when possible.
+- Do not let captions or KPI rows overlap the bottom nav dots.
 
 ## Final Checks
 
 - Screenshot text is readable at presentation size.
 - Important content is not cropped.
 - Sensitive data is masked.
-- The image slot name matches its use.
-- Validator passes.
+- Slot names match the chosen Sxx layout.
+- `node scripts/validate-aidx-deck.mjs path/to/index.html` passes.
