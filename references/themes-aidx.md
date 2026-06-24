@@ -1,6 +1,6 @@
 # AIDX Theme
 
-AIDX keeps the registered layout structure and replaces only the brand tone: light executive canvas, AIDX blue/navy, subtle grid lines, and WeBank endorsement.
+AIDX uses the registered layout structure, light management-review canvas, AIDX blue/navy, subtle grid lines, and WeBank endorsement.
 
 ## Fixed Variables
 

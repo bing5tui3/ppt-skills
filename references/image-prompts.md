@@ -4,7 +4,7 @@ Generated visuals must support the slide conclusion. They are embedded assets, n
 
 ## Global Rules
 
-- Visual anchor: AIDX executive brief, white/light canvas, 12/16-column grid, straight modules, thin hairlines.
+- Visual anchor: AIDX management review, white/light canvas, 12/16-column grid, straight modules, thin hairlines.
 - Colors: white, light blue-gray, AIDX blue `#3A5ECF`, AIDX navy `#063970`, small cyan signal `#5DADE2`.
 - No page header, footer, page number, fake logo, watermark, browser chrome, decorative frame, neon glow, 3D, cartoon, or stock-photo atmosphere.
 - Match the target slot before generation: S22 `21:9`, S15/S16 grid assets `21:9`, faithful screenshots `16:10`.
@@ -12,7 +12,7 @@ Generated visuals must support the slide conclusion. They are embedded assets, n
 ## S22 Hero Evidence · 21:9
 
 ```text
-Create a 21:9 ultra-wide AIDX evidence visual for [topic]. Use a white or cool-light executive canvas, AIDX blue/navy accents, straight grid modules, thin hairlines, and generous negative space. Keep the main subject centered in the safe middle area. Do not include slide title, footer, page number, logo, watermark, browser chrome, or border.
+Create a 21:9 ultra-wide AIDX evidence visual for [topic]. Use a white or cool-light management-review canvas, AIDX blue/navy accents, straight grid modules, thin hairlines, and generous negative space. Keep the main subject centered in the safe middle area. Do not include slide title, footer, page number, logo, watermark, browser chrome, or border.
 ```
 
 ## Screenshot Adaptation · 16:10
@@ -24,7 +24,7 @@ Adapt this product/workflow screenshot into a 16:10 AIDX evidence visual. Preser
 ## System / Architecture Diagram · 16:9
 
 ```text
-Create a 16:9 AIDX system diagram showing [layers/modules] and their dependencies. Use straight rectangular modules, thin connector lines, concise Chinese labels, AIDX blue/navy emphasis, and a white executive briefing canvas. Show capability boundaries and risks, not implementation noise. No SVG-like decorative text, no fake logos, no neon, no 3D.
+Create a 16:9 AIDX system diagram showing [layers/modules] and their dependencies. Use straight rectangular modules, thin connector lines, concise Chinese labels, AIDX blue/navy emphasis, and a white management-review canvas. Show capability boundaries and risks, not implementation noise. No SVG-like decorative text, no fake logos, no neon, no 3D.
 ```
 
 ## KPI / Risk Visual · 16:9

@@ -1,6 +1,6 @@
 # Layouts · AIDX
 
-AIDX uses the registered `S01-S22` layout structure. It does not use the older `AIDX-01..10` stage layouts.
+AIDX uses the registered `S01-S22` layout structure and `.slide` + `.canvas-card` page model.
 
 Every slide must be:
 
@@ -66,7 +66,7 @@ Use this header pattern unless a split layout needs one header per half:
 
         </svg>
       </span>
-      <span class="aidx-brand-copy"><span class="aidx-brand-title">AIDX</span><span class="aidx-brand-subtitle">Executive Brief</span></span>
+      <span class="aidx-brand-copy"><span class="aidx-brand-title">AIDX</span><span class="aidx-brand-subtitle">AIDX Review</span></span>
     </span>
   </div>
   <div class="r brand-meta"><span>CONFIDENTIAL</span><span class="brand-rule"></span><b>WeBank</b><span>01 / NN</span></div>
@@ -76,7 +76,7 @@ Use this header pattern unless a split layout needs one header per half:
 Use this footer pattern when the layout has a normal bottom row:
 
 ```html
-<footer class="aidx-footer"><span>Executive Brief</span><span><b>AIDX</b> · WeBank</span></footer>
+<footer class="aidx-footer"><span>AIDX Review</span><span><b>AIDX</b> · WeBank</span></footer>
 ```
 
 ## Registered Layouts
@@ -90,7 +90,7 @@ Use this footer pattern when the layout has a normal bottom row:
 | S05 | Three Layers | Three stacked/layered blocks | Three-part model |
 | S06 | KPI Tower | Four unequal KPI towers | Comparable quantitative metrics |
 | S07 | Horizontal Bar | Ranked horizontal bars | 5-10 comparable values |
-| S08 | Duo Compare | Two mirrored columns with center rule | Before/after, option A/B |
+| S08 | Duo Compare | Two mirrored columns with center rule | Decision tradeoff, option A/B |
 | S09 | Dot Matrix Statement | Large statement plus matrix geometry | Breathing thesis page |
 | S10 | Split Closing | Split closing statement plus takeaways | Final request or manifesto |
 | S11 | Horizontal Timeline | Axis with 4-7 nodes | Process or staged rollout |
@@ -108,7 +108,7 @@ Use this footer pattern when the layout has a normal bottom row:
 
 ## Layout Selection
 
-For an 8-10 page executive brief, prefer:
+For an 8-10 page management review, prefer:
 
 | Page | Layout | Role |
 |---|---|---|

@@ -17,9 +17,9 @@ const AVATAR = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
   <line x1="29" y1="28.5" x2="35" y2="28.5" stroke="#063970" stroke-width="2.8" stroke-linecap="round"/>
 </svg>`;
 
-function brandChrome(page, section = 'EXEC BRIEF', total = '10') {
+function brandChrome(page, section = 'AIDX REVIEW', total = '10') {
   return `<header class="chrome-min brand-chrome">
-    <div class="l"><span class="aidx-brand"><span class="aidx-avatar-mark" aria-hidden="true">${AVATAR}</span><span class="aidx-brand-copy"><span class="aidx-brand-title">AIDX</span><span class="aidx-brand-subtitle">Executive Brief</span></span></span></div>
+    <div class="l"><span class="aidx-brand"><span class="aidx-avatar-mark" aria-hidden="true">${AVATAR}</span><span class="aidx-brand-copy"><span class="aidx-brand-title">AIDX</span><span class="aidx-brand-subtitle">AIDX Review</span></span></span></div>
     <div class="r brand-meta"><span>${section}</span><span class="brand-rule"></span><b>WeBank</b><span>${page} / ${total}</span></div>
   </header>`;
 }
@@ -31,11 +31,11 @@ function footer(left, right = '<b>AIDX</b> · WeBank') {
 function writeDeck(relativePath, title, slidesHtml) {
   const template = readFileSync(templatePath, 'utf8');
   const output = template
-    .replace('[必填] 替换为 PPT 标题 · AIDX Brief', title)
+    .replace('[必填] 填写 PPT 标题 · AIDX Review', title)
     .replace(/<!-- SLIDES_HERE[\s\S]*?-->/, slidesHtml);
 
   if (/\[必填\]|data-layout="AIDX-|class="[^"]*\bstage\b/.test(output)) {
-    throw new Error(`${relativePath} contains unresolved placeholders or old AIDX stage layouts.`);
+    throw new Error(`${relativePath} contains unresolved placeholders or unsupported AIDX layout markers.`);
   }
 
   const outputPath = resolve(repoRoot, relativePath);
@@ -51,9 +51,9 @@ const slides = [
     <div style="flex:1;display:grid;grid-template-rows:auto 1fr auto;gap:4vh">
       <div class="t-meta" data-anim="up">AI Developer Experience · Registered Layouts</div>
       <div data-anim="up" style="align-self:center;display:grid;grid-template-columns:minmax(0,3fr) minmax(0,2fr);gap:5vw;align-items:end">
-        <h1 class="h-hero-zh" style="font-size:min(7.8vw,13vh);line-height:1.02;color:var(--text-primary)">AIDX<br>工程效能<br>高层汇报</h1>
+        <h1 class="h-hero-zh" style="font-size:min(7.8vw,13vh);line-height:1.02;color:var(--text-primary)">AIDX<br>工程效能<br>管理同步</h1>
         <div style="display:flex;flex-direction:column;gap:2vh;border-left:1px solid var(--border-subtle);padding-left:3vw">
-          <p class="lead" style="color:var(--text-secondary);max-width:34ch">保留 S01-S22 结构,替换为 AIDX 浅色品牌、avatar-terminal 与 WeBank 背书。</p>
+          <p class="lead" style="color:var(--text-secondary);max-width:34ch">使用 S01-S22 结构、AIDX 浅色品牌、avatar-terminal 与 WeBank 背书。</p>
           <div class="meta-row"><span>10 Slides</span><span class="dot"></span><span>S01-S22</span><span class="dot"></span><span>Light System</span></div>
         </div>
       </div>
@@ -132,7 +132,7 @@ const slides = [
     ${brandChrome('05', 'COMPARE')}
     <div style="display:flex;flex-direction:column;gap:2vh">
       <div class="t-cat accent">方案对比</div>
-      <h2 class="h-xl-zh" style="font-size:min(5vw,8.8vh)">AIDX 模式解决旧流程的三个断点</h2>
+      <h2 class="h-xl-zh" style="font-size:min(5vw,8.8vh)">AIDX 模式聚焦流程协同的三个断点</h2>
     </div>
     <div class="duo-compare" data-anim="up">
       <div class="col"><div class="col-tag"><span class="num">01</span>Before</div><div class="col-ttl">旧工程协作</div><p class="col-desc">上下文散落在需求、IM、文档和代码仓库,风险发现依赖个人经验。</p><ul class="col-list"><li>评审质量不可复制</li><li>风险后置,返工成本高</li><li>审计链路不完整</li></ul></div>
@@ -170,7 +170,7 @@ const slides = [
       <div data-anim="up" style="display:flex;flex-direction:column;gap:2vh">
         <div class="t-cat accent">能力地图</div>
         <h2 class="h-xl-zh" style="font-size:min(4.8vw,8.2vh)">AIDX 能力栈支撑三类工程场景</h2>
-        <p class="lead" style="color:var(--text-secondary)">高层只需要看到体验层、平台层、治理层的边界和依赖关系。</p>
+      <p class="lead" style="color:var(--text-secondary)">决策者只需要看到体验层、平台层、治理层的边界和依赖关系。</p>
       </div>
       <div data-anim="up" style="display:grid;grid-template-rows:repeat(3,1fr);gap:1.6vh">
         <div class="card-fill" style="padding:2.2vh 2vw;display:grid;grid-template-columns:10em 1fr;gap:1vw;align-items:center"><div class="t-cat accent">Experience</div><div class="body">IDE Assistant · Code Review · Docs QA · Issue Triage</div></div>
@@ -212,7 +212,7 @@ const slides = [
       </div>
     </div>
     <div data-anim="kpi" class="image-hero-body">
-      <div style="max-width:48ch;font-family:var(--sans),var(--sans-zh);font-size:max(16px,1.3vw);line-height:1.55;font-weight:400;color:var(--text-primary);letter-spacing:-.005em">这页展示 S22 的 21:9 证据槽位。正式汇报时替换为真实工作流截图或产品证据图。</div>
+      <div style="max-width:48ch;font-family:var(--sans),var(--sans-zh);font-size:max(16px,1.3vw);line-height:1.55;font-weight:400;color:var(--text-primary);letter-spacing:-.005em">这页展示 S22 的 21:9 证据槽位。正式汇报时使用真实工作流截图或产品证据图。</div>
       <div class="image-hero-stats" style="gap:4vw">
         <div style="display:flex;flex-direction:column;gap:.6vh"><div style="height:1px;background:var(--ink)"></div><div class="t-meta">Signal 01</div><div style="font-family:var(--sans);font-weight:200;font-size:min(4.6vw,7.6vh);line-height:.95;letter-spacing:-.04em">4</div><div style="height:1px;background:var(--border-subtle);margin-top:auto"></div><p class="body-sm">流程状态闭环</p></div>
         <div style="display:flex;flex-direction:column;gap:.6vh"><div style="height:1px;background:var(--ink)"></div><div class="t-meta">Signal 02</div><div style="font-family:var(--sans);font-weight:200;font-size:min(4.6vw,7.6vh);line-height:.95;letter-spacing:-.04em">16:10</div><div style="height:1px;background:var(--border-subtle);margin-top:auto"></div><p class="body-sm">截图适配入口</p></div>
@@ -449,11 +449,11 @@ const productEvidenceSlides = [
       </div>
     </div>
     <div data-anim="kpi" class="image-hero-body">
-      <div style="max-width:48ch;font-family:var(--sans),var(--sans-zh);font-size:max(16px,1.3vw);line-height:1.55;font-weight:400;color:var(--text-primary);letter-spacing:-.005em">正式交付时把上方占位图替换为真实截图或重新生成的 21:9 证据图,并保留数据脱敏。</div>
+      <div style="max-width:48ch;font-family:var(--sans),var(--sans-zh);font-size:max(16px,1.3vw);line-height:1.55;font-weight:400;color:var(--text-primary);letter-spacing:-.005em">正式交付时使用脱敏后的真实截图或 21:9 证据图,保持输入、流程、输出的完整链路。</div>
       <div class="image-hero-stats" style="gap:4vw">
         <div><div class="t-meta">Proof</div><div class="kpi-big">21:9</div><p class="body-sm">证据主图槽位</p></div>
         <div><div class="t-meta">Scope</div><div class="kpi-big">3</div><p class="body-sm">输入、流程、输出</p></div>
-        <div><div class="t-meta">Status</div><div class="kpi-big" style="color:var(--accent)">Live</div><p class="body-sm">可替换真实截图</p></div>
+        <div><div class="t-meta">Status</div><div class="kpi-big" style="color:var(--accent)">Live</div><p class="body-sm">接入真实截图</p></div>
       </div>
     </div>
   </div>
@@ -555,6 +555,6 @@ const productEvidenceSlides = [
 </section>`,
 ].join('\n\n');
 
-writeDeck('examples/aidx-showcase.html', 'AIDX Showcase · Executive Brief', slides);
-writeDeck('examples/aidx-governance-review.html', 'AIDX Governance Review · Executive Brief', governanceSlides);
-writeDeck('examples/aidx-product-evidence.html', 'AIDX Product Evidence · Executive Brief', productEvidenceSlides);
+writeDeck('examples/aidx-showcase.html', 'AIDX Showcase · AIDX Review', slides);
+writeDeck('examples/aidx-governance-review.html', 'AIDX Governance Review · AIDX Review', governanceSlides);
+writeDeck('examples/aidx-product-evidence.html', 'AIDX Product Evidence · AIDX Review', productEvidenceSlides);

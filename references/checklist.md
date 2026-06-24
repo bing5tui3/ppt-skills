@@ -17,7 +17,7 @@ Use this before calling an AIDX deck done.
 - Each page has AIDX brand chrome with inline `avatar-terminal.svg`.
 - Footer or right meta includes `AIDX · WeBank` or `WeBank` endorsement.
 - No `/Users/.../brand/*.svg`, `file://`, or private remote logo path appears in the generated deck.
-- Do not use the old X-shaped wordmark as default chrome.
+- Use the inline `avatar-terminal.svg` wordmark as default chrome.
 
 ### Theme
 

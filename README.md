@@ -1,8 +1,8 @@
 > English version: [README.en.md](./README.en.md)
 
-`aidx-ppt-skill` 是一个适配 Claude Code / Codex 等 Agent 环境的网页 PPT skill,用于生成 **AIDX / WeBank 内部高层汇报风格**的单文件 HTML 横向翻页 deck、PPT 配图和多平台封面。
+`aidx-ppt-skill` 是一个适配 Claude Code / Codex 等 Agent 环境的网页 PPT skill,用于生成 **AIDX / WeBank 内部管理同步风格**的单文件 HTML 横向翻页 deck、PPT 配图和多平台封面。
 
-当前模板是 **AIDX**:保留 `S01-S22` 登记版式结构,把视觉替换成 AIDX 浅色调、`avatar-terminal` 品牌头像、AIDX + WeBank 页眉页脚和轻量网格。
+当前模板是 **AIDX**:使用 `S01-S22` 登记版式结构、AIDX 浅色调、`avatar-terminal` 品牌头像、AIDX + WeBank 页眉页脚和轻量网格。
 
 ## 效果展示
 
@@ -10,11 +10,11 @@
 
 ![AIDX cover preview](./assets/readme/aidx-cover.png)
 
-**AIDX Executive Page**
+**AIDX Summary Page**
 
-![AIDX executive summary preview](./assets/readme/aidx-executive-summary.png)
+![AIDX summary preview](./assets/readme/aidx-summary.png)
 
-样例: [AIDX Showcase](./examples/aidx-showcase.html)、[Governance Review](./examples/aidx-governance-review.html)、[Product Evidence](./examples/aidx-product-evidence.html) - 覆盖高层汇报、治理周报、产品证据复盘等场景。
+样例: [AIDX Showcase](./examples/aidx-showcase.html)、[Governance Review](./examples/aidx-governance-review.html)、[Product Evidence](./examples/aidx-product-evidence.html) - 覆盖管理同步、治理周报、产品证据复盘等场景。
 
 ## 30 秒开始
 
@@ -25,7 +25,7 @@ npx skills add https://github.com/bing5tui3/ppt-skills --skill aidx-ppt-skill
 安装后直接对 Agent 说:
 
 ```text
-帮我基于这份材料做一份 AIDX 高层汇报 PPT,控制在 8-10 页,需要执行摘要、风险、路线图和结尾决策请求。
+帮我基于这份材料做一份 AIDX 管理同步 PPT,控制在 8-10 页,需要执行摘要、风险、路线图和结尾决策请求。
 ```
 
 也可以试这些请求:
@@ -44,11 +44,11 @@ npx skills add https://github.com/bing5tui3/ppt-skills --skill aidx-ppt-skill
 - **横向左右翻页**:键盘 ← → / 滚轮 / 触屏滑动 / 底部圆点 / ESC 索引
 - **低性能静态模式**:按 `B` 可关闭 canvas 动画
 - **单文件 HTML**:不需要构建、不需要服务器,浏览器直接打开
-- **AIDX 校验器**:检查 `Sxx`、`.canvas-card`、品牌、图片槽位、本机路径和旧版式残留
+- **AIDX 校验器**:检查 `Sxx`、`.canvas-card`、品牌、图片槽位、本机路径和结构一致性
 
 ## 适合 / 不适合
 
-**合适**:AIDX / WeBank 内部高层汇报、AI 科技管理层进展同步、工程效能汇报、研发平台治理、资源申请、风险升级、路线图复盘。
+**合适**:AIDX / WeBank 内部管理同步、AI 科技管理层进展同步、工程效能汇报、研发平台治理、资源申请、风险升级、路线图复盘。
 
 **不合适**:大段表格培训课件、需要多人协作编辑的原生 PPT、无 AIDX / WeBank 语境的公开营销页。
 

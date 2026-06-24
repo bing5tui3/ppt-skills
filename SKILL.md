@@ -1,6 +1,6 @@
 ---
 name: aidx-ppt-skill
-description: 生成 AIDX / WeBank 内部高层汇报风格的横向翻页网页 PPT（单 HTML 文件），保留 S01-S22 登记版式结构，使用 AIDX 浅色调、avatar-terminal 品牌头像、AIDX + WeBank 页眉页脚、轻量网格、KPI、时间线、对比、系统图、证据图和结尾请求。当用户需要制作 AIDX 风 PPT、AI 科技高层汇报、内部决策会、工程效能汇报、管理层进展同步或 horizontal swipe executive deck 时使用。
+description: 生成 AIDX / WeBank 内部管理同步风格的横向翻页网页 PPT（单 HTML 文件），使用 S01-S22 登记版式结构、AIDX 浅色调、avatar-terminal 品牌头像、AIDX + WeBank 页眉页脚、轻量网格、KPI、时间线、对比、系统图、证据图和结尾请求。当用户需要制作 AIDX 风 PPT、AI 科技管理同步、内部决策会、工程效能汇报、管理层进展同步或 horizontal swipe management deck 时使用。
 ---
 
 # AIDX PPT Skill
@@ -11,12 +11,12 @@ description: 生成 AIDX / WeBank 内部高层汇报风格的横向翻页网页 
 
 ## 这个 Skill 做什么
 
-生成一份**单文件 HTML**的横向翻页 AIDX 高层汇报 PPT。当前模板是 **AIDX**:
+生成一份**单文件 HTML**的横向翻页 AIDX 管理同步 PPT。当前模板是 **AIDX**:
 
 - 保留 `S01-S22` 登记版式结构、模块化网格、直角、发丝线和大字号轻字重。
-- 替换为 AIDX 浅色调:白底、浅蓝灰、AIDX blue、AIDX navy、少量 cyan。
+- 使用 AIDX 浅色调:白底、浅蓝灰、AIDX blue、AIDX navy、少量 cyan。
 - 页眉使用内联 `avatar-terminal.svg` + `AIDX`;页脚/右侧 meta 使用 `AIDX · WeBank` 背书。
-- 每页是 `.slide` + `.canvas-card`,不再使用旧 `.stage` / `AIDX-01..10`。
+- 每页是 `.slide` + `.canvas-card`,使用 `S01-S22` 登记版式。
 - 键盘、滚轮、触屏、底部圆点、ESC 索引和 `B` 低功耗模式可用。
 
 核心文件:
@@ -36,7 +36,7 @@ description: 生成 AIDX / WeBank 内部高层汇报风格的横向翻页网页 
 
 **合适的场景**:
 
-- AIDX / WeBank 内部高层汇报
+- AIDX / WeBank 内部管理同步
 - AI 科技管理层进展同步
 - 工程效能、研发平台、AI 工具链、治理看板汇报
 - 资源申请、范围批准、风险升级、里程碑复盘
@@ -47,7 +47,7 @@ description: 生成 AIDX / WeBank 内部高层汇报风格的横向翻页网页 
 - 大段表格培训课件
 - 需要多人在 PPT 软件里协作编辑
 - 无法使用 AIDX / WeBank 语境的公开营销页
-- 纯视觉海报而非高层决策汇报
+- 纯视觉海报而非管理决策材料
 
 ## 工作流
 
@@ -99,7 +99,7 @@ rg "\\[必填\\]" "项目/XXX/ppt/index.html"
 |---|---|---|
 | 1 | `S01` | 封面:主题、范围、影响和 ask |
 | 2 | `S03` 或 `S18` | 核心结论 / 为什么现在 |
-| 3 | `S08` | 关键决策或 before/after |
+| 3 | `S08` | 关键决策或方案对照 |
 | 4 | `S06` 或 `S20` | KPI / 风险账单 |
 | 5 | `S11` | 路线图 / 阶段推进 |
 | 6 | `S17` 或 `S14` | 架构能力图 / 闭环流程 |

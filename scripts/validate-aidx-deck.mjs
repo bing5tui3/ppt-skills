@@ -25,11 +25,11 @@ const slides = [...htmlForSlides.matchAll(slideRe)].map((m, idx) => ({
 if (!slides.length) errors.push('No <section class="slide"> pages found.');
 
 if (/data-layout="AIDX-\d+/i.test(htmlForSlides)) {
-  errors.push('Found old AIDX-xx layout ids. AIDX uses S01-S22 only.');
+  errors.push('Found unsupported AIDX-xx layout ids. AIDX uses S01-S22 only.');
 }
 
 if (/\bclass="[^"]*\bstage\b/i.test(htmlForSlides)) {
-  errors.push('Found old .stage canvas. AIDX uses .canvas-card.');
+  errors.push('Found unsupported .stage canvas. AIDX uses .canvas-card.');
 }
 
 if (/\/Users\/|file:\/\//.test(htmlForSlides)) {

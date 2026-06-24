@@ -1,6 +1,6 @@
-`aidx-ppt-skill` is an agent skill for Claude Code, Codex, and similar coding-agent environments. It generates **AIDX / WeBank internal executive brief** decks as single-file horizontal-swipe HTML, plus deck visuals and social cover pages.
+`aidx-ppt-skill` is an agent skill for Claude Code, Codex, and similar coding-agent environments. It generates **AIDX / WeBank internal management review** decks as single-file horizontal-swipe HTML, plus deck visuals and social cover pages.
 
-The current template is **AIDX**: it keeps the registered `S01-S22` layout structure and replaces the visual layer with AIDX light colors, the `avatar-terminal` brand mark, AIDX + WeBank chrome, and a restrained grid system.
+The current template is **AIDX**: it uses the registered `S01-S22` layout structure, AIDX light colors, the `avatar-terminal` brand mark, AIDX + WeBank chrome, and a restrained grid system.
 
 ## Preview
 
@@ -8,11 +8,11 @@ The current template is **AIDX**: it keeps the registered `S01-S22` layout struc
 
 ![AIDX cover preview](./assets/readme/aidx-cover.png)
 
-**AIDX Executive Page**
+**AIDX Summary Page**
 
-![AIDX executive summary preview](./assets/readme/aidx-executive-summary.png)
+![AIDX summary preview](./assets/readme/aidx-summary.png)
 
-Examples: [AIDX Showcase](./examples/aidx-showcase.html), [Governance Review](./examples/aidx-governance-review.html), and [Product Evidence](./examples/aidx-product-evidence.html), covering executive brief, governance review, and product evidence review scenarios.
+Examples: [AIDX Showcase](./examples/aidx-showcase.html), [Governance Review](./examples/aidx-governance-review.html), and [Product Evidence](./examples/aidx-product-evidence.html), covering management review, governance review, and product evidence review scenarios.
 
 ## 30-second start
 
@@ -23,13 +23,13 @@ npx skills add https://github.com/bing5tui3/ppt-skills --skill aidx-ppt-skill
 Then ask your agent:
 
 ```text
-Create an AIDX executive brief from this material, around 8-10 slides, with an executive summary, risk, roadmap, and closing decision request.
+Create an AIDX management review from this material, around 8-10 slides, with a decision summary, risk, roadmap, and closing decision request.
 ```
 
 Other useful prompts:
 
 ```text
-Turn this engineering productivity review into an AIDX management brief.
+Turn this engineering productivity review into an AIDX management review.
 Adapt this product screenshot into an S22 21:9 evidence visual.
 Create a 21:9 social cover from the core conclusion of this brief.
 ```
@@ -42,11 +42,11 @@ Create a 21:9 social cover from the core conclusion of this brief.
 - **Horizontal swipe navigation**: arrow keys, scroll wheel, touch swipe, bottom dots, and ESC overview
 - **Low-power static mode**: press `B` to disable canvas motion
 - **Single HTML delivery**: no build step, no server, open directly in a browser
-- **AIDX validator**: checks `Sxx`, `.canvas-card`, brand chrome, image slots, local paths, and stale old-layout residue
+- **AIDX validator**: checks `Sxx`, `.canvas-card`, brand chrome, image slots, local paths, and structural consistency
 
 ## Fits / Doesn't Fit
 
-**Fits**: AIDX / WeBank internal executive briefs, AI technology management updates, engineering productivity reports, platform governance, resource requests, risk escalation, roadmap reviews.
+**Fits**: AIDX / WeBank internal management reviews, AI technology management updates, engineering productivity reports, platform governance, resource requests, risk escalation, roadmap reviews.
 
 **Doesn't fit**: dense training decks, multi-user native PowerPoint editing, public marketing pages without AIDX / WeBank context.
 
@@ -57,7 +57,7 @@ Create a 21:9 social cover from the core conclusion of this brief.
 | Management progress brief | Use `S03/S18` for the core conclusion, then support it with KPI, risk, and roadmap pages |
 | Resource request / scope approval | Use `S08` for tradeoffs and `S10` for closing asks |
 | Engineering productivity review | Use `S06/S20` for metrics and `S11` for rollout |
-| Architecture / capability map | Use `S17` or `S14`, keeping only executive-level boundaries |
+| Architecture / capability map | Use `S17` or `S14`, keeping only decision-level boundaries |
 | Product or workflow screenshot | Use `S22` 21:9 evidence hero or a 16:10 faithful screenshot slot |
 | Social covers | Generate WeChat, share-card, Xiaohongshu, and video cover variants from the same idea |
 

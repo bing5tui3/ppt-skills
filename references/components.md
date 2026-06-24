@@ -21,7 +21,7 @@ Reusable components are defined in `assets/template-aidx.html`.
 ```html
 <span class="aidx-brand">
   <span class="aidx-avatar-mark" aria-hidden="true">...inline avatar-terminal.svg...</span>
-  <span class="aidx-brand-copy"><span class="aidx-brand-title">AIDX</span><span class="aidx-brand-subtitle">Executive Brief</span></span>
+  <span class="aidx-brand-copy"><span class="aidx-brand-title">AIDX</span><span class="aidx-brand-subtitle">AIDX Review</span></span>
 </span>
 ```
 
