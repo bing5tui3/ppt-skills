@@ -1,6 +1,6 @@
 `aidx-ppt-skill` is an agent skill for Claude Code, Codex, and similar coding-agent environments. It generates **AIDX / WeBank internal management review** decks as single-file horizontal-swipe HTML, plus deck visuals and social cover pages.
 
-The current template is **AIDX**: it uses the registered `S01-S22` layout structure, AIDX light colors, the `avatar-terminal` brand mark, AIDX + WeBank chrome, and a restrained grid system.
+The current template is **AIDX**: it uses the registered `S01-S22` layout structure, AIDX Color System v1.0.0, the light-background gradient `avatar-terminal` brand mark, AIDX + WeBank chrome, and a restrained grid system.
 
 ## Preview
 
@@ -37,12 +37,14 @@ Create a 21:9 social cover from the core conclusion of this brief.
 ## What you get
 
 - **One AIDX visual system**: white/light surfaces, subtle grid, AIDX blue/navy, bank-grade restraint
+- **Semantic brand color**: Core Navy for identity, Action Blue for action, and Signal Cyan only for AI signals
+- **Status and chart discipline**: semantic success, warning, danger, info, and AI states; categorical charts stop at eight colors
 - **22 registered layouts**: `S01-S22` for covers, timelines, KPI, comparison, system maps, evidence visuals, and closing requests
-- **Locked AIDX branding**: inline `avatar-terminal.svg`, AIDX header, `AIDX · WeBank` footer or meta endorsement
+- **Locked AIDX branding**: inline the official light-background gradient `avatar-terminal.svg`, AIDX header, and `AIDX · WeBank` footer or meta endorsement
 - **Horizontal swipe navigation**: arrow keys, scroll wheel, touch swipe, bottom dots, and ESC overview
 - **Low-power static mode**: press `B` to disable canvas motion
 - **Single HTML delivery**: no build step, no server, open directly in a browser
-- **AIDX validator**: checks `Sxx`, `.canvas-card`, brand chrome, image slots, local paths, and structural consistency
+- **AIDX validator**: checks `Sxx`, `.canvas-card`, the brand color snapshot, semantic status, image slots, local paths, and structural consistency
 
 ## Fits / Doesn't Fit
 
@@ -96,6 +98,7 @@ aidx-ppt-skill/
 │   ├── build-aidx-examples.mjs
 │   └── validate-aidx-deck.mjs
 └── references/
+    ├── aidx-colors.json
     ├── checklist.md
     ├── components.md
     ├── image-prompts.md
@@ -110,6 +113,12 @@ Regenerate all examples:
 
 ```bash
 node scripts/build-aidx-examples.mjs
+```
+
+Validate template colors against the vendored brand snapshot:
+
+```bash
+node scripts/validate-aidx-deck.mjs assets/template-aidx.html --template
 ```
 
 Validate all examples:

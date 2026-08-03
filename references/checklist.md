@@ -14,16 +14,23 @@ Use this before calling an AIDX deck done.
 
 ### Brand
 
-- Each page has AIDX brand chrome with inline `avatar-terminal.svg`.
+- Each page has AIDX brand chrome with the official light-background gradient `avatar-terminal.svg` inlined.
 - Footer or right meta includes `AIDX · WeBank` or `WeBank` endorsement.
 - No `/Users/.../brand/*.svg`, `file://`, or private remote logo path appears in the generated deck.
-- Use the inline `avatar-terminal.svg` wordmark as default chrome.
+- Give every inline avatar instance unique gradient and filter IDs.
+- Use the inline gradient `avatar-terminal.svg` mark as default chrome.
 
 ### Theme
 
 - Use `references/themes-aidx.md` variables.
-- Pages stay in the light AIDX family: white, light blue-gray, pale AIDX blue.
+- Canonical `--aidx-*` values match `references/aidx-colors.json`.
+- New slide content uses canonical `--aidx-*` roles; legacy aliases are compatibility-only.
+- Pages stay in the light AIDX family: `surface.base`, `surface.canvas`, `surface.subtle`, and `action.subtle`.
 - `slide dark` is not a black command-center page.
+- Risk and progress states use `.status-chip`, a matching `data-status`, and visible status text.
+- Signal Cyan appears only in explicit AI state, motion or a small AI signal.
+- Categorical charts use no more than eight series and retain a non-color identification channel.
+- Colored effects are limited to `--aidx-gradient-core`, `--aidx-gradient-ai`, and `--aidx-glow-ai`.
 - No generic neon, cyberpunk, purple-blue glow, gradient wallpaper, or decorative blobs.
 
 ### Layout Fidelity
@@ -45,6 +52,7 @@ Use this before calling an AIDX deck done.
 Run:
 
 ```bash
+node scripts/validate-aidx-deck.mjs assets/template-aidx.html --template
 node scripts/validate-aidx-deck.mjs path/to/index.html
 ```
 

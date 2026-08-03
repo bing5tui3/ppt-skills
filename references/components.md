@@ -7,12 +7,13 @@ Reusable components are defined in `assets/template-aidx.html`.
 | Component | Use |
 |---|---|
 | `.slide` | Full viewport page |
-| `.slide.grey` | Light blue-gray support page |
-| `.slide.accent` | Pale AIDX blue emphasis page |
+| `.slide.grey` | `surface.canvas` support page |
+| `.slide.dark` | Legacy `surface.subtle` light page, never a black theme |
+| `.slide.accent` | `action.subtle` emphasis page |
 | `.slide.split` | Split-half layouts S03/S10 |
 | `.canvas-card` | Full-viewport AIDX canvas |
 | `.chrome-min.brand-chrome` | AIDX page header |
-| `.aidx-brand` | Inline avatar + AIDX lockup |
+| `.aidx-brand` | Inline gradient avatar + AIDX lockup |
 | `.brand-meta` | WeBank/date/page metadata |
 | `.aidx-footer` | Bottom source/page brand row |
 
@@ -20,12 +21,13 @@ Reusable components are defined in `assets/template-aidx.html`.
 
 ```html
 <span class="aidx-brand">
-  <span class="aidx-avatar-mark" aria-hidden="true">...inline avatar-terminal.svg...</span>
+  <span class="aidx-avatar-mark" aria-hidden="true">...inline light-background gradient avatar-terminal.svg with unique paint IDs...</span>
   <span class="aidx-brand-copy"><span class="aidx-brand-title">AIDX</span><span class="aidx-brand-subtitle">AIDX Review</span></span>
 </span>
 ```
 
-Do not point generated decks to local brand assets.
+Do not point generated decks to local brand assets. Keep each inline avatar's gradient and filter IDs unique within the deck.
+The standard light-theme header renders `.aidx-avatar-mark` at `40px × 40px`; keep the AIDX title and subtitle at their existing sizes.
 
 ## Typography
 
@@ -54,6 +56,41 @@ AIDX rule still applies: the larger the text, the lighter the weight.
 | `.split-half`, `.half.b-accent`, `.half.b-ink` | Split layouts |
 
 Do not combine fill types on one card.
+
+## Semantic Status
+
+Status is never color-only. Every status component needs:
+
+1. `.status-chip`
+2. one matching `.status-*` class
+3. the same `data-status` value
+4. visible label text
+
+```html
+<span class="status-chip status-danger" data-status="danger">阻塞</span>
+<span class="status-chip status-warning" data-status="warning">观察</span>
+<span class="status-chip status-ai" data-status="ai">AI 已介入</span>
+```
+
+| Class | Use |
+|---|---|
+| `.status-success` | Completed or verified |
+| `.status-warning` | Needs attention |
+| `.status-danger` | Failure, blocker or material risk |
+| `.status-info` | Context or tracked item |
+| `.status-ai` | Explicit AI processing, suggestion or involvement |
+
+Signal Cyan appears only through the AI status role.
+
+## Data Series
+
+Use `.data-series-1` through `.data-series-8` only for categorical data. Apply `.data-series-fill` or `.data-series-text` to consume the series color.
+
+```html
+<div class="data-series-1 data-series-fill" data-series-label="Platform">...</div>
+```
+
+Eight categories are the maximum. Always pair color with a visible label, value, shape or pattern.
 
 ## Evidence Images
 

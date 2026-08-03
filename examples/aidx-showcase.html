@@ -9,30 +9,91 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;600&family=Noto+Sans+SC:wght@200;300;400;500;700;900&display=swap" rel="stylesheet">
 <style>
   :root{
-    /* ============ AIDX 固定浅色主题 ============
-       使用 S01-S22 结构和 AIDX / WeBank 浅色品牌调性。 */
-    --paper:#ffffff;          /* 主底色: AIDX 白底 */
-    --paper-rgb:255,255,255;
-    --ink:#063970;            /* AIDX navy */
-    --ink-rgb:6,57,112;
-    --grey-1:#f5f8fc;         /* AIDX 浅蓝灰底 */
-    --grey-2:#d7dde8;         /* AIDX 线框 */
-    --grey-3:#56606f;         /* AIDX 辅助文字 */
-    --accent:#3A5ECF;         /* AIDX brand blue */
-    --accent-rgb:58,94,207;
-    --accent-on:#ffffff;      /* accent 上的反色文字 */
-    --accent-bright:#5DADE2;  /* AIDX cyan */
+    /* ============ AIDX Color System v1.0.0 ============
+       Canonical snapshot: references/aidx-colors.json
+       Core Navy = identity · Action Blue = action · Signal Cyan = AI signal. */
+    --aidx-brand-core:#063970;
+    --aidx-brand-action:#3A5ECF;
+    --aidx-brand-signal:#5DADE2;
 
-    /* ============ Carbon 文本角色 token (role-based,代替 opacity) ============
-       亮底:  primary 主文 / secondary 次文 / helper 辅助 / placeholder 占位
-       暗底:  inverse 自动反向 */
-    --text-primary:#101216;        /* AIDX paper text */
-    --text-secondary:#56606f;      /* AIDX muted */
-    --text-helper:#6b7280;         /* helper */
-    --text-placeholder:#9ca3af;    /* placeholder */
-    --text-on-color:#ffffff;       /* accent/dark 反色 */
-    --border-subtle:#d7dde8;       /* AIDX subtle line */
-    --border-strong:#aeb8c7;       /* AIDX strong line */
+    --aidx-surface-canvas:#F7F8FA;
+    --aidx-surface-base:#FFFFFF;
+    --aidx-surface-raised:#FFFFFF;
+    --aidx-surface-subtle:#EFF2F5;
+    --aidx-surface-sunken:#E0E5EA;
+    --aidx-surface-inverse:#16232F;
+
+    --aidx-text-primary:#16232F;
+    --aidx-text-secondary:#53616E;
+    --aidx-text-muted:#717F8C;
+    --aidx-text-placeholder:#9AA7B3;
+    --aidx-text-inverse:#FFFFFF;
+    --aidx-text-link:#3A5ECF;
+    --aidx-text-link-hover:#2F4CB0;
+
+    --aidx-border-subtle:#E0E5EA;
+    --aidx-border-default:#C8D0D8;
+    --aidx-border-strong:#717F8C;
+    --aidx-border-focus:#3A5ECF;
+
+    --aidx-action-primary:#3A5ECF;
+    --aidx-action-primary-hover:#2F4CB0;
+    --aidx-action-primary-active:#293F8D;
+    --aidx-action-on-primary:#FFFFFF;
+    --aidx-action-subtle:#F0F4FF;
+    --aidx-action-on-subtle:#293F8D;
+    --aidx-action-disabled:#C8D0D8;
+    --aidx-action-on-disabled:#53616E;
+
+    --aidx-status-success-bg:#EAF7EF;
+    --aidx-status-success-border:#7DC79A;
+    --aidx-status-success-text:#1E613D;
+    --aidx-status-warning-bg:#FFF7E3;
+    --aidx-status-warning-border:#E4B34A;
+    --aidx-status-warning-text:#7A5100;
+    --aidx-status-danger-bg:#FFF0F1;
+    --aidx-status-danger-border:#E3939B;
+    --aidx-status-danger-text:#92313B;
+    --aidx-status-info-bg:#EEF6FF;
+    --aidx-status-info-border:#8CB8E9;
+    --aidx-status-info-text:#20558E;
+    --aidx-status-ai-bg:#F0FAFE;
+    --aidx-status-ai-border:#8FD3EE;
+    --aidx-status-ai-text:#235E8C;
+
+    --aidx-data-1:#3A5ECF;
+    --aidx-data-2:#0F8585;
+    --aidx-data-3:#C56A18;
+    --aidx-data-4:#7C5CC4;
+    --aidx-data-5:#2B7A4B;
+    --aidx-data-6:#C44F6B;
+    --aidx-data-7:#8C6D00;
+    --aidx-data-8:#536D87;
+
+    --aidx-gradient-core:linear-gradient(135deg,#063970 0%,#3A5ECF 100%);
+    --aidx-gradient-ai:linear-gradient(135deg,#3A5ECF 0%,#5DADE2 100%);
+    --aidx-glow-ai:0 0 48px rgba(93, 173, 226, 0.28);
+
+    /* ============ Legacy aliases ============
+       Existing decks remain readable; new content should use --aidx-* roles. */
+    --paper:var(--aidx-surface-base);
+    --paper-rgb:255,255,255;
+    --ink:var(--aidx-brand-core);
+    --ink-rgb:6,57,112;
+    --grey-1:var(--aidx-surface-subtle);
+    --grey-2:var(--aidx-border-default);
+    --grey-3:var(--aidx-text-secondary);
+    --accent:var(--aidx-action-primary);
+    --accent-rgb:58,94,207;
+    --accent-on:var(--aidx-action-on-primary);
+    --accent-bright:var(--aidx-brand-signal);
+    --text-primary:var(--aidx-text-primary);
+    --text-secondary:var(--aidx-text-secondary);
+    --text-helper:var(--aidx-text-muted);
+    --text-placeholder:var(--aidx-text-placeholder);
+    --text-on-color:var(--aidx-text-inverse);
+    --border-subtle:var(--aidx-border-subtle);
+    --border-strong:var(--aidx-border-strong);
 
     /* ============ 字体(跨主题固定) ============ */
     --sans:"Inter","Helvetica Neue","Helvetica","Arial","Segoe UI Variable","Segoe UI",system-ui,-apple-system,sans-serif;
@@ -74,7 +135,7 @@
   *{box-sizing:border-box;margin:0;padding:0}
   html,body{
     width:100%;height:100%;overflow:hidden;
-    background:#eef3f9;color:var(--text-primary);
+    background:var(--aidx-surface-canvas);color:var(--aidx-text-primary);
     font-family:var(--sans),var(--sans-zh);
     font-feature-settings:"ss01","cv11";
     -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility
@@ -94,23 +155,23 @@
     padding:5.5vh 5vw 7vh 5vw;
     display:flex;flex-direction:column;
     overflow:hidden;
-    background:var(--paper);color:var(--ink);
+    background:var(--aidx-surface-base);color:var(--aidx-brand-core);
   }
-  .slide.grey{background:var(--grey-1)}
-  .slide.dark{background:#eaf2ff;color:var(--text-primary)}
+  .slide.grey{background:var(--aidx-surface-canvas)}
+  .slide.dark{background:var(--aidx-surface-subtle);color:var(--aidx-text-primary)}
   .slide.dark .grey-only{display:block}
-  .slide.accent{background:#e7effb;color:var(--text-primary)}
-  .slide.accent .accent-block{background:var(--accent);color:var(--accent-on)}
+  .slide.accent{background:var(--aidx-action-subtle);color:var(--aidx-text-primary)}
+  .slide.accent .accent-block{background:var(--aidx-action-primary);color:var(--aidx-action-on-primary)}
 
   /* Hero 页透出网格背景多一点 */
   .slide.hero{background:transparent}
   .slide.hero.grey{background:rgba(var(--paper-rgb),.86);backdrop-filter:blur(1px)}
-  .slide.hero.dark{background:rgba(var(--ink-rgb),.92);color:var(--paper)}
+  .slide.hero.dark{background:var(--aidx-surface-subtle);color:var(--aidx-text-primary)}
 
   /* ============ 装饰: 极细分隔线 + 点阵矩阵 ============ */
   .rule{width:100%;height:1px;background:currentColor;opacity:.18;margin:0}
   .rule.thick{height:2px;opacity:.85}
-  .rule.accent{background:var(--accent);opacity:1;height:2px}
+  .rule.accent{background:var(--aidx-action-primary);opacity:1;height:2px}
   .rule.v{width:1px;height:100%;margin:0}
 
   /* 点阵矩阵 (dot matrix) - 用 radial-gradient */
@@ -149,7 +210,7 @@
     opacity:.55;
     padding-top:2vh;
     border-top:1px solid currentColor;
-    border-color:rgba(127,127,127,.25)
+    border-color:var(--aidx-border-subtle)
   }
   .foot .nb{font-family:var(--sans);font-weight:600;letter-spacing:.04em}
 
@@ -164,7 +225,7 @@
     content:"";width:24px;height:1px;background:currentColor;opacity:.6
   }
   .kicker.no-line::before{display:none}
-  .kicker.accent{color:var(--accent);opacity:1;font-weight:600}
+  .kicker.accent{color:var(--aidx-action-primary);opacity:1;font-weight:600}
 
   .tag{
     display:inline-block;
@@ -172,8 +233,8 @@
     font-size:14px;letter-spacing:.18em;text-transform:uppercase;
     padding:5px 10px;border:1px solid currentColor;opacity:.85
   }
-  .tag.solid{background:currentColor;color:var(--paper);border-color:transparent}
-  .tag.accent{background:var(--accent);color:var(--accent-on);border-color:transparent;opacity:1}
+  .tag.solid{background:currentColor;color:var(--aidx-surface-base);border-color:transparent}
+  .tag.accent{background:var(--aidx-action-primary);color:var(--aidx-action-on-primary);border-color:transparent;opacity:1}
 
   /* ============ 标题层级 (无衬线 · 极轻字重 · 极致字号对比) ============ */
   .h-hero{
@@ -280,7 +341,7 @@
     margin-left:.12em;
     vertical-align:.5em;
   }
-  .kpi-hero.accent{color:var(--accent)}
+  .kpi-hero.accent{color:var(--aidx-action-primary)}
   .kpi-big{
     font-family:var(--sans);
     font-weight:800;
@@ -305,8 +366,8 @@
     padding-top:1.6vh;
     border-top:2px solid currentColor;
   }
-  .stat-card.thin{border-top-width:1px;border-color:rgba(127,127,127,.4)}
-  .stat-card.accent-top{border-top-color:var(--accent);border-top-width:3px}
+  .stat-card.thin{border-top-width:1px;border-color:var(--aidx-border-default)}
+  .stat-card.accent-top{border-top-color:var(--aidx-action-primary);border-top-width:3px}
   .stat-card .stat-label{
     font-family:var(--mono);
     font-size:max(14px,.82vw);
@@ -345,36 +406,36 @@
 
   /* ============ Accent Block (高亮色块包裹内容) ============ */
   .accent-block{
-    background:var(--accent);color:var(--accent-on);
+    background:var(--aidx-action-primary);color:var(--aidx-action-on-primary);
     padding:2.4vh 2vw;
   }
   .accent-block.tight{padding:1.4vh 1.4vw}
-  .accent-block .h-md,.accent-block .h-xl,.accent-block .kpi-mid{color:var(--accent-on)}
+  .accent-block .h-md,.accent-block .h-xl,.accent-block .kpi-mid{color:var(--aidx-action-on-primary)}
 
   .ink-block{
-    background:var(--ink);color:var(--paper);
+    background:var(--aidx-brand-core);color:var(--aidx-surface-base);
     padding:2.4vh 2vw
   }
   .grey-block{
-    background:var(--grey-1);
+    background:var(--aidx-surface-subtle);
     padding:2.4vh 2vw
   }
 
   /* 高亮文字 (mark 风格) */
   .mark{
-    background:var(--accent);color:var(--accent-on);
+    background:var(--aidx-action-primary);color:var(--aidx-action-on-primary);
     padding:0 .2em;
     box-decoration-break:clone;
     -webkit-box-decoration-break:clone;
   }
-  .mark.ink{background:var(--ink);color:var(--paper)}
+  .mark.ink{background:var(--aidx-brand-core);color:var(--aidx-surface-base)}
   .underline-accent{
-    background-image:linear-gradient(to bottom, transparent 70%, var(--accent) 70%, var(--accent) 96%, transparent 96%);
+    background-image:linear-gradient(to bottom, transparent 70%, var(--aidx-action-primary) 70%, var(--aidx-action-primary) 96%, transparent 96%);
     padding:0 .05em
   }
 
   /* ============ Pipeline / Step ============ */
-  .pipeline-section{margin-top:3.2vh;padding-top:2.2vh;border-top:1px solid rgba(127,127,127,.3)}
+  .pipeline-section{margin-top:3.2vh;padding-top:2.2vh;border-top:1px solid var(--aidx-border-subtle)}
   .pipeline-section:first-of-type{border-top:0;padding-top:0;margin-top:2.4vh}
   .pipeline-label{
     font-family:var(--mono);
@@ -395,7 +456,7 @@
     padding-top:1.2vh;
     border-top:2px solid currentColor;
   }
-  .step.accent-top{border-top-color:var(--accent);border-top-width:3px}
+  .step.accent-top{border-top-color:var(--aidx-action-primary);border-top-width:3px}
   .step-nb{
     font-family:var(--mono);
     font-weight:500;
@@ -477,7 +538,7 @@
   /* ============ Callout (引用框 · 极简) ============ */
   .callout{
     padding:2vh 2vw;
-    border-left:3px solid var(--accent);
+    border-left:3px solid var(--aidx-action-primary);
     font-family:var(--sans),var(--sans-zh);
     font-size:max(14px,1vw);
     line-height:1.55;
@@ -499,14 +560,14 @@
   .ico-sm{width:1vw;height:1vw;stroke-width:1.8;display:inline-block;vertical-align:-.15em;opacity:.7}
 
   /* ============ 几何小图标 (装饰) ============ */
-  .geo-dot{width:.7vw;height:.7vw;border-radius:50%;background:var(--accent);display:inline-block;vertical-align:middle}
-  .geo-square{width:.7vw;height:.7vw;background:var(--accent);display:inline-block;vertical-align:middle}
-  .geo-line{width:2vw;height:2px;background:var(--accent);display:inline-block;vertical-align:middle}
+  .geo-dot{width:.7vw;height:.7vw;border-radius:50%;background:var(--aidx-action-primary);display:inline-block;vertical-align:middle}
+  .geo-square{width:.7vw;height:.7vw;background:var(--aidx-action-primary);display:inline-block;vertical-align:middle}
+  .geo-line{width:2vw;height:2px;background:var(--aidx-action-primary);display:inline-block;vertical-align:middle}
   .geo-circle-o{width:.9vw;height:.9vw;border:2px solid currentColor;border-radius:50%;display:inline-block;vertical-align:middle}
 
   /* ============ 图片 frame-img ============ */
-  .frame-img{overflow:hidden;position:relative;background:var(--paper);box-sizing:border-box;width:100%}
-  .slide.dark .frame-img{background:rgba(255,255,255,.06)}
+  .frame-img{overflow:hidden;position:relative;background:var(--aidx-surface-base);box-sizing:border-box;width:100%}
+  .slide.dark .frame-img{background:var(--aidx-surface-base)}
   .frame-img > img{width:100%;height:100%;object-fit:cover;object-position:center center;display:block}
   .frame-img.fit-contain > img{object-fit:contain;object-position:center center}
   .frame-img.pos-top > img{object-position:top center}
@@ -524,7 +585,7 @@
   .frame-img.h-26{height:26vh}
   .frame-img.h-28{height:28vh}
   .frame-img.h-32{height:32vh}
-  .frame-img.aidx-lined{border-top:2px solid var(--accent)}
+  .frame-img.aidx-lined{border-top:2px solid var(--aidx-action-primary)}
   .frame-img.aidx-keyline{border:0}
 
   /* S22 Image Hero: 下半屏内容区必须和图片拉开距离,不要贴在图下沿 */
@@ -567,47 +628,81 @@
     display:flex;justify-content:space-between;gap:var(--sp-5);
     margin-top:var(--sp-4);
     font-family:var(--mono);font-size:max(14px,.74vw);
-    letter-spacing:.16em;text-transform:uppercase;color:var(--text-helper);
-    border-top:1px solid var(--border-subtle);padding-top:var(--sp-4)
+    letter-spacing:.16em;text-transform:uppercase;color:var(--aidx-text-muted);
+    border-top:1px solid var(--aidx-border-subtle);padding-top:var(--sp-4)
   }
   .aidx-img-caption strong{
     font-family:var(--sans),var(--sans-zh);font-size:max(16px,.9vw);
-    font-weight:600;letter-spacing:0;text-transform:none;color:var(--text-primary)
+    font-weight:600;letter-spacing:0;text-transform:none;color:var(--aidx-text-primary)
   }
 
   /* ============ Bar Chart (扁平几何图表) ============ */
   .bar-chart{display:flex;flex-direction:column;gap:1.4vh}
   .bar-row{display:grid;grid-template-columns:8em 1fr 4em;gap:1.4vw;align-items:center}
   .bar-row .bar-label{font-family:var(--mono);font-size:max(14px,.84vw);letter-spacing:.14em;text-transform:uppercase;opacity:.7}
-  .bar-row .bar-track{height:14px;background:rgba(127,127,127,.18);position:relative}
-  .bar-row .bar-fill{height:100%;background:var(--accent);position:absolute;left:0;top:0}
+  .bar-row .bar-track{height:14px;background:var(--aidx-surface-sunken);position:relative}
+  .bar-row .bar-fill{height:100%;background:var(--aidx-action-primary);position:absolute;left:0;top:0}
   .bar-row .bar-fill.ink{background:currentColor}
   .bar-row .bar-value{font-family:var(--sans);font-weight:700;font-size:max(16px,1.05vw);text-align:right;font-feature-settings:"tnum"}
 
   /* ============ 导航 ============ */
   /* 底部分页导航: 仅保留方块本身,无背景无描边 */
   #nav{position:fixed;left:50%;bottom:2vh;transform:translateX(-50%);z-index:30;display:flex;gap:10px;padding:0;background:transparent;border:0}
-  #nav .dot{width:6px;height:6px;background:rgba(0,0,0,.28);cursor:pointer;transition:all .25s ease;border:0;padding:0;border-radius:0}
-  #nav .dot:hover{background:rgba(0,0,0,.55)}
-  #nav .dot.active{background:var(--accent);width:18px}
+  #nav .dot{width:6px;height:6px;background:var(--aidx-border-strong);cursor:pointer;transition:all .25s ease;border:0;padding:0;border-radius:0}
+  #nav .dot:hover{background:var(--aidx-brand-core)}
+  #nav .dot.active{background:var(--aidx-action-primary);width:18px}
   body.dark-bg #nav .dot{background:rgba(255,255,255,.32)}
-  body.dark-bg #nav .dot.active{background:var(--accent)}
+  body.dark-bg #nav .dot.active{background:var(--aidx-action-primary)}
 
   #hint{position:fixed;bottom:2.4vh;right:2.5vw;z-index:30;font-family:var(--mono);font-size:14px;letter-spacing:.14em;text-transform:uppercase;opacity:.4;color:var(--ink-tint, currentColor)}
-  body.dark-bg #hint{color:var(--paper);opacity:.4}
-  body.low-power #hint{color:var(--accent);opacity:.72}
-  body.dark-bg.low-power #hint{color:var(--paper);opacity:.72}
+  body.dark-bg #hint{color:var(--aidx-surface-base);opacity:.4}
+  body.low-power #hint{color:var(--aidx-action-primary);opacity:.72}
+  body.dark-bg.low-power #hint{color:var(--aidx-surface-base);opacity:.72}
 
   /* ESC 索引页: 动画元素强制可见 (覆盖 motion-ready 的 opacity:0) */
   #overview [data-anim]{opacity:1!important;transform:none!important}
   #overview .slide *{animation:none!important;transition:none!important}
 
   /* 统一卡片样式 token: card-fill (默认灰底 · 中性) + card-ink (反转高对比) + card-accent (单一焦点) */
-  .card-fill{background:#f5f5f4;border:0;color:var(--text-primary)}
-  .card-ink{background:#eaf2ff;border:0;color:var(--ink)}
-  .card-ink .t-meta,.card-ink .t-cat{color:var(--text-helper)}
-  .card-accent{background:var(--accent);border:0;color:var(--accent-on)}
-  .card-accent .t-meta,.card-accent .t-cat{color:var(--accent-on)}
+  .card-fill{background:var(--aidx-surface-subtle);border:0;color:var(--aidx-text-primary)}
+  .card-ink{background:var(--aidx-action-subtle);border:0;color:var(--aidx-action-on-subtle)}
+  .card-ink .t-meta,.card-ink .t-cat{color:var(--aidx-text-muted)}
+  .card-accent{background:var(--aidx-action-primary);border:0;color:var(--aidx-action-on-primary)}
+  .card-accent .t-meta,.card-accent .t-cat{color:var(--aidx-action-on-primary)}
+
+  /* 状态颜色必须与可读文字/符号同时出现。Signal Cyan 只用于 AI 状态。 */
+  .status-chip{
+    display:inline-flex;align-items:center;gap:.55em;width:max-content;
+    padding:.45em .7em;border:1px solid currentColor;
+    font-family:var(--mono);font-size:max(13px,.72vw);font-weight:600;
+    letter-spacing:.1em;text-transform:uppercase;line-height:1
+  }
+  .status-chip::before{
+    display:inline-grid;place-items:center;width:1.15em;height:1.15em;
+    font-family:var(--mono);font-weight:700;line-height:1
+  }
+  .status-success{background:var(--aidx-status-success-bg);border-color:var(--aidx-status-success-border);color:var(--aidx-status-success-text)}
+  .status-success::before{content:"✓"}
+  .status-warning{background:var(--aidx-status-warning-bg);border-color:var(--aidx-status-warning-border);color:var(--aidx-status-warning-text)}
+  .status-warning::before{content:"!"}
+  .status-danger{background:var(--aidx-status-danger-bg);border-color:var(--aidx-status-danger-border);color:var(--aidx-status-danger-text)}
+  .status-danger::before{content:"×"}
+  .status-info{background:var(--aidx-status-info-bg);border-color:var(--aidx-status-info-border);color:var(--aidx-status-info-text)}
+  .status-info::before{content:"i"}
+  .status-ai{background:var(--aidx-status-ai-bg);border-color:var(--aidx-status-ai-border);color:var(--aidx-status-ai-text)}
+  .status-ai::before{content:"✦";color:var(--aidx-brand-signal)}
+
+  /* 分类图最多八色；标签、数值或纹理仍需提供第二识别通道。 */
+  .data-series-1{--aidx-series-color:var(--aidx-data-1)}
+  .data-series-2{--aidx-series-color:var(--aidx-data-2)}
+  .data-series-3{--aidx-series-color:var(--aidx-data-3)}
+  .data-series-4{--aidx-series-color:var(--aidx-data-4)}
+  .data-series-5{--aidx-series-color:var(--aidx-data-5)}
+  .data-series-6{--aidx-series-color:var(--aidx-data-6)}
+  .data-series-7{--aidx-series-color:var(--aidx-data-7)}
+  .data-series-8{--aidx-series-color:var(--aidx-data-8)}
+  .data-series-fill{background:var(--aidx-series-color)}
+  .data-series-text{color:var(--aidx-series-color)}
 
   /* ============ 动效 (与原模板一致) ============ */
   [data-anim]{opacity:1}
@@ -638,24 +733,24 @@
   body.is-win [style*="font-weight:200"]{font-weight:300 !important}
 
   /* 全屏铺满模式 · 关闭 WebGL · 卡片即页面 */
-  body.canvas-mode{background:var(--paper)}
+  body.canvas-mode{background:var(--aidx-surface-base)}
   body.canvas-mode canvas.bg{display:none !important}
-  body.canvas-mode .slide{background:var(--paper);padding:0;align-items:stretch;justify-content:stretch}
-  body.canvas-mode .slide.hero{background:var(--paper)}
+  body.canvas-mode .slide{background:var(--aidx-surface-base);padding:0;align-items:stretch;justify-content:stretch}
+  body.canvas-mode .slide.hero{background:var(--aidx-surface-base)}
 
   .canvas-card{
     width:100vw;
     height:100vh;
-    background:var(--paper);color:var(--ink);
+    background:var(--aidx-surface-base);color:var(--aidx-brand-core);
     padding:5.6vh 5vw 4.4vh;
     display:flex;flex-direction:column;
     position:relative;overflow:hidden;
     box-shadow:none;
     border-radius:0;
   }
-  .slide.dark .canvas-card{background:#f8fbff;color:var(--text-primary)}
-  .slide.accent .canvas-card{background:#f3f8ff;color:var(--text-primary)}
-  .slide.grey .canvas-card{background:var(--grey-1);color:var(--text-primary)}
+  .slide.dark .canvas-card{background:var(--aidx-surface-subtle);color:var(--aidx-text-primary)}
+  .slide.accent .canvas-card{background:var(--aidx-action-subtle);color:var(--aidx-text-primary)}
+  .slide.grey .canvas-card{background:var(--aidx-surface-canvas);color:var(--aidx-text-primary)}
   .slide.split .canvas-card{padding:0;flex-direction:row}
 
   /* ============ ASCII 点阵呼吸场 · AIDX blue 封面/封底专用 ============
@@ -668,9 +763,9 @@
     mix-blend-mode:screen;opacity:.92;
   }
   .canvas-card > *:not(.ascii-bg){position:relative;z-index:1}
-  .slide.accent .canvas-card .chrome-min{color:var(--text-helper)}
-  .slide.accent .canvas-card .t-meta{color:var(--text-helper)}
-  .split-half > .half.b-accent .chrome-min{color:var(--text-helper)}
+  .slide.accent .canvas-card .chrome-min{color:var(--aidx-text-muted)}
+  .slide.accent .canvas-card .t-meta{color:var(--aidx-text-muted)}
+  .split-half > .half.b-accent .chrome-min{color:var(--aidx-text-muted)}
 
   /* 编号目录页 · 超大数字 + 国家名风格 — 越大越细 */
   .num-mega{
@@ -683,7 +778,7 @@
     font-family:var(--sans);font-weight:200;
     font-size:9vw;line-height:1;letter-spacing:-.035em;
   }
-  .name-mega.muted{color:var(--grey-3)}
+  .name-mega.muted{color:var(--aidx-text-secondary)}
 
   /* 细体超大 KPI — 字号越大权重越低 */
   .kpi-thin{
@@ -692,7 +787,7 @@
     font-feature-settings:"tnum"
   }
   .kpi-thin .unit{font-size:.3em;font-weight:300;opacity:.55;margin-left:.15em;vertical-align:.6em}
-  .kpi-thin.accent{color:var(--accent)}
+  .kpi-thin.accent{color:var(--aidx-action-primary)}
   .kpi-thin-sm{
     font-family:var(--sans);font-weight:250;
     font-size:5.6vw;line-height:1.04;letter-spacing:-.03em;
@@ -705,11 +800,11 @@
   .kpi-row-4{
     display:grid;grid-template-columns:repeat(4,1fr);
     gap:0;padding-top:2.4vh;
-    border-top:1px solid var(--grey-2)
+    border-top:1px solid var(--aidx-border-default)
   }
   .kpi-row-4 > .kpi-cell{
     padding:1.6vh 1.6vw 0;
-    border-left:1px solid var(--grey-2)
+    border-left:1px solid var(--aidx-border-default)
   }
   .kpi-row-4 > .kpi-cell:first-child{padding-left:0;border-left:none}
   .kpi-cell .lbl{font-family:var(--mono);font-size:max(14px,.78vw);letter-spacing:.18em;text-transform:uppercase;opacity:.55;margin-bottom:1.2vh}
@@ -750,7 +845,7 @@
     justify-self:center;
     z-index:1
   }
-  .tl-node.accent .dot{background:var(--accent)}
+  .tl-node.accent .dot{background:var(--aidx-action-primary)}
   .tl-node .yr{
     font-family:var(--mono);font-weight:500;
     font-size:max(14px,1vw);letter-spacing:.04em
@@ -769,7 +864,7 @@
     vertical-align:.42em;
     letter-spacing:0
   }
-  .tl-node.accent .multi{color:var(--accent)}
+  .tl-node.accent .multi{color:var(--aidx-action-primary)}
   .tl-node .desc{
     font-family:var(--sans),var(--sans-zh);
     font-size:max(16px,.94vw);line-height:1.55;opacity:.78;
@@ -803,10 +898,10 @@
   .timeline-h .th-node .dot{
     width:var(--tl-dot);height:var(--tl-dot);
     border-radius:50%;
-    background:var(--ink);
+    background:var(--aidx-brand-core);
     z-index:1;position:relative
   }
-  .timeline-h .th-node.accent .dot{background:var(--accent)}
+  .timeline-h .th-node.accent .dot{background:var(--aidx-action-primary)}
   .timeline-h .th-node .label{
     position:absolute;left:50%;transform:translateX(-50%);
     width:13vw;text-align:center;
@@ -816,39 +911,39 @@
   .timeline-h .th-node.down .label{top:calc(50% + 22px)}
   .timeline-h .th-node .yr{
     font-family:var(--mono);font-size:max(14px,.78vw);letter-spacing:.05em;
-    color:var(--text-helper);font-weight:500
+    color:var(--aidx-text-muted);font-weight:500
   }
-  .timeline-h .th-node.accent .yr{color:var(--accent)}
+  .timeline-h .th-node.accent .yr{color:var(--aidx-action-primary)}
   .timeline-h .th-node .name{
     font-family:var(--sans);font-size:max(16px,1.05vw);font-weight:400;
-    color:var(--text-primary);line-height:1.2;letter-spacing:-.005em
+    color:var(--aidx-text-primary);line-height:1.2;letter-spacing:-.005em
   }
-  .timeline-h .th-node.accent .name{color:var(--accent)}
+  .timeline-h .th-node.accent .name{color:var(--aidx-action-primary)}
   .timeline-h .th-node .desc{
     font-family:var(--sans),var(--sans-zh);font-size:max(14px,.84vw);
-    color:var(--text-secondary);font-weight:400;line-height:1.4
+    color:var(--aidx-text-secondary);font-weight:400;line-height:1.4
   }
 
   /* 几何图示 (参考图 5) — SVG-friendly 容器 */
-  .geo-icon{width:5vw;height:5vw;display:block;margin-bottom:2.2vh;color:var(--ink);flex-shrink:0}
-  .slide.dark .geo-icon{color:var(--ink)}
+  .geo-icon{width:5vw;height:5vw;display:block;margin-bottom:2.2vh;color:var(--aidx-brand-core);flex-shrink:0}
+  .slide.dark .geo-icon{color:var(--aidx-brand-core)}
   .geo-icon svg{width:100%;height:100%;overflow:visible}
   .geo-icon .stroke{fill:none;stroke:currentColor;stroke-width:1.4}
-  .geo-icon .stroke-accent{fill:none;stroke:var(--accent);stroke-width:1.4}
-  .geo-icon .fill-accent{fill:var(--accent)}
+  .geo-icon .stroke-accent{fill:none;stroke:var(--aidx-action-primary);stroke-width:1.4}
+  .geo-icon .fill-accent{fill:var(--aidx-action-primary)}
 
   /* 卡片网格 (参考图 1 卡片漂浮) — 在 canvas-card 内部再分卡 */
   .sub-grid-3-2{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(2,1fr);gap:1.4vh 1.4vw;flex:1;align-content:stretch;margin-top:3vh}
   .sub-card{
-    background:var(--grey-1);
+    background:var(--aidx-surface-subtle);
     padding:2.4vh 1.6vw 2vh;
     display:flex;flex-direction:column;
     position:relative;border-radius:3px;
     min-height:0
   }
-  .slide.dark .sub-card{background:#ffffff}
-  .sub-card.accent{background:var(--accent);color:var(--accent-on)}
-  .sub-card.ink{background:var(--ink);color:var(--paper)}
+  .slide.dark .sub-card{background:var(--aidx-surface-base)}
+  .sub-card.accent{background:var(--aidx-action-primary);color:var(--aidx-action-on-primary)}
+  .sub-card.ink{background:var(--aidx-brand-core);color:var(--aidx-surface-base)}
   .sub-card .nb-corner{
     position:absolute;top:1.6vh;right:1.4vw;
     font-family:var(--mono);font-size:max(14px,.8vw);
@@ -857,7 +952,7 @@
   .sub-card .ttl{font-family:var(--sans),var(--sans-zh);font-weight:500;font-size:max(17px,1.5vw);line-height:1.2;letter-spacing:-.015em;margin-bottom:1vh}
   .sub-card .desc{font-family:var(--sans),var(--sans-zh);font-size:max(16px,.94vw);line-height:1.55;opacity:.78;margin-top:auto}
   .sub-card .lucide{width:2.4vw;height:2.4vw;stroke-width:1.4;color:currentColor;margin-bottom:1.6vh;flex-shrink:0}
-  .sub-card.accent .lucide{color:var(--accent-on)}
+  .sub-card.accent .lucide{color:var(--aidx-action-on-primary)}
 
   /* 三层架构纯色块拼图 (参考图 4 + 6) — 横排等高色块 */
   .stack-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6vw;flex:1;margin-top:6vh;align-items:stretch}
@@ -867,9 +962,9 @@
     position:relative;
     min-height:0
   }
-  .stack-block.b-accent{background:var(--accent);color:var(--accent-on)}
-  .stack-block.b-grey{background:var(--grey-1);color:var(--ink)}
-  .stack-block.b-ink{background:#eaf2ff;color:var(--ink)}
+  .stack-block.b-accent{background:var(--aidx-action-primary);color:var(--aidx-action-on-primary)}
+  .stack-block.b-grey{background:var(--aidx-surface-subtle);color:var(--aidx-brand-core)}
+  .stack-block.b-ink{background:var(--aidx-action-subtle);color:var(--aidx-action-on-subtle)}
   .stack-block .layer-nb{font-family:var(--mono);font-size:max(14px,.84vw);letter-spacing:.18em;opacity:.65;margin-bottom:auto}
   .stack-block .layer-icon{margin-bottom:1.6vh}
   .stack-block .layer-icon svg{width:3vw;height:3vw}
@@ -889,7 +984,7 @@
     min-height:0;height:100%
   }
   .bar-tower .cap{
-    background:var(--grey-1);
+    background:var(--aidx-surface-subtle);
     height:5.6vh;
     display:flex;align-items:center;justify-content:center;
     margin-bottom:.4vh
@@ -906,14 +1001,14 @@
   .bar-tower .body-block.h-3{min-height:38vh}
   .bar-tower .body-block.h-4{min-height:46vh}
   /* 默认所有 KPI 塔统一为浅描边卡 — 不抢戏;只有 .b-accent 突出为 AIDX blue */
-  .bar-tower .body-block{background:var(--paper);color:var(--ink);border:1px solid var(--grey-2)}
-  .bar-tower .body-block.b-accent{background:var(--accent);color:var(--accent-on);border-color:var(--accent)}
+  .bar-tower .body-block{background:var(--aidx-surface-base);color:var(--aidx-brand-core);border:1px solid var(--aidx-border-default)}
+  .bar-tower .body-block.b-accent{background:var(--aidx-action-primary);color:var(--aidx-action-on-primary);border-color:var(--aidx-action-primary)}
   .bar-tower .lbl{font-family:var(--mono);font-size:max(14px,.82vw);letter-spacing:.16em;text-transform:uppercase;opacity:.65;margin-bottom:1vh}
   .bar-tower .nb{font-family:var(--sans);font-weight:250;font-size:max(20px,2.8vw);line-height:1;letter-spacing:-.03em;font-feature-settings:"tnum"}
   .bar-tower .body-block.b-accent .nb{font-weight:300}
   .bar-tower .nb .unit{font-size:.36em;font-weight:300;opacity:.7;margin-left:.08em;vertical-align:.4em}
   .bar-tower .sub{font-family:var(--sans),var(--sans-zh);font-size:max(16px,.92vw);opacity:.75;margin-top:1.2vh;line-height:1.5}
-  .bar-tower .cap{background:var(--grey-1);color:var(--ink)}
+  .bar-tower .cap{background:var(--aidx-surface-subtle);color:var(--aidx-brand-core)}
   .bar-tower .lucide{width:1.6vw;height:1.6vw;stroke-width:1.4}
 
   /* ============ Carbon Productive Type Tokens ============
@@ -925,24 +1020,24 @@
     font-family:var(--mono);
     font-size:14px;font-weight:600;
     letter-spacing:.15em;text-transform:uppercase;
-    color:var(--text-helper);line-height:1.3
+    color:var(--aidx-text-muted);line-height:1.3
   }
-  .t-cat.accent{color:var(--accent)}
-  .t-cat.on-dark{color:rgba(255,255,255,.78)}
+  .t-cat.accent{color:var(--aidx-action-primary)}
+  .t-cat.on-dark{color:var(--aidx-action-on-primary);opacity:.78}
 
   /* page chrome / breadcrumb / running header — extra-small mono */
   .t-meta{
     font-family:var(--mono);
     font-size:14px;font-weight:500;
     letter-spacing:.14em;text-transform:uppercase;
-    color:var(--text-helper);line-height:1.45
+    color:var(--aidx-text-muted);line-height:1.45
   }
 
   /* helper / caption — secondary text */
   .t-helper{
     font-family:var(--sans),var(--sans-zh);
     font-size:14px;font-weight:400;
-    color:var(--text-helper);line-height:1.5;
+    color:var(--aidx-text-muted);line-height:1.5;
     letter-spacing:.005em
   }
 
@@ -950,7 +1045,7 @@
   .t-body-sm{
     font-family:var(--sans),var(--sans-zh);
     font-size:16px;font-weight:400;
-    color:var(--text-secondary);line-height:1.55;
+    color:var(--aidx-text-secondary);line-height:1.55;
     letter-spacing:0
   }
 
@@ -958,7 +1053,7 @@
   .t-body{
     font-family:var(--sans),var(--sans-zh);
     font-size:18px;font-weight:400;
-    color:var(--text-primary);line-height:1.5;
+    color:var(--aidx-text-primary);line-height:1.5;
     letter-spacing:-.005em
   }
 
@@ -966,7 +1061,7 @@
   .t-body-emp{
     font-family:var(--sans),var(--sans-zh);
     font-size:18px;font-weight:600;       /* SemiBold per Carbon */
-    color:var(--text-primary);line-height:1.5;
+    color:var(--aidx-text-primary);line-height:1.5;
     letter-spacing:-.005em
   }
 
@@ -974,17 +1069,17 @@
   .t-h-prod{
     font-family:var(--sans),var(--sans-zh);
     font-size:22px;font-weight:600;
-    color:var(--text-primary);line-height:1.4;
+    color:var(--aidx-text-primary);line-height:1.4;
     letter-spacing:-.01em
   }
 
   /* dark background variants */
-  .slide.dark .t-cat,.slide.dark .t-meta,.slide.dark .t-helper{color:var(--text-helper)}
-  .slide.dark .t-body-sm{color:var(--text-secondary)}
-  .slide.dark .t-body,.slide.dark .t-body-emp,.slide.dark .t-h-prod{color:var(--text-primary)}
-  .split-half .half.b-ink .t-cat,.split-half .half.b-ink .t-meta,.split-half .half.b-ink .t-helper{color:var(--text-helper)}
-  .split-half .half.b-ink .t-body-sm{color:var(--text-secondary)}
-  .split-half .half.b-ink .t-body,.split-half .half.b-ink .t-body-emp,.split-half .half.b-ink .t-h-prod{color:var(--text-primary)}
+  .slide.dark .t-cat,.slide.dark .t-meta,.slide.dark .t-helper{color:var(--aidx-text-muted)}
+  .slide.dark .t-body-sm{color:var(--aidx-text-secondary)}
+  .slide.dark .t-body,.slide.dark .t-body-emp,.slide.dark .t-h-prod{color:var(--aidx-text-primary)}
+  .split-half .half.b-ink .t-cat,.split-half .half.b-ink .t-meta,.split-half .half.b-ink .t-helper{color:var(--aidx-text-muted)}
+  .split-half .half.b-ink .t-body-sm{color:var(--aidx-text-secondary)}
+  .split-half .half.b-ink .t-body,.split-half .half.b-ink .t-body-emp,.split-half .half.b-ink .t-h-prod{color:var(--aidx-text-primary)}
 
   /* 斜杠点阵装饰 (参考图 6 左下) */
   .hatch{
@@ -1047,17 +1142,17 @@
   }
   .h-bar-chart .row-track{
     height:3.2vh;
-    background:var(--grey-1);
+    background:var(--aidx-surface-subtle);
     position:relative;
     overflow:hidden
   }
   .h-bar-chart .row-fill{
     height:100%;
-    background:var(--ink);
+    background:var(--aidx-brand-core);
     transition:width 1s cubic-bezier(.5,0,.2,1)
   }
-  .h-bar-chart .row-fill.accent{background:var(--accent)}
-  .h-bar-chart .row-fill.grey{background:var(--grey-3)}
+  .h-bar-chart .row-fill.accent{background:var(--aidx-action-primary)}
+  .h-bar-chart .row-fill.grey{background:var(--aidx-text-secondary)}
   .h-bar-chart .row-val{
     font-family:var(--sans);font-weight:250;
     font-size:max(16px,1.5vw);
@@ -1081,14 +1176,14 @@
   .v-bar-chart .col{display:flex;flex-direction:column;gap:1.4vh;align-items:stretch;height:100%}
   .v-bar-chart .col-bar{
     flex:1 1 auto;
-    background:var(--grey-1);
-    border-top:2px solid var(--ink);
+    background:var(--aidx-surface-subtle);
+    border-top:2px solid var(--aidx-brand-core);
     position:relative;
     display:flex;align-items:flex-start;justify-content:center;
     padding-top:1vh
   }
-  .v-bar-chart .col-bar.accent{background:var(--accent);border-top-color:var(--accent);color:var(--accent-on)}
-  .v-bar-chart .col-bar.ink{background:var(--ink);color:var(--paper);border-top-color:var(--ink)}
+  .v-bar-chart .col-bar.accent{background:var(--aidx-action-primary);border-top-color:var(--aidx-action-primary);color:var(--aidx-action-on-primary)}
+  .v-bar-chart .col-bar.ink{background:var(--aidx-brand-core);color:var(--aidx-surface-base);border-top-color:var(--aidx-brand-core)}
   .v-bar-chart .col-bar .v{
     font-family:var(--sans);font-weight:250;
     font-size:max(18px,1.6vw);letter-spacing:-.02em
@@ -1105,25 +1200,25 @@
     gap:0 3.4vw;
     flex:1;align-items:stretch;margin-top:8vh
   }
-  .duo-compare .vrule{background:var(--grey-2);width:1px;align-self:stretch}
+  .duo-compare .vrule{background:var(--aidx-border-default);width:1px;align-self:stretch}
   .duo-compare .col{display:flex;flex-direction:column;gap:1.6vh;padding:0 .4vw}
   .duo-compare .col-tag{
     font-family:var(--mono);font-size:max(14px,.78vw);
     letter-spacing:.16em;text-transform:uppercase;
-    color:var(--grey-3);
+    color:var(--aidx-text-secondary);
     display:flex;align-items:center;gap:.6vw
   }
   .duo-compare .col-tag .num{
-    font-weight:600;color:var(--ink);
-    border:1px solid var(--ink);
+    font-weight:600;color:var(--aidx-brand-core);
+    border:1px solid var(--aidx-brand-core);
     padding:.2em .6em;font-size:.92em
   }
-  .duo-compare .col.accent .col-tag .num{color:var(--accent);border-color:var(--accent)}
+  .duo-compare .col.accent .col-tag .num{color:var(--aidx-action-primary);border-color:var(--aidx-action-primary)}
   .duo-compare .col-ttl{
     font-family:var(--sans),var(--sans-zh);font-weight:200;
     font-size:3.6vw;line-height:1;letter-spacing:-.03em
   }
-  .duo-compare .col.accent .col-ttl{color:var(--accent)}
+  .duo-compare .col.accent .col-ttl{color:var(--aidx-action-primary)}
   .duo-compare .col-desc{
     font-family:var(--sans),var(--sans-zh);
     font-size:max(16px,1.04vw);line-height:1.55;opacity:.78;
@@ -1131,7 +1226,7 @@
   }
   .duo-compare .col-list{
     list-style:none;display:flex;flex-direction:column;gap:1vh;
-    margin-top:auto;padding-top:2vh;border-top:1px solid var(--grey-2)
+    margin-top:auto;padding-top:2vh;border-top:1px solid var(--aidx-border-default)
   }
   .duo-compare .col-list li{
     font-family:var(--sans),var(--sans-zh);
@@ -1142,22 +1237,22 @@
     content:"";position:absolute;left:0;top:.6em;
     width:.5em;height:1px;background:currentColor;opacity:.55
   }
-  .duo-compare .col.accent .col-list li::before{background:var(--accent);opacity:1}
+  .duo-compare .col.accent .col-list li::before{background:var(--aidx-action-primary);opacity:1}
 
   /* 半屏 statement (参考图 7) */
   .split-half{display:grid;grid-template-columns:1fr 1fr;gap:0;flex:1;align-items:stretch}
   .split-half > .half{padding:5vh 3.4vw;display:flex;flex-direction:column;min-width:0}
-  .split-half > .half.r-border{border-left:1px solid rgba(127,127,127,.22)}
-  .split-half > .half.b-grey{background:var(--grey-1)}
-  .split-half > .half.b-accent{background:#e7effb;color:var(--text-primary)}
-  .split-half > .half.b-ink{background:#f8fbff;color:var(--text-primary)}
+  .split-half > .half.r-border{border-left:1px solid var(--aidx-border-subtle)}
+  .split-half > .half.b-grey{background:var(--aidx-surface-subtle)}
+  .split-half > .half.b-accent{background:var(--aidx-action-subtle);color:var(--aidx-text-primary)}
+  .split-half > .half.b-ink{background:var(--aidx-surface-subtle);color:var(--aidx-text-primary)}
 
   /* 极简页眉 — t-meta 风格 (Carbon productive label-01) */
   .canvas-card .chrome-min{
     display:flex;justify-content:space-between;align-items:flex-start;
     font-family:var(--mono);font-size:14px;font-weight:500;
     letter-spacing:.14em;text-transform:uppercase;
-    color:var(--text-helper);
+    color:var(--aidx-text-muted);
     flex:0 0 auto;
     margin-bottom:var(--sp-9);   /* 48px */
   }
@@ -1166,18 +1261,18 @@
     max-width:48vw;line-height:1.5
   }
   .canvas-card .chrome-min.brand-chrome{align-items:center;letter-spacing:0;text-transform:none}
-  .aidx-brand{display:inline-flex;align-items:center;gap:12px;color:var(--text-primary);text-decoration:none}
-  .aidx-avatar-mark{width:34px;height:34px;display:block;flex:0 0 34px}
+  .aidx-brand{display:inline-flex;align-items:center;gap:12px;color:var(--aidx-text-primary);text-decoration:none}
+  .aidx-avatar-mark{width:40px;height:40px;display:block;flex:0 0 40px}
   .aidx-avatar-mark svg{width:100%;height:100%;display:block}
   .aidx-brand-copy{display:flex;flex-direction:column;gap:2px;min-width:0}
-  .aidx-brand-title{font-family:var(--mono);font-size:14px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--ink);line-height:1}
-  .aidx-brand-subtitle{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--text-helper);line-height:1.2}
-  .brand-meta{display:flex;align-items:center;gap:1.1em;font-family:var(--mono);font-size:13px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--text-helper);white-space:nowrap}
-  .brand-meta b{font-weight:700;color:var(--ink)}
+  .aidx-brand-title{font-family:var(--mono);font-size:14px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--aidx-brand-core);line-height:1}
+  .aidx-brand-subtitle{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--aidx-text-muted);line-height:1.2}
+  .brand-meta{display:flex;align-items:center;gap:1.1em;font-family:var(--mono);font-size:13px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--aidx-text-muted);white-space:nowrap}
+  .brand-meta b{font-weight:700;color:var(--aidx-brand-core)}
   .brand-rule{width:28px;height:1px;background:currentColor;opacity:.42}
-  .aidx-footer{margin-top:auto;padding-top:1.8vh;border-top:1px solid var(--border-subtle);display:flex;align-items:flex-end;justify-content:space-between;font-family:var(--mono);font-size:13px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--text-helper)}
-  .aidx-footer b{color:var(--ink);font-weight:700}
-  .slide.dark .canvas-card .chrome-min,.split-half .half.b-ink .canvas-card .chrome-min{color:var(--text-helper)}
+  .aidx-footer{margin-top:auto;padding-top:1.8vh;border-top:1px solid var(--aidx-border-subtle);display:flex;align-items:flex-end;justify-content:space-between;font-family:var(--mono);font-size:13px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--aidx-text-muted)}
+  .aidx-footer b{color:var(--aidx-brand-core);font-weight:700}
+  .slide.dark .canvas-card .chrome-min,.split-half .half.b-ink .canvas-card .chrome-min{color:var(--aidx-text-muted)}
 
   /* 响应式降级 */
   @media (max-width:900px){
@@ -1238,23 +1333,69 @@
   <div class="canvas-card">
     <header class="chrome-min brand-chrome">
     <div class="l"><span class="aidx-brand"><span class="aidx-avatar-mark" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
-  <path d="M 24 4 C 40 4 44 12 44 22 C 44 28 43 33 42 37 C 41 41 39 42 36 40 C 33 38 31 34 30 28 C 29 22 31 18 36 18 C 34 14 30 16 24 16 C 18 16 14 14 12 18 C 17 18 19 22 18 28 C 17 34 15 38 12 40 C 9 42 7 41 6 37 C 5 33 4 28 4 22 C 4 12 8 4 24 4 Z" fill="#3A5ECF" stroke="#3A5ECF" stroke-width="5" stroke-linejoin="round"/>
-  <ellipse cx="24" cy="24" rx="14" ry="15" fill="#3A5ECF" stroke="#3A5ECF" stroke-width="5"/>
-  <path d="M 24 4 C 40 4 44 12 44 22 C 44 28 43 33 42 37 C 41 41 39 42 36 40 C 33 38 31 34 30 28 C 29 22 31 18 36 18 C 34 14 30 16 24 16 C 18 16 14 14 12 18 C 17 18 19 22 18 28 C 17 34 15 38 12 40 C 9 42 7 41 6 37 C 5 33 4 28 4 22 C 4 12 8 4 24 4 Z" fill="#063970"/>
-  <ellipse cx="24" cy="24" rx="14" ry="15" fill="white"/>
-  <path d="M 24 4 C 40 4 44 12 44 22 C 38 20 32 16 24 16 C 16 16 10 20 4 22 C 4 12 8 4 24 4 Z" fill="#063970"/>
-  <path d="M 14 22 C 15 16 19 13 24 13 C 29 13 33 15 35 19 C 31 18 27 17.5 24 18 C 20 18.5 16 20 14 22 Z" fill="#063970"/>
-  <polyline points="16,25 21,28.5 16,32" fill="none" stroke="#063970" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
-  <line x1="29" y1="28.5" x2="35" y2="28.5" stroke="#063970" stroke-width="2.8" stroke-linecap="round"/>
+  <defs>
+    <linearGradient id="aidxOuterVolume-01" x1="8" y1="6" x2="41" y2="43" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#69B8E1"/>
+      <stop offset="0.4" stop-color="#3A5ECF"/>
+      <stop offset="1" stop-color="#203B9A"/>
+    </linearGradient>
+    <linearGradient id="aidxHairSilk-01" x1="8" y1="5" x2="40" y2="42" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#2B6F9F"/>
+      <stop offset="0.3" stop-color="#0B4A80"/>
+      <stop offset="0.62" stop-color="#063970"/>
+      <stop offset="1" stop-color="#021F3E"/>
+    </linearGradient>
+    <radialGradient id="aidxFaceVolume-01" cx="0.34" cy="0.28" r="0.76">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="0.62" stop-color="#F8FCFE"/>
+      <stop offset="1" stop-color="#DDECF4"/>
+    </radialGradient>
+    <filter id="aidxFaceLift-01" x="-15%" y="-15%" width="130%" height="135%">
+      <feDropShadow dx="0" dy="0.9" stdDeviation="0.7" flood-color="#031F3E" flood-opacity="0.2"/>
+    </filter>
+  </defs>
+
+  <path d="M 24 4 C 40 4 44 12 44 22 C 44 28 43 33 42 37 C 41 41 39 42 36 40 C 33 38 31 34 30 28 C 29 22 31 18 36 18 C 34 14 30 16 24 16 C 18 16 14 14 12 18 C 17 18 19 22 18 28 C 17 34 15 38 12 40 C 9 42 7 41 6 37 C 5 33 4 28 4 22 C 4 12 8 4 24 4 Z"
+    fill="url(#aidxOuterVolume-01)" stroke="url(#aidxOuterVolume-01)" stroke-width="5" stroke-linejoin="round"/>
+  <ellipse cx="24" cy="24" rx="14" ry="15"
+    fill="url(#aidxOuterVolume-01)" stroke="url(#aidxOuterVolume-01)" stroke-width="5"/>
+
+  <path d="M 24 4 C 40 4 44 12 44 22 C 44 28 43 33 42 37 C 41 41 39 42 36 40 C 33 38 31 34 30 28 C 29 22 31 18 36 18 C 34 14 30 16 24 16 C 18 16 14 14 12 18 C 17 18 19 22 18 28 C 17 34 15 38 12 40 C 9 42 7 41 6 37 C 5 33 4 28 4 22 C 4 12 8 4 24 4 Z"
+    fill="url(#aidxHairSilk-01)"/>
+
+  <ellipse cx="24" cy="24" rx="14" ry="15" fill="url(#aidxFaceVolume-01)" filter="url(#aidxFaceLift-01)"/>
+
+  <path d="M 24 4 C 40 4 44 12 44 22 C 38 20 32 16 24 16 C 16 16 10 20 4 22 C 4 12 8 4 24 4 Z"
+    fill="url(#aidxHairSilk-01)"/>
+
+  <path d="
+    M 13.5 22
+    C 14.3 18.4 16.2 15.3 20.2 13.8
+    C 25.2 11.9 31.6 14.2 35.2 19.2
+    C 31.4 18.1 27.7 17.7 24 18.2
+    C 19.8 18.8 16.1 20.4 13.5 22 Z
+  " fill="url(#aidxHairSilk-01)" stroke="url(#aidxHairSilk-01)" stroke-width="1.3" stroke-linejoin="round"/>
+
+  <path d="M 10 14 C 14 7 22 6 28 7" fill="none" stroke="#5DADE2"
+    stroke-width="0.85" stroke-linecap="round" opacity="0.28"/>
+  <path d="M 38.5 20 C 40 26 39.5 32 37.5 36.5" fill="none" stroke="#5DADE2"
+    stroke-width="0.65" stroke-linecap="round" opacity="0.18"/>
+  <path d="M 9.5 20 C 8 26 8.5 32 10.5 36.5" fill="none" stroke="#5DADE2"
+    stroke-width="0.65" stroke-linecap="round" opacity="0.14"/>
+
+  <polyline points="16,25 21,28.5 16,32" fill="none" stroke="#063970"
+    stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+  <line x1="29" y1="28.5" x2="35" y2="28.5" stroke="#063970"
+    stroke-width="2.8" stroke-linecap="round"/>
 </svg></span><span class="aidx-brand-copy"><span class="aidx-brand-title">AIDX</span><span class="aidx-brand-subtitle">AIDX Review</span></span></span></div>
     <div class="r brand-meta"><span>CONFIDENTIAL</span><span class="brand-rule"></span><b>WeBank</b><span>01 / 10</span></div>
   </header>
     <div style="flex:1;display:grid;grid-template-rows:auto 1fr auto;gap:4vh">
       <div class="t-meta" data-anim="up">AI Developer Experience · Registered Layouts</div>
       <div data-anim="up" style="align-self:center;display:grid;grid-template-columns:minmax(0,3fr) minmax(0,2fr);gap:5vw;align-items:end">
-        <h1 class="h-hero-zh" style="font-size:min(7.8vw,13vh);line-height:1.02;color:var(--text-primary)">AIDX<br>工程效能<br>管理同步</h1>
-        <div style="display:flex;flex-direction:column;gap:2vh;border-left:1px solid var(--border-subtle);padding-left:3vw">
-          <p class="lead" style="color:var(--text-secondary);max-width:34ch">使用 S01-S22 结构、AIDX 浅色品牌、avatar-terminal 与 WeBank 背书。</p>
+        <h1 class="h-hero-zh" style="font-size:min(7.8vw,13vh);line-height:1.02;color:var(--aidx-text-primary)">AIDX<br>工程效能<br>管理同步</h1>
+        <div style="display:flex;flex-direction:column;gap:2vh;border-left:1px solid var(--aidx-border-subtle);padding-left:3vw">
+          <p class="lead" style="color:var(--aidx-text-secondary);max-width:34ch">使用 S01-S22 结构、AIDX 浅色品牌、avatar-terminal 与 WeBank 背书。</p>
           <div class="meta-row"><span>10 Slides</span><span class="dot"></span><span>S01-S22</span><span class="dot"></span><span>Light System</span></div>
         </div>
       </div>
@@ -1267,14 +1408,60 @@
   <div class="canvas-card">
     <header class="chrome-min brand-chrome">
     <div class="l"><span class="aidx-brand"><span class="aidx-avatar-mark" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
-  <path d="M 24 4 C 40 4 44 12 44 22 C 44 28 43 33 42 37 C 41 41 39 42 36 40 C 33 38 31 34 30 28 C 29 22 31 18 36 18 C 34 14 30 16 24 16 C 18 16 14 14 12 18 C 17 18 19 22 18 28 C 17 34 15 38 12 40 C 9 42 7 41 6 37 C 5 33 4 28 4 22 C 4 12 8 4 24 4 Z" fill="#3A5ECF" stroke="#3A5ECF" stroke-width="5" stroke-linejoin="round"/>
-  <ellipse cx="24" cy="24" rx="14" ry="15" fill="#3A5ECF" stroke="#3A5ECF" stroke-width="5"/>
-  <path d="M 24 4 C 40 4 44 12 44 22 C 44 28 43 33 42 37 C 41 41 39 42 36 40 C 33 38 31 34 30 28 C 29 22 31 18 36 18 C 34 14 30 16 24 16 C 18 16 14 14 12 18 C 17 18 19 22 18 28 C 17 34 15 38 12 40 C 9 42 7 41 6 37 C 5 33 4 28 4 22 C 4 12 8 4 24 4 Z" fill="#063970"/>
-  <ellipse cx="24" cy="24" rx="14" ry="15" fill="white"/>
-  <path d="M 24 4 C 40 4 44 12 44 22 C 38 20 32 16 24 16 C 16 16 10 20 4 22 C 4 12 8 4 24 4 Z" fill="#063970"/>
-  <path d="M 14 22 C 15 16 19 13 24 13 C 29 13 33 15 35 19 C 31 18 27 17.5 24 18 C 20 18.5 16 20 14 22 Z" fill="#063970"/>
-  <polyline points="16,25 21,28.5 16,32" fill="none" stroke="#063970" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
-  <line x1="29" y1="28.5" x2="35" y2="28.5" stroke="#063970" stroke-width="2.8" stroke-linecap="round"/>
+  <defs>
+    <linearGradient id="aidxOuterVolume-02" x1="8" y1="6" x2="41" y2="43" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#69B8E1"/>
+      <stop offset="0.4" stop-color="#3A5ECF"/>
+      <stop offset="1" stop-color="#203B9A"/>
+    </linearGradient>
+    <linearGradient id="aidxHairSilk-02" x1="8" y1="5" x2="40" y2="42" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#2B6F9F"/>
+      <stop offset="0.3" stop-color="#0B4A80"/>
+      <stop offset="0.62" stop-color="#063970"/>
+      <stop offset="1" stop-color="#021F3E"/>
+    </linearGradient>
+    <radialGradient id="aidxFaceVolume-02" cx="0.34" cy="0.28" r="0.76">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="0.62" stop-color="#F8FCFE"/>
+      <stop offset="1" stop-color="#DDECF4"/>
+    </radialGradient>
+    <filter id="aidxFaceLift-02" x="-15%" y="-15%" width="130%" height="135%">
+      <feDropShadow dx="0" dy="0.9" stdDeviation="0.7" flood-color="#031F3E" flood-opacity="0.2"/>
+    </filter>
+  </defs>
+
+  <path d="M 24 4 C 40 4 44 12 44 22 C 44 28 43 33 42 37 C 41 41 39 42 36 40 C 33 38 31 34 30 28 C 29 22 31 18 36 18 C 34 14 30 16 24 16 C 18 16 14 14 12 18 C 17 18 19 22 18 28 C 17 34 15 38 12 40 C 9 42 7 41 6 37 C 5 33 4 28 4 22 C 4 12 8 4 24 4 Z"
+    fill="url(#aidxOuterVolume-02)" stroke="url(#aidxOuterVolume-02)" stroke-width="5" stroke-linejoin="round"/>
+  <ellipse cx="24" cy="24" rx="14" ry="15"
+    fill="url(#aidxOuterVolume-02)" stroke="url(#aidxOuterVolume-02)" stroke-width="5"/>
+
+  <path d="M 24 4 C 40 4 44 12 44 22 C 44 28 43 33 42 37 C 41 41 39 42 36 40 C 33 38 31 34 30 28 C 29 22 31 18 36 18 C 34 14 30 16 24 16 C 18 16 14 14 12 18 C 17 18 19 22 18 28 C 17 34 15 38 12 40 C 9 42 7 41 6 37 C 5 33 4 28 4 22 C 4 12 8 4 24 4 Z"
+    fill="url(#aidxHairSilk-02)"/>
+
+  <ellipse cx="24" cy="24" rx="14" ry="15" fill="url(#aidxFaceVolume-02)" filter="url(#aidxFaceLift-02)"/>
+
+  <path d="M 24 4 C 40 4 44 12 44 22 C 38 20 32 16 24 16 C 16 16 10 20 4 22 C 4 12 8 4 24 4 Z"
+    fill="url(#aidxHairSilk-02)"/>
+
+  <path d="
+    M 13.5 22
+    C 14.3 18.4 16.2 15.3 20.2 13.8
+    C 25.2 11.9 31.6 14.2 35.2 19.2
+    C 31.4 18.1 27.7 17.7 24 18.2
+    C 19.8 18.8 16.1 20.4 13.5 22 Z
+  " fill="url(#aidxHairSilk-02)" stroke="url(#aidxHairSilk-02)" stroke-width="1.3" stroke-linejoin="round"/>
+
+  <path d="M 10 14 C 14 7 22 6 28 7" fill="none" stroke="#5DADE2"
+    stroke-width="0.85" stroke-linecap="round" opacity="0.28"/>
+  <path d="M 38.5 20 C 40 26 39.5 32 37.5 36.5" fill="none" stroke="#5DADE2"
+    stroke-width="0.65" stroke-linecap="round" opacity="0.18"/>
+  <path d="M 9.5 20 C 8 26 8.5 32 10.5 36.5" fill="none" stroke="#5DADE2"
+    stroke-width="0.65" stroke-linecap="round" opacity="0.14"/>
+
+  <polyline points="16,25 21,28.5 16,32" fill="none" stroke="#063970"
+    stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+  <line x1="29" y1="28.5" x2="35" y2="28.5" stroke="#063970"
+    stroke-width="2.8" stroke-linecap="round"/>
 </svg></span><span class="aidx-brand-copy"><span class="aidx-brand-title">AIDX</span><span class="aidx-brand-subtitle">AIDX Review</span></span></span></div>
     <div class="r brand-meta"><span>EXEC SUMMARY</span><span class="brand-rule"></span><b>WeBank</b><span>02 / 10</span></div>
   </header>
@@ -1302,14 +1489,60 @@
       <div class="half b-accent" style="justify-content:space-between">
         <header class="chrome-min brand-chrome tight">
     <div class="l"><span class="aidx-brand"><span class="aidx-avatar-mark" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
-  <path d="M 24 4 C 40 4 44 12 44 22 C 44 28 43 33 42 37 C 41 41 39 42 36 40 C 33 38 31 34 30 28 C 29 22 31 18 36 18 C 34 14 30 16 24 16 C 18 16 14 14 12 18 C 17 18 19 22 18 28 C 17 34 15 38 12 40 C 9 42 7 41 6 37 C 5 33 4 28 4 22 C 4 12 8 4 24 4 Z" fill="#3A5ECF" stroke="#3A5ECF" stroke-width="5" stroke-linejoin="round"/>
-  <ellipse cx="24" cy="24" rx="14" ry="15" fill="#3A5ECF" stroke="#3A5ECF" stroke-width="5"/>
-  <path d="M 24 4 C 40 4 44 12 44 22 C 44 28 43 33 42 37 C 41 41 39 42 36 40 C 33 38 31 34 30 28 C 29 22 31 18 36 18 C 34 14 30 16 24 16 C 18 16 14 14 12 18 C 17 18 19 22 18 28 C 17 34 15 38 12 40 C 9 42 7 41 6 37 C 5 33 4 28 4 22 C 4 12 8 4 24 4 Z" fill="#063970"/>
-  <ellipse cx="24" cy="24" rx="14" ry="15" fill="white"/>
-  <path d="M 24 4 C 40 4 44 12 44 22 C 38 20 32 16 24 16 C 16 16 10 20 4 22 C 4 12 8 4 24 4 Z" fill="#063970"/>
-  <path d="M 14 22 C 15 16 19 13 24 13 C 29 13 33 15 35 19 C 31 18 27 17.5 24 18 C 20 18.5 16 20 14 22 Z" fill="#063970"/>
-  <polyline points="16,25 21,28.5 16,32" fill="none" stroke="#063970" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
-  <line x1="29" y1="28.5" x2="35" y2="28.5" stroke="#063970" stroke-width="2.8" stroke-linecap="round"/>
+  <defs>
+    <linearGradient id="aidxOuterVolume-03" x1="8" y1="6" x2="41" y2="43" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#69B8E1"/>
+      <stop offset="0.4" stop-color="#3A5ECF"/>
+      <stop offset="1" stop-color="#203B9A"/>
+    </linearGradient>
+    <linearGradient id="aidxHairSilk-03" x1="8" y1="5" x2="40" y2="42" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#2B6F9F"/>
+      <stop offset="0.3" stop-color="#0B4A80"/>
+      <stop offset="0.62" stop-color="#063970"/>
+      <stop offset="1" stop-color="#021F3E"/>
+    </linearGradient>
+    <radialGradient id="aidxFaceVolume-03" cx="0.34" cy="0.28" r="0.76">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="0.62" stop-color="#F8FCFE"/>
+      <stop offset="1" stop-color="#DDECF4"/>
+    </radialGradient>
+    <filter id="aidxFaceLift-03" x="-15%" y="-15%" width="130%" height="135%">
+      <feDropShadow dx="0" dy="0.9" stdDeviation="0.7" flood-color="#031F3E" flood-opacity="0.2"/>
+    </filter>
+  </defs>
+
+  <path d="M 24 4 C 40 4 44 12 44 22 C 44 28 43 33 42 37 C 41 41 39 42 36 40 C 33 38 31 34 30 28 C 29 22 31 18 36 18 C 34 14 30 16 24 16 C 18 16 14 14 12 18 C 17 18 19 22 18 28 C 17 34 15 38 12 40 C 9 42 7 41 6 37 C 5 33 4 28 4 22 C 4 12 8 4 24 4 Z"
+    fill="url(#aidxOuterVolume-03)" stroke="url(#aidxOuterVolume-03)" stroke-width="5" stroke-linejoin="round"/>
+  <ellipse cx="24" cy="24" rx="14" ry="15"
+    fill="url(#aidxOuterVolume-03)" stroke="url(#aidxOuterVolume-03)" stroke-width="5"/>
+
+  <path d="M 24 4 C 40 4 44 12 44 22 C 44 28 43 33 42 37 C 41 41 39 42 36 40 C 33 38 31 34 30 28 C 29 22 31 18 36 18 C 34 14 30 16 24 16 C 18 16 14 14 12 18 C 17 18 19 22 18 28 C 17 34 15 38 12 40 C 9 42 7 41 6 37 C 5 33 4 28 4 22 C 4 12 8 4 24 4 Z"
+    fill="url(#aidxHairSilk-03)"/>
+
+  <ellipse cx="24" cy="24" rx="14" ry="15" fill="url(#aidxFaceVolume-03)" filter="url(#aidxFaceLift-03)"/>
+
+  <path d="M 24 4 C 40 4 44 12 44 22 C 38 20 32 16 24 16 C 16 16 10 20 4 22 C 4 12 8 4 24 4 Z"
+    fill="url(#aidxHairSilk-03)"/>
+
+  <path d="
+    M 13.5 22
+    C 14.3 18.4 16.2 15.3 20.2 13.8
+    C 25.2 11.9 31.6 14.2 35.2 19.2
+    C 31.4 18.1 27.7 17.7 24 18.2
+    C 19.8 18.8 16.1 20.4 13.5 22 Z
+  " fill="url(#aidxHairSilk-03)" stroke="url(#aidxHairSilk-03)" stroke-width="1.3" stroke-linejoin="round"/>
+
+  <path d="M 10 14 C 14 7 22 6 28 7" fill="none" stroke="#5DADE2"
+    stroke-width="0.85" stroke-linecap="round" opacity="0.28"/>
+  <path d="M 38.5 20 C 40 26 39.5 32 37.5 36.5" fill="none" stroke="#5DADE2"
+    stroke-width="0.65" stroke-linecap="round" opacity="0.18"/>
+  <path d="M 9.5 20 C 8 26 8.5 32 10.5 36.5" fill="none" stroke="#5DADE2"
+    stroke-width="0.65" stroke-linecap="round" opacity="0.14"/>
+
+  <polyline points="16,25 21,28.5 16,32" fill="none" stroke="#063970"
+    stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+  <line x1="29" y1="28.5" x2="35" y2="28.5" stroke="#063970"
+    stroke-width="2.8" stroke-linecap="round"/>
 </svg></span><span class="aidx-brand-copy"><span class="aidx-brand-title">AIDX</span><span class="aidx-brand-subtitle">AIDX Review</span></span></span></div>
     <div class="r brand-meta"><span>DECISION</span><span class="brand-rule"></span><b>WeBank</b><span>03 / 10</span></div>
   </header>
@@ -1324,7 +1557,7 @@
         <div data-anim="rules" style="display:flex;flex-direction:column;gap:2.4vh">
           <article class="card-fill" style="padding:2.6vh 2vw"><div class="t-cat accent">Recommendation</div><h3 class="h-md">批准 9 个核心研发域进入 12 周试点</h3></article>
           <article class="card-fill" style="padding:2.6vh 2vw"><div class="t-cat">Tradeoff</div><p class="body">短期收敛自定义空间,换取统一工具入口、数据边界和审计责任。</p></article>
-          <article class="card-accent" style="padding:2.6vh 2vw"><div class="t-cat on-dark">Next</div><p class="body" style="color:var(--accent-on)">两周内确认团队名单、权限矩阵、验收指标和治理看板。</p></article>
+          <article class="card-accent" style="padding:2.6vh 2vw"><div class="t-cat on-dark">Next</div><p class="body" style="color:var(--aidx-action-on-primary)">两周内确认团队名单、权限矩阵、验收指标和治理看板。</p></article>
         </div>
         <div class="t-meta">AIDX · WeBank</div>
       </div>
@@ -1336,14 +1569,60 @@
   <div class="canvas-card">
     <header class="chrome-min brand-chrome">
     <div class="l"><span class="aidx-brand"><span class="aidx-avatar-mark" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
-  <path d="M 24 4 C 40 4 44 12 44 22 C 44 28 43 33 42 37 C 41 41 39 42 36 40 C 33 38 31 34 30 28 C 29 22 31 18 36 18 C 34 14 30 16 24 16 C 18 16 14 14 12 18 C 17 18 19 22 18 28 C 17 34 15 38 12 40 C 9 42 7 41 6 37 C 5 33 4 28 4 22 C 4 12 8 4 24 4 Z" fill="#3A5ECF" stroke="#3A5ECF" stroke-width="5" stroke-linejoin="round"/>
-  <ellipse cx="24" cy="24" rx="14" ry="15" fill="#3A5ECF" stroke="#3A5ECF" stroke-width="5"/>
-  <path d="M 24 4 C 40 4 44 12 44 22 C 44 28 43 33 42 37 C 41 41 39 42 36 40 C 33 38 31 34 30 28 C 29 22 31 18 36 18 C 34 14 30 16 24 16 C 18 16 14 14 12 18 C 17 18 19 22 18 28 C 17 34 15 38 12 40 C 9 42 7 41 6 37 C 5 33 4 28 4 22 C 4 12 8 4 24 4 Z" fill="#063970"/>
-  <ellipse cx="24" cy="24" rx="14" ry="15" fill="white"/>
-  <path d="M 24 4 C 40 4 44 12 44 22 C 38 20 32 16 24 16 C 16 16 10 20 4 22 C 4 12 8 4 24 4 Z" fill="#063970"/>
-  <path d="M 14 22 C 15 16 19 13 24 13 C 29 13 33 15 35 19 C 31 18 27 17.5 24 18 C 20 18.5 16 20 14 22 Z" fill="#063970"/>
-  <polyline points="16,25 21,28.5 16,32" fill="none" stroke="#063970" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
-  <line x1="29" y1="28.5" x2="35" y2="28.5" stroke="#063970" stroke-width="2.8" stroke-linecap="round"/>
+  <defs>
+    <linearGradient id="aidxOuterVolume-04" x1="8" y1="6" x2="41" y2="43" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#69B8E1"/>
+      <stop offset="0.4" stop-color="#3A5ECF"/>
+      <stop offset="1" stop-color="#203B9A"/>
+    </linearGradient>
+    <linearGradient id="aidxHairSilk-04" x1="8" y1="5" x2="40" y2="42" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#2B6F9F"/>
+      <stop offset="0.3" stop-color="#0B4A80"/>
+      <stop offset="0.62" stop-color="#063970"/>
+      <stop offset="1" stop-color="#021F3E"/>
+    </linearGradient>
+    <radialGradient id="aidxFaceVolume-04" cx="0.34" cy="0.28" r="0.76">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="0.62" stop-color="#F8FCFE"/>
+      <stop offset="1" stop-color="#DDECF4"/>
+    </radialGradient>
+    <filter id="aidxFaceLift-04" x="-15%" y="-15%" width="130%" height="135%">
+      <feDropShadow dx="0" dy="0.9" stdDeviation="0.7" flood-color="#031F3E" flood-opacity="0.2"/>
+    </filter>
+  </defs>
+
+  <path d="M 24 4 C 40 4 44 12 44 22 C 44 28 43 33 42 37 C 41 41 39 42 36 40 C 33 38 31 34 30 28 C 29 22 31 18 36 18 C 34 14 30 16 24 16 C 18 16 14 14 12 18 C 17 18 19 22 18 28 C 17 34 15 38 12 40 C 9 42 7 41 6 37 C 5 33 4 28 4 22 C 4 12 8 4 24 4 Z"
+    fill="url(#aidxOuterVolume-04)" stroke="url(#aidxOuterVolume-04)" stroke-width="5" stroke-linejoin="round"/>
+  <ellipse cx="24" cy="24" rx="14" ry="15"
+    fill="url(#aidxOuterVolume-04)" stroke="url(#aidxOuterVolume-04)" stroke-width="5"/>
+
+  <path d="M 24 4 C 40 4 44 12 44 22 C 44 28 43 33 42 37 C 41 41 39 42 36 40 C 33 38 31 34 30 28 C 29 22 31 18 36 18 C 34 14 30 16 24 16 C 18 16 14 14 12 18 C 17 18 19 22 18 28 C 17 34 15 38 12 40 C 9 42 7 41 6 37 C 5 33 4 28 4 22 C 4 12 8 4 24 4 Z"
+    fill="url(#aidxHairSilk-04)"/>
+
+  <ellipse cx="24" cy="24" rx="14" ry="15" fill="url(#aidxFaceVolume-04)" filter="url(#aidxFaceLift-04)"/>
+
+  <path d="M 24 4 C 40 4 44 12 44 22 C 38 20 32 16 24 16 C 16 16 10 20 4 22 C 4 12 8 4 24 4 Z"
+    fill="url(#aidxHairSilk-04)"/>
+
+  <path d="
+    M 13.5 22
+    C 14.3 18.4 16.2 15.3 20.2 13.8
+    C 25.2 11.9 31.6 14.2 35.2 19.2
+    C 31.4 18.1 27.7 17.7 24 18.2
+    C 19.8 18.8 16.1 20.4 13.5 22 Z
+  " fill="url(#aidxHairSilk-04)" stroke="url(#aidxHairSilk-04)" stroke-width="1.3" stroke-linejoin="round"/>
+
+  <path d="M 10 14 C 14 7 22 6 28 7" fill="none" stroke="#5DADE2"
+    stroke-width="0.85" stroke-linecap="round" opacity="0.28"/>
+  <path d="M 38.5 20 C 40 26 39.5 32 37.5 36.5" fill="none" stroke="#5DADE2"
+    stroke-width="0.65" stroke-linecap="round" opacity="0.18"/>
+  <path d="M 9.5 20 C 8 26 8.5 32 10.5 36.5" fill="none" stroke="#5DADE2"
+    stroke-width="0.65" stroke-linecap="round" opacity="0.14"/>
+
+  <polyline points="16,25 21,28.5 16,32" fill="none" stroke="#063970"
+    stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+  <line x1="29" y1="28.5" x2="35" y2="28.5" stroke="#063970"
+    stroke-width="2.8" stroke-linecap="round"/>
 </svg></span><span class="aidx-brand-copy"><span class="aidx-brand-title">AIDX</span><span class="aidx-brand-subtitle">AIDX Review</span></span></span></div>
     <div class="r brand-meta"><span>KPI</span><span class="brand-rule"></span><b>WeBank</b><span>04 / 10</span></div>
   </header>
@@ -1351,7 +1630,7 @@
       <div data-anim="up" style="display:flex;flex-direction:column;gap:2vh;align-self:start">
         <div class="t-cat accent">关键指标</div>
         <h2 class="h-xl-zh" style="font-size:min(5vw,8.8vh)">效能改善已经进入可度量阶段</h2>
-        <p class="lead" style="color:var(--text-secondary)">四项指标分别覆盖采用、周期、质量和治理阻塞,用于判断是否具备扩域条件。</p>
+        <p class="lead" style="color:var(--aidx-text-secondary)">四项指标分别覆盖采用、周期、质量和治理阻塞,用于判断是否具备扩域条件。</p>
       </div>
       <div class="bar-towers" data-anim="up">
         <div class="bar-tower"><div class="cap"></div><div class="body-block h-3"><div class="lbl">Adoption</div><div class="nb">72<span class="unit">%</span></div><div class="sub">周活使用率</div></div></div>
@@ -1368,14 +1647,60 @@
   <div class="canvas-card">
     <header class="chrome-min brand-chrome">
     <div class="l"><span class="aidx-brand"><span class="aidx-avatar-mark" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
-  <path d="M 24 4 C 40 4 44 12 44 22 C 44 28 43 33 42 37 C 41 41 39 42 36 40 C 33 38 31 34 30 28 C 29 22 31 18 36 18 C 34 14 30 16 24 16 C 18 16 14 14 12 18 C 17 18 19 22 18 28 C 17 34 15 38 12 40 C 9 42 7 41 6 37 C 5 33 4 28 4 22 C 4 12 8 4 24 4 Z" fill="#3A5ECF" stroke="#3A5ECF" stroke-width="5" stroke-linejoin="round"/>
-  <ellipse cx="24" cy="24" rx="14" ry="15" fill="#3A5ECF" stroke="#3A5ECF" stroke-width="5"/>
-  <path d="M 24 4 C 40 4 44 12 44 22 C 44 28 43 33 42 37 C 41 41 39 42 36 40 C 33 38 31 34 30 28 C 29 22 31 18 36 18 C 34 14 30 16 24 16 C 18 16 14 14 12 18 C 17 18 19 22 18 28 C 17 34 15 38 12 40 C 9 42 7 41 6 37 C 5 33 4 28 4 22 C 4 12 8 4 24 4 Z" fill="#063970"/>
-  <ellipse cx="24" cy="24" rx="14" ry="15" fill="white"/>
-  <path d="M 24 4 C 40 4 44 12 44 22 C 38 20 32 16 24 16 C 16 16 10 20 4 22 C 4 12 8 4 24 4 Z" fill="#063970"/>
-  <path d="M 14 22 C 15 16 19 13 24 13 C 29 13 33 15 35 19 C 31 18 27 17.5 24 18 C 20 18.5 16 20 14 22 Z" fill="#063970"/>
-  <polyline points="16,25 21,28.5 16,32" fill="none" stroke="#063970" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
-  <line x1="29" y1="28.5" x2="35" y2="28.5" stroke="#063970" stroke-width="2.8" stroke-linecap="round"/>
+  <defs>
+    <linearGradient id="aidxOuterVolume-05" x1="8" y1="6" x2="41" y2="43" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#69B8E1"/>
+      <stop offset="0.4" stop-color="#3A5ECF"/>
+      <stop offset="1" stop-color="#203B9A"/>
+    </linearGradient>
+    <linearGradient id="aidxHairSilk-05" x1="8" y1="5" x2="40" y2="42" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#2B6F9F"/>
+      <stop offset="0.3" stop-color="#0B4A80"/>
+      <stop offset="0.62" stop-color="#063970"/>
+      <stop offset="1" stop-color="#021F3E"/>
+    </linearGradient>
+    <radialGradient id="aidxFaceVolume-05" cx="0.34" cy="0.28" r="0.76">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="0.62" stop-color="#F8FCFE"/>
+      <stop offset="1" stop-color="#DDECF4"/>
+    </radialGradient>
+    <filter id="aidxFaceLift-05" x="-15%" y="-15%" width="130%" height="135%">
+      <feDropShadow dx="0" dy="0.9" stdDeviation="0.7" flood-color="#031F3E" flood-opacity="0.2"/>
+    </filter>
+  </defs>
+
+  <path d="M 24 4 C 40 4 44 12 44 22 C 44 28 43 33 42 37 C 41 41 39 42 36 40 C 33 38 31 34 30 28 C 29 22 31 18 36 18 C 34 14 30 16 24 16 C 18 16 14 14 12 18 C 17 18 19 22 18 28 C 17 34 15 38 12 40 C 9 42 7 41 6 37 C 5 33 4 28 4 22 C 4 12 8 4 24 4 Z"
+    fill="url(#aidxOuterVolume-05)" stroke="url(#aidxOuterVolume-05)" stroke-width="5" stroke-linejoin="round"/>
+  <ellipse cx="24" cy="24" rx="14" ry="15"
+    fill="url(#aidxOuterVolume-05)" stroke="url(#aidxOuterVolume-05)" stroke-width="5"/>
+
+  <path d="M 24 4 C 40 4 44 12 44 22 C 44 28 43 33 42 37 C 41 41 39 42 36 40 C 33 38 31 34 30 28 C 29 22 31 18 36 18 C 34 14 30 16 24 16 C 18 16 14 14 12 18 C 17 18 19 22 18 28 C 17 34 15 38 12 40 C 9 42 7 41 6 37 C 5 33 4 28 4 22 C 4 12 8 4 24 4 Z"
+    fill="url(#aidxHairSilk-05)"/>
+
+  <ellipse cx="24" cy="24" rx="14" ry="15" fill="url(#aidxFaceVolume-05)" filter="url(#aidxFaceLift-05)"/>
+
+  <path d="M 24 4 C 40 4 44 12 44 22 C 38 20 32 16 24 16 C 16 16 10 20 4 22 C 4 12 8 4 24 4 Z"
+    fill="url(#aidxHairSilk-05)"/>
+
+  <path d="
+    M 13.5 22
+    C 14.3 18.4 16.2 15.3 20.2 13.8
+    C 25.2 11.9 31.6 14.2 35.2 19.2
+    C 31.4 18.1 27.7 17.7 24 18.2
+    C 19.8 18.8 16.1 20.4 13.5 22 Z
+  " fill="url(#aidxHairSilk-05)" stroke="url(#aidxHairSilk-05)" stroke-width="1.3" stroke-linejoin="round"/>
+
+  <path d="M 10 14 C 14 7 22 6 28 7" fill="none" stroke="#5DADE2"
+    stroke-width="0.85" stroke-linecap="round" opacity="0.28"/>
+  <path d="M 38.5 20 C 40 26 39.5 32 37.5 36.5" fill="none" stroke="#5DADE2"
+    stroke-width="0.65" stroke-linecap="round" opacity="0.18"/>
+  <path d="M 9.5 20 C 8 26 8.5 32 10.5 36.5" fill="none" stroke="#5DADE2"
+    stroke-width="0.65" stroke-linecap="round" opacity="0.14"/>
+
+  <polyline points="16,25 21,28.5 16,32" fill="none" stroke="#063970"
+    stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+  <line x1="29" y1="28.5" x2="35" y2="28.5" stroke="#063970"
+    stroke-width="2.8" stroke-linecap="round"/>
 </svg></span><span class="aidx-brand-copy"><span class="aidx-brand-title">AIDX</span><span class="aidx-brand-subtitle">AIDX Review</span></span></span></div>
     <div class="r brand-meta"><span>COMPARE</span><span class="brand-rule"></span><b>WeBank</b><span>05 / 10</span></div>
   </header>
@@ -1396,14 +1721,60 @@
   <div class="canvas-card">
     <header class="chrome-min brand-chrome">
     <div class="l"><span class="aidx-brand"><span class="aidx-avatar-mark" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
-  <path d="M 24 4 C 40 4 44 12 44 22 C 44 28 43 33 42 37 C 41 41 39 42 36 40 C 33 38 31 34 30 28 C 29 22 31 18 36 18 C 34 14 30 16 24 16 C 18 16 14 14 12 18 C 17 18 19 22 18 28 C 17 34 15 38 12 40 C 9 42 7 41 6 37 C 5 33 4 28 4 22 C 4 12 8 4 24 4 Z" fill="#3A5ECF" stroke="#3A5ECF" stroke-width="5" stroke-linejoin="round"/>
-  <ellipse cx="24" cy="24" rx="14" ry="15" fill="#3A5ECF" stroke="#3A5ECF" stroke-width="5"/>
-  <path d="M 24 4 C 40 4 44 12 44 22 C 44 28 43 33 42 37 C 41 41 39 42 36 40 C 33 38 31 34 30 28 C 29 22 31 18 36 18 C 34 14 30 16 24 16 C 18 16 14 14 12 18 C 17 18 19 22 18 28 C 17 34 15 38 12 40 C 9 42 7 41 6 37 C 5 33 4 28 4 22 C 4 12 8 4 24 4 Z" fill="#063970"/>
-  <ellipse cx="24" cy="24" rx="14" ry="15" fill="white"/>
-  <path d="M 24 4 C 40 4 44 12 44 22 C 38 20 32 16 24 16 C 16 16 10 20 4 22 C 4 12 8 4 24 4 Z" fill="#063970"/>
-  <path d="M 14 22 C 15 16 19 13 24 13 C 29 13 33 15 35 19 C 31 18 27 17.5 24 18 C 20 18.5 16 20 14 22 Z" fill="#063970"/>
-  <polyline points="16,25 21,28.5 16,32" fill="none" stroke="#063970" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
-  <line x1="29" y1="28.5" x2="35" y2="28.5" stroke="#063970" stroke-width="2.8" stroke-linecap="round"/>
+  <defs>
+    <linearGradient id="aidxOuterVolume-06" x1="8" y1="6" x2="41" y2="43" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#69B8E1"/>
+      <stop offset="0.4" stop-color="#3A5ECF"/>
+      <stop offset="1" stop-color="#203B9A"/>
+    </linearGradient>
+    <linearGradient id="aidxHairSilk-06" x1="8" y1="5" x2="40" y2="42" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#2B6F9F"/>
+      <stop offset="0.3" stop-color="#0B4A80"/>
+      <stop offset="0.62" stop-color="#063970"/>
+      <stop offset="1" stop-color="#021F3E"/>
+    </linearGradient>
+    <radialGradient id="aidxFaceVolume-06" cx="0.34" cy="0.28" r="0.76">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="0.62" stop-color="#F8FCFE"/>
+      <stop offset="1" stop-color="#DDECF4"/>
+    </radialGradient>
+    <filter id="aidxFaceLift-06" x="-15%" y="-15%" width="130%" height="135%">
+      <feDropShadow dx="0" dy="0.9" stdDeviation="0.7" flood-color="#031F3E" flood-opacity="0.2"/>
+    </filter>
+  </defs>
+
+  <path d="M 24 4 C 40 4 44 12 44 22 C 44 28 43 33 42 37 C 41 41 39 42 36 40 C 33 38 31 34 30 28 C 29 22 31 18 36 18 C 34 14 30 16 24 16 C 18 16 14 14 12 18 C 17 18 19 22 18 28 C 17 34 15 38 12 40 C 9 42 7 41 6 37 C 5 33 4 28 4 22 C 4 12 8 4 24 4 Z"
+    fill="url(#aidxOuterVolume-06)" stroke="url(#aidxOuterVolume-06)" stroke-width="5" stroke-linejoin="round"/>
+  <ellipse cx="24" cy="24" rx="14" ry="15"
+    fill="url(#aidxOuterVolume-06)" stroke="url(#aidxOuterVolume-06)" stroke-width="5"/>
+
+  <path d="M 24 4 C 40 4 44 12 44 22 C 44 28 43 33 42 37 C 41 41 39 42 36 40 C 33 38 31 34 30 28 C 29 22 31 18 36 18 C 34 14 30 16 24 16 C 18 16 14 14 12 18 C 17 18 19 22 18 28 C 17 34 15 38 12 40 C 9 42 7 41 6 37 C 5 33 4 28 4 22 C 4 12 8 4 24 4 Z"
+    fill="url(#aidxHairSilk-06)"/>
+
+  <ellipse cx="24" cy="24" rx="14" ry="15" fill="url(#aidxFaceVolume-06)" filter="url(#aidxFaceLift-06)"/>
+
+  <path d="M 24 4 C 40 4 44 12 44 22 C 38 20 32 16 24 16 C 16 16 10 20 4 22 C 4 12 8 4 24 4 Z"
+    fill="url(#aidxHairSilk-06)"/>
+
+  <path d="
+    M 13.5 22
+    C 14.3 18.4 16.2 15.3 20.2 13.8
+    C 25.2 11.9 31.6 14.2 35.2 19.2
+    C 31.4 18.1 27.7 17.7 24 18.2
+    C 19.8 18.8 16.1 20.4 13.5 22 Z
+  " fill="url(#aidxHairSilk-06)" stroke="url(#aidxHairSilk-06)" stroke-width="1.3" stroke-linejoin="round"/>
+
+  <path d="M 10 14 C 14 7 22 6 28 7" fill="none" stroke="#5DADE2"
+    stroke-width="0.85" stroke-linecap="round" opacity="0.28"/>
+  <path d="M 38.5 20 C 40 26 39.5 32 37.5 36.5" fill="none" stroke="#5DADE2"
+    stroke-width="0.65" stroke-linecap="round" opacity="0.18"/>
+  <path d="M 9.5 20 C 8 26 8.5 32 10.5 36.5" fill="none" stroke="#5DADE2"
+    stroke-width="0.65" stroke-linecap="round" opacity="0.14"/>
+
+  <polyline points="16,25 21,28.5 16,32" fill="none" stroke="#063970"
+    stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+  <line x1="29" y1="28.5" x2="35" y2="28.5" stroke="#063970"
+    stroke-width="2.8" stroke-linecap="round"/>
 </svg></span><span class="aidx-brand-copy"><span class="aidx-brand-title">AIDX</span><span class="aidx-brand-subtitle">AIDX Review</span></span></span></div>
     <div class="r brand-meta"><span>ROADMAP</span><span class="brand-rule"></span><b>WeBank</b><span>06 / 10</span></div>
   </header>
@@ -1428,14 +1799,60 @@
   <div class="canvas-card">
     <header class="chrome-min brand-chrome">
     <div class="l"><span class="aidx-brand"><span class="aidx-avatar-mark" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
-  <path d="M 24 4 C 40 4 44 12 44 22 C 44 28 43 33 42 37 C 41 41 39 42 36 40 C 33 38 31 34 30 28 C 29 22 31 18 36 18 C 34 14 30 16 24 16 C 18 16 14 14 12 18 C 17 18 19 22 18 28 C 17 34 15 38 12 40 C 9 42 7 41 6 37 C 5 33 4 28 4 22 C 4 12 8 4 24 4 Z" fill="#3A5ECF" stroke="#3A5ECF" stroke-width="5" stroke-linejoin="round"/>
-  <ellipse cx="24" cy="24" rx="14" ry="15" fill="#3A5ECF" stroke="#3A5ECF" stroke-width="5"/>
-  <path d="M 24 4 C 40 4 44 12 44 22 C 44 28 43 33 42 37 C 41 41 39 42 36 40 C 33 38 31 34 30 28 C 29 22 31 18 36 18 C 34 14 30 16 24 16 C 18 16 14 14 12 18 C 17 18 19 22 18 28 C 17 34 15 38 12 40 C 9 42 7 41 6 37 C 5 33 4 28 4 22 C 4 12 8 4 24 4 Z" fill="#063970"/>
-  <ellipse cx="24" cy="24" rx="14" ry="15" fill="white"/>
-  <path d="M 24 4 C 40 4 44 12 44 22 C 38 20 32 16 24 16 C 16 16 10 20 4 22 C 4 12 8 4 24 4 Z" fill="#063970"/>
-  <path d="M 14 22 C 15 16 19 13 24 13 C 29 13 33 15 35 19 C 31 18 27 17.5 24 18 C 20 18.5 16 20 14 22 Z" fill="#063970"/>
-  <polyline points="16,25 21,28.5 16,32" fill="none" stroke="#063970" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
-  <line x1="29" y1="28.5" x2="35" y2="28.5" stroke="#063970" stroke-width="2.8" stroke-linecap="round"/>
+  <defs>
+    <linearGradient id="aidxOuterVolume-07" x1="8" y1="6" x2="41" y2="43" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#69B8E1"/>
+      <stop offset="0.4" stop-color="#3A5ECF"/>
+      <stop offset="1" stop-color="#203B9A"/>
+    </linearGradient>
+    <linearGradient id="aidxHairSilk-07" x1="8" y1="5" x2="40" y2="42" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#2B6F9F"/>
+      <stop offset="0.3" stop-color="#0B4A80"/>
+      <stop offset="0.62" stop-color="#063970"/>
+      <stop offset="1" stop-color="#021F3E"/>
+    </linearGradient>
+    <radialGradient id="aidxFaceVolume-07" cx="0.34" cy="0.28" r="0.76">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="0.62" stop-color="#F8FCFE"/>
+      <stop offset="1" stop-color="#DDECF4"/>
+    </radialGradient>
+    <filter id="aidxFaceLift-07" x="-15%" y="-15%" width="130%" height="135%">
+      <feDropShadow dx="0" dy="0.9" stdDeviation="0.7" flood-color="#031F3E" flood-opacity="0.2"/>
+    </filter>
+  </defs>
+
+  <path d="M 24 4 C 40 4 44 12 44 22 C 44 28 43 33 42 37 C 41 41 39 42 36 40 C 33 38 31 34 30 28 C 29 22 31 18 36 18 C 34 14 30 16 24 16 C 18 16 14 14 12 18 C 17 18 19 22 18 28 C 17 34 15 38 12 40 C 9 42 7 41 6 37 C 5 33 4 28 4 22 C 4 12 8 4 24 4 Z"
+    fill="url(#aidxOuterVolume-07)" stroke="url(#aidxOuterVolume-07)" stroke-width="5" stroke-linejoin="round"/>
+  <ellipse cx="24" cy="24" rx="14" ry="15"
+    fill="url(#aidxOuterVolume-07)" stroke="url(#aidxOuterVolume-07)" stroke-width="5"/>
+
+  <path d="M 24 4 C 40 4 44 12 44 22 C 44 28 43 33 42 37 C 41 41 39 42 36 40 C 33 38 31 34 30 28 C 29 22 31 18 36 18 C 34 14 30 16 24 16 C 18 16 14 14 12 18 C 17 18 19 22 18 28 C 17 34 15 38 12 40 C 9 42 7 41 6 37 C 5 33 4 28 4 22 C 4 12 8 4 24 4 Z"
+    fill="url(#aidxHairSilk-07)"/>
+
+  <ellipse cx="24" cy="24" rx="14" ry="15" fill="url(#aidxFaceVolume-07)" filter="url(#aidxFaceLift-07)"/>
+
+  <path d="M 24 4 C 40 4 44 12 44 22 C 38 20 32 16 24 16 C 16 16 10 20 4 22 C 4 12 8 4 24 4 Z"
+    fill="url(#aidxHairSilk-07)"/>
+
+  <path d="
+    M 13.5 22
+    C 14.3 18.4 16.2 15.3 20.2 13.8
+    C 25.2 11.9 31.6 14.2 35.2 19.2
+    C 31.4 18.1 27.7 17.7 24 18.2
+    C 19.8 18.8 16.1 20.4 13.5 22 Z
+  " fill="url(#aidxHairSilk-07)" stroke="url(#aidxHairSilk-07)" stroke-width="1.3" stroke-linejoin="round"/>
+
+  <path d="M 10 14 C 14 7 22 6 28 7" fill="none" stroke="#5DADE2"
+    stroke-width="0.85" stroke-linecap="round" opacity="0.28"/>
+  <path d="M 38.5 20 C 40 26 39.5 32 37.5 36.5" fill="none" stroke="#5DADE2"
+    stroke-width="0.65" stroke-linecap="round" opacity="0.18"/>
+  <path d="M 9.5 20 C 8 26 8.5 32 10.5 36.5" fill="none" stroke="#5DADE2"
+    stroke-width="0.65" stroke-linecap="round" opacity="0.14"/>
+
+  <polyline points="16,25 21,28.5 16,32" fill="none" stroke="#063970"
+    stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+  <line x1="29" y1="28.5" x2="35" y2="28.5" stroke="#063970"
+    stroke-width="2.8" stroke-linecap="round"/>
 </svg></span><span class="aidx-brand-copy"><span class="aidx-brand-title">AIDX</span><span class="aidx-brand-subtitle">AIDX Review</span></span></span></div>
     <div class="r brand-meta"><span>ARCHITECTURE</span><span class="brand-rule"></span><b>WeBank</b><span>07 / 10</span></div>
   </header>
@@ -1443,12 +1860,12 @@
       <div data-anim="up" style="display:flex;flex-direction:column;gap:2vh">
         <div class="t-cat accent">能力地图</div>
         <h2 class="h-xl-zh" style="font-size:min(4.8vw,8.2vh)">AIDX 能力栈支撑三类工程场景</h2>
-      <p class="lead" style="color:var(--text-secondary)">决策者只需要看到体验层、平台层、治理层的边界和依赖关系。</p>
+      <p class="lead" style="color:var(--aidx-text-secondary)">决策者只需要看到体验层、平台层、治理层的边界和依赖关系。</p>
       </div>
       <div data-anim="up" style="display:grid;grid-template-rows:repeat(3,1fr);gap:1.6vh">
         <div class="card-fill" style="padding:2.2vh 2vw;display:grid;grid-template-columns:10em 1fr;gap:1vw;align-items:center"><div class="t-cat accent">Experience</div><div class="body">IDE Assistant · Code Review · Docs QA · Issue Triage</div></div>
         <div class="card-fill" style="padding:2.2vh 2vw;display:grid;grid-template-columns:10em 1fr;gap:1vw;align-items:center"><div class="t-cat accent">Platform</div><div class="body">Agent Runtime · Tool Gateway · Eval Harness · Policy Guard</div></div>
-        <div class="card-accent" style="padding:2.2vh 2vw;display:grid;grid-template-columns:10em 1fr;gap:1vw;align-items:center"><div class="t-cat on-dark">Governance</div><div class="body" style="color:var(--accent-on)">Model Access · Knowledge Base · Audit Log · Security Boundary</div></div>
+        <div class="card-accent" style="padding:2.2vh 2vw;display:grid;grid-template-columns:10em 1fr;gap:1vw;align-items:center"><div class="t-cat on-dark">Governance</div><div class="body" style="color:var(--aidx-action-on-primary)">Model Access · Knowledge Base · Audit Log · Security Boundary</div></div>
       </div>
     </div>
     <footer class="aidx-footer"><span>Capability Map</span><span><b>AIDX</b> · WeBank</span></footer>
@@ -1459,14 +1876,60 @@
   <div class="canvas-card">
     <header class="chrome-min brand-chrome">
     <div class="l"><span class="aidx-brand"><span class="aidx-avatar-mark" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
-  <path d="M 24 4 C 40 4 44 12 44 22 C 44 28 43 33 42 37 C 41 41 39 42 36 40 C 33 38 31 34 30 28 C 29 22 31 18 36 18 C 34 14 30 16 24 16 C 18 16 14 14 12 18 C 17 18 19 22 18 28 C 17 34 15 38 12 40 C 9 42 7 41 6 37 C 5 33 4 28 4 22 C 4 12 8 4 24 4 Z" fill="#3A5ECF" stroke="#3A5ECF" stroke-width="5" stroke-linejoin="round"/>
-  <ellipse cx="24" cy="24" rx="14" ry="15" fill="#3A5ECF" stroke="#3A5ECF" stroke-width="5"/>
-  <path d="M 24 4 C 40 4 44 12 44 22 C 44 28 43 33 42 37 C 41 41 39 42 36 40 C 33 38 31 34 30 28 C 29 22 31 18 36 18 C 34 14 30 16 24 16 C 18 16 14 14 12 18 C 17 18 19 22 18 28 C 17 34 15 38 12 40 C 9 42 7 41 6 37 C 5 33 4 28 4 22 C 4 12 8 4 24 4 Z" fill="#063970"/>
-  <ellipse cx="24" cy="24" rx="14" ry="15" fill="white"/>
-  <path d="M 24 4 C 40 4 44 12 44 22 C 38 20 32 16 24 16 C 16 16 10 20 4 22 C 4 12 8 4 24 4 Z" fill="#063970"/>
-  <path d="M 14 22 C 15 16 19 13 24 13 C 29 13 33 15 35 19 C 31 18 27 17.5 24 18 C 20 18.5 16 20 14 22 Z" fill="#063970"/>
-  <polyline points="16,25 21,28.5 16,32" fill="none" stroke="#063970" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
-  <line x1="29" y1="28.5" x2="35" y2="28.5" stroke="#063970" stroke-width="2.8" stroke-linecap="round"/>
+  <defs>
+    <linearGradient id="aidxOuterVolume-08" x1="8" y1="6" x2="41" y2="43" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#69B8E1"/>
+      <stop offset="0.4" stop-color="#3A5ECF"/>
+      <stop offset="1" stop-color="#203B9A"/>
+    </linearGradient>
+    <linearGradient id="aidxHairSilk-08" x1="8" y1="5" x2="40" y2="42" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#2B6F9F"/>
+      <stop offset="0.3" stop-color="#0B4A80"/>
+      <stop offset="0.62" stop-color="#063970"/>
+      <stop offset="1" stop-color="#021F3E"/>
+    </linearGradient>
+    <radialGradient id="aidxFaceVolume-08" cx="0.34" cy="0.28" r="0.76">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="0.62" stop-color="#F8FCFE"/>
+      <stop offset="1" stop-color="#DDECF4"/>
+    </radialGradient>
+    <filter id="aidxFaceLift-08" x="-15%" y="-15%" width="130%" height="135%">
+      <feDropShadow dx="0" dy="0.9" stdDeviation="0.7" flood-color="#031F3E" flood-opacity="0.2"/>
+    </filter>
+  </defs>
+
+  <path d="M 24 4 C 40 4 44 12 44 22 C 44 28 43 33 42 37 C 41 41 39 42 36 40 C 33 38 31 34 30 28 C 29 22 31 18 36 18 C 34 14 30 16 24 16 C 18 16 14 14 12 18 C 17 18 19 22 18 28 C 17 34 15 38 12 40 C 9 42 7 41 6 37 C 5 33 4 28 4 22 C 4 12 8 4 24 4 Z"
+    fill="url(#aidxOuterVolume-08)" stroke="url(#aidxOuterVolume-08)" stroke-width="5" stroke-linejoin="round"/>
+  <ellipse cx="24" cy="24" rx="14" ry="15"
+    fill="url(#aidxOuterVolume-08)" stroke="url(#aidxOuterVolume-08)" stroke-width="5"/>
+
+  <path d="M 24 4 C 40 4 44 12 44 22 C 44 28 43 33 42 37 C 41 41 39 42 36 40 C 33 38 31 34 30 28 C 29 22 31 18 36 18 C 34 14 30 16 24 16 C 18 16 14 14 12 18 C 17 18 19 22 18 28 C 17 34 15 38 12 40 C 9 42 7 41 6 37 C 5 33 4 28 4 22 C 4 12 8 4 24 4 Z"
+    fill="url(#aidxHairSilk-08)"/>
+
+  <ellipse cx="24" cy="24" rx="14" ry="15" fill="url(#aidxFaceVolume-08)" filter="url(#aidxFaceLift-08)"/>
+
+  <path d="M 24 4 C 40 4 44 12 44 22 C 38 20 32 16 24 16 C 16 16 10 20 4 22 C 4 12 8 4 24 4 Z"
+    fill="url(#aidxHairSilk-08)"/>
+
+  <path d="
+    M 13.5 22
+    C 14.3 18.4 16.2 15.3 20.2 13.8
+    C 25.2 11.9 31.6 14.2 35.2 19.2
+    C 31.4 18.1 27.7 17.7 24 18.2
+    C 19.8 18.8 16.1 20.4 13.5 22 Z
+  " fill="url(#aidxHairSilk-08)" stroke="url(#aidxHairSilk-08)" stroke-width="1.3" stroke-linejoin="round"/>
+
+  <path d="M 10 14 C 14 7 22 6 28 7" fill="none" stroke="#5DADE2"
+    stroke-width="0.85" stroke-linecap="round" opacity="0.28"/>
+  <path d="M 38.5 20 C 40 26 39.5 32 37.5 36.5" fill="none" stroke="#5DADE2"
+    stroke-width="0.65" stroke-linecap="round" opacity="0.18"/>
+  <path d="M 9.5 20 C 8 26 8.5 32 10.5 36.5" fill="none" stroke="#5DADE2"
+    stroke-width="0.65" stroke-linecap="round" opacity="0.14"/>
+
+  <polyline points="16,25 21,28.5 16,32" fill="none" stroke="#063970"
+    stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+  <line x1="29" y1="28.5" x2="35" y2="28.5" stroke="#063970"
+    stroke-width="2.8" stroke-linecap="round"/>
 </svg></span><span class="aidx-brand-copy"><span class="aidx-brand-title">AIDX</span><span class="aidx-brand-subtitle">AIDX Review</span></span></span></div>
     <div class="r brand-meta"><span>RISK LEDGER</span><span class="brand-rule"></span><b>WeBank</b><span>08 / 10</span></div>
   </header>
@@ -1474,11 +1937,11 @@
       <div class="t-cat accent">风险账单</div>
       <h2 class="h-xl-zh" style="font-size:min(5vw,8.8vh)">两个阻塞需要管理层介入</h2>
     </div>
-    <div data-anim="up" style="display:flex;flex-direction:column;margin-top:4vh;border-top:1px solid var(--border-subtle)">
-      <div class="ledger-row" style="display:grid;grid-template-columns:7em 1fr 18em;gap:2vw;align-items:center;padding:2.2vh 0;border-bottom:1px solid var(--border-subtle)"><div class="ledger-num" style="font-family:var(--sans);font-weight:200;font-size:min(5vw,8vh);letter-spacing:-.04em;color:var(--accent)">R1</div><div><div class="h-md">数据边界未统一</div><p class="body" style="color:var(--text-secondary);margin-top:.8vh">影响审计链路完整性</p></div><div class="t-meta">Owner: 平台治理</div></div>
-      <div class="ledger-row" style="display:grid;grid-template-columns:7em 1fr 18em;gap:2vw;align-items:center;padding:2.2vh 0;border-bottom:1px solid var(--border-subtle)"><div class="ledger-num" style="font-family:var(--sans);font-weight:200;font-size:min(5vw,8vh);letter-spacing:-.04em;color:var(--accent)">R2</div><div><div class="h-md">工具入口分散</div><p class="body" style="color:var(--text-secondary);margin-top:.8vh">影响规模化运营效率</p></div><div class="t-meta">Owner: 工程平台</div></div>
-      <div class="ledger-row" style="display:grid;grid-template-columns:7em 1fr 18em;gap:2vw;align-items:center;padding:2.2vh 0;border-bottom:1px solid var(--border-subtle)"><div class="ledger-num" style="font-family:var(--sans);font-weight:200;font-size:min(5vw,8vh);letter-spacing:-.04em;color:var(--ink)">R3</div><div><div class="h-md">模型波动可控</div><p class="body" style="color:var(--text-secondary);margin-top:.8vh">需要回退机制和质量阈值</p></div><div class="t-meta">Owner: AIDX</div></div>
-      <div class="ledger-row" style="display:grid;grid-template-columns:7em 1fr 18em;gap:2vw;align-items:center;padding:2.2vh 0;border-bottom:1px solid var(--border-subtle)"><div class="ledger-num" style="font-family:var(--sans);font-weight:200;font-size:min(5vw,8vh);letter-spacing:-.04em;color:var(--ink)">R4</div><div><div class="h-md">成本进入观察区</div><p class="body" style="color:var(--text-secondary);margin-top:.8vh">纳入月度经营视图</p></div><div class="t-meta">Owner: 财务/平台</div></div>
+    <div data-anim="up" style="display:flex;flex-direction:column;margin-top:4vh;border-top:1px solid var(--aidx-border-subtle)">
+      <div class="ledger-row" style="display:grid;grid-template-columns:8em 1fr 18em;gap:2vw;align-items:center;padding:2.2vh 0;border-bottom:1px solid var(--aidx-border-subtle)"><div style="display:flex;flex-direction:column;align-items:flex-start;gap:.8vh"><span class="status-chip status-danger" data-status="danger">阻塞</span><span class="t-meta">R1</span></div><div><div class="h-md">数据边界未统一</div><p class="body" style="color:var(--aidx-text-secondary);margin-top:.8vh">影响审计链路完整性</p></div><div class="t-meta">Owner: 平台治理</div></div>
+      <div class="ledger-row" style="display:grid;grid-template-columns:8em 1fr 18em;gap:2vw;align-items:center;padding:2.2vh 0;border-bottom:1px solid var(--aidx-border-subtle)"><div style="display:flex;flex-direction:column;align-items:flex-start;gap:.8vh"><span class="status-chip status-danger" data-status="danger">阻塞</span><span class="t-meta">R2</span></div><div><div class="h-md">工具入口分散</div><p class="body" style="color:var(--aidx-text-secondary);margin-top:.8vh">影响规模化运营效率</p></div><div class="t-meta">Owner: 工程平台</div></div>
+      <div class="ledger-row" style="display:grid;grid-template-columns:8em 1fr 18em;gap:2vw;align-items:center;padding:2.2vh 0;border-bottom:1px solid var(--aidx-border-subtle)"><div style="display:flex;flex-direction:column;align-items:flex-start;gap:.8vh"><span class="status-chip status-warning" data-status="warning">观察</span><span class="t-meta">R3</span></div><div><div class="h-md">模型波动可控</div><p class="body" style="color:var(--aidx-text-secondary);margin-top:.8vh">需要回退机制和质量阈值</p></div><div class="t-meta">Owner: AIDX</div></div>
+      <div class="ledger-row" style="display:grid;grid-template-columns:8em 1fr 18em;gap:2vw;align-items:center;padding:2.2vh 0;border-bottom:1px solid var(--aidx-border-subtle)"><div style="display:flex;flex-direction:column;align-items:flex-start;gap:.8vh"><span class="status-chip status-info" data-status="info">跟踪</span><span class="t-meta">R4</span></div><div><div class="h-md">成本进入观察区</div><p class="body" style="color:var(--aidx-text-secondary);margin-top:.8vh">纳入月度经营视图</p></div><div class="t-meta">Owner: 财务/平台</div></div>
     </div>
     <footer class="aidx-footer"><span>Risk Ledger</span><span><b>AIDX</b> · WeBank</span></footer>
   </div>
@@ -1486,34 +1949,80 @@
 
 <section class="slide" data-layout="S22" data-animate="image-hero">
   <div class="canvas-card" style="padding:0;display:flex;flex-direction:column;overflow:hidden">
-    <div data-anim="img" style="position:relative;flex:0 0 60%;overflow:hidden;background:var(--grey-1)" data-image-slot="s22-hero-21x9">
-      <div class="frame-img r-21x9" data-image-slot="s22-hero-21x9" style="height:100%;max-height:none;background:linear-gradient(90deg,#ffffff,#eef6ff);display:grid;grid-template-columns:repeat(12,1fr);gap:1px;padding:4vh 5vw">
-        <div style="background:#dbeafe;border-top:1px solid var(--border-subtle)"></div><div style="background:#ffffff;border-top:1px solid var(--border-subtle)"></div><div style="background:#f5f8fc;border-top:1px solid var(--border-subtle)"></div><div style="background:#f5f8fc;border-top:1px solid var(--border-subtle)"></div><div style="background:#dbeafe;border-top:1px solid var(--border-subtle)"></div><div style="background:#ffffff;border-top:4px solid var(--accent)"></div><div style="background:#f5f8fc;border-top:1px solid var(--border-subtle)"></div><div style="background:#f5f8fc;border-top:1px solid var(--border-subtle)"></div><div style="background:#dbeafe;border-top:1px solid var(--border-subtle)"></div><div style="background:#ffffff;border-top:1px solid var(--border-subtle)"></div><div style="background:#f5f8fc;border-top:1px solid var(--border-subtle)"></div><div style="background:#f5f8fc;border-top:1px solid var(--border-subtle)"></div>
+    <div data-anim="img" style="position:relative;flex:0 0 60%;overflow:hidden;background:var(--aidx-surface-subtle)" data-image-slot="s22-hero-21x9">
+      <div class="frame-img r-21x9" data-image-slot="s22-hero-21x9" style="height:100%;max-height:none;background:var(--aidx-surface-canvas);display:grid;grid-template-columns:repeat(12,1fr);gap:1px;padding:4vh 5vw">
+        <div style="background:var(--aidx-action-subtle);border-top:1px solid var(--aidx-border-subtle)"></div><div style="background:var(--aidx-surface-base);border-top:1px solid var(--aidx-border-subtle)"></div><div style="background:var(--aidx-surface-subtle);border-top:1px solid var(--aidx-border-subtle)"></div><div style="background:var(--aidx-surface-subtle);border-top:1px solid var(--aidx-border-subtle)"></div><div style="background:var(--aidx-action-subtle);border-top:1px solid var(--aidx-border-subtle)"></div><div style="background:var(--aidx-surface-base);border-top:4px solid var(--aidx-action-primary)"></div><div style="background:var(--aidx-surface-subtle);border-top:1px solid var(--aidx-border-subtle)"></div><div style="background:var(--aidx-surface-subtle);border-top:1px solid var(--aidx-border-subtle)"></div><div style="background:var(--aidx-action-subtle);border-top:1px solid var(--aidx-border-subtle)"></div><div style="background:var(--aidx-surface-base);border-top:1px solid var(--aidx-border-subtle)"></div><div style="background:var(--aidx-surface-subtle);border-top:1px solid var(--aidx-border-subtle)"></div><div style="background:var(--aidx-surface-subtle);border-top:1px solid var(--aidx-border-subtle)"></div>
       </div>
       <div style="position:absolute;top:0;left:0;right:0;padding:5.6vh 5vw 0"><header class="chrome-min brand-chrome">
     <div class="l"><span class="aidx-brand"><span class="aidx-avatar-mark" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
-  <path d="M 24 4 C 40 4 44 12 44 22 C 44 28 43 33 42 37 C 41 41 39 42 36 40 C 33 38 31 34 30 28 C 29 22 31 18 36 18 C 34 14 30 16 24 16 C 18 16 14 14 12 18 C 17 18 19 22 18 28 C 17 34 15 38 12 40 C 9 42 7 41 6 37 C 5 33 4 28 4 22 C 4 12 8 4 24 4 Z" fill="#3A5ECF" stroke="#3A5ECF" stroke-width="5" stroke-linejoin="round"/>
-  <ellipse cx="24" cy="24" rx="14" ry="15" fill="#3A5ECF" stroke="#3A5ECF" stroke-width="5"/>
-  <path d="M 24 4 C 40 4 44 12 44 22 C 44 28 43 33 42 37 C 41 41 39 42 36 40 C 33 38 31 34 30 28 C 29 22 31 18 36 18 C 34 14 30 16 24 16 C 18 16 14 14 12 18 C 17 18 19 22 18 28 C 17 34 15 38 12 40 C 9 42 7 41 6 37 C 5 33 4 28 4 22 C 4 12 8 4 24 4 Z" fill="#063970"/>
-  <ellipse cx="24" cy="24" rx="14" ry="15" fill="white"/>
-  <path d="M 24 4 C 40 4 44 12 44 22 C 38 20 32 16 24 16 C 16 16 10 20 4 22 C 4 12 8 4 24 4 Z" fill="#063970"/>
-  <path d="M 14 22 C 15 16 19 13 24 13 C 29 13 33 15 35 19 C 31 18 27 17.5 24 18 C 20 18.5 16 20 14 22 Z" fill="#063970"/>
-  <polyline points="16,25 21,28.5 16,32" fill="none" stroke="#063970" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
-  <line x1="29" y1="28.5" x2="35" y2="28.5" stroke="#063970" stroke-width="2.8" stroke-linecap="round"/>
+  <defs>
+    <linearGradient id="aidxOuterVolume-09" x1="8" y1="6" x2="41" y2="43" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#69B8E1"/>
+      <stop offset="0.4" stop-color="#3A5ECF"/>
+      <stop offset="1" stop-color="#203B9A"/>
+    </linearGradient>
+    <linearGradient id="aidxHairSilk-09" x1="8" y1="5" x2="40" y2="42" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#2B6F9F"/>
+      <stop offset="0.3" stop-color="#0B4A80"/>
+      <stop offset="0.62" stop-color="#063970"/>
+      <stop offset="1" stop-color="#021F3E"/>
+    </linearGradient>
+    <radialGradient id="aidxFaceVolume-09" cx="0.34" cy="0.28" r="0.76">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="0.62" stop-color="#F8FCFE"/>
+      <stop offset="1" stop-color="#DDECF4"/>
+    </radialGradient>
+    <filter id="aidxFaceLift-09" x="-15%" y="-15%" width="130%" height="135%">
+      <feDropShadow dx="0" dy="0.9" stdDeviation="0.7" flood-color="#031F3E" flood-opacity="0.2"/>
+    </filter>
+  </defs>
+
+  <path d="M 24 4 C 40 4 44 12 44 22 C 44 28 43 33 42 37 C 41 41 39 42 36 40 C 33 38 31 34 30 28 C 29 22 31 18 36 18 C 34 14 30 16 24 16 C 18 16 14 14 12 18 C 17 18 19 22 18 28 C 17 34 15 38 12 40 C 9 42 7 41 6 37 C 5 33 4 28 4 22 C 4 12 8 4 24 4 Z"
+    fill="url(#aidxOuterVolume-09)" stroke="url(#aidxOuterVolume-09)" stroke-width="5" stroke-linejoin="round"/>
+  <ellipse cx="24" cy="24" rx="14" ry="15"
+    fill="url(#aidxOuterVolume-09)" stroke="url(#aidxOuterVolume-09)" stroke-width="5"/>
+
+  <path d="M 24 4 C 40 4 44 12 44 22 C 44 28 43 33 42 37 C 41 41 39 42 36 40 C 33 38 31 34 30 28 C 29 22 31 18 36 18 C 34 14 30 16 24 16 C 18 16 14 14 12 18 C 17 18 19 22 18 28 C 17 34 15 38 12 40 C 9 42 7 41 6 37 C 5 33 4 28 4 22 C 4 12 8 4 24 4 Z"
+    fill="url(#aidxHairSilk-09)"/>
+
+  <ellipse cx="24" cy="24" rx="14" ry="15" fill="url(#aidxFaceVolume-09)" filter="url(#aidxFaceLift-09)"/>
+
+  <path d="M 24 4 C 40 4 44 12 44 22 C 38 20 32 16 24 16 C 16 16 10 20 4 22 C 4 12 8 4 24 4 Z"
+    fill="url(#aidxHairSilk-09)"/>
+
+  <path d="
+    M 13.5 22
+    C 14.3 18.4 16.2 15.3 20.2 13.8
+    C 25.2 11.9 31.6 14.2 35.2 19.2
+    C 31.4 18.1 27.7 17.7 24 18.2
+    C 19.8 18.8 16.1 20.4 13.5 22 Z
+  " fill="url(#aidxHairSilk-09)" stroke="url(#aidxHairSilk-09)" stroke-width="1.3" stroke-linejoin="round"/>
+
+  <path d="M 10 14 C 14 7 22 6 28 7" fill="none" stroke="#5DADE2"
+    stroke-width="0.85" stroke-linecap="round" opacity="0.28"/>
+  <path d="M 38.5 20 C 40 26 39.5 32 37.5 36.5" fill="none" stroke="#5DADE2"
+    stroke-width="0.65" stroke-linecap="round" opacity="0.18"/>
+  <path d="M 9.5 20 C 8 26 8.5 32 10.5 36.5" fill="none" stroke="#5DADE2"
+    stroke-width="0.65" stroke-linecap="round" opacity="0.14"/>
+
+  <polyline points="16,25 21,28.5 16,32" fill="none" stroke="#063970"
+    stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+  <line x1="29" y1="28.5" x2="35" y2="28.5" stroke="#063970"
+    stroke-width="2.8" stroke-linecap="round"/>
 </svg></span><span class="aidx-brand-copy"><span class="aidx-brand-title">AIDX</span><span class="aidx-brand-subtitle">AIDX Review</span></span></span></div>
     <div class="r brand-meta"><span>EVIDENCE</span><span class="brand-rule"></span><b>WeBank</b><span>09 / 10</span></div>
   </header></div>
-      <div data-anim="title-block" style="position:absolute;left:5vw;top:12vh;background:var(--paper);padding:3.2vh 3.2vw;max-width:42vw;border:1px solid var(--border-subtle)">
+      <div data-anim="title-block" style="position:absolute;left:5vw;top:12vh;background:var(--aidx-surface-base);padding:3.2vh 3.2vw;max-width:42vw;border:1px solid var(--aidx-border-subtle)">
         <div class="t-cat accent">Evidence</div>
-        <div style="font-family:var(--sans),var(--sans-zh);font-weight:200;font-size:min(4.8vw,8.4vh);line-height:1;letter-spacing:-.035em;color:var(--text-primary);margin-top:1vh">真实工作流<br>已经跑通</div>
+        <div style="font-family:var(--sans),var(--sans-zh);font-weight:200;font-size:min(4.8vw,8.4vh);line-height:1;letter-spacing:-.035em;color:var(--aidx-text-primary);margin-top:1vh">真实工作流<br>已经跑通</div>
       </div>
     </div>
     <div data-anim="kpi" class="image-hero-body">
-      <div style="max-width:48ch;font-family:var(--sans),var(--sans-zh);font-size:max(16px,1.3vw);line-height:1.55;font-weight:400;color:var(--text-primary);letter-spacing:-.005em">这页展示 S22 的 21:9 证据槽位。正式汇报时使用真实工作流截图或产品证据图。</div>
+      <div style="max-width:48ch;font-family:var(--sans),var(--sans-zh);font-size:max(16px,1.3vw);line-height:1.55;font-weight:400;color:var(--aidx-text-primary);letter-spacing:-.005em">这页展示 S22 的 21:9 证据槽位。正式汇报时使用真实工作流截图或产品证据图。</div>
       <div class="image-hero-stats" style="gap:4vw">
-        <div style="display:flex;flex-direction:column;gap:.6vh"><div style="height:1px;background:var(--ink)"></div><div class="t-meta">Signal 01</div><div style="font-family:var(--sans);font-weight:200;font-size:min(4.6vw,7.6vh);line-height:.95;letter-spacing:-.04em">4</div><div style="height:1px;background:var(--border-subtle);margin-top:auto"></div><p class="body-sm">流程状态闭环</p></div>
-        <div style="display:flex;flex-direction:column;gap:.6vh"><div style="height:1px;background:var(--ink)"></div><div class="t-meta">Signal 02</div><div style="font-family:var(--sans);font-weight:200;font-size:min(4.6vw,7.6vh);line-height:.95;letter-spacing:-.04em">16:10</div><div style="height:1px;background:var(--border-subtle);margin-top:auto"></div><p class="body-sm">截图适配入口</p></div>
-        <div style="display:flex;flex-direction:column;gap:.6vh"><div style="height:1px;background:var(--ink)"></div><div class="t-meta">Signal 03</div><div style="font-family:var(--sans);font-weight:200;font-size:min(4.6vw,7.6vh);line-height:.95;letter-spacing:-.04em;color:var(--accent)">21:9</div><div style="height:1px;background:var(--border-subtle);margin-top:auto"></div><p class="body-sm">S22 主图槽位</p></div>
+        <div style="display:flex;flex-direction:column;gap:.6vh"><div style="height:1px;background:var(--aidx-brand-core)"></div><div class="t-meta">Signal 01</div><div style="font-family:var(--sans);font-weight:200;font-size:min(4.6vw,7.6vh);line-height:.95;letter-spacing:-.04em">4</div><div style="height:1px;background:var(--aidx-border-subtle);margin-top:auto"></div><p class="body-sm">流程状态闭环</p></div>
+        <div style="display:flex;flex-direction:column;gap:.6vh"><div style="height:1px;background:var(--aidx-brand-core)"></div><div class="t-meta">Signal 02</div><div style="font-family:var(--sans);font-weight:200;font-size:min(4.6vw,7.6vh);line-height:.95;letter-spacing:-.04em">16:10</div><div style="height:1px;background:var(--aidx-border-subtle);margin-top:auto"></div><p class="body-sm">截图适配入口</p></div>
+        <div style="display:flex;flex-direction:column;gap:.6vh"><div style="height:1px;background:var(--aidx-brand-core)"></div><div class="t-meta">Signal 03</div><div style="font-family:var(--sans);font-weight:200;font-size:min(4.6vw,7.6vh);line-height:.95;letter-spacing:-.04em;color:var(--aidx-action-primary)">21:9</div><div style="height:1px;background:var(--aidx-border-subtle);margin-top:auto"></div><p class="body-sm">S22 主图槽位</p></div>
       </div>
     </div>
   </div>
@@ -1525,29 +2034,75 @@
       <div class="half b-accent" style="justify-content:space-between">
         <header class="chrome-min brand-chrome tight">
     <div class="l"><span class="aidx-brand"><span class="aidx-avatar-mark" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
-  <path d="M 24 4 C 40 4 44 12 44 22 C 44 28 43 33 42 37 C 41 41 39 42 36 40 C 33 38 31 34 30 28 C 29 22 31 18 36 18 C 34 14 30 16 24 16 C 18 16 14 14 12 18 C 17 18 19 22 18 28 C 17 34 15 38 12 40 C 9 42 7 41 6 37 C 5 33 4 28 4 22 C 4 12 8 4 24 4 Z" fill="#3A5ECF" stroke="#3A5ECF" stroke-width="5" stroke-linejoin="round"/>
-  <ellipse cx="24" cy="24" rx="14" ry="15" fill="#3A5ECF" stroke="#3A5ECF" stroke-width="5"/>
-  <path d="M 24 4 C 40 4 44 12 44 22 C 44 28 43 33 42 37 C 41 41 39 42 36 40 C 33 38 31 34 30 28 C 29 22 31 18 36 18 C 34 14 30 16 24 16 C 18 16 14 14 12 18 C 17 18 19 22 18 28 C 17 34 15 38 12 40 C 9 42 7 41 6 37 C 5 33 4 28 4 22 C 4 12 8 4 24 4 Z" fill="#063970"/>
-  <ellipse cx="24" cy="24" rx="14" ry="15" fill="white"/>
-  <path d="M 24 4 C 40 4 44 12 44 22 C 38 20 32 16 24 16 C 16 16 10 20 4 22 C 4 12 8 4 24 4 Z" fill="#063970"/>
-  <path d="M 14 22 C 15 16 19 13 24 13 C 29 13 33 15 35 19 C 31 18 27 17.5 24 18 C 20 18.5 16 20 14 22 Z" fill="#063970"/>
-  <polyline points="16,25 21,28.5 16,32" fill="none" stroke="#063970" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
-  <line x1="29" y1="28.5" x2="35" y2="28.5" stroke="#063970" stroke-width="2.8" stroke-linecap="round"/>
+  <defs>
+    <linearGradient id="aidxOuterVolume-10" x1="8" y1="6" x2="41" y2="43" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#69B8E1"/>
+      <stop offset="0.4" stop-color="#3A5ECF"/>
+      <stop offset="1" stop-color="#203B9A"/>
+    </linearGradient>
+    <linearGradient id="aidxHairSilk-10" x1="8" y1="5" x2="40" y2="42" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#2B6F9F"/>
+      <stop offset="0.3" stop-color="#0B4A80"/>
+      <stop offset="0.62" stop-color="#063970"/>
+      <stop offset="1" stop-color="#021F3E"/>
+    </linearGradient>
+    <radialGradient id="aidxFaceVolume-10" cx="0.34" cy="0.28" r="0.76">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="0.62" stop-color="#F8FCFE"/>
+      <stop offset="1" stop-color="#DDECF4"/>
+    </radialGradient>
+    <filter id="aidxFaceLift-10" x="-15%" y="-15%" width="130%" height="135%">
+      <feDropShadow dx="0" dy="0.9" stdDeviation="0.7" flood-color="#031F3E" flood-opacity="0.2"/>
+    </filter>
+  </defs>
+
+  <path d="M 24 4 C 40 4 44 12 44 22 C 44 28 43 33 42 37 C 41 41 39 42 36 40 C 33 38 31 34 30 28 C 29 22 31 18 36 18 C 34 14 30 16 24 16 C 18 16 14 14 12 18 C 17 18 19 22 18 28 C 17 34 15 38 12 40 C 9 42 7 41 6 37 C 5 33 4 28 4 22 C 4 12 8 4 24 4 Z"
+    fill="url(#aidxOuterVolume-10)" stroke="url(#aidxOuterVolume-10)" stroke-width="5" stroke-linejoin="round"/>
+  <ellipse cx="24" cy="24" rx="14" ry="15"
+    fill="url(#aidxOuterVolume-10)" stroke="url(#aidxOuterVolume-10)" stroke-width="5"/>
+
+  <path d="M 24 4 C 40 4 44 12 44 22 C 44 28 43 33 42 37 C 41 41 39 42 36 40 C 33 38 31 34 30 28 C 29 22 31 18 36 18 C 34 14 30 16 24 16 C 18 16 14 14 12 18 C 17 18 19 22 18 28 C 17 34 15 38 12 40 C 9 42 7 41 6 37 C 5 33 4 28 4 22 C 4 12 8 4 24 4 Z"
+    fill="url(#aidxHairSilk-10)"/>
+
+  <ellipse cx="24" cy="24" rx="14" ry="15" fill="url(#aidxFaceVolume-10)" filter="url(#aidxFaceLift-10)"/>
+
+  <path d="M 24 4 C 40 4 44 12 44 22 C 38 20 32 16 24 16 C 16 16 10 20 4 22 C 4 12 8 4 24 4 Z"
+    fill="url(#aidxHairSilk-10)"/>
+
+  <path d="
+    M 13.5 22
+    C 14.3 18.4 16.2 15.3 20.2 13.8
+    C 25.2 11.9 31.6 14.2 35.2 19.2
+    C 31.4 18.1 27.7 17.7 24 18.2
+    C 19.8 18.8 16.1 20.4 13.5 22 Z
+  " fill="url(#aidxHairSilk-10)" stroke="url(#aidxHairSilk-10)" stroke-width="1.3" stroke-linejoin="round"/>
+
+  <path d="M 10 14 C 14 7 22 6 28 7" fill="none" stroke="#5DADE2"
+    stroke-width="0.85" stroke-linecap="round" opacity="0.28"/>
+  <path d="M 38.5 20 C 40 26 39.5 32 37.5 36.5" fill="none" stroke="#5DADE2"
+    stroke-width="0.65" stroke-linecap="round" opacity="0.18"/>
+  <path d="M 9.5 20 C 8 26 8.5 32 10.5 36.5" fill="none" stroke="#5DADE2"
+    stroke-width="0.65" stroke-linecap="round" opacity="0.14"/>
+
+  <polyline points="16,25 21,28.5 16,32" fill="none" stroke="#063970"
+    stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+  <line x1="29" y1="28.5" x2="35" y2="28.5" stroke="#063970"
+    stroke-width="2.8" stroke-linecap="round"/>
 </svg></span><span class="aidx-brand-copy"><span class="aidx-brand-title">AIDX</span><span class="aidx-brand-subtitle">AIDX Review</span></span></span></div>
     <div class="r brand-meta"><span>CLOSING</span><span class="brand-rule"></span><b>WeBank</b><span>10 / 10</span></div>
   </header>
         <div data-anim="manifesto" style="display:flex;flex-direction:column;gap:2vh">
           <div class="t-cat accent">结尾请求</div>
-          <h2 style="font-family:var(--sans),var(--sans-zh);font-size:min(6.8vw,12vh);line-height:.96;letter-spacing:-.025em;font-weight:200;color:var(--text-primary)">请批准<br>下一阶段<br>规模化试点</h2>
+          <h2 style="font-family:var(--sans),var(--sans-zh);font-size:min(6.8vw,12vh);line-height:.96;letter-spacing:-.025em;font-weight:200;color:var(--aidx-text-primary)">请批准<br>下一阶段<br>规模化试点</h2>
         </div>
         <div class="t-meta">AIDX · WeBank</div>
       </div>
       <div class="half" style="justify-content:space-between">
         <div class="chrome-min"><div class="l">Decision Request</div><div class="r">03 Asks</div></div>
         <div data-anim="rules" style="display:flex;flex-direction:column;gap:0">
-          <div style="display:grid;grid-template-columns:auto 1fr;gap:2vw;align-items:start;padding:2.8vh 0;border-top:1px solid var(--border-subtle);"><div style="font-family:var(--sans);font-weight:200;font-size:min(4.4vw,7.8vh);line-height:.9;color:var(--text-primary)">01</div><div><h3 style="font-family:var(--sans),var(--sans-zh);font-weight:400;font-size:max(18px,1.8vw);line-height:1.2;letter-spacing:-.015em;color:var(--text-primary)">批准 9 个核心研发域进入 12 周规模化试点</h3><p class="body" style="color:var(--text-secondary);margin-top:1vh">范围与资源决策。</p></div></div>
-          <div style="display:grid;grid-template-columns:auto 1fr;gap:2vw;align-items:start;padding:2.8vh 0;border-top:1px solid var(--border-subtle);"><div style="font-family:var(--sans);font-weight:200;font-size:min(4.4vw,7.8vh);line-height:.9;color:var(--text-primary)">02</div><div><h3 style="font-family:var(--sans),var(--sans-zh);font-weight:400;font-size:max(18px,1.8vw);line-height:1.2;letter-spacing:-.015em;color:var(--text-primary)">确认统一工具入口、数据边界和审计责任归属</h3><p class="body" style="color:var(--text-secondary);margin-top:1vh">治理与协同决策。</p></div></div>
-          <div style="display:grid;grid-template-columns:auto 1fr;gap:2vw;align-items:start;padding:2.8vh 0;border-top:1px solid var(--border-subtle);border-bottom:2px solid var(--accent)"><div style="font-family:var(--sans);font-weight:200;font-size:min(4.4vw,7.8vh);line-height:.9;color:var(--accent)">03</div><div><h3 style="font-family:var(--sans),var(--sans-zh);font-weight:400;font-size:max(18px,1.8vw);line-height:1.2;letter-spacing:-.015em;color:var(--accent)">授权每两周同步效果、风险和成本看板</h3><p class="body" style="color:var(--text-secondary);margin-top:1vh">节奏与验收决策。</p></div></div>
+          <div style="display:grid;grid-template-columns:auto 1fr;gap:2vw;align-items:start;padding:2.8vh 0;border-top:1px solid var(--aidx-border-subtle);"><div style="font-family:var(--sans);font-weight:200;font-size:min(4.4vw,7.8vh);line-height:.9;color:var(--aidx-text-primary)">01</div><div><h3 style="font-family:var(--sans),var(--sans-zh);font-weight:400;font-size:max(18px,1.8vw);line-height:1.2;letter-spacing:-.015em;color:var(--aidx-text-primary)">批准 9 个核心研发域进入 12 周规模化试点</h3><p class="body" style="color:var(--aidx-text-secondary);margin-top:1vh">范围与资源决策。</p></div></div>
+          <div style="display:grid;grid-template-columns:auto 1fr;gap:2vw;align-items:start;padding:2.8vh 0;border-top:1px solid var(--aidx-border-subtle);"><div style="font-family:var(--sans);font-weight:200;font-size:min(4.4vw,7.8vh);line-height:.9;color:var(--aidx-text-primary)">02</div><div><h3 style="font-family:var(--sans),var(--sans-zh);font-weight:400;font-size:max(18px,1.8vw);line-height:1.2;letter-spacing:-.015em;color:var(--aidx-text-primary)">确认统一工具入口、数据边界和审计责任归属</h3><p class="body" style="color:var(--aidx-text-secondary);margin-top:1vh">治理与协同决策。</p></div></div>
+          <div style="display:grid;grid-template-columns:auto 1fr;gap:2vw;align-items:start;padding:2.8vh 0;border-top:1px solid var(--aidx-border-subtle);border-bottom:2px solid var(--aidx-action-primary)"><div style="font-family:var(--sans);font-weight:200;font-size:min(4.4vw,7.8vh);line-height:.9;color:var(--aidx-action-primary)">03</div><div><h3 style="font-family:var(--sans),var(--sans-zh);font-weight:400;font-size:max(18px,1.8vw);line-height:1.2;letter-spacing:-.015em;color:var(--aidx-action-primary)">授权每两周同步效果、风险和成本看板</h3><p class="body" style="color:var(--aidx-text-secondary);margin-top:1vh">节奏与验收决策。</p></div></div>
         </div>
         <div class="t-meta" style="text-align:right">AIDX · WeBank</div>
       </div>
@@ -1658,7 +2213,7 @@ function bootGL(canvasId, fsSrc){
   // 读取 CSS 变量,把 accent 颜色塞进 shader
   function readAccent(){
     const cs = getComputedStyle(document.documentElement);
-    const hex = cs.getPropertyValue('--accent').trim() || '#3A5ECF';
+    const hex = cs.getPropertyValue('--aidx-action-primary').trim() || '#3A5ECF';
     const m = hex.match(/^#([0-9a-f]{6})$/i);
     if(!m) return [0, 0.18, 0.65];
     const n = parseInt(m[1], 16);
@@ -1729,7 +2284,7 @@ function go(n){
   deck.style.transform=`translateX(${-idx*100}vw)`;
   nav.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('active',i===idx));
   const el=slides[idx];
-  const isDark = el.classList.contains('dark') || el.classList.contains('accent');
+  const isDark = el.classList.contains('theme-dark');
   document.body.classList.toggle('dark-bg', isDark);
   darkMode = isDark;
   if(window.__playSlide) setTimeout(()=>window.__playSlide(idx), 450);
@@ -1740,7 +2295,7 @@ function go(n){
 let overviewOn=false;
 const ov=document.createElement('div');
 ov.id='overview';
-ov.style.cssText='position:fixed;inset:0;z-index:100;background:rgba(250,250,248,.96);backdrop-filter:blur(12px);display:none;overflow-y:auto;padding:4vh 4vw';
+ov.style.cssText='position:fixed;inset:0;z-index:100;background:rgba(247,248,250,.96);backdrop-filter:blur(12px);display:none;overflow-y:auto;padding:4vh 4vw';
 document.body.appendChild(ov);
 
 function buildOverview(){
@@ -1749,18 +2304,17 @@ function buildOverview(){
   grid.style.cssText='display:grid;grid-template-columns:repeat(4,1fr);gap:2vh 1.6vw;max-width:90vw;margin:0 auto';
   slides.forEach((s,i)=>{
     const card=document.createElement('div');
-    card.style.cssText='cursor:pointer;overflow:hidden;border:2px solid '+(i===idx?'var(--accent)':'rgba(0,0,0,.12)')+';transition:border-color .2s';
-    card.onmouseenter=()=>card.style.borderColor='rgba(0,0,0,.4)';
-    card.onmouseleave=()=>card.style.borderColor=i===idx?'var(--accent)':'rgba(0,0,0,.12)';
+    card.style.cssText='cursor:pointer;overflow:hidden;border:2px solid '+(i===idx?'var(--aidx-action-primary)':'var(--aidx-border-default)')+';transition:border-color .2s';
+    card.onmouseenter=()=>card.style.borderColor='var(--aidx-border-strong)';
+    card.onmouseleave=()=>card.style.borderColor=i===idx?'var(--aidx-action-primary)':'var(--aidx-border-default)';
     const wrap=document.createElement('div');
-    const isDark = s.classList.contains('dark') || s.classList.contains('accent');
-    wrap.style.cssText='width:100%;aspect-ratio:16/9;overflow:hidden;position:relative;pointer-events:none;background:'+(isDark?'var(--ink)':'var(--paper)');
+    wrap.style.cssText='width:100%;aspect-ratio:16/9;overflow:hidden;position:relative;pointer-events:none;background:var(--aidx-surface-base)';
     const clone=s.cloneNode(true);
     clone.style.cssText='width:100vw;height:100vh;transform:scale('+(1/4.5)+');transform-origin:top left;position:absolute;top:0;left:0;pointer-events:none';
     wrap.appendChild(clone);
     const label=document.createElement('div');
     /* ESC 索引卡 label */
-  label.style.cssText='padding:6px 10px;font-family:var(--mono);font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);opacity:.7';
+  label.style.cssText='padding:6px 10px;font-family:var(--mono);font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:var(--aidx-brand-core);opacity:.7';
     label.textContent=(i+1)+' / '+total;
     card.appendChild(wrap);
     card.appendChild(label);
@@ -1829,7 +2383,7 @@ go(Number.isFinite(initialSlide) ? initialSlide : 0);
 <script type="module">
 let motion;
 try {
-  motion = await import('./assets/motion.min.js');
+  motion = await import('../assets/motion.min.js');
 } catch(e1) {
   try {
     motion = await import('https://cdn.jsdelivr.net/npm/motion@11.11.17/+esm');
@@ -2398,7 +2952,7 @@ if(motion){
       if(middle){
         const kids = [...middle.children];
         kids.forEach((el, i)=>{
-          if(el.style && el.style.background === 'var(--ink)'){
+          if(el.style && el.style.background === 'var(--aidx-brand-core)'){
             el.style.transformOrigin = 'left center';
             animate(el, {scaleX:[0,1], opacity:[0,1]}, {duration:.5, delay:1.6 + i*.1, easing:EASE_ENTRY_EXP});
           } else {

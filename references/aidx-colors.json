@@ -1,0 +1,158 @@
+{
+  "meta": {
+    "name": "AIDX Color System",
+    "version": "1.0.0",
+    "updated": "2026-07-21",
+    "sourceOfTruth": true,
+    "defaultTheme": "light",
+    "colorSpace": "sRGB",
+    "scaleMethod": "OKLCH-informed, hand-tuned, and published as sRGB Hex",
+    "accessibilityTarget": "WCAG 2.2 AA"
+  },
+  "palette": {
+    "coreNavy": {
+      "name": { "en": "AIDX Core Navy", "zh": "AIDX 核心海军蓝" },
+      "role": "The sole core brand color for identity and formal brand applications.",
+      "anchor": { "step": "800", "hex": "#063970", "oklch": "oklch(34.78% 0.1077 254.93)" },
+      "scale": {
+        "50": "#EFF7FC",
+        "100": "#DCEEF8",
+        "200": "#B8DCEF",
+        "300": "#89C3E3",
+        "400": "#58A4D2",
+        "500": "#3182BC",
+        "600": "#17639B",
+        "700": "#0C4C82",
+        "800": "#063970",
+        "900": "#052E5C",
+        "950": "#031B38"
+      }
+    },
+    "actionBlue": {
+      "name": { "en": "Action Blue", "zh": "交互蓝" },
+      "role": "The digital interaction color for controls, links, selection, and focus.",
+      "anchor": { "step": "600", "hex": "#3A5ECF", "oklch": "oklch(52.13% 0.1796 266.68)" },
+      "scale": {
+        "50": "#F0F4FF",
+        "100": "#E0E8FF",
+        "200": "#C2D0FA",
+        "300": "#9BB2F2",
+        "400": "#718EE6",
+        "500": "#5270D9",
+        "600": "#3A5ECF",
+        "700": "#2F4CB0",
+        "800": "#293F8D",
+        "900": "#26386F",
+        "950": "#172042"
+      }
+    },
+    "signalCyan": {
+      "name": { "en": "Signal Cyan", "zh": "信号青" },
+      "role": "The AIDX energy accent for AI states, motion, glow, and small-area emphasis.",
+      "anchor": { "step": "400", "hex": "#5DADE2", "oklch": "oklch(71.82% 0.1105 239.78)" },
+      "scale": {
+        "50": "#F0FAFE",
+        "100": "#DDF3FC",
+        "200": "#BCE7F7",
+        "300": "#8FD3EE",
+        "400": "#5DADE2",
+        "500": "#3B91CC",
+        "600": "#2875AD",
+        "700": "#235E8C",
+        "800": "#224F73",
+        "900": "#224460",
+        "950": "#142A40"
+      }
+    },
+    "navyGray": {
+      "name": { "en": "Navy Gray", "zh": "海军灰" },
+      "role": "A subtly cool neutral family for text, borders, and surfaces without a visible purple cast.",
+      "scale": {
+        "0": "#FFFFFF",
+        "50": "#F7F8FA",
+        "100": "#EFF2F5",
+        "200": "#E0E5EA",
+        "300": "#C8D0D8",
+        "400": "#9AA7B3",
+        "500": "#717F8C",
+        "600": "#53616E",
+        "700": "#3B4854",
+        "800": "#26333F",
+        "900": "#16232F",
+        "950": "#0B151F",
+        "1000": "#000000"
+      }
+    }
+  },
+  "semantic": {
+    "light": {
+      "brand": { "core": "#063970", "onSurface": "#063970", "action": "#3A5ECF", "signal": "#5DADE2" },
+      "surface": { "canvas": "#F7F8FA", "base": "#FFFFFF", "raised": "#FFFFFF", "subtle": "#EFF2F5", "sunken": "#E0E5EA", "inverse": "#16232F" },
+      "text": { "primary": "#16232F", "secondary": "#53616E", "muted": "#717F8C", "inverse": "#FFFFFF", "link": "#3A5ECF", "linkHover": "#2F4CB0" },
+      "border": { "subtle": "#E0E5EA", "default": "#C8D0D8", "strong": "#717F8C", "focus": "#3A5ECF" },
+      "action": { "primary": "#3A5ECF", "primaryHover": "#2F4CB0", "primaryActive": "#293F8D", "onPrimary": "#FFFFFF", "subtle": "#F0F4FF", "onSubtle": "#293F8D", "disabled": "#C8D0D8", "onDisabled": "#53616E" },
+      "status": {
+        "success": { "background": "#EAF7EF", "border": "#7DC79A", "text": "#1E613D", "solid": "#257A4A", "onSolid": "#FFFFFF" },
+        "warning": { "background": "#FFF7E3", "border": "#E4B34A", "text": "#7A5100", "solid": "#9A6500", "onSolid": "#FFFFFF" },
+        "danger": { "background": "#FFF0F1", "border": "#E3939B", "text": "#92313B", "solid": "#B63D4A", "onSolid": "#FFFFFF" },
+        "info": { "background": "#EEF6FF", "border": "#8CB8E9", "text": "#20558E", "solid": "#2869B2", "onSolid": "#FFFFFF" },
+        "ai": { "background": "#F0FAFE", "border": "#8FD3EE", "text": "#235E8C", "accent": "#5DADE2", "onAccent": "#0B151F" }
+      }
+    },
+    "dark": {
+      "brand": { "core": "#063970", "onSurface": "#89C3E3", "action": "#718EE6", "signal": "#5DADE2" },
+      "surface": { "canvas": "#0B151F", "base": "#142330", "raised": "#22313F", "subtle": "#26333F", "sunken": "#071019", "inverse": "#F7F8FA" },
+      "text": { "primary": "#F7F8FA", "secondary": "#C8D0D8", "muted": "#9AA7B3", "inverse": "#16232F", "link": "#9BB2F2", "linkHover": "#C2D0FA" },
+      "border": { "subtle": "#26333F", "default": "#3B4854", "strong": "#717F8C", "focus": "#9BB2F2" },
+      "action": { "primary": "#718EE6", "primaryHover": "#9BB2F2", "primaryActive": "#C2D0FA", "onPrimary": "#0B151F", "subtle": "#26386F", "onSubtle": "#E0E8FF", "disabled": "#3B4854", "onDisabled": "#9AA7B3" },
+      "status": {
+        "success": { "background": "#122B20", "border": "#3B8E5A", "text": "#8DD4A9", "solid": "#64BE86", "onSolid": "#0B151F" },
+        "warning": { "background": "#302611", "border": "#B88418", "text": "#F0C76D", "solid": "#D8A83D", "onSolid": "#0B151F" },
+        "danger": { "background": "#32191D", "border": "#B85A64", "text": "#F0A0A7", "solid": "#E07882", "onSolid": "#0B151F" },
+        "info": { "background": "#11263B", "border": "#397ABF", "text": "#9AC8F5", "solid": "#6FA9E4", "onSolid": "#0B151F" },
+        "ai": { "background": "#142A40", "border": "#2875AD", "text": "#BCE7F7", "accent": "#5DADE2", "onAccent": "#0B151F" }
+      }
+    }
+  },
+  "dataVisualization": {
+    "categorical": {
+      "light": ["#3A5ECF", "#0F8585", "#C56A18", "#7C5CC4", "#2B7A4B", "#C44F6B", "#8C6D00", "#536D87"],
+      "dark": ["#9BB2F2", "#62CACA", "#F0A35D", "#B9A1EA", "#73C493", "#ED91A7", "#D2B75B", "#8FA9C2"]
+    },
+    "sequential": { "light": ["#EFF7FC", "#B8DCEF", "#58A4D2", "#17639B", "#063970"], "dark": ["#142A40", "#235E8C", "#5DADE2", "#BCE7F7", "#EFF7FC"] },
+    "diverging": { "light": ["#B63D4A", "#E3939B", "#F7F8FA", "#8CB8E9", "#2869B2"], "dark": ["#E07882", "#B85A64", "#26333F", "#397ABF", "#6FA9E4"] },
+    "maximumCategories": 8
+  },
+  "effects": {
+    "coreGradient": "linear-gradient(135deg, #063970 0%, #3A5ECF 100%)",
+    "aiSignalGradient": "linear-gradient(135deg, #3A5ECF 0%, #5DADE2 100%)",
+    "ambientGlow": "0 0 48px rgba(93, 173, 226, 0.28)"
+  },
+  "print": {
+    "notice": "CMYK values are proofing starting points, not press-certified spot colors. Always run a physical proof.",
+    "pantone": "No official Pantone match is declared.",
+    "anchors": {
+      "coreNavy": { "hex": "#063970", "cmyk": "95 / 49 / 0 / 56" },
+      "actionBlue": { "hex": "#3A5ECF", "cmyk": "72 / 55 / 0 / 19" },
+      "signalCyan": { "hex": "#5DADE2", "cmyk": "59 / 23 / 0 / 11" }
+    }
+  },
+  "accessibility": {
+    "normalTextMinimum": 4.5,
+    "largeTextAndUiMinimum": 3,
+    "rules": [
+      "Do not use Signal Cyan 400 for small text on white.",
+      "Do not communicate status with color alone; add text, icon, shape, or pattern.",
+      "Use status text tokens rather than decorative status colors for copy.",
+      "Test every foreground/background pair in its final context."
+    ]
+  },
+  "exclusions": [
+    "WeBank and partner brand assets",
+    "Photography and user-provided imagery",
+    "Screenshots and third-party interfaces",
+    "Platform-native window controls",
+    "Syntax highlighting colors",
+    "Semantic status colors"
+  ]
+}

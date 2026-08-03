@@ -2,7 +2,7 @@
 
 `aidx-ppt-skill` 是一个适配 Claude Code / Codex 等 Agent 环境的网页 PPT skill,用于生成 **AIDX / WeBank 内部管理同步风格**的单文件 HTML 横向翻页 deck、PPT 配图和多平台封面。
 
-当前模板是 **AIDX**:使用 `S01-S22` 登记版式结构、AIDX 浅色调、`avatar-terminal` 品牌头像、AIDX + WeBank 页眉页脚和轻量网格。
+当前模板是 **AIDX**:使用 `S01-S22` 登记版式结构、AIDX Color System v1.0.0、浅底渐变版 `avatar-terminal` 品牌头像、AIDX + WeBank 页眉页脚和轻量网格。
 
 ## 效果展示
 
@@ -39,12 +39,14 @@ npx skills add https://github.com/bing5tui3/ppt-skills --skill aidx-ppt-skill
 ## 你能得到什么
 
 - **AIDX 单一视觉系统**:白底浅色、轻量网格、AIDX blue/navy、银行级克制
+- **品牌语义色**:Core Navy 负责身份、Action Blue 负责行动、Signal Cyan 只用于 AI 信号
+- **状态与图表规范**:成功、警告、风险、信息、AI 状态强制语义映射;分类图最多八色
 - **22 个登记版式**:`S01-S22`,覆盖封面、时间线、KPI、对比、系统图、证据图、结尾请求
-- **AIDX 品牌锁定**:内联 `avatar-terminal.svg`,页眉 AIDX,页脚或 meta 使用 `AIDX · WeBank`
+- **AIDX 品牌锁定**:内联正式浅底渐变版 `avatar-terminal.svg`,页眉 AIDX,页脚或 meta 使用 `AIDX · WeBank`
 - **横向左右翻页**:键盘 ← → / 滚轮 / 触屏滑动 / 底部圆点 / ESC 索引
 - **低性能静态模式**:按 `B` 可关闭 canvas 动画
 - **单文件 HTML**:不需要构建、不需要服务器,浏览器直接打开
-- **AIDX 校验器**:检查 `Sxx`、`.canvas-card`、品牌、图片槽位、本机路径和结构一致性
+- **AIDX 校验器**:检查 `Sxx`、`.canvas-card`、品牌色快照、状态语义、图片槽位、本机路径和结构一致性
 
 ## 适合 / 不适合
 
@@ -98,6 +100,7 @@ aidx-ppt-skill/
 │   ├── build-aidx-examples.mjs
 │   └── validate-aidx-deck.mjs
 └── references/
+    ├── aidx-colors.json
     ├── checklist.md
     ├── components.md
     ├── image-prompts.md
@@ -112,6 +115,12 @@ aidx-ppt-skill/
 
 ```bash
 node scripts/build-aidx-examples.mjs
+```
+
+校验模板颜色是否与品牌快照一致:
+
+```bash
+node scripts/validate-aidx-deck.mjs assets/template-aidx.html --template
 ```
 
 校验全部示例:

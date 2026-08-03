@@ -1,6 +1,6 @@
 ---
 name: aidx-ppt-skill
-description: 生成 AIDX / WeBank 内部管理同步风格的横向翻页网页 PPT（单 HTML 文件），使用 S01-S22 登记版式结构、AIDX 浅色调、avatar-terminal 品牌头像、AIDX + WeBank 页眉页脚、轻量网格、KPI、时间线、对比、系统图、证据图和结尾请求。当用户需要制作 AIDX 风 PPT、AI 科技管理同步、内部决策会、工程效能汇报、管理层进展同步或 horizontal swipe management deck 时使用。
+description: 生成 AIDX / WeBank 内部管理同步风格的横向翻页网页 PPT（单 HTML 文件），使用 S01-S22 登记版式结构、AIDX 浅色调、渐变 avatar-terminal 品牌头像、AIDX + WeBank 页眉页脚、轻量网格、KPI、时间线、对比、系统图、证据图和结尾请求。当用户需要制作 AIDX 风 PPT、AI 科技管理同步、内部决策会、工程效能汇报、管理层进展同步或 horizontal swipe management deck 时使用。
 ---
 
 # AIDX PPT Skill
@@ -14,8 +14,8 @@ description: 生成 AIDX / WeBank 内部管理同步风格的横向翻页网页 
 生成一份**单文件 HTML**的横向翻页 AIDX 管理同步 PPT。当前模板是 **AIDX**:
 
 - 保留 `S01-S22` 登记版式结构、模块化网格、直角、发丝线和大字号轻字重。
-- 使用 AIDX 浅色调:白底、浅蓝灰、AIDX blue、AIDX navy、少量 cyan。
-- 页眉使用内联 `avatar-terminal.svg` + `AIDX`;页脚/右侧 meta 使用 `AIDX · WeBank` 背书。
+- 使用 AIDX Color System v1.0.0:Core Navy 负责身份、Action Blue 负责行动、Signal Cyan 只负责 AI 信号。
+- 页眉使用品牌仓库正式浅底渐变版 `avatar-terminal.svg` + `AIDX`;页脚/右侧 meta 使用 `AIDX · WeBank` 背书。SVG 必须内联，且每页的 gradient/filter ID 唯一。
 - 每页是 `.slide` + `.canvas-card`,使用 `S01-S22` 登记版式。
 - 键盘、滚轮、触屏、底部圆点、ESC 索引和 `B` 低功耗模式可用。
 
@@ -26,6 +26,7 @@ description: 生成 AIDX / WeBank 内部管理同步风格的横向翻页网页 
 | `assets/template-aidx.html` | AIDX 单文件 HTML 模板 |
 | `references/layouts-aidx.md` | `S01-S22` 登记版式和品牌 chrome |
 | `references/themes-aidx.md` | AIDX 固定浅色变量 |
+| `references/aidx-colors.json` | AIDX Color System v1.0.0 校验快照 |
 | `references/checklist.md` | 交付前自检 |
 | `references/components.md` | 模板组件和类名 |
 | `references/image-prompts.md` | AIDX 配图提示词 |
@@ -124,6 +125,8 @@ rg "\\[必填\\]" "项目/XXX/ppt/index.html"
 - 小标用英文短标签,正文用中文。
 - KPI 必须有口径或上下文,不要只堆数字。
 - 风险必须写影响、owner、缓释动作或需要谁介入。
+- 风险、警告、完成和 AI 状态必须使用对应 `.status-chip` + `data-status`,并保留可见文字或符号。
+- 分类图最多使用 8 个 `--aidx-data-*` 系列色,且必须保留标签、数值、形状或纹理作为第二识别通道。
 - 证据截图只解释截图证明了什么,不要复述每个按钮。
 - 架构图只保留管理层需要理解的能力层和依赖关系。
 
@@ -157,6 +160,7 @@ images/{页号}-{语义}.{ext}
 生成后必须运行:
 
 ```bash
+node "<SKILL_ROOT>/scripts/validate-aidx-deck.mjs" "<SKILL_ROOT>/assets/template-aidx.html" --template
 node "<SKILL_ROOT>/scripts/validate-aidx-deck.mjs" "项目/XXX/ppt/index.html"
 ```
 
@@ -174,6 +178,9 @@ node "<SKILL_ROOT>/scripts/validate-aidx-deck.mjs" "项目/XXX/ppt/index.html"
 - 不要引用本机品牌路径;avatar 必须内联在 HTML 中。
 - 不要把 AIDX 改回通用四主题或 IKB / 柠檬色自由选色。
 - 不要把 AIDX 改成通用蓝紫渐变科技风、霓虹、赛博或深色指挥台默认底稿。
+- 不要在新页面中使用 `--paper`、`--ink`、`--accent` 等旧别名;使用正式 `--aidx-*` 语义 Token。
+- 不要用 Action Blue 表示风险,也不要用 Signal Cyan 表示普通强调。
+- 彩色效果只允许 `--aidx-gradient-core`、`--aidx-gradient-ai` 和 `--aidx-glow-ai`;单色结构纹理除外。
 - 不要在生成物中写 skill 来源、赞助商信息或 canonical URL。
 - 不要使用 emoji 做风险、状态或章节图标。
 - 不要为了塞内容把正文降到 14px 以下。
@@ -185,6 +192,8 @@ node "<SKILL_ROOT>/scripts/validate-aidx-deck.mjs" "项目/XXX/ppt/index.html"
 - [ ] 每页 `data-layout="Sxx"`
 - [ ] 每页包含 `.canvas-card`
 - [ ] 每页包含 `.aidx-brand`
+- [ ] 颜色通过 `references/aidx-colors.json` 快照校验
+- [ ] 状态色都有文字或符号,Signal Cyan 只用于 AI 状态
 - [ ] 本地图片都在 `images/` 下并带 `data-image-slot`
 - [ ] 无 `/Users/`、`file://`、未替换 `[必填]`
 - [ ] 已运行 `validate-aidx-deck.mjs`

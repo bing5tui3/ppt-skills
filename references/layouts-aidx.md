@@ -31,39 +31,61 @@ Use this header pattern unless a split layout needs one header per half:
     <span class="aidx-brand">
       <span class="aidx-avatar-mark" aria-hidden="true">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+          <defs>
+            <!-- Suffix these IDs per slide when the avatar is repeated in one HTML deck. -->
+            <linearGradient id="aidxOuterVolume-01" x1="8" y1="6" x2="41" y2="43" gradientUnits="userSpaceOnUse">
+              <stop offset="0" stop-color="#69B8E1"/>
+              <stop offset="0.4" stop-color="#3A5ECF"/>
+              <stop offset="1" stop-color="#203B9A"/>
+            </linearGradient>
+            <linearGradient id="aidxHairSilk-01" x1="8" y1="5" x2="40" y2="42" gradientUnits="userSpaceOnUse">
+              <stop offset="0" stop-color="#2B6F9F"/>
+              <stop offset="0.3" stop-color="#0B4A80"/>
+              <stop offset="0.62" stop-color="#063970"/>
+              <stop offset="1" stop-color="#021F3E"/>
+            </linearGradient>
+            <radialGradient id="aidxFaceVolume-01" cx="0.34" cy="0.28" r="0.76">
+              <stop offset="0" stop-color="#FFFFFF"/>
+              <stop offset="0.62" stop-color="#F8FCFE"/>
+              <stop offset="1" stop-color="#DDECF4"/>
+            </radialGradient>
+            <filter id="aidxFaceLift-01" x="-15%" y="-15%" width="130%" height="135%">
+              <feDropShadow dx="0" dy="0.9" stdDeviation="0.7" flood-color="#031F3E" flood-opacity="0.2"/>
+            </filter>
+          </defs>
 
-          <!-- === 1. Blue outer glow === -->
           <path d="M 24 4 C 40 4 44 12 44 22 C 44 28 43 33 42 37 C 41 41 39 42 36 40 C 33 38 31 34 30 28 C 29 22 31 18 36 18 C 34 14 30 16 24 16 C 18 16 14 14 12 18 C 17 18 19 22 18 28 C 17 34 15 38 12 40 C 9 42 7 41 6 37 C 5 33 4 28 4 22 C 4 12 8 4 24 4 Z"
-            fill="#3A5ECF" stroke="#3A5ECF" stroke-width="5" stroke-linejoin="round"/>
+            fill="url(#aidxOuterVolume-01)" stroke="url(#aidxOuterVolume-01)" stroke-width="5" stroke-linejoin="round"/>
           <ellipse cx="24" cy="24" rx="14" ry="15"
-            fill="#3A5ECF" stroke="#3A5ECF" stroke-width="5"/>
+            fill="url(#aidxOuterVolume-01)" stroke="url(#aidxOuterVolume-01)" stroke-width="5"/>
 
-          <!-- === 2. Hair (BEHIND face, one continuous path) === -->
           <path d="M 24 4 C 40 4 44 12 44 22 C 44 28 43 33 42 37 C 41 41 39 42 36 40 C 33 38 31 34 30 28 C 29 22 31 18 36 18 C 34 14 30 16 24 16 C 18 16 14 14 12 18 C 17 18 19 22 18 28 C 17 34 15 38 12 40 C 9 42 7 41 6 37 C 5 33 4 28 4 22 C 4 12 8 4 24 4 Z"
-            fill="#063970"/>
+            fill="url(#aidxHairSilk-01)"/>
 
-          <!-- === 3. Face === -->
-          <ellipse cx="24" cy="24" rx="14" ry="15" fill="white"/>
+          <ellipse cx="24" cy="24" rx="14" ry="15" fill="url(#aidxFaceVolume-01)" filter="url(#aidxFaceLift-01)"/>
 
-          <!-- === 4. Hair crown (inner edge higher at y=16) === -->
           <path d="M 24 4 C 40 4 44 12 44 22 C 38 20 32 16 24 16 C 16 16 10 20 4 22 C 4 12 8 4 24 4 Z"
-            fill="#063970"/>
+            fill="url(#aidxHairSilk-01)"/>
 
-          <!-- === 5. Bangs === -->
           <path d="
-            M 14 22
-            C 15 16 19 13 24 13
-            C 29 13 33 15 35 19
-            C 31 18 27 17.5 24 18
-            C 20 18.5 16 20 14 22 Z
-          " fill="#063970"/>
+            M 13.5 22
+            C 14.3 18.4 16.2 15.3 20.2 13.8
+            C 25.2 11.9 31.6 14.2 35.2 19.2
+            C 31.4 18.1 27.7 17.7 24 18.2
+            C 19.8 18.8 16.1 20.4 13.5 22 Z
+          " fill="url(#aidxHairSilk-01)" stroke="url(#aidxHairSilk-01)" stroke-width="1.3" stroke-linejoin="round"/>
 
-          <!-- === 6. Eyes: terminal >- === -->
+          <path d="M 10 14 C 14 7 22 6 28 7" fill="none" stroke="#5DADE2"
+            stroke-width="0.85" stroke-linecap="round" opacity="0.28"/>
+          <path d="M 38.5 20 C 40 26 39.5 32 37.5 36.5" fill="none" stroke="#5DADE2"
+            stroke-width="0.65" stroke-linecap="round" opacity="0.18"/>
+          <path d="M 9.5 20 C 8 26 8.5 32 10.5 36.5" fill="none" stroke="#5DADE2"
+            stroke-width="0.65" stroke-linecap="round" opacity="0.14"/>
+
           <polyline points="16,25 21,28.5 16,32" fill="none" stroke="#063970"
             stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
           <line x1="29" y1="28.5" x2="35" y2="28.5" stroke="#063970"
             stroke-width="2.8" stroke-linecap="round"/>
-
         </svg>
       </span>
       <span class="aidx-brand-copy"><span class="aidx-brand-title">AIDX</span><span class="aidx-brand-subtitle">AIDX Review</span></span>

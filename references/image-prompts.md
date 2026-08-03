@@ -5,7 +5,7 @@ Generated visuals must support the slide conclusion. They are embedded assets, n
 ## Global Rules
 
 - Visual anchor: AIDX management review, white/light canvas, 12/16-column grid, straight modules, thin hairlines.
-- Colors: white, light blue-gray, AIDX blue `#3A5ECF`, AIDX navy `#063970`, small cyan signal `#5DADE2`.
+- Colors: `surface.base` / `surface.canvas` neutrals, Core Navy `#063970` for identity, Action Blue `#3A5ECF` for action, and Signal Cyan `#5DADE2` only for an explicit AI signal.
 - No page header, footer, page number, fake logo, watermark, browser chrome, decorative frame, neon glow, 3D, cartoon, or stock-photo atmosphere.
 - Match the target slot before generation: S22 `21:9`, S15/S16 grid assets `21:9`, faithful screenshots `16:10`.
 

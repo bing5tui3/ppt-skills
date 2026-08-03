@@ -6,20 +6,70 @@ import { fileURLToPath } from 'node:url';
 const repoRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const templatePath = resolve(repoRoot, 'assets/template-aidx.html');
 
-const AVATAR = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
-  <path d="M 24 4 C 40 4 44 12 44 22 C 44 28 43 33 42 37 C 41 41 39 42 36 40 C 33 38 31 34 30 28 C 29 22 31 18 36 18 C 34 14 30 16 24 16 C 18 16 14 14 12 18 C 17 18 19 22 18 28 C 17 34 15 38 12 40 C 9 42 7 41 6 37 C 5 33 4 28 4 22 C 4 12 8 4 24 4 Z" fill="#3A5ECF" stroke="#3A5ECF" stroke-width="5" stroke-linejoin="round"/>
-  <ellipse cx="24" cy="24" rx="14" ry="15" fill="#3A5ECF" stroke="#3A5ECF" stroke-width="5"/>
-  <path d="M 24 4 C 40 4 44 12 44 22 C 44 28 43 33 42 37 C 41 41 39 42 36 40 C 33 38 31 34 30 28 C 29 22 31 18 36 18 C 34 14 30 16 24 16 C 18 16 14 14 12 18 C 17 18 19 22 18 28 C 17 34 15 38 12 40 C 9 42 7 41 6 37 C 5 33 4 28 4 22 C 4 12 8 4 24 4 Z" fill="#063970"/>
-  <ellipse cx="24" cy="24" rx="14" ry="15" fill="white"/>
-  <path d="M 24 4 C 40 4 44 12 44 22 C 38 20 32 16 24 16 C 16 16 10 20 4 22 C 4 12 8 4 24 4 Z" fill="#063970"/>
-  <path d="M 14 22 C 15 16 19 13 24 13 C 29 13 33 15 35 19 C 31 18 27 17.5 24 18 C 20 18.5 16 20 14 22 Z" fill="#063970"/>
-  <polyline points="16,25 21,28.5 16,32" fill="none" stroke="#063970" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
-  <line x1="29" y1="28.5" x2="35" y2="28.5" stroke="#063970" stroke-width="2.8" stroke-linecap="round"/>
+function avatarTerminal(instanceId = 'mark') {
+  const id = String(instanceId).replace(/[^a-z0-9_-]/gi, '') || 'mark';
+
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+  <defs>
+    <linearGradient id="aidxOuterVolume-${id}" x1="8" y1="6" x2="41" y2="43" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#69B8E1"/>
+      <stop offset="0.4" stop-color="#3A5ECF"/>
+      <stop offset="1" stop-color="#203B9A"/>
+    </linearGradient>
+    <linearGradient id="aidxHairSilk-${id}" x1="8" y1="5" x2="40" y2="42" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#2B6F9F"/>
+      <stop offset="0.3" stop-color="#0B4A80"/>
+      <stop offset="0.62" stop-color="#063970"/>
+      <stop offset="1" stop-color="#021F3E"/>
+    </linearGradient>
+    <radialGradient id="aidxFaceVolume-${id}" cx="0.34" cy="0.28" r="0.76">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="0.62" stop-color="#F8FCFE"/>
+      <stop offset="1" stop-color="#DDECF4"/>
+    </radialGradient>
+    <filter id="aidxFaceLift-${id}" x="-15%" y="-15%" width="130%" height="135%">
+      <feDropShadow dx="0" dy="0.9" stdDeviation="0.7" flood-color="#031F3E" flood-opacity="0.2"/>
+    </filter>
+  </defs>
+
+  <path d="M 24 4 C 40 4 44 12 44 22 C 44 28 43 33 42 37 C 41 41 39 42 36 40 C 33 38 31 34 30 28 C 29 22 31 18 36 18 C 34 14 30 16 24 16 C 18 16 14 14 12 18 C 17 18 19 22 18 28 C 17 34 15 38 12 40 C 9 42 7 41 6 37 C 5 33 4 28 4 22 C 4 12 8 4 24 4 Z"
+    fill="url(#aidxOuterVolume-${id})" stroke="url(#aidxOuterVolume-${id})" stroke-width="5" stroke-linejoin="round"/>
+  <ellipse cx="24" cy="24" rx="14" ry="15"
+    fill="url(#aidxOuterVolume-${id})" stroke="url(#aidxOuterVolume-${id})" stroke-width="5"/>
+
+  <path d="M 24 4 C 40 4 44 12 44 22 C 44 28 43 33 42 37 C 41 41 39 42 36 40 C 33 38 31 34 30 28 C 29 22 31 18 36 18 C 34 14 30 16 24 16 C 18 16 14 14 12 18 C 17 18 19 22 18 28 C 17 34 15 38 12 40 C 9 42 7 41 6 37 C 5 33 4 28 4 22 C 4 12 8 4 24 4 Z"
+    fill="url(#aidxHairSilk-${id})"/>
+
+  <ellipse cx="24" cy="24" rx="14" ry="15" fill="url(#aidxFaceVolume-${id})" filter="url(#aidxFaceLift-${id})"/>
+
+  <path d="M 24 4 C 40 4 44 12 44 22 C 38 20 32 16 24 16 C 16 16 10 20 4 22 C 4 12 8 4 24 4 Z"
+    fill="url(#aidxHairSilk-${id})"/>
+
+  <path d="
+    M 13.5 22
+    C 14.3 18.4 16.2 15.3 20.2 13.8
+    C 25.2 11.9 31.6 14.2 35.2 19.2
+    C 31.4 18.1 27.7 17.7 24 18.2
+    C 19.8 18.8 16.1 20.4 13.5 22 Z
+  " fill="url(#aidxHairSilk-${id})" stroke="url(#aidxHairSilk-${id})" stroke-width="1.3" stroke-linejoin="round"/>
+
+  <path d="M 10 14 C 14 7 22 6 28 7" fill="none" stroke="#5DADE2"
+    stroke-width="0.85" stroke-linecap="round" opacity="0.28"/>
+  <path d="M 38.5 20 C 40 26 39.5 32 37.5 36.5" fill="none" stroke="#5DADE2"
+    stroke-width="0.65" stroke-linecap="round" opacity="0.18"/>
+  <path d="M 9.5 20 C 8 26 8.5 32 10.5 36.5" fill="none" stroke="#5DADE2"
+    stroke-width="0.65" stroke-linecap="round" opacity="0.14"/>
+
+  <polyline points="16,25 21,28.5 16,32" fill="none" stroke="#063970"
+    stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+  <line x1="29" y1="28.5" x2="35" y2="28.5" stroke="#063970"
+    stroke-width="2.8" stroke-linecap="round"/>
 </svg>`;
+}
 
 function brandChrome(page, section = 'AIDX REVIEW', total = '10') {
   return `<header class="chrome-min brand-chrome">
-    <div class="l"><span class="aidx-brand"><span class="aidx-avatar-mark" aria-hidden="true">${AVATAR}</span><span class="aidx-brand-copy"><span class="aidx-brand-title">AIDX</span><span class="aidx-brand-subtitle">AIDX Review</span></span></span></div>
+    <div class="l"><span class="aidx-brand"><span class="aidx-avatar-mark" aria-hidden="true">${avatarTerminal(page)}</span><span class="aidx-brand-copy"><span class="aidx-brand-title">AIDX</span><span class="aidx-brand-subtitle">AIDX Review</span></span></span></div>
     <div class="r brand-meta"><span>${section}</span><span class="brand-rule"></span><b>WeBank</b><span>${page} / ${total}</span></div>
   </header>`;
 }
@@ -32,7 +82,8 @@ function writeDeck(relativePath, title, slidesHtml) {
   const template = readFileSync(templatePath, 'utf8');
   const output = template
     .replace('[必填] 填写 PPT 标题 · AIDX Review', title)
-    .replace(/<!-- SLIDES_HERE[\s\S]*?-->/, slidesHtml);
+    .replace(/<!-- SLIDES_HERE[\s\S]*?-->/, slidesHtml)
+    .replace("import('./assets/motion.min.js')", "import('../assets/motion.min.js')");
 
   if (/\[必填\]|data-layout="AIDX-|class="[^"]*\bstage\b/.test(output)) {
     throw new Error(`${relativePath} contains unresolved placeholders or unsupported AIDX layout markers.`);
@@ -51,9 +102,9 @@ const slides = [
     <div style="flex:1;display:grid;grid-template-rows:auto 1fr auto;gap:4vh">
       <div class="t-meta" data-anim="up">AI Developer Experience · Registered Layouts</div>
       <div data-anim="up" style="align-self:center;display:grid;grid-template-columns:minmax(0,3fr) minmax(0,2fr);gap:5vw;align-items:end">
-        <h1 class="h-hero-zh" style="font-size:min(7.8vw,13vh);line-height:1.02;color:var(--text-primary)">AIDX<br>工程效能<br>管理同步</h1>
-        <div style="display:flex;flex-direction:column;gap:2vh;border-left:1px solid var(--border-subtle);padding-left:3vw">
-          <p class="lead" style="color:var(--text-secondary);max-width:34ch">使用 S01-S22 结构、AIDX 浅色品牌、avatar-terminal 与 WeBank 背书。</p>
+        <h1 class="h-hero-zh" style="font-size:min(7.8vw,13vh);line-height:1.02;color:var(--aidx-text-primary)">AIDX<br>工程效能<br>管理同步</h1>
+        <div style="display:flex;flex-direction:column;gap:2vh;border-left:1px solid var(--aidx-border-subtle);padding-left:3vw">
+          <p class="lead" style="color:var(--aidx-text-secondary);max-width:34ch">使用 S01-S22 结构、AIDX 浅色品牌、avatar-terminal 与 WeBank 背书。</p>
           <div class="meta-row"><span>10 Slides</span><span class="dot"></span><span>S01-S22</span><span class="dot"></span><span>Light System</span></div>
         </div>
       </div>
@@ -99,7 +150,7 @@ const slides = [
         <div data-anim="rules" style="display:flex;flex-direction:column;gap:2.4vh">
           <article class="card-fill" style="padding:2.6vh 2vw"><div class="t-cat accent">Recommendation</div><h3 class="h-md">批准 9 个核心研发域进入 12 周试点</h3></article>
           <article class="card-fill" style="padding:2.6vh 2vw"><div class="t-cat">Tradeoff</div><p class="body">短期收敛自定义空间,换取统一工具入口、数据边界和审计责任。</p></article>
-          <article class="card-accent" style="padding:2.6vh 2vw"><div class="t-cat on-dark">Next</div><p class="body" style="color:var(--accent-on)">两周内确认团队名单、权限矩阵、验收指标和治理看板。</p></article>
+          <article class="card-accent" style="padding:2.6vh 2vw"><div class="t-cat on-dark">Next</div><p class="body" style="color:var(--aidx-action-on-primary)">两周内确认团队名单、权限矩阵、验收指标和治理看板。</p></article>
         </div>
         <div class="t-meta">AIDX · WeBank</div>
       </div>
@@ -114,7 +165,7 @@ const slides = [
       <div data-anim="up" style="display:flex;flex-direction:column;gap:2vh;align-self:start">
         <div class="t-cat accent">关键指标</div>
         <h2 class="h-xl-zh" style="font-size:min(5vw,8.8vh)">效能改善已经进入可度量阶段</h2>
-        <p class="lead" style="color:var(--text-secondary)">四项指标分别覆盖采用、周期、质量和治理阻塞,用于判断是否具备扩域条件。</p>
+        <p class="lead" style="color:var(--aidx-text-secondary)">四项指标分别覆盖采用、周期、质量和治理阻塞,用于判断是否具备扩域条件。</p>
       </div>
       <div class="bar-towers" data-anim="up">
         <div class="bar-tower"><div class="cap"></div><div class="body-block h-3"><div class="lbl">Adoption</div><div class="nb">72<span class="unit">%</span></div><div class="sub">周活使用率</div></div></div>
@@ -170,12 +221,12 @@ const slides = [
       <div data-anim="up" style="display:flex;flex-direction:column;gap:2vh">
         <div class="t-cat accent">能力地图</div>
         <h2 class="h-xl-zh" style="font-size:min(4.8vw,8.2vh)">AIDX 能力栈支撑三类工程场景</h2>
-      <p class="lead" style="color:var(--text-secondary)">决策者只需要看到体验层、平台层、治理层的边界和依赖关系。</p>
+      <p class="lead" style="color:var(--aidx-text-secondary)">决策者只需要看到体验层、平台层、治理层的边界和依赖关系。</p>
       </div>
       <div data-anim="up" style="display:grid;grid-template-rows:repeat(3,1fr);gap:1.6vh">
         <div class="card-fill" style="padding:2.2vh 2vw;display:grid;grid-template-columns:10em 1fr;gap:1vw;align-items:center"><div class="t-cat accent">Experience</div><div class="body">IDE Assistant · Code Review · Docs QA · Issue Triage</div></div>
         <div class="card-fill" style="padding:2.2vh 2vw;display:grid;grid-template-columns:10em 1fr;gap:1vw;align-items:center"><div class="t-cat accent">Platform</div><div class="body">Agent Runtime · Tool Gateway · Eval Harness · Policy Guard</div></div>
-        <div class="card-accent" style="padding:2.2vh 2vw;display:grid;grid-template-columns:10em 1fr;gap:1vw;align-items:center"><div class="t-cat on-dark">Governance</div><div class="body" style="color:var(--accent-on)">Model Access · Knowledge Base · Audit Log · Security Boundary</div></div>
+        <div class="card-accent" style="padding:2.2vh 2vw;display:grid;grid-template-columns:10em 1fr;gap:1vw;align-items:center"><div class="t-cat on-dark">Governance</div><div class="body" style="color:var(--aidx-action-on-primary)">Model Access · Knowledge Base · Audit Log · Security Boundary</div></div>
       </div>
     </div>
     ${footer('Capability Map')}
@@ -189,10 +240,12 @@ const slides = [
       <div class="t-cat accent">风险账单</div>
       <h2 class="h-xl-zh" style="font-size:min(5vw,8.8vh)">两个阻塞需要管理层介入</h2>
     </div>
-    <div data-anim="up" style="display:flex;flex-direction:column;margin-top:4vh;border-top:1px solid var(--border-subtle)">
+    <div data-anim="up" style="display:flex;flex-direction:column;margin-top:4vh;border-top:1px solid var(--aidx-border-subtle)">
       ${['数据边界未统一|影响审计链路完整性|Owner: 平台治理','工具入口分散|影响规模化运营效率|Owner: 工程平台','模型波动可控|需要回退机制和质量阈值|Owner: AIDX','成本进入观察区|纳入月度经营视图|Owner: 财务/平台'].map((row, i) => {
         const [a, b, c] = row.split('|');
-        return `<div class="ledger-row" style="display:grid;grid-template-columns:7em 1fr 18em;gap:2vw;align-items:center;padding:2.2vh 0;border-bottom:1px solid var(--border-subtle)"><div class="ledger-num" style="font-family:var(--sans);font-weight:200;font-size:min(5vw,8vh);letter-spacing:-.04em;color:${i < 2 ? 'var(--accent)' : 'var(--ink)'}">R${i + 1}</div><div><div class="h-md">${a}</div><p class="body" style="color:var(--text-secondary);margin-top:.8vh">${b}</p></div><div class="t-meta">${c}</div></div>`;
+        const status = i < 2 ? 'danger' : i === 2 ? 'warning' : 'info';
+        const statusLabel = i < 2 ? '阻塞' : i === 2 ? '观察' : '跟踪';
+        return `<div class="ledger-row" style="display:grid;grid-template-columns:8em 1fr 18em;gap:2vw;align-items:center;padding:2.2vh 0;border-bottom:1px solid var(--aidx-border-subtle)"><div style="display:flex;flex-direction:column;align-items:flex-start;gap:.8vh"><span class="status-chip status-${status}" data-status="${status}">${statusLabel}</span><span class="t-meta">R${i + 1}</span></div><div><div class="h-md">${a}</div><p class="body" style="color:var(--aidx-text-secondary);margin-top:.8vh">${b}</p></div><div class="t-meta">${c}</div></div>`;
       }).join('\n      ')}
     </div>
     ${footer('Risk Ledger')}
@@ -201,22 +254,22 @@ const slides = [
 
 `<section class="slide" data-layout="S22" data-animate="image-hero">
   <div class="canvas-card" style="padding:0;display:flex;flex-direction:column;overflow:hidden">
-    <div data-anim="img" style="position:relative;flex:0 0 60%;overflow:hidden;background:var(--grey-1)" data-image-slot="s22-hero-21x9">
-      <div class="frame-img r-21x9" data-image-slot="s22-hero-21x9" style="height:100%;max-height:none;background:linear-gradient(90deg,#ffffff,#eef6ff);display:grid;grid-template-columns:repeat(12,1fr);gap:1px;padding:4vh 5vw">
-        ${Array.from({ length: 12 }, (_, i) => `<div style="background:${i % 4 === 0 ? '#dbeafe' : i % 4 === 1 ? '#ffffff' : '#f5f8fc'};border-top:${i === 5 ? '4px solid var(--accent)' : '1px solid var(--border-subtle)'}"></div>`).join('')}
+    <div data-anim="img" style="position:relative;flex:0 0 60%;overflow:hidden;background:var(--aidx-surface-subtle)" data-image-slot="s22-hero-21x9">
+      <div class="frame-img r-21x9" data-image-slot="s22-hero-21x9" style="height:100%;max-height:none;background:var(--aidx-surface-canvas);display:grid;grid-template-columns:repeat(12,1fr);gap:1px;padding:4vh 5vw">
+        ${Array.from({ length: 12 }, (_, i) => `<div style="background:${i % 4 === 0 ? 'var(--aidx-action-subtle)' : i % 4 === 1 ? 'var(--aidx-surface-base)' : 'var(--aidx-surface-subtle)'};border-top:${i === 5 ? '4px solid var(--aidx-action-primary)' : '1px solid var(--aidx-border-subtle)'}"></div>`).join('')}
       </div>
       <div style="position:absolute;top:0;left:0;right:0;padding:5.6vh 5vw 0">${brandChrome('09', 'EVIDENCE')}</div>
-      <div data-anim="title-block" style="position:absolute;left:5vw;top:12vh;background:var(--paper);padding:3.2vh 3.2vw;max-width:42vw;border:1px solid var(--border-subtle)">
+      <div data-anim="title-block" style="position:absolute;left:5vw;top:12vh;background:var(--aidx-surface-base);padding:3.2vh 3.2vw;max-width:42vw;border:1px solid var(--aidx-border-subtle)">
         <div class="t-cat accent">Evidence</div>
-        <div style="font-family:var(--sans),var(--sans-zh);font-weight:200;font-size:min(4.8vw,8.4vh);line-height:1;letter-spacing:-.035em;color:var(--text-primary);margin-top:1vh">真实工作流<br>已经跑通</div>
+        <div style="font-family:var(--sans),var(--sans-zh);font-weight:200;font-size:min(4.8vw,8.4vh);line-height:1;letter-spacing:-.035em;color:var(--aidx-text-primary);margin-top:1vh">真实工作流<br>已经跑通</div>
       </div>
     </div>
     <div data-anim="kpi" class="image-hero-body">
-      <div style="max-width:48ch;font-family:var(--sans),var(--sans-zh);font-size:max(16px,1.3vw);line-height:1.55;font-weight:400;color:var(--text-primary);letter-spacing:-.005em">这页展示 S22 的 21:9 证据槽位。正式汇报时使用真实工作流截图或产品证据图。</div>
+      <div style="max-width:48ch;font-family:var(--sans),var(--sans-zh);font-size:max(16px,1.3vw);line-height:1.55;font-weight:400;color:var(--aidx-text-primary);letter-spacing:-.005em">这页展示 S22 的 21:9 证据槽位。正式汇报时使用真实工作流截图或产品证据图。</div>
       <div class="image-hero-stats" style="gap:4vw">
-        <div style="display:flex;flex-direction:column;gap:.6vh"><div style="height:1px;background:var(--ink)"></div><div class="t-meta">Signal 01</div><div style="font-family:var(--sans);font-weight:200;font-size:min(4.6vw,7.6vh);line-height:.95;letter-spacing:-.04em">4</div><div style="height:1px;background:var(--border-subtle);margin-top:auto"></div><p class="body-sm">流程状态闭环</p></div>
-        <div style="display:flex;flex-direction:column;gap:.6vh"><div style="height:1px;background:var(--ink)"></div><div class="t-meta">Signal 02</div><div style="font-family:var(--sans);font-weight:200;font-size:min(4.6vw,7.6vh);line-height:.95;letter-spacing:-.04em">16:10</div><div style="height:1px;background:var(--border-subtle);margin-top:auto"></div><p class="body-sm">截图适配入口</p></div>
-        <div style="display:flex;flex-direction:column;gap:.6vh"><div style="height:1px;background:var(--ink)"></div><div class="t-meta">Signal 03</div><div style="font-family:var(--sans);font-weight:200;font-size:min(4.6vw,7.6vh);line-height:.95;letter-spacing:-.04em;color:var(--accent)">21:9</div><div style="height:1px;background:var(--border-subtle);margin-top:auto"></div><p class="body-sm">S22 主图槽位</p></div>
+        <div style="display:flex;flex-direction:column;gap:.6vh"><div style="height:1px;background:var(--aidx-brand-core)"></div><div class="t-meta">Signal 01</div><div style="font-family:var(--sans);font-weight:200;font-size:min(4.6vw,7.6vh);line-height:.95;letter-spacing:-.04em">4</div><div style="height:1px;background:var(--aidx-border-subtle);margin-top:auto"></div><p class="body-sm">流程状态闭环</p></div>
+        <div style="display:flex;flex-direction:column;gap:.6vh"><div style="height:1px;background:var(--aidx-brand-core)"></div><div class="t-meta">Signal 02</div><div style="font-family:var(--sans);font-weight:200;font-size:min(4.6vw,7.6vh);line-height:.95;letter-spacing:-.04em">16:10</div><div style="height:1px;background:var(--aidx-border-subtle);margin-top:auto"></div><p class="body-sm">截图适配入口</p></div>
+        <div style="display:flex;flex-direction:column;gap:.6vh"><div style="height:1px;background:var(--aidx-brand-core)"></div><div class="t-meta">Signal 03</div><div style="font-family:var(--sans);font-weight:200;font-size:min(4.6vw,7.6vh);line-height:.95;letter-spacing:-.04em;color:var(--aidx-action-primary)">21:9</div><div style="height:1px;background:var(--aidx-border-subtle);margin-top:auto"></div><p class="body-sm">S22 主图槽位</p></div>
       </div>
     </div>
   </div>
@@ -229,14 +282,14 @@ const slides = [
         ${brandChrome('10', 'CLOSING').replace('chrome-min brand-chrome', 'chrome-min brand-chrome tight')}
         <div data-anim="manifesto" style="display:flex;flex-direction:column;gap:2vh">
           <div class="t-cat accent">结尾请求</div>
-          <h2 style="font-family:var(--sans),var(--sans-zh);font-size:min(6.8vw,12vh);line-height:.96;letter-spacing:-.025em;font-weight:200;color:var(--text-primary)">请批准<br>下一阶段<br>规模化试点</h2>
+          <h2 style="font-family:var(--sans),var(--sans-zh);font-size:min(6.8vw,12vh);line-height:.96;letter-spacing:-.025em;font-weight:200;color:var(--aidx-text-primary)">请批准<br>下一阶段<br>规模化试点</h2>
         </div>
         <div class="t-meta">AIDX · WeBank</div>
       </div>
       <div class="half" style="justify-content:space-between">
         <div class="chrome-min"><div class="l">Decision Request</div><div class="r">03 Asks</div></div>
         <div data-anim="rules" style="display:flex;flex-direction:column;gap:0">
-          ${['批准 9 个核心研发域进入 12 周规模化试点','确认统一工具入口、数据边界和审计责任归属','授权每两周同步效果、风险和成本看板'].map((text, i) => `<div style="display:grid;grid-template-columns:auto 1fr;gap:2vw;align-items:start;padding:2.8vh 0;border-top:1px solid var(--border-subtle);${i === 2 ? 'border-bottom:2px solid var(--accent)' : ''}"><div style="font-family:var(--sans);font-weight:200;font-size:min(4.4vw,7.8vh);line-height:.9;color:${i === 2 ? 'var(--accent)' : 'var(--text-primary)'}">0${i + 1}</div><div><h3 style="font-family:var(--sans),var(--sans-zh);font-weight:400;font-size:max(18px,1.8vw);line-height:1.2;letter-spacing:-.015em;color:${i === 2 ? 'var(--accent)' : 'var(--text-primary)'}">${text}</h3><p class="body" style="color:var(--text-secondary);margin-top:1vh">${i === 0 ? '范围与资源决策。' : i === 1 ? '治理与协同决策。' : '节奏与验收决策。'}</p></div></div>`).join('\n          ')}
+          ${['批准 9 个核心研发域进入 12 周规模化试点','确认统一工具入口、数据边界和审计责任归属','授权每两周同步效果、风险和成本看板'].map((text, i) => `<div style="display:grid;grid-template-columns:auto 1fr;gap:2vw;align-items:start;padding:2.8vh 0;border-top:1px solid var(--aidx-border-subtle);${i === 2 ? 'border-bottom:2px solid var(--aidx-action-primary)' : ''}"><div style="font-family:var(--sans);font-weight:200;font-size:min(4.4vw,7.8vh);line-height:.9;color:${i === 2 ? 'var(--aidx-action-primary)' : 'var(--aidx-text-primary)'}">0${i + 1}</div><div><h3 style="font-family:var(--sans),var(--sans-zh);font-weight:400;font-size:max(18px,1.8vw);line-height:1.2;letter-spacing:-.015em;color:${i === 2 ? 'var(--aidx-action-primary)' : 'var(--aidx-text-primary)'}">${text}</h3><p class="body" style="color:var(--aidx-text-secondary);margin-top:1vh">${i === 0 ? '范围与资源决策。' : i === 1 ? '治理与协同决策。' : '节奏与验收决策。'}</p></div></div>`).join('\n          ')}
         </div>
         <div class="t-meta" style="text-align:right">AIDX · WeBank</div>
       </div>
@@ -252,9 +305,9 @@ const governanceSlides = [
     <div style="flex:1;display:grid;grid-template-rows:auto 1fr auto;gap:4vh">
       <div class="t-meta" data-anim="up">AI Developer Experience · Governance Review</div>
       <div data-anim="up" style="align-self:center;display:grid;grid-template-columns:minmax(0,3fr) minmax(0,2fr);gap:5vw;align-items:end">
-        <h1 class="h-hero-zh" style="font-size:min(7.2vw,12vh);line-height:1.02;color:var(--text-primary)">AIDX<br>治理周报</h1>
-        <div style="display:flex;flex-direction:column;gap:2vh;border-left:1px solid var(--border-subtle);padding-left:3vw">
-          <p class="lead" style="color:var(--text-secondary);max-width:34ch">用于每周向管理层同步采用率、风险、策略变更和需要拍板的治理事项。</p>
+        <h1 class="h-hero-zh" style="font-size:min(7.2vw,12vh);line-height:1.02;color:var(--aidx-text-primary)">AIDX<br>治理周报</h1>
+        <div style="display:flex;flex-direction:column;gap:2vh;border-left:1px solid var(--aidx-border-subtle);padding-left:3vw">
+          <p class="lead" style="color:var(--aidx-text-secondary);max-width:34ch">用于每周向管理层同步采用率、风险、策略变更和需要拍板的治理事项。</p>
           <div class="meta-row"><span>8 Slides</span><span class="dot"></span><span>Risk</span><span class="dot"></span><span>Governance</span></div>
         </div>
       </div>
@@ -270,12 +323,12 @@ const governanceSlides = [
       <div data-anim="up" style="display:flex;flex-direction:column;gap:2vh;align-self:start">
         <div class="t-cat accent">为什么现在</div>
         <h2 class="h-xl-zh" style="font-size:min(5.4vw,9vh)">AI 工具使用进入扩散期,治理窗口正在收窄</h2>
-        <p class="lead" style="color:var(--text-secondary)">采用速度快于统一策略落地速度,需要把入口、权限、审计和成本口径收进同一套运营机制。</p>
+        <p class="lead" style="color:var(--aidx-text-secondary)">采用速度快于统一策略落地速度,需要把入口、权限、审计和成本口径收进同一套运营机制。</p>
       </div>
       <div data-anim="up" style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.4vw;align-self:stretch">
         ${['入口分散|团队自行接入,体验不一致','权限边界|模型与知识访问口径不统一','成本可见|调用成本缺少业务归因'].map((item, i) => {
           const [title, body] = item.split('|');
-          return `<article class="${i === 1 ? 'card-accent' : 'card-fill'}" style="padding:3vh 2vw;display:flex;flex-direction:column;justify-content:space-between"><div class="t-cat ${i === 1 ? 'on-dark' : 'accent'}">0${i + 1}</div><div><h3 class="h-md" style="${i === 1 ? 'color:var(--accent-on)' : ''}">${title}</h3><p class="body" style="margin-top:1.2vh;color:${i === 1 ? 'var(--accent-on)' : 'var(--text-secondary)'}">${body}</p></div></article>`;
+          return `<article class="${i === 1 ? 'card-accent' : 'card-fill'}" style="padding:3vh 2vw;display:flex;flex-direction:column;justify-content:space-between"><div class="t-cat ${i === 1 ? 'on-dark' : 'accent'}">0${i + 1}</div><div><h3 class="h-md" style="${i === 1 ? 'color:var(--aidx-action-on-primary)' : ''}">${title}</h3><p class="body" style="margin-top:1.2vh;color:${i === 1 ? 'var(--aidx-action-on-primary)' : 'var(--aidx-text-secondary)'}">${body}</p></div></article>`;
         }).join('\n        ')}
       </div>
     </div>
@@ -293,7 +346,7 @@ const governanceSlides = [
     <div data-anim="up" style="display:grid;grid-template-columns:repeat(4,1fr);gap:1.4vw;flex:1;align-items:stretch;margin-top:3vh">
       ${['Access|谁可以用|按角色、项目、密级开通','Data|能访问什么|知识库、代码仓、工单分层','Action|能做什么|生成、修改、提交、发布分级','Audit|留下什么|提示词、输出、人工确认留痕'].map((item, i) => {
         const [label, title, body] = item.split('|');
-        return `<article class="card-fill" style="padding:3vh 1.8vw;display:flex;flex-direction:column;gap:2vh;border-top:${i === 2 ? '4px solid var(--accent)' : '1px solid var(--border-subtle)'}"><div class="t-cat accent">${label}</div><h3 class="h-md">${title}</h3><p class="body" style="color:var(--text-secondary)">${body}</p><div style="margin-top:auto;height:1px;background:var(--border-subtle)"></div></article>`;
+        return `<article class="card-fill" style="padding:3vh 1.8vw;display:flex;flex-direction:column;gap:2vh;border-top:${i === 2 ? '4px solid var(--aidx-action-primary)' : '1px solid var(--aidx-border-subtle)'}"><div class="t-cat accent">${label}</div><h3 class="h-md">${title}</h3><p class="body" style="color:var(--aidx-text-secondary)">${body}</p><div style="margin-top:auto;height:1px;background:var(--aidx-border-subtle)"></div></article>`;
       }).join('\n      ')}
     </div>
     ${footer('Control Matrix')}
@@ -307,10 +360,12 @@ const governanceSlides = [
       <div class="t-cat accent">风险账单</div>
       <h2 class="h-xl-zh" style="font-size:min(5vw,8.8vh)">本周需要关闭三项治理缺口</h2>
     </div>
-    <div data-anim="up" style="display:flex;flex-direction:column;margin-top:4vh;border-top:1px solid var(--border-subtle)">
+    <div data-anim="up" style="display:flex;flex-direction:column;margin-top:4vh;border-top:1px solid var(--aidx-border-subtle)">
       ${['高密知识误入通用空间|本周冻结新增接入,完成知识库分级|Owner: 安全治理','自动修改缺少二次确认|默认开启人工确认门禁,灰度例外流程|Owner: 工程平台','外部模型成本不可归因|按团队、项目、场景补齐成本标签|Owner: 财务/平台','提示词沉淀不成体系|纳入评测样本和复用资产池|Owner: AIDX'].map((row, i) => {
         const [a, b, c] = row.split('|');
-        return `<div class="ledger-row" style="display:grid;grid-template-columns:7em 1fr 18em;gap:2vw;align-items:center;padding:2.2vh 0;border-bottom:1px solid var(--border-subtle)"><div style="font-family:var(--sans);font-weight:200;font-size:min(5vw,8vh);letter-spacing:-.04em;color:${i < 3 ? 'var(--accent)' : 'var(--ink)'}">R${i + 1}</div><div><div class="h-md">${a}</div><p class="body" style="color:var(--text-secondary);margin-top:.8vh">${b}</p></div><div class="t-meta">${c}</div></div>`;
+        const status = i < 2 ? 'danger' : i === 2 ? 'warning' : 'info';
+        const statusLabel = i < 2 ? '阻塞' : i === 2 ? '观察' : '跟踪';
+        return `<div class="ledger-row" style="display:grid;grid-template-columns:8em 1fr 18em;gap:2vw;align-items:center;padding:2.2vh 0;border-bottom:1px solid var(--aidx-border-subtle)"><div style="display:flex;flex-direction:column;align-items:flex-start;gap:.8vh"><span class="status-chip status-${status}" data-status="${status}">${statusLabel}</span><span class="t-meta">R${i + 1}</span></div><div><div class="h-md">${a}</div><p class="body" style="color:var(--aidx-text-secondary);margin-top:.8vh">${b}</p></div><div class="t-meta">${c}</div></div>`;
       }).join('\n      ')}
     </div>
     ${footer('Risk Ledger')}
@@ -343,12 +398,12 @@ const governanceSlides = [
       <div data-anim="up" style="display:flex;flex-direction:column;gap:2vh">
         <div class="t-cat accent">治理架构</div>
         <h2 class="h-xl-zh" style="font-size:min(4.8vw,8.2vh)">把治理做成默认路径,不是事后检查</h2>
-        <p class="lead" style="color:var(--text-secondary)">入口、策略、评测、审计四层串联,让每一次 AI 介入都有可追踪的上下文。</p>
+        <p class="lead" style="color:var(--aidx-text-secondary)">入口、策略、评测、审计四层串联,让每一次 AI 介入都有可追踪的上下文。</p>
       </div>
       <div data-anim="up" style="display:grid;grid-template-rows:repeat(4,1fr);gap:1.2vh">
         ${['统一入口|IDE、Web、工作流统一接入','策略中心|权限、模型、知识、动作边界','评测门禁|质量阈值、红线样本、回退策略','审计看板|使用记录、风险事件、成本归因'].map((item, i) => {
           const [a, b] = item.split('|');
-          return `<div class="${i === 1 ? 'card-accent' : 'card-fill'}" style="padding:2vh 2vw;display:grid;grid-template-columns:9em 1fr;gap:1vw;align-items:center"><div class="t-cat ${i === 1 ? 'on-dark' : 'accent'}">Layer 0${i + 1}</div><div><div class="h-md" style="${i === 1 ? 'color:var(--accent-on)' : ''}">${a}</div><p class="body-sm" style="color:${i === 1 ? 'var(--accent-on)' : 'var(--text-secondary)'}">${b}</p></div></div>`;
+          return `<div class="${i === 1 ? 'card-accent' : 'card-fill'}" style="padding:2vh 2vw;display:grid;grid-template-columns:9em 1fr;gap:1vw;align-items:center"><div class="t-cat ${i === 1 ? 'on-dark' : 'accent'}">Layer 0${i + 1}</div><div><div class="h-md" style="${i === 1 ? 'color:var(--aidx-action-on-primary)' : ''}">${a}</div><p class="body-sm" style="color:${i === 1 ? 'var(--aidx-action-on-primary)' : 'var(--aidx-text-secondary)'}">${b}</p></div></div>`;
         }).join('\n        ')}
       </div>
     </div>
@@ -379,14 +434,14 @@ const governanceSlides = [
         ${brandChrome('08', 'CLOSING', '08').replace('chrome-min brand-chrome', 'chrome-min brand-chrome tight')}
         <div data-anim="manifesto" style="display:flex;flex-direction:column;gap:2vh">
           <div class="t-cat accent">结尾请求</div>
-          <h2 style="font-family:var(--sans),var(--sans-zh);font-size:min(6.6vw,11.5vh);line-height:.96;letter-spacing:-.025em;font-weight:200;color:var(--text-primary)">请确认<br>统一入口<br>治理节奏</h2>
+          <h2 style="font-family:var(--sans),var(--sans-zh);font-size:min(6.6vw,11.5vh);line-height:.96;letter-spacing:-.025em;font-weight:200;color:var(--aidx-text-primary)">请确认<br>统一入口<br>治理节奏</h2>
         </div>
         <div class="t-meta">AIDX · WeBank</div>
       </div>
       <div class="half" style="justify-content:space-between">
         <div class="chrome-min"><div class="l">Decision Request</div><div class="r">03 Asks</div></div>
         <div data-anim="rules" style="display:flex;flex-direction:column;gap:0">
-          ${['批准两周内完成统一入口收敛','确认高密知识库分级和访问责任人','每周固定同步风险、成本和例外清单'].map((text, i) => `<div style="display:grid;grid-template-columns:auto 1fr;gap:2vw;align-items:start;padding:3vh 0;border-top:1px solid var(--border-subtle);${i === 2 ? 'border-bottom:2px solid var(--accent)' : ''}"><div style="font-family:var(--sans);font-weight:200;font-size:min(4.2vw,7.2vh);line-height:.9;color:${i === 2 ? 'var(--accent)' : 'var(--text-primary)'}">0${i + 1}</div><div><h3 style="font-family:var(--sans),var(--sans-zh);font-weight:400;font-size:max(18px,1.8vw);line-height:1.2;letter-spacing:-.015em;color:${i === 2 ? 'var(--accent)' : 'var(--text-primary)'}">${text}</h3><p class="body" style="color:var(--text-secondary);margin-top:1vh">${i === 0 ? '入口决策。' : i === 1 ? '责任决策。' : '节奏决策。'}</p></div></div>`).join('\n          ')}
+          ${['批准两周内完成统一入口收敛','确认高密知识库分级和访问责任人','每周固定同步风险、成本和例外清单'].map((text, i) => `<div style="display:grid;grid-template-columns:auto 1fr;gap:2vw;align-items:start;padding:3vh 0;border-top:1px solid var(--aidx-border-subtle);${i === 2 ? 'border-bottom:2px solid var(--aidx-action-primary)' : ''}"><div style="font-family:var(--sans);font-weight:200;font-size:min(4.2vw,7.2vh);line-height:.9;color:${i === 2 ? 'var(--aidx-action-primary)' : 'var(--aidx-text-primary)'}">0${i + 1}</div><div><h3 style="font-family:var(--sans),var(--sans-zh);font-weight:400;font-size:max(18px,1.8vw);line-height:1.2;letter-spacing:-.015em;color:${i === 2 ? 'var(--aidx-action-primary)' : 'var(--aidx-text-primary)'}">${text}</h3><p class="body" style="color:var(--aidx-text-secondary);margin-top:1vh">${i === 0 ? '入口决策。' : i === 1 ? '责任决策。' : '节奏决策。'}</p></div></div>`).join('\n          ')}
         </div>
         <div class="t-meta" style="text-align:right">AIDX · WeBank</div>
       </div>
@@ -402,9 +457,9 @@ const productEvidenceSlides = [
     <div style="flex:1;display:grid;grid-template-rows:auto 1fr auto;gap:4vh">
       <div class="t-meta" data-anim="up">AI Developer Experience · Product Evidence</div>
       <div data-anim="up" style="align-self:center;display:grid;grid-template-columns:minmax(0,3fr) minmax(0,2fr);gap:5vw;align-items:end">
-        <h1 class="h-hero-zh" style="font-size:min(7.2vw,12vh);line-height:1.02;color:var(--text-primary)">AIDX<br>上线复盘</h1>
-        <div style="display:flex;flex-direction:column;gap:2vh;border-left:1px solid var(--border-subtle);padding-left:3vw">
-          <p class="lead" style="color:var(--text-secondary);max-width:34ch">用于产品或工作流上线后,用证据截图、指标和用户信号支撑下一轮投入。</p>
+        <h1 class="h-hero-zh" style="font-size:min(7.2vw,12vh);line-height:1.02;color:var(--aidx-text-primary)">AIDX<br>上线复盘</h1>
+        <div style="display:flex;flex-direction:column;gap:2vh;border-left:1px solid var(--aidx-border-subtle);padding-left:3vw">
+          <p class="lead" style="color:var(--aidx-text-secondary);max-width:34ch">用于产品或工作流上线后,用证据截图、指标和用户信号支撑下一轮投入。</p>
           <div class="meta-row"><span>8 Slides</span><span class="dot"></span><span>Evidence</span><span class="dot"></span><span>Launch Review</span></div>
         </div>
       </div>
@@ -436,24 +491,29 @@ const productEvidenceSlides = [
 
 `<section class="slide" data-layout="S22" data-animate="image-hero">
   <div class="canvas-card" style="padding:0;display:flex;flex-direction:column;overflow:hidden">
-    <div data-anim="img" style="position:relative;flex:0 0 60%;overflow:hidden;background:var(--grey-1)" data-image-slot="s22-hero-21x9">
-      <div class="frame-img r-21x9" data-image-slot="s22-hero-21x9" style="height:100%;max-height:none;background:linear-gradient(90deg,#ffffff,#eef6ff);display:grid;grid-template-columns:1.2fr 2fr 1.4fr;gap:1.4vw;padding:5vh 5vw">
-        <div style="background:#ffffff;border:1px solid var(--border-subtle);padding:2vh"><div class="t-cat accent">Input</div><div class="body" style="margin-top:2vh">需求摘要<br>接口变更<br>风险提示</div></div>
-        <div style="background:#ffffff;border-top:4px solid var(--accent);padding:2vh"><div class="t-cat accent">AIDX Flow</div><div style="height:70%;margin-top:2vh;background:repeating-linear-gradient(to right,#dbeafe 0 10%,#ffffff 10% 20%);border:1px solid var(--border-subtle)"></div></div>
-        <div style="background:#ffffff;border:1px solid var(--border-subtle);padding:2vh"><div class="t-cat accent">Output</div><div class="body" style="margin-top:2vh">评审结论<br>任务清单<br>审计记录</div></div>
+    <div data-anim="img" style="position:relative;flex:0 0 60%;overflow:hidden;background:var(--aidx-surface-subtle)" data-image-slot="s22-hero-21x9">
+      <div class="frame-img r-21x9" data-image-slot="s22-hero-21x9" style="height:100%;max-height:none;background:var(--aidx-surface-canvas);display:grid;grid-template-columns:1.2fr 2fr 1.4fr;gap:1.4vw;padding:max(11.5vh,calc(5.6vh + 52px)) 5vw 5vh">
+        <div style="background:var(--aidx-surface-base);border:1px solid var(--aidx-border-subtle);padding:2vh;display:flex;flex-direction:column">
+          <div data-anim="title-block">
+            <div class="t-cat accent">Evidence Hero</div>
+            <div style="font-family:var(--sans),var(--sans-zh);font-weight:200;font-size:min(3vw,5.2vh);line-height:1.05;letter-spacing:-.03em;color:var(--aidx-text-primary);margin-top:1vh">S22 主图<br>承载真实证据</div>
+          </div>
+          <div style="margin-top:auto;border-top:1px solid var(--aidx-border-subtle);padding-top:1.6vh">
+            <div class="t-meta">Input</div>
+            <div class="body" style="margin-top:1vh">需求摘要<br>接口变更<br>风险提示</div>
+          </div>
+        </div>
+        <div style="background:var(--aidx-surface-base);border-top:4px solid var(--aidx-action-primary);padding:2vh"><div style="display:flex;align-items:center;justify-content:space-between;gap:1vw"><div class="t-cat accent">AIDX Flow</div><span class="status-chip status-ai" data-status="ai">AI 已介入</span></div><div style="height:70%;margin-top:2vh;background:repeating-linear-gradient(to right,var(--aidx-surface-sunken) 0 10%,var(--aidx-surface-base) 10% 20%);border:1px solid var(--aidx-border-subtle)"></div></div>
+        <div style="background:var(--aidx-surface-base);border:1px solid var(--aidx-border-subtle);padding:2vh"><div class="t-cat accent">Output</div><div class="body" style="margin-top:2vh">评审结论<br>任务清单<br>审计记录</div></div>
       </div>
-      <div style="position:absolute;top:0;left:0;right:0;padding:5.6vh 5vw 0">${brandChrome('03', 'EVIDENCE', '08')}</div>
-      <div data-anim="title-block" style="position:absolute;left:5vw;top:12vh;background:var(--paper);padding:3.2vh 3.2vw;max-width:42vw;border:1px solid var(--border-subtle)">
-        <div class="t-cat accent">Evidence Hero</div>
-        <div style="font-family:var(--sans),var(--sans-zh);font-weight:200;font-size:min(4.8vw,8.4vh);line-height:1;letter-spacing:-.035em;color:var(--text-primary);margin-top:1vh">S22 主图<br>承载真实证据</div>
-      </div>
+      <div style="position:absolute;z-index:2;top:0;left:0;right:0;padding:5.6vh 5vw 0">${brandChrome('03', 'EVIDENCE', '08')}</div>
     </div>
     <div data-anim="kpi" class="image-hero-body">
-      <div style="max-width:48ch;font-family:var(--sans),var(--sans-zh);font-size:max(16px,1.3vw);line-height:1.55;font-weight:400;color:var(--text-primary);letter-spacing:-.005em">正式交付时使用脱敏后的真实截图或 21:9 证据图,保持输入、流程、输出的完整链路。</div>
+      <div style="max-width:48ch;font-family:var(--sans),var(--sans-zh);font-size:max(16px,1.3vw);line-height:1.55;font-weight:400;color:var(--aidx-text-primary);letter-spacing:-.005em">正式交付时使用脱敏后的真实截图或 21:9 证据图,保持输入、流程、输出的完整链路。</div>
       <div class="image-hero-stats" style="gap:4vw">
         <div><div class="t-meta">Proof</div><div class="kpi-big">21:9</div><p class="body-sm">证据主图槽位</p></div>
         <div><div class="t-meta">Scope</div><div class="kpi-big">3</div><p class="body-sm">输入、流程、输出</p></div>
-        <div><div class="t-meta">Status</div><div class="kpi-big" style="color:var(--accent)">Live</div><p class="body-sm">接入真实截图</p></div>
+        <div><div class="t-meta">Status</div><div class="kpi-big" style="color:var(--aidx-action-primary)">Live</div><p class="body-sm">接入真实截图</p></div>
       </div>
     </div>
   </div>
@@ -469,7 +529,7 @@ const productEvidenceSlides = [
     <div data-anim="up" style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.4vw;flex:1;align-items:stretch;margin-top:3vh">
       ${['行为数据|核心任务从 18 分钟降到 12 分钟,重复操作显著减少','访谈反馈|用户更认可结论摘要和风险解释,希望模板可复用','运营记录|工单咨询集中在权限、入口和历史记录导出'].map((item, i) => {
         const [title, body] = item.split('|');
-        return `<article class="${i === 0 ? 'card-accent' : 'card-fill'}" style="padding:3vh 2vw;display:flex;flex-direction:column;justify-content:space-between"><div class="t-cat ${i === 0 ? 'on-dark' : 'accent'}">Signal 0${i + 1}</div><div><h3 class="h-md" style="${i === 0 ? 'color:var(--accent-on)' : ''}">${title}</h3><p class="body" style="margin-top:1.2vh;color:${i === 0 ? 'var(--accent-on)' : 'var(--text-secondary)'}">${body}</p></div><div style="height:1px;background:${i === 0 ? 'rgba(255,255,255,.45)' : 'var(--border-subtle)'}"></div></article>`;
+        return `<article class="${i === 0 ? 'card-accent' : 'card-fill'}" style="padding:3vh 2vw;display:flex;flex-direction:column;justify-content:space-between"><div class="t-cat ${i === 0 ? 'on-dark' : 'accent'}">Signal 0${i + 1}</div><div><h3 class="h-md" style="${i === 0 ? 'color:var(--aidx-action-on-primary)' : ''}">${title}</h3><p class="body" style="margin-top:1.2vh;color:${i === 0 ? 'var(--aidx-action-on-primary)' : 'var(--aidx-text-secondary)'}">${body}</p></div><div style="height:1px;background:${i === 0 ? 'var(--aidx-action-on-primary)' : 'var(--aidx-border-subtle)'};${i === 0 ? 'opacity:.45' : ''}"></div></article>`;
       }).join('\n      ')}
     </div>
     ${footer('User Signals')}
@@ -483,7 +543,7 @@ const productEvidenceSlides = [
       <div data-anim="up" style="display:flex;flex-direction:column;gap:2vh;align-self:start">
         <div class="t-cat accent">上线指标</div>
         <h2 class="h-xl-zh" style="font-size:min(5vw,8.8vh)">核心指标已越过试点门槛</h2>
-        <p class="lead" style="color:var(--text-secondary)">用激活、效率、复用和阻塞四项指标判断是否进入下一轮扩面。</p>
+        <p class="lead" style="color:var(--aidx-text-secondary)">用激活、效率、复用和阻塞四项指标判断是否进入下一轮扩面。</p>
       </div>
       <div class="bar-towers" data-anim="up">
         <div class="bar-tower"><div class="cap"></div><div class="body-block h-4 b-accent"><div class="lbl">Activation</div><div class="nb">81<span class="unit">%</span></div><div class="sub">首周激活</div></div></div>
@@ -503,12 +563,12 @@ const productEvidenceSlides = [
       <div data-anim="up" style="display:flex;flex-direction:column;gap:2vh">
         <div class="t-cat accent">闭环机制</div>
         <h2 class="h-xl-zh" style="font-size:min(5vw,8.6vh)">上线后反馈必须进入产品迭代闭环</h2>
-        <p class="lead" style="color:var(--text-secondary)">证据页不是展示页,而是把真实使用信号转成下一轮优先级。</p>
+        <p class="lead" style="color:var(--aidx-text-secondary)">证据页不是展示页,而是把真实使用信号转成下一轮优先级。</p>
       </div>
       <div data-anim="up" style="display:grid;grid-template-columns:repeat(2,1fr);gap:1.4vw">
         ${['Collect|采集真实截图、行为数据和访谈反馈','Classify|按价值、风险、频率分层','Decide|进入产品 backlog 或治理清单','Verify|两周后回看指标和用户反馈'].map((item, i) => {
           const [label, body] = item.split('|');
-          return `<article class="${i === 2 ? 'card-accent' : 'card-fill'}" style="padding:3vh 2vw;min-height:22vh"><div class="t-cat ${i === 2 ? 'on-dark' : 'accent'}">${label}</div><p class="body" style="margin-top:4vh;color:${i === 2 ? 'var(--accent-on)' : 'var(--text-secondary)'}">${body}</p></article>`;
+          return `<article class="${i === 2 ? 'card-accent' : 'card-fill'}" style="padding:3vh 2vw;min-height:22vh"><div class="t-cat ${i === 2 ? 'on-dark' : 'accent'}">${label}</div><p class="body" style="margin-top:4vh;color:${i === 2 ? 'var(--aidx-action-on-primary)' : 'var(--aidx-text-secondary)'}">${body}</p></article>`;
         }).join('\n        ')}
       </div>
     </div>
@@ -539,14 +599,14 @@ const productEvidenceSlides = [
         ${brandChrome('08', 'CLOSING', '08').replace('chrome-min brand-chrome', 'chrome-min brand-chrome tight')}
         <div data-anim="manifesto" style="display:flex;flex-direction:column;gap:2vh">
           <div class="t-cat accent">结尾请求</div>
-          <h2 style="font-family:var(--sans),var(--sans-zh);font-size:min(6.6vw,11.5vh);line-height:.96;letter-spacing:-.025em;font-weight:200;color:var(--text-primary)">请批准<br>下一轮<br>产品补强</h2>
+          <h2 style="font-family:var(--sans),var(--sans-zh);font-size:min(6.6vw,11.5vh);line-height:.96;letter-spacing:-.025em;font-weight:200;color:var(--aidx-text-primary)">请批准<br>下一轮<br>产品补强</h2>
         </div>
         <div class="t-meta">AIDX · WeBank</div>
       </div>
       <div class="half" style="justify-content:space-between">
         <div class="chrome-min"><div class="l">Decision Request</div><div class="r">03 Asks</div></div>
         <div data-anim="rules" style="display:flex;flex-direction:column;gap:0">
-          ${['确认入口体验为下一轮最高优先级','批准补齐模板复用、历史记录和权限提示','两周后用激活率、复用率和阻塞项复盘'].map((text, i) => `<div style="display:grid;grid-template-columns:auto 1fr;gap:2vw;align-items:start;padding:3vh 0;border-top:1px solid var(--border-subtle);${i === 2 ? 'border-bottom:2px solid var(--accent)' : ''}"><div style="font-family:var(--sans);font-weight:200;font-size:min(4.2vw,7.2vh);line-height:.9;color:${i === 2 ? 'var(--accent)' : 'var(--text-primary)'}">0${i + 1}</div><div><h3 style="font-family:var(--sans),var(--sans-zh);font-weight:400;font-size:max(18px,1.8vw);line-height:1.2;letter-spacing:-.015em;color:${i === 2 ? 'var(--accent)' : 'var(--text-primary)'}">${text}</h3><p class="body" style="color:var(--text-secondary);margin-top:1vh">${i === 0 ? '优先级决策。' : i === 1 ? '范围决策。' : '验收决策。'}</p></div></div>`).join('\n          ')}
+          ${['确认入口体验为下一轮最高优先级','批准补齐模板复用、历史记录和权限提示','两周后用激活率、复用率和阻塞项复盘'].map((text, i) => `<div style="display:grid;grid-template-columns:auto 1fr;gap:2vw;align-items:start;padding:3vh 0;border-top:1px solid var(--aidx-border-subtle);${i === 2 ? 'border-bottom:2px solid var(--aidx-action-primary)' : ''}"><div style="font-family:var(--sans);font-weight:200;font-size:min(4.2vw,7.2vh);line-height:.9;color:${i === 2 ? 'var(--aidx-action-primary)' : 'var(--aidx-text-primary)'}">0${i + 1}</div><div><h3 style="font-family:var(--sans),var(--sans-zh);font-weight:400;font-size:max(18px,1.8vw);line-height:1.2;letter-spacing:-.015em;color:${i === 2 ? 'var(--aidx-action-primary)' : 'var(--aidx-text-primary)'}">${text}</h3><p class="body" style="color:var(--aidx-text-secondary);margin-top:1vh">${i === 0 ? '优先级决策。' : i === 1 ? '范围决策。' : '验收决策。'}</p></div></div>`).join('\n          ')}
         </div>
         <div class="t-meta" style="text-align:right">AIDX · WeBank</div>
       </div>
