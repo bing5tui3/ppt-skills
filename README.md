@@ -41,6 +41,7 @@ npx skills add https://github.com/bing5tui3/ppt-skills --skill aidx-ppt-skill
 - **AIDX 单一视觉系统**:白底浅色、轻量网格、AIDX blue/navy、银行级克制
 - **品牌语义色**:Core Navy 负责身份、Action Blue 负责行动、Signal Cyan 只用于 AI 信号
 - **状态与图表规范**:成功、警告、风险、信息、AI 状态强制语义映射;分类图最多八色
+- **可选高对比强调色**:用户明确指定时,可将 Categorical / Light 八色用于标签、文本框背景和局部强调
 - **22 个登记版式**:`S01-S22`,覆盖封面、时间线、KPI、对比、系统图、证据图、结尾请求
 - **AIDX 品牌锁定**:内联正式浅底渐变版 `avatar-terminal.svg`,页眉 AIDX,页脚或 meta 使用 `AIDX · WeBank`
 - **横向左右翻页**:键盘 ← → / 滚轮 / 触屏滑动 / 底部圆点 / ESC 索引

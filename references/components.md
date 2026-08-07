@@ -92,6 +92,30 @@ Use `.data-series-1` through `.data-series-8` only for categorical data. Apply `
 
 Eight categories are the maximum. Always pair color with a visible label, value, shape or pattern.
 
+## Opt-in High-contrast Accents
+
+Use these utilities only when the user explicitly requests high-contrast color. They reuse the exact `Categorical / Light` palette with a validated foreground color.
+
+```html
+<span class="tag contrast-fill contrast-2">Platform</span>
+
+<div class="contrast-box contrast-3">
+  <div class="t-cat">Decision</div>
+  <p class="body">优先收敛入口，再扩大试点范围。</p>
+</div>
+
+<strong class="contrast-text contrast-5">Verified</strong>
+```
+
+| Class | Use |
+|---|---|
+| `.contrast-1` … `.contrast-8` | Select one Categorical / Light color and its paired foreground |
+| `.contrast-fill` | Apply the selected color to an existing tag, card or small element |
+| `.contrast-box` | Apply the selected color plus standard text-box padding |
+| `.contrast-text` | Use the selected color as foreground text only |
+
+Do not use these classes to communicate success, warning, danger, info or AI state. Use the semantic `.status-*` components for those meanings.
+
 ## Evidence Images
 
 | Class / slot | Use |

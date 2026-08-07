@@ -24,6 +24,17 @@ function normalizeCssValue(value) {
   return value.replace(/\s+/g, '').toLowerCase();
 }
 
+function relativeLuminance(hex) {
+  const channels = hex.slice(1).match(/../g).map((value) => Number.parseInt(value, 16) / 255);
+  const linear = channels.map((value) => (value <= 0.04045 ? value / 12.92 : ((value + 0.055) / 1.055) ** 2.4));
+  return (0.2126 * linear[0]) + (0.7152 * linear[1]) + (0.0722 * linear[2]);
+}
+
+function contrastRatio(first, second) {
+  const [lighter, darker] = [relativeLuminance(first), relativeLuminance(second)].sort((a, b) => b - a);
+  return (lighter + 0.05) / (darker + 0.05);
+}
+
 function readCssVariables(source) {
   const variables = new Map();
   for (const match of source.matchAll(/(--[\w-]+)\s*:\s*([^;}{]+);/g)) {
@@ -33,6 +44,7 @@ function readCssVariables(source) {
 }
 
 const light = brand.semantic.light;
+const contrastForegrounds = ['#FFFFFF', '#000000', '#0B151F', '#FFFFFF', '#FFFFFF', '#000000', '#FFFFFF', '#FFFFFF'];
 const expectedThemeTokens = {
   '--aidx-brand-core': light.brand.core,
   '--aidx-brand-action': light.brand.action,
@@ -80,6 +92,12 @@ const expectedThemeTokens = {
   ...Object.fromEntries(
     brand.dataVisualization.categorical.light.map((color, index) => [`--aidx-data-${index + 1}`, color]),
   ),
+  ...Object.fromEntries(
+    brand.dataVisualization.categorical.light.flatMap((_, index) => [
+      [`--aidx-contrast-${index + 1}`, `var(--aidx-data-${index + 1})`],
+      [`--aidx-on-contrast-${index + 1}`, contrastForegrounds[index]],
+    ]),
+  ),
   '--aidx-gradient-core': brand.effects.coreGradient,
   '--aidx-gradient-ai': brand.effects.aiSignalGradient,
   '--aidx-glow-ai': brand.effects.ambientGlow,
@@ -104,6 +122,14 @@ const expectedLegacyAliases = {
 };
 
 const cssVariables = readCssVariables(html);
+
+brand.dataVisualization.categorical.light.forEach((fill, index) => {
+  const foreground = contrastForegrounds[index];
+  const ratio = contrastRatio(fill, foreground);
+  if (ratio < brand.accessibility.normalTextMinimum) {
+    errors.push(`Theme: contrast pair ${index + 1} (${fill} / ${foreground}) is ${ratio.toFixed(2)}:1; expected at least ${brand.accessibility.normalTextMinimum}:1.`);
+  }
+});
 
 for (const [name, expected] of Object.entries(expectedThemeTokens)) {
   const actual = cssVariables.get(name);
@@ -280,6 +306,20 @@ slides.forEach((slide) => {
   const dataSeries = [...slide.html.matchAll(/\bdata-series-(\d+)\b/g)].map((match) => Number(match[1]));
   if (dataSeries.some((index) => index < 1 || index > brand.dataVisualization.maximumCategories)) {
     errors.push(`Slide ${slide.idx}: categorical data series exceed the ${brand.dataVisualization.maximumCategories}-color maximum.`);
+  }
+
+  const contrastIndexes = [...slide.html.matchAll(/\bcontrast-(\d+)\b/g)].map((match) => Number(match[1]));
+  if (contrastIndexes.some((index) => index < 1 || index > brand.dataVisualization.maximumCategories)) {
+    errors.push(`Slide ${slide.idx}: high-contrast accent index must be between 1 and ${brand.dataVisualization.maximumCategories}.`);
+  }
+
+  const usesContrastConsumer = /\bcontrast-(?:fill|box|text)\b/.test(slide.html);
+  if (usesContrastConsumer && !contrastIndexes.length) {
+    errors.push(`Slide ${slide.idx}: high-contrast utility is missing a contrast-1 through contrast-8 palette class.`);
+  }
+
+  if (contrastIndexes.length && !usesContrastConsumer) {
+    warnings.push(`Slide ${slide.idx}: contrast palette class has no contrast-fill, contrast-box, or contrast-text consumer.`);
   }
 
   const localImages = [...slide.html.matchAll(/<img\b[^>]*src="images\//g)];

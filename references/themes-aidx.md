@@ -76,6 +76,26 @@ Categorical charts may use `--aidx-data-1` through `--aidx-data-8`. Eight colors
 - Add labels, values, shapes or patterns as a second identification channel.
 - Sequential and diverging charts should use values from `references/aidx-colors.json`.
 
+## Opt-in High-contrast Accents
+
+When the user explicitly asks for high-contrast color, the PPT may reuse the eight `Categorical / Light` colors for local labels, text-box backgrounds and small emphasis areas. This does not enable a new page theme and does not change any S01-S22 layout.
+
+| # | Fill token | Value | Foreground token | Value |
+|---:|---|---:|---|---:|
+| 1 | `--aidx-contrast-1` | `#3A5ECF` | `--aidx-on-contrast-1` | `#FFFFFF` |
+| 2 | `--aidx-contrast-2` | `#0F8585` | `--aidx-on-contrast-2` | `#000000` |
+| 3 | `--aidx-contrast-3` | `#C56A18` | `--aidx-on-contrast-3` | `#0B151F` |
+| 4 | `--aidx-contrast-4` | `#7C5CC4` | `--aidx-on-contrast-4` | `#FFFFFF` |
+| 5 | `--aidx-contrast-5` | `#2B7A4B` | `--aidx-on-contrast-5` | `#FFFFFF` |
+| 6 | `--aidx-contrast-6` | `#C44F6B` | `--aidx-on-contrast-6` | `#000000` |
+| 7 | `--aidx-contrast-7` | `#8C6D00` | `--aidx-on-contrast-7` | `#FFFFFF` |
+| 8 | `--aidx-contrast-8` | `#536D87` | `--aidx-on-contrast-8` | `#FFFFFF` |
+
+- Use `.contrast-1` through `.contrast-8` with `.contrast-fill`, `.contrast-box`, or `.contrast-text`.
+- Keep the paired `--aidx-on-contrast-*` foreground on filled elements; do not substitute white for every color.
+- These colors are presentational accents, not semantic status colors. Risks, warnings, success and AI states still use `.status-*` roles.
+- Do not use them unless the user has explicitly requested high-contrast color.
+
 ## Effects
 
 The only approved colored effects are:

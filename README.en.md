@@ -39,6 +39,7 @@ Create a 21:9 social cover from the core conclusion of this brief.
 - **One AIDX visual system**: white/light surfaces, subtle grid, AIDX blue/navy, bank-grade restraint
 - **Semantic brand color**: Core Navy for identity, Action Blue for action, and Signal Cyan only for AI signals
 - **Status and chart discipline**: semantic success, warning, danger, info, and AI states; categorical charts stop at eight colors
+- **Opt-in high-contrast accents**: when explicitly requested, reuse the eight Categorical / Light colors for labels, text boxes, and local emphasis
 - **22 registered layouts**: `S01-S22` for covers, timelines, KPI, comparison, system maps, evidence visuals, and closing requests
 - **Locked AIDX branding**: inline the official light-background gradient `avatar-terminal.svg`, AIDX header, and `AIDX · WeBank` footer or meta endorsement
 - **Horizontal swipe navigation**: arrow keys, scroll wheel, touch swipe, bottom dots, and ESC overview

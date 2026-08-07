@@ -30,6 +30,8 @@ Use this before calling an AIDX deck done.
 - Risk and progress states use `.status-chip`, a matching `data-status`, and visible status text.
 - Signal Cyan appears only in explicit AI state, motion or a small AI signal.
 - Categorical charts use no more than eight series and retain a non-color identification channel.
+- High-contrast accent utilities appear only when the user explicitly requested them.
+- High-contrast fills use `.contrast-1` through `.contrast-8` with their paired foreground; no ad hoc Hex value replaces the pair.
 - Colored effects are limited to `--aidx-gradient-core`, `--aidx-gradient-ai`, and `--aidx-glow-ai`.
 - No generic neon, cyberpunk, purple-blue glow, gradient wallpaper, or decorative blobs.
 

@@ -70,6 +70,25 @@
     --aidx-data-7:#8C6D00;
     --aidx-data-8:#536D87;
 
+    /* Opt-in high-contrast accents. Values mirror Categorical / Light;
+       paired foregrounds keep normal text at WCAG AA contrast. */
+    --aidx-contrast-1:var(--aidx-data-1);
+    --aidx-on-contrast-1:#FFFFFF;
+    --aidx-contrast-2:var(--aidx-data-2);
+    --aidx-on-contrast-2:#000000;
+    --aidx-contrast-3:var(--aidx-data-3);
+    --aidx-on-contrast-3:#0B151F;
+    --aidx-contrast-4:var(--aidx-data-4);
+    --aidx-on-contrast-4:#FFFFFF;
+    --aidx-contrast-5:var(--aidx-data-5);
+    --aidx-on-contrast-5:#FFFFFF;
+    --aidx-contrast-6:var(--aidx-data-6);
+    --aidx-on-contrast-6:#000000;
+    --aidx-contrast-7:var(--aidx-data-7);
+    --aidx-on-contrast-7:#FFFFFF;
+    --aidx-contrast-8:var(--aidx-data-8);
+    --aidx-on-contrast-8:#FFFFFF;
+
     --aidx-gradient-core:linear-gradient(135deg,#063970 0%,#3A5ECF 100%);
     --aidx-gradient-ai:linear-gradient(135deg,#3A5ECF 0%,#5DADE2 100%);
     --aidx-glow-ai:0 0 48px rgba(93, 173, 226, 0.28);
@@ -703,6 +722,23 @@
   .data-series-8{--aidx-series-color:var(--aidx-data-8)}
   .data-series-fill{background:var(--aidx-series-color)}
   .data-series-text{color:var(--aidx-series-color)}
+
+  /* 用户明确要求高对比配色时，才将这组颜色用于标签、文本框或局部强调。 */
+  .contrast-1{--aidx-contrast-color:var(--aidx-contrast-1);--aidx-on-contrast-color:var(--aidx-on-contrast-1)}
+  .contrast-2{--aidx-contrast-color:var(--aidx-contrast-2);--aidx-on-contrast-color:var(--aidx-on-contrast-2)}
+  .contrast-3{--aidx-contrast-color:var(--aidx-contrast-3);--aidx-on-contrast-color:var(--aidx-on-contrast-3)}
+  .contrast-4{--aidx-contrast-color:var(--aidx-contrast-4);--aidx-on-contrast-color:var(--aidx-on-contrast-4)}
+  .contrast-5{--aidx-contrast-color:var(--aidx-contrast-5);--aidx-on-contrast-color:var(--aidx-on-contrast-5)}
+  .contrast-6{--aidx-contrast-color:var(--aidx-contrast-6);--aidx-on-contrast-color:var(--aidx-on-contrast-6)}
+  .contrast-7{--aidx-contrast-color:var(--aidx-contrast-7);--aidx-on-contrast-color:var(--aidx-on-contrast-7)}
+  .contrast-8{--aidx-contrast-color:var(--aidx-contrast-8);--aidx-on-contrast-color:var(--aidx-on-contrast-8)}
+  .contrast-fill,.contrast-box{
+    background:var(--aidx-contrast-color);color:var(--aidx-on-contrast-color);border-color:transparent
+  }
+  .contrast-box{padding:2.4vh 2vw}
+  .contrast-text{color:var(--aidx-contrast-color)!important}
+  .tag.contrast-fill{opacity:1}
+  .contrast-fill .t-cat,.contrast-fill .t-meta,.contrast-box .t-cat,.contrast-box .t-meta{color:inherit}
 
   /* ============ 动效 (与原模板一致) ============ */
   [data-anim]{opacity:1}
