@@ -38,6 +38,7 @@ Create a 21:9 social cover from the core conclusion of this brief.
 
 - **One AIDX visual system**: white/light surfaces, subtle grid, AIDX blue/navy, bank-grade restraint
 - **Semantic brand color**: Core Navy for identity, Action Blue for action, and Signal Cyan only for AI signals
+- **Visual color asset**: a complete static palette for understanding scales, semantic pairings, chart sequences, and controlled effects
 - **Status and chart discipline**: semantic success, warning, danger, info, and AI states; categorical charts stop at eight colors
 - **Opt-in high-contrast accents**: when explicitly requested, reuse the eight Categorical / Light colors for labels, text boxes, and local emphasis
 - **22 registered layouts**: `S01-S22` for covers, timelines, KPI, comparison, system maps, evidence visuals, and closing requests
@@ -68,7 +69,7 @@ Create a 21:9 social cover from the core conclusion of this brief.
 
 1. **Clarify the brief**: audience, decision request, slide count, materials, and sensitive information.
 2. **Copy the template**: use `assets/template-aidx.html` as `ppt/index.html`.
-3. **Read the rules**: `themes-aidx.md`, `layouts-aidx.md`, and `checklist.md`.
+3. **Review the palette and rules**: use `assets/aidx-color-palette.html` for visual color selection, then read `themes-aidx.md`, `layouts-aidx.md`, and `checklist.md`; take exact values from `references/aidx-colors.json`.
 4. **Plan the layout rhythm**: choose from `S01-S22`; 8+ slide decks should use at least 6 different S layouts.
 5. **Fill the content**: write conclusions as titles, give KPI context, assign risk owners and mitigations.
 6. **Handle images**: local images go under `images/` and require `data-image-slot`; S22 uses `s22-hero-21x9`.
@@ -90,7 +91,9 @@ Create a 21:9 social cover from the core conclusion of this brief.
 ```text
 aidx-ppt-skill/
 ├── SKILL.md
-├── assets/template-aidx.html
+├── assets/
+│   ├── aidx-color-palette.html
+│   └── template-aidx.html
 ├── examples/
 │   ├── aidx-showcase.html
 │   ├── aidx-governance-review.html
@@ -121,6 +124,8 @@ Validate template colors against the vendored brand snapshot:
 ```bash
 node scripts/validate-aidx-deck.mjs assets/template-aidx.html --template
 ```
+
+Every validator run first checks the vendored palette HTML against the JSON source of truth for version, updated date, and complete system-color coverage. A missing palette or snapshot drift fails validation. When the color system changes, replace `assets/aidx-color-palette.html` byte-for-byte from upstream and update `references/aidx-colors.json` in the same change.
 
 Validate all examples:
 

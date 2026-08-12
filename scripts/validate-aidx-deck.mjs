@@ -14,7 +14,60 @@ if (!file) {
 
 const repoRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const brandSnapshotPath = resolve(repoRoot, 'references/aidx-colors.json');
+const colorPaletteAssetPath = resolve(repoRoot, 'assets/aidx-color-palette.html');
 const brand = JSON.parse(readFileSync(brandSnapshotPath, 'utf8'));
+
+function collectHexColors(value, colors = new Set()) {
+  if (typeof value === 'string') {
+    for (const match of value.matchAll(/#[0-9a-f]{6}\b/gi)) colors.add(match[0].toUpperCase());
+  } else if (Array.isArray(value)) {
+    value.forEach((item) => collectHexColors(item, colors));
+  } else if (value && typeof value === 'object') {
+    Object.values(value).forEach((item) => collectHexColors(item, colors));
+  }
+  return colors;
+}
+
+function validateColorPaletteAsset() {
+  const assetErrors = [];
+  let colorPaletteHtml;
+
+  try {
+    colorPaletteHtml = readFileSync(colorPaletteAssetPath, 'utf8');
+  } catch (error) {
+    return [`Missing vendored color palette asset at assets/aidx-color-palette.html (${error.code ?? error.message}).`];
+  }
+
+  const version = colorPaletteHtml.match(/\bVERSION\s*<strong>([^<]+)<\/strong>/i)?.[1]?.trim();
+  const updated = colorPaletteHtml.match(/\bUPDATED\s*<strong>([^<]+)<\/strong>/i)?.[1]?.trim();
+
+  if (version !== brand.meta.version) {
+    assetErrors.push(`Color palette version is ${version ?? 'missing'}; expected ${brand.meta.version} from references/aidx-colors.json.`);
+  }
+  if (updated !== brand.meta.updated) {
+    assetErrors.push(`Color palette updated date is ${updated ?? 'missing'}; expected ${brand.meta.updated} from references/aidx-colors.json.`);
+  }
+
+  const snapshotColors = collectHexColors(brand);
+  const paletteColors = new Set(
+    [...colorPaletteHtml.matchAll(/#[0-9a-f]{6}\b/gi)].map((match) => match[0].toUpperCase()),
+  );
+  const missingColors = [...snapshotColors].filter((color) => !paletteColors.has(color)).sort();
+  if (missingColors.length) {
+    assetErrors.push(`Color palette does not cover snapshot color(s): ${missingColors.join(', ')}.`);
+  }
+
+  return assetErrors;
+}
+
+const colorPaletteErrors = validateColorPaletteAsset();
+if (colorPaletteErrors.length) {
+  console.error('AIDX color asset validation failed:');
+  for (const error of colorPaletteErrors) console.error(`- ${error}`);
+  process.exit(1);
+}
+console.log(`AIDX color asset validation passed: snapshot ${brand.meta.version}, updated ${brand.meta.updated}.`);
+
 const html = readFileSync(file, 'utf8');
 const htmlForSlides = html.replace(/<!--[\s\S]*?-->/g, '');
 const errors = [];

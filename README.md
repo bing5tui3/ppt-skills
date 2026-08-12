@@ -40,6 +40,7 @@ npx skills add https://github.com/bing5tui3/ppt-skills --skill aidx-ppt-skill
 
 - **AIDX 单一视觉系统**:白底浅色、轻量网格、AIDX blue/navy、银行级克制
 - **品牌语义色**:Core Navy 负责身份、Action Blue 负责行动、Signal Cyan 只用于 AI 信号
+- **可视化颜色资产**:内置完整静态色板用于理解色阶、语义组合、图表序列与受控效果
 - **状态与图表规范**:成功、警告、风险、信息、AI 状态强制语义映射;分类图最多八色
 - **可选高对比强调色**:用户明确指定时,可将 Categorical / Light 八色用于标签、文本框背景和局部强调
 - **22 个登记版式**:`S01-S22`,覆盖封面、时间线、KPI、对比、系统图、证据图、结尾请求
@@ -70,7 +71,7 @@ npx skills add https://github.com/bing5tui3/ppt-skills --skill aidx-ppt-skill
 
 1. **澄清目标**:汇报对象、决策请求、页数、素材、敏感信息。
 2. **复制模板**:`assets/template-aidx.html` 到目标目录 `ppt/index.html`。
-3. **读取规则**:`themes-aidx.md`、`layouts-aidx.md`、`checklist.md`。
+3. **查看色板并读取规则**:先参考 `assets/aidx-color-palette.html` 做视觉选色,再读取 `themes-aidx.md`、`layouts-aidx.md`、`checklist.md`;精确色值以 `references/aidx-colors.json` 为准。
 4. **规划版式**:从 `S01-S22` 中选择,8 页以上至少使用 6 个不同 Sxx。
 5. **填充内容**:标题写结论,KPI 写口径,风险写 owner 和缓释动作。
 6. **处理图片**:所有本地图片放入 `images/`,写 `data-image-slot`;S22 使用 `s22-hero-21x9`。
@@ -92,7 +93,9 @@ npx skills add https://github.com/bing5tui3/ppt-skills --skill aidx-ppt-skill
 ```text
 aidx-ppt-skill/
 ├── SKILL.md
-├── assets/template-aidx.html
+├── assets/
+│   ├── aidx-color-palette.html
+│   └── template-aidx.html
 ├── examples/
 │   ├── aidx-showcase.html
 │   ├── aidx-governance-review.html
@@ -123,6 +126,8 @@ node scripts/build-aidx-examples.mjs
 ```bash
 node scripts/validate-aidx-deck.mjs assets/template-aidx.html --template
 ```
+
+每次运行校验器都会先检查 vendored 色板 HTML 与 JSON 真源的版本、更新时间和系统色覆盖;色板缺失或两者漂移会直接失败。更新颜色系统时,请原样覆盖 `assets/aidx-color-palette.html`,并同步更新 `references/aidx-colors.json`。
 
 校验全部示例:
 

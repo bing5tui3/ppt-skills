@@ -24,9 +24,10 @@ description: 生成 AIDX / WeBank 内部管理同步风格的横向翻页网页 
 | 文件 | 用途 |
 |---|---|
 | `assets/template-aidx.html` | AIDX 单文件 HTML 模板 |
+| `assets/aidx-color-palette.html` | AIDX Color System v1.0.0 可视化色板资产 |
 | `references/layouts-aidx.md` | `S01-S22` 登记版式和品牌 chrome |
 | `references/themes-aidx.md` | AIDX 固定浅色变量 |
-| `references/aidx-colors.json` | AIDX Color System v1.0.0 校验快照 |
+| `references/aidx-colors.json` | AIDX Color System v1.0.0 机器可读真源与校验快照 |
 | `references/checklist.md` | 交付前自检 |
 | `references/components.md` | 模板组件和类名 |
 | `references/image-prompts.md` | AIDX 配图提示词 |
@@ -81,7 +82,9 @@ rg "\\[必填\\]" "项目/XXX/ppt/index.html"
 
 ### Step 3 · 读规则
 
-写 slide 前必须读:
+写 slide 前必须先查看 `assets/aidx-color-palette.html`,用其理解颜色层级、语义组合、图表序列和效果关系。视觉选色与组合参考该 HTML;精确色值始终读取 `references/aidx-colors.json`。不要把整张色板链接或嵌入生成的 deck。
+
+然后读:
 
 1. `references/themes-aidx.md`
 2. `references/layouts-aidx.md`
@@ -165,6 +168,8 @@ node "<SKILL_ROOT>/scripts/validate-aidx-deck.mjs" "<SKILL_ROOT>/assets/template
 node "<SKILL_ROOT>/scripts/validate-aidx-deck.mjs" "项目/XXX/ppt/index.html"
 ```
 
+校验器会在每次运行时自动验证 `assets/aidx-color-palette.html` 与 `references/aidx-colors.json` 的版本、更新时间和系统色覆盖。两份 vendored 快照缺失或漂移时,先同步更新二者再继续;HTML 中仅用于色板页面自身的装饰色可以保留。
+
 再人工检查:
 
 - 浏览器打开 `index.html`,检查 16:9 桌面和窄屏缩放。
@@ -190,10 +195,11 @@ node "<SKILL_ROOT>/scripts/validate-aidx-deck.mjs" "项目/XXX/ppt/index.html"
 
 - [ ] `index.html` 是单文件 deck,可直接浏览器打开
 - [ ] 使用 `assets/template-aidx.html`
+- [ ] 已参考 `assets/aidx-color-palette.html` 选择颜色层级与组合
 - [ ] 每页 `data-layout="Sxx"`
 - [ ] 每页包含 `.canvas-card`
 - [ ] 每页包含 `.aidx-brand`
-- [ ] 颜色通过 `references/aidx-colors.json` 快照校验
+- [ ] 色值来自 `references/aidx-colors.json`,且色板资产通过自动一致性校验
 - [ ] 状态色都有文字或符号,Signal Cyan 只用于 AI 状态
 - [ ] 本地图片都在 `images/` 下并带 `data-image-slot`
 - [ ] 无 `/Users/`、`file://`、未替换 `[必填]`
