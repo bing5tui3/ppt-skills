@@ -17,8 +17,10 @@ Examples: [AIDX Showcase](./examples/aidx-showcase.html), [Governance Review](./
 ## 30-second start
 
 ```bash
-npx skills add https://github.com/bing5tui3/ppt-skills --skill aidx-ppt-skill
+npx skills add git@code.weoa.com:AIDX/aidx-ppt-skill.git --skill aidx-ppt-skill
 ```
+
+Before installing, connect to the corporate network and configure SSH access to `code.weoa.com`.
 
 Then ask your agent:
 

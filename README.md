@@ -19,8 +19,10 @@
 ## 30 秒开始
 
 ```bash
-npx skills add https://github.com/bing5tui3/ppt-skills --skill aidx-ppt-skill
+npx skills add git@code.weoa.com:AIDX/aidx-ppt-skill.git --skill aidx-ppt-skill
 ```
+
+安装前需接入公司网络,并已配置 `code.weoa.com` 的 SSH 访问权限。
 
 安装后直接对 Agent 说:
 
